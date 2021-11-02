@@ -22,6 +22,7 @@ const SearchBar = (props) => {
 
   return (
     <div>
+      <p>Select from the list</p>
       <div>
         <input
           type="text"

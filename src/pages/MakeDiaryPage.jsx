@@ -30,11 +30,11 @@ const MakeDiary = (props) => {
     const initialProductData = Ingredients.find((value) => {
       return value.name === calculated.name;
     });
-    console.log(index);
-    calculated["protein"] = initialProductData["protein"] * multiplier;
-    calculated["carbs"] = initialProductData["carbs"] * multiplier;
-    calculated["fat"] = initialProductData["fat"] * multiplier;
-    calculated["kcal"] = initialProductData["kcal"] * multiplier;
+
+    for (let elem of ["protein", "carbs", "fat", "kcal", "amount"]) {
+      calculated[elem] = initialProductData[elem] * multiplier;
+    }
+
     selectedCopy[index] = calculated;
     setSelected((selected) => (selected = selectedCopy));
   };
