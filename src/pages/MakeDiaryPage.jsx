@@ -1,13 +1,39 @@
 import React, { useState } from "react";
 import SearchBar from "../components/Form/SearchBar";
 import Ingredients from "../data/ingredients.json";
+import DiaryMaker from "../components/Content/DiaryMaker";
 import SelectedProducts from "../components/Content/SelectedProducts";
 
 const MakeDiary = (props) => {
-  const [selected, setSelected] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedMeals, setSelectedMeals] = useState([]);
+
   const ingredientsCopy = JSON.parse(JSON.stringify(Ingredients));
+
   const handleAddProduct = (item) => {
-    setSelected((selected) => [...selected, item]);
+    setSelectedProducts((selectedProducts) => [...selectedProducts, item]);
+    document.getElementById("ingredientInput").value = "";
+  };
+
+  const handleDeleteProduct = (index) => {
+    const filtered = [...selectedProducts];
+    filtered.splice(index, 1);
+    setSelectedProducts((selectedProducts) => (selectedProducts = filtered));
+  };
+
+  const handleAddMeal = (items) => {
+    if (document.getElementById("name").value) {
+      setSelectedMeals((selectedMeals) => [
+        ...selectedMeals,
+        {
+          name: document.getElementById("name").value,
+          items: items,
+          totalMacros: setTotalMacros(selectedProducts),
+        },
+      ]);
+      setSelectedProducts([]);
+      console.log(selectedMeals);
+    }
   };
 
   const setTotalMacros = (arr) => {
@@ -25,8 +51,8 @@ const MakeDiary = (props) => {
   };
 
   const calculateAmount = (multiplier, index) => {
-    const selectedCopy = [...selected];
-    const calculated = selected[index];
+    const selectedCopy = [...selectedProducts];
+    const calculated = selectedProducts[index];
     const initialProductData = Ingredients.find((value) => {
       return value.name === calculated.name;
     });
@@ -36,15 +62,20 @@ const MakeDiary = (props) => {
     }
 
     selectedCopy[index] = calculated;
-    setSelected((selected) => (selected = selectedCopy));
+    setSelectedProducts(
+      (selectedProducts) => (selectedProducts = selectedCopy)
+    );
   };
 
   return (
     <div>
+      <DiaryMaker selectedMeals={selectedMeals} mealTotalMacros={""} />
       <SelectedProducts
         calculateAmount={calculateAmount}
-        selectedProducts={selected}
-        selectedProductsTotalMacros={setTotalMacros(selected)}
+        selectedProducts={selectedProducts}
+        selectedProductsTotalMacros={setTotalMacros(selectedProducts)}
+        addMeal={handleAddMeal}
+        deleteProduct={handleDeleteProduct}
       />
       <SearchBar
         addProduct={handleAddProduct}

@@ -1,0 +1,55 @@
+#product-select ul {
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+#product-select ul li {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.amount-form {
+  width: 50px;
+}
+.amount-side-left {
+  padding-right: 1rem;
+}
+
+.summary-bar {
+  display: flex;
+  align-items: center;
+  color: green;
+}
+.summary-bar-total {
+  display: flex;
+  align-items: center;
+  color: green;
+  font-weight: bold;
+  font-size: large;
+  margin: 1rem 0;
+}
+
+#diary ul {
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+#diary ul li {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+button {
+  margin: 0 1rem;
+}

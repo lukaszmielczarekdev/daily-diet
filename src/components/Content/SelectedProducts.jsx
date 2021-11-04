@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
+import "./selectedProducts.css";
 
 const SelectedProducts = (props) => {
   const userData = useContext(UserDataContext);
@@ -11,68 +12,72 @@ const SelectedProducts = (props) => {
   };
 
   return (
-    <div>
-      <p>Selected products</p>
+    <>
       {props.selectedProducts.length !== 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <input id={"name"} type="text" placeholder={"Name"} />
-              </th>
-              <th>Protein</th>
-              <th>Carbs</th>
-              <th>Fat</th>
-              <th>Kcal</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div id="product-select">
+          <input id={"name"} type="text" placeholder={"Name"} />
+          <ul>
             {props.selectedProducts.map((value, index) => (
-              <tr key={Math.random()}>
-                <td>{value.name}</td>
-                <td>{value.protein.toFixed(1)}</td>
-                <td>{value.carbs.toFixed(1)}</td>
-                <td>{value.fat.toFixed(1)}</td>
-                <td>{value.kcal.toFixed(1)}</td>
-                <td>
+              <li key={index}>
+                <div className="amount-side-left">
                   <form onSubmit={(e) => handleSubmit(e, index)}>
                     <input
+                      className="amount-form"
                       id={index}
                       type="text"
                       placeholder={value.amount + "g"}
                     />
                     <button type="submit">Submit</button>
                   </form>
-                </td>
-                {/* <td>
-                  <button
-
-                  onClick={() => this.handleDelete(post)}
-                  >
+                </div>
+                <div>
+                  <span>{value.name}</span>
+                  <div className="summary-bar">
+                    <span>Kcal: {value.kcal.toFixed(1)} / </span>
+                    <span>Protein: {value.protein.toFixed(1)} / </span>
+                    <span>Carbs: {value.carbs.toFixed(1)} / </span>
+                    <span>Fat: {value.fat.toFixed(1)} </span>
+                  </div>
+                </div>
+                <div>
+                  <button onClick={() => props.deleteProduct(index)}>
                     Delete
                   </button>
-                </td> */}
-              </tr>
+                </div>
+              </li>
             ))}
-            <tr>
-              <td>Total:</td>
-              <td>{props.selectedProductsTotalMacros.protein.toFixed(1)}</td>
-              <td>{props.selectedProductsTotalMacros.carbs.toFixed(1)}</td>
-              <td>{props.selectedProductsTotalMacros.fat.toFixed(1)}</td>
-              <td>{props.selectedProductsTotalMacros.kcal.toFixed(1)}</td>
-              <td>
-                <button
-                  onClick={() => userData.addDiary(props.selectedProducts)}
-                >
-                  Save Dairy
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          </ul>
+          <div className="summary-bar-total">
+            <span className="amount-side-left">
+              Kcal: {props.selectedProductsTotalMacros.kcal.toFixed(1)}
+            </span>
+            <div>
+              <span>
+                Protein: {props.selectedProductsTotalMacros.protein.toFixed(1)}{" "}
+                /{" "}
+              </span>
+              <span>
+                Carbs: {props.selectedProductsTotalMacros.carbs.toFixed(1)} /{" "}
+              </span>
+              <span>
+                Fat: {props.selectedProductsTotalMacros.fat.toFixed(1)}{" "}
+              </span>
+            </div>
+          </div>
+          <div>
+            <button onClick={() => props.addMeal(props.selectedProducts)}>
+              Add to diary
+            </button>
+            <button
+              // onClick={() => userData.addDiary(props.selectedProducts)}
+              onClick={() => userData.saveMeal(props.selectedProducts)}
+            >
+              Save as a template
+            </button>
+          </div>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

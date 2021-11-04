@@ -22,9 +22,9 @@ const SearchBar = (props) => {
 
   return (
     <div>
-      <p>Select from the list</p>
       <div>
         <input
+          id="ingredientInput"
           type="text"
           placeholder={props.placeholder}
           onChange={handleFilter}

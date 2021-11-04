@@ -19,17 +19,22 @@ const App = () => {
     setUserData(userDataDummy);
   };
 
-  const handleAddDiary = (items) => {
-    if (!document.getElementById("name").value) {
-      alert("Diary need a name");
+  const handleSaveMeal = (items) => {
+    if (document.getElementById("name").value) {
+      const userDataDummy = { ...userData };
+      userDataDummy.meals = [
+        ...userDataDummy.meals,
+        { name: document.getElementById("name").value, items: items },
+      ];
+      setUserData(userDataDummy);
     }
-    const userDataDummy = { ...userData };
-    userDataDummy.diaries = [
-      ...userDataDummy.diaries,
-      { name: document.getElementById("name").value, items: items },
-    ];
-    setUserData(userDataDummy);
   };
+
+  // const handleAddDiary = (items) => {
+  //   if (document.getElementById("name").value) {
+  //     // ...
+  //   }
+  // };
 
   const handleDeleteDiary = (diary) => {
     const userDataDummy = { ...userData };
@@ -45,7 +50,7 @@ const App = () => {
       value={{
         userdata: userData,
         setUserInfo: handleSetUserInfo,
-        addDiary: handleAddDiary,
+        saveMeal: handleSaveMeal,
         deleteDiary: handleDeleteDiary,
       }}
     >
