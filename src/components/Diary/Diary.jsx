@@ -1,0 +1,56 @@
+import React from "react";
+import { SectionText } from "../../styles/globalComponentsStyles";
+
+const Diary = (props) => {
+  return (
+    <section className="border">
+      <SectionText smaller>
+        <h4>{props.title}</h4>
+        <ul>
+          {props.items.length !== 0 &&
+            props.items.map((meal, mealIndex) => (
+              <React.Fragment key={mealIndex}>
+                <li>
+                  <ul>
+                    <span>{meal.name}</span>
+                    {meal.items.map((ingredient, ingIndex) => (
+                      <li key={ingIndex}>
+                        <div className="amount-side-left">
+                          <span>{ingredient.amount.toFixed(1) + "g"}</span>
+                        </div>
+                        <div>
+                          <span>{ingredient.name}</span>
+                          <div className="summary-bar">
+                            <span>Kcal: {ingredient.kcal.toFixed(1)} / </span>
+                            <span>
+                              Protein: {ingredient.protein.toFixed(1)} /{" "}
+                            </span>
+                            <span>Carbs: {ingredient.carbs.toFixed(1)} / </span>
+                            <span>Fat: {ingredient.fat.toFixed(1)} </span>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <div className="summary-bar-total">
+                  <span className="amount-side-left">
+                    Kcal: {meal.totalMacros.kcal.toFixed(1)}
+                  </span>
+                  <div>
+                    <span>
+                      Protein: {meal.totalMacros.protein.toFixed(1)} /{" "}
+                    </span>
+                    <span>Carbs: {meal.totalMacros.carbs.toFixed(1)} / </span>
+                    <span>Fat: {meal.totalMacros.fat.toFixed(1)} </span>
+                  </div>
+                </div>
+              </React.Fragment>
+            ))}
+        </ul>
+      </SectionText>
+    </section>
+  );
+};
+
+export default Diary;

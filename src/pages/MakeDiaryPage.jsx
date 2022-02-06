@@ -34,7 +34,6 @@ const MakeDiary = (props) => {
       ]);
       setSelectedProducts([]);
     }
-    console.log(selectedMeals);
   };
 
   const setTotalMacrosForProducts = (arr) => {
@@ -88,6 +87,7 @@ const MakeDiary = (props) => {
         <DiaryMaker
           selectedMeals={selectedMeals}
           mealTotalMacros={setTotalMacrosForMeals(selectedMeals)}
+          clean={setSelectedMeals}
         />
         <SelectedProducts
           calculateAmount={calculateAmount}

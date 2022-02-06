@@ -123,15 +123,16 @@ export const Button = styled.button`
   cursor: pointer;
   font-size: 1rem;
   padding: 0.3rem 0.4rem;
-  border: ${(props) => (props.warning ? "none" : "1px solid black")};
+  border: ${(props) =>
+    props.warning ? "1px solid rgb(235,110,105)" : "1px solid black"};
   border-radius: 5px;
   transition: 0.5s;
   width: 15%;
   width: fit-content;
   &:hover {
-    background: rgba(255, 255, 255, 0.75);
     color: ${(props) => (props.warning ? "white" : "black")};
     background: ${(props) => (props.warning ? "red" : "white")};
+    border: ${(props) => (props.warning ? "1px solid red" : "1px solid black")};
   }
 
   @media ${(props) => props.theme.breakpoints.smlandscape} {

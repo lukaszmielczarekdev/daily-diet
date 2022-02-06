@@ -38,11 +38,16 @@ const App = () => {
     }
   };
 
-  // const handleAddDiary = (items) => {
-  //   if (document.getElementById("name").value) {
-  //     // ...
-  //   }
-  // };
+  const handleSaveDiary = (items) => {
+    if (document.getElementById("diary-name").value) {
+      const userDataDummy = { ...userData };
+      userDataDummy.diaries = [
+        ...userDataDummy.diaries,
+        { name: document.getElementById("diary-name").value, items: items },
+      ];
+      setUserData(userDataDummy);
+    }
+  };
 
   const handleDeleteDiary = (diary) => {
     const userDataDummy = { ...userData };
@@ -56,9 +61,10 @@ const App = () => {
   return (
     <UserDataContext.Provider
       value={{
-        userdata: userData,
+        userData: userData,
         setUserInfo: handleSetUserInfo,
         saveMeal: handleSaveMeal,
+        saveDiary: handleSaveDiary,
         deleteDiary: handleDeleteDiary,
       }}
     >

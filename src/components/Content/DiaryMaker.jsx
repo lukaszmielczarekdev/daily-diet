@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserDataContext from "../../contexts/UserDataContext";
+import { Button } from "../../styles/globalComponentsStyles";
 
 const DiaryMaker = (props) => {
+  const userData = useContext(UserDataContext);
   return (
     <>
       {props.selectedMeals.length !== 0 && (
         <div id="diary">
-          <p>{new Date().toLocaleDateString()}</p>
+          <p>
+            <input id={"diary-name"} type="text" placeholder={"Diary name"} /> *
+            - {new Date().toLocaleDateString()}
+          </p>
           <ul>
             {props.selectedMeals.length !== 0 &&
               props.selectedMeals.map((meal, mealIndex) => (
@@ -61,6 +67,19 @@ const DiaryMaker = (props) => {
               <span>Carbs: {props.mealTotalMacros.carbs.toFixed(1)} / </span>
               <span>Fat: {props.mealTotalMacros.fat.toFixed(1)} </span>
             </div>
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+                userData.saveDiary(props.selectedMeals);
+                props.clean([]);
+              }}
+            >
+              Save diary
+            </Button>
+            <Button warning onClick={() => props.clean([])}>
+              Delete
+            </Button>
           </div>
         </div>
       )}

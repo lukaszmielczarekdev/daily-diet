@@ -47,14 +47,17 @@ ul {
   font-size: large;
   margin: 1rem 0;
 }
+#diary {
+  margin-bottom: 4rem;
+}
 
-#diary ul {
+ul {
   list-style-type: none;
   margin: 0.5rem 0;
   padding: 0;
 }
 
-#diary ul li {
+ul li {
   display: flex;
   margin: 0;
   padding: 0;
@@ -62,4 +65,9 @@ ul {
 }
 button {
   margin: 0 1rem;
+}
+
+.border {
+  max-width: fit-content;
+  padding: 1rem;
 }
