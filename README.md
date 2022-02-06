@@ -1,5 +1,8 @@
 # DAILY DIET
 
+[LIVE SITE](https://daily-diet.pages.dev)
+Just for testing. Work in progress...
+
 ## Table of contents
 
 - [About the project]
