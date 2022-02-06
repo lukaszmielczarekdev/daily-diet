@@ -3,6 +3,11 @@ import MakeDiary from "./pages/MakeDiaryPage";
 import { getData } from "./utils/localstorage";
 import { initialUserData } from "./data/userdata";
 import UserDataContext from "./contexts/UserDataContext";
+import Footer from "./components/Footer/Footer";
+import Hero from "./components/Hero/Hero";
+import NavBar from "./components/NavBar/NavBar";
+import ThemeManager from "./themes/themeManager";
+import { AppContainer } from "./AppStyles";
 
 const App = () => {
   const [userData, setUserData] = useState(
@@ -54,9 +59,14 @@ const App = () => {
         deleteDiary: handleDeleteDiary,
       }}
     >
-      <div className="App">
-        <MakeDiary />
-      </div>
+      <ThemeManager>
+        <AppContainer>
+          <NavBar />
+          <Hero />
+          <MakeDiary />
+          <Footer />
+        </AppContainer>
+      </ThemeManager>
     </UserDataContext.Provider>
   );
 };

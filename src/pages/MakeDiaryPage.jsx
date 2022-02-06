@@ -3,6 +3,7 @@ import SearchBar from "../components/Form/SearchBar";
 import Ingredients from "../data/ingredients.json";
 import DiaryMaker from "../components/Content/DiaryMaker";
 import SelectedProducts from "../components/Content/SelectedProducts";
+import { Section, SectionText } from "../styles/globalComponentsStyles";
 
 const MakeDiary = (props) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -68,21 +69,23 @@ const MakeDiary = (props) => {
   };
 
   return (
-    <div>
-      <DiaryMaker selectedMeals={selectedMeals} mealTotalMacros={""} />
-      <SelectedProducts
-        calculateAmount={calculateAmount}
-        selectedProducts={selectedProducts}
-        selectedProductsTotalMacros={setTotalMacros(selectedProducts)}
-        addMeal={handleAddMeal}
-        deleteProduct={handleDeleteProduct}
-      />
-      <SearchBar
-        addProduct={handleAddProduct}
-        placeholder="Search..."
-        data={ingredientsCopy}
-      />
-    </div>
+    <Section id="diarybuilder" column>
+      <SectionText smaller>
+        <DiaryMaker selectedMeals={selectedMeals} mealTotalMacros={""} />
+        <SelectedProducts
+          calculateAmount={calculateAmount}
+          selectedProducts={selectedProducts}
+          selectedProductsTotalMacros={setTotalMacros(selectedProducts)}
+          addMeal={handleAddMeal}
+          deleteProduct={handleDeleteProduct}
+        />
+        <SearchBar
+          addProduct={handleAddProduct}
+          placeholder="Search..."
+          data={ingredientsCopy}
+        />
+      </SectionText>
+    </Section>
   );
 };
 
