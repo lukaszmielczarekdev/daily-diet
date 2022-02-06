@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
 import { Button } from "../../styles/globalComponentsStyles";
+import { v4 as uuidv4 } from "uuid";
 
 const DiaryMaker = (props) => {
+  const resetSelected = () => {
+    return document.getElementById("diary-name").value ? props.clean([]) : "";
+  };
+
   const userData = useContext(UserDataContext);
   return (
     <>
@@ -15,12 +20,12 @@ const DiaryMaker = (props) => {
           <ul>
             {props.selectedMeals.length !== 0 &&
               props.selectedMeals.map((meal, mealIndex) => (
-                <React.Fragment key={mealIndex}>
+                <React.Fragment key={uuidv4()}>
                   <li>
                     <ul>
                       <span>{meal.name}</span>
                       {meal.items.map((ingredient, ingIndex) => (
-                        <li key={ingIndex}>
+                        <li key={uuidv4()}>
                           <div className="amount-side-left">
                             <span>{ingredient.amount.toFixed(1) + "g"}</span>
                           </div>
@@ -72,7 +77,7 @@ const DiaryMaker = (props) => {
             <Button
               onClick={() => {
                 userData.saveDiary(props.selectedMeals);
-                props.clean([]);
+                resetSelected();
               }}
             >
               Save diary

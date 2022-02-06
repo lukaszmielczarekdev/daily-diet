@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchBar from "../components/Form/SearchBar";
 import Ingredients from "../data/ingredients.json";
 import DiaryMaker from "../components/Content/DiaryMaker";
 import SelectedProducts from "../components/Content/SelectedProducts";
 import { Section, SectionText } from "../styles/globalComponentsStyles";
+import { v4 as uuidv4 } from "uuid";
+import UserDataContext from "../contexts/UserDataContext";
 
 const MakeDiary = (props) => {
+  const userData = useContext(UserDataContext);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedMeals, setSelectedMeals] = useState([]);
 
@@ -27,41 +30,14 @@ const MakeDiary = (props) => {
       setSelectedMeals((selectedMeals) => [
         ...selectedMeals,
         {
+          id: uuidv4(),
           name: document.getElementById("name").value,
           items: items,
-          totalMacros: setTotalMacrosForProducts(selectedProducts),
+          totalMacros: userData.calculateMacrosForProducts(selectedProducts),
         },
       ]);
       setSelectedProducts([]);
     }
-  };
-
-  const setTotalMacrosForProducts = (arr) => {
-    return arr.reduce(
-      (acc, elem) => {
-        return {
-          protein: acc.protein + elem.protein,
-          carbs: acc.carbs + elem.carbs,
-          fat: acc.fat + elem.fat,
-          kcal: acc.kcal + elem.kcal,
-        };
-      },
-      { protein: 0, carbs: 0, fat: 0, kcal: 0 }
-    );
-  };
-
-  const setTotalMacrosForMeals = (arr) => {
-    return arr.reduce(
-      (acc, elem) => {
-        return {
-          protein: acc.protein + elem.totalMacros.protein,
-          carbs: acc.carbs + elem.totalMacros.carbs,
-          fat: acc.fat + elem.totalMacros.fat,
-          kcal: acc.kcal + elem.totalMacros.kcal,
-        };
-      },
-      { protein: 0, carbs: 0, fat: 0, kcal: 0 }
-    );
   };
 
   const calculateAmount = (multiplier, index) => {
@@ -86,13 +62,13 @@ const MakeDiary = (props) => {
       <SectionText smaller>
         <DiaryMaker
           selectedMeals={selectedMeals}
-          mealTotalMacros={setTotalMacrosForMeals(selectedMeals)}
+          mealTotalMacros={userData.calculateMacrosForMeals(selectedMeals)}
           clean={setSelectedMeals}
         />
         <SelectedProducts
           calculateAmount={calculateAmount}
           selectedProducts={selectedProducts}
-          selectedProductsTotalMacros={setTotalMacrosForProducts(
+          selectedProductsTotalMacros={userData.calculateMacrosForProducts(
             selectedProducts
           )}
           addMeal={handleAddMeal}

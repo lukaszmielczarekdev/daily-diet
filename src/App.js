@@ -11,6 +11,7 @@ import { AppContainer } from "./AppStyles";
 import UserDiaries from "./components/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/DiaryBuilder/DiaryBuilder";
 import UserProfile from "./components/UserProfile/UserProfile";
+import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
   const [userData, setUserData] = useState(
@@ -43,19 +44,49 @@ const App = () => {
       const userDataDummy = { ...userData };
       userDataDummy.diaries = [
         ...userDataDummy.diaries,
-        { name: document.getElementById("diary-name").value, items: items },
+        {
+          id: uuidv4(),
+          name: document.getElementById("diary-name").value,
+          items: items,
+        },
       ];
       setUserData(userDataDummy);
     }
   };
 
-  const handleDeleteDiary = (diary) => {
+  const handleDeleteDiary = (id) => {
     const userDataDummy = { ...userData };
-    const diaries = userDataDummy.diaries.filter(
-      (item) => item.id !== diary.id
-    );
+    const diaries = userDataDummy.diaries.filter((item) => item.id !== id);
     userDataDummy.diaries = diaries;
     setUserData(userDataDummy);
+  };
+
+  const setTotalMacrosForProducts = (arr) => {
+    return arr.reduce(
+      (acc, elem) => {
+        return {
+          protein: acc.protein + elem.protein,
+          carbs: acc.carbs + elem.carbs,
+          fat: acc.fat + elem.fat,
+          kcal: acc.kcal + elem.kcal,
+        };
+      },
+      { protein: 0, carbs: 0, fat: 0, kcal: 0 }
+    );
+  };
+
+  const setTotalMacrosForMeals = (arr) => {
+    return arr.reduce(
+      (acc, elem) => {
+        return {
+          protein: acc.protein + elem.totalMacros.protein,
+          carbs: acc.carbs + elem.totalMacros.carbs,
+          fat: acc.fat + elem.totalMacros.fat,
+          kcal: acc.kcal + elem.totalMacros.kcal,
+        };
+      },
+      { protein: 0, carbs: 0, fat: 0, kcal: 0 }
+    );
   };
 
   return (
@@ -66,6 +97,8 @@ const App = () => {
         saveMeal: handleSaveMeal,
         saveDiary: handleSaveDiary,
         deleteDiary: handleDeleteDiary,
+        calculateMacrosForProducts: setTotalMacrosForProducts,
+        calculateMacrosForMeals: setTotalMacrosForMeals,
       }}
     >
       <ThemeManager>

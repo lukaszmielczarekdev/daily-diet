@@ -1,7 +1,12 @@
-import React from "react";
-import { SectionText } from "../../styles/globalComponentsStyles";
+import React, { useContext } from "react";
+import UserDataContext from "../../contexts/UserDataContext";
+import { SectionText, Button } from "../../styles/globalComponentsStyles";
 
 const Diary = (props) => {
+  const userData = useContext(UserDataContext);
+
+  const macros = userData.calculateMacrosForMeals(props.items);
+
   return (
     <section className="border">
       <SectionText smaller>
@@ -48,6 +53,24 @@ const Diary = (props) => {
               </React.Fragment>
             ))}
         </ul>
+        <div className="summary-bar-total border-top">
+          <span className="amount-side-left">
+            Kcal: {macros.kcal.toFixed(1)}
+          </span>
+          <div>
+            <span>Protein: {macros.protein.toFixed(1)} / </span>
+            <span>Carbs: {macros.carbs.toFixed(1)} / </span>
+            <span>Fat: {macros.fat.toFixed(1)} </span>
+          </div>
+        </div>
+        <div>
+          <a href={"#diarybuilder"}>
+            <Button>New diary</Button>
+          </a>
+          <Button warning onClick={() => userData.deleteDiary(props.id)}>
+            Delete
+          </Button>
+        </div>
       </SectionText>
     </section>
   );
