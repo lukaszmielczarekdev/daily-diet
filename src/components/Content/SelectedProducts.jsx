@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
+import { Button } from "../../styles/globalComponentsStyles";
 import "./selectedProducts.css";
 
 const SelectedProducts = (props) => {
@@ -15,7 +16,7 @@ const SelectedProducts = (props) => {
     <>
       {props.selectedProducts.length !== 0 && (
         <div id="product-select">
-          <input id={"name"} type="text" placeholder={"Name"} />
+          <input id={"name"} type="text" placeholder={"Name"} /> *
           <ul>
             {props.selectedProducts.map((value, index) => (
               <li key={index}>
@@ -25,12 +26,12 @@ const SelectedProducts = (props) => {
                       className="amount-form"
                       id={index}
                       type="text"
-                      placeholder={value.amount + "g"}
+                      placeholder={value.amount + "(g)"}
                     />
-                    <button type="submit">Submit</button>
+                    <Button type="submit">Submit</Button>
                   </form>
                 </div>
-                <div>
+                <div className="summary-center">
                   <span>{value.name}</span>
                   <div className="summary-bar">
                     <span>Kcal: {value.kcal.toFixed(1)} / </span>
@@ -40,9 +41,9 @@ const SelectedProducts = (props) => {
                   </div>
                 </div>
                 <div>
-                  <button onClick={() => props.deleteProduct(index)}>
+                  <Button warning onClick={() => props.deleteProduct(index)}>
                     Delete
-                  </button>
+                  </Button>
                 </div>
               </li>
             ))}
@@ -65,15 +66,15 @@ const SelectedProducts = (props) => {
             </div>
           </div>
           <div>
-            <button onClick={() => props.addMeal(props.selectedProducts)}>
+            <Button onClick={() => props.addMeal(props.selectedProducts)}>
               Add to diary
-            </button>
-            <button
+            </Button>
+            <Button
               // onClick={() => userData.addDiary(props.selectedProducts)}
               onClick={() => userData.saveMeal(props.selectedProducts)}
             >
               Save as a template
-            </button>
+            </Button>
           </div>
         </div>
       )}

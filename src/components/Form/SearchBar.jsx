@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const styles = {
   listStyle: "none",
   padding: "0",
+  cursor: "pointer",
 };
 
 const SearchBar = (props) => {

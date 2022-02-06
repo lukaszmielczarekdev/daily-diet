@@ -8,6 +8,9 @@ import Hero from "./components/Hero/Hero";
 import NavBar from "./components/NavBar/NavBar";
 import ThemeManager from "./themes/themeManager";
 import { AppContainer } from "./AppStyles";
+import UserDiaries from "./components/UserDiaries/UserDiaries";
+import DiaryBuilder from "./components/DiaryBuilder/DiaryBuilder";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 const App = () => {
   const [userData, setUserData] = useState(
@@ -63,6 +66,9 @@ const App = () => {
         <AppContainer>
           <NavBar />
           <Hero />
+          <UserProfile />
+          <UserDiaries />
+          <DiaryBuilder />
           <MakeDiary />
           <Footer />
         </AppContainer>

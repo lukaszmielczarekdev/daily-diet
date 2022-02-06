@@ -1,12 +1,8 @@
 import React from "react";
-import { FooterContainer, ItemList } from "./FooterStyles";
+import { FooterContainer } from "./FooterStyles";
 
 const Footer = () => {
-  return (
-    <FooterContainer>
-      <ItemList>Footer</ItemList>
-    </FooterContainer>
-  );
+  return <FooterContainer></FooterContainer>;
 };
 
 export default Footer;

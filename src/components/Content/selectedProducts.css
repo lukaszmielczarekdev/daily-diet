@@ -19,9 +19,14 @@ ul {
 
 .amount-form {
   width: 50px;
+  margin-right: 0.5rem;
 }
 .amount-side-left {
-  padding-right: 1rem;
+  margin-right: 0.5rem;
+}
+
+.summary-center {
+  margin: 0.5rem;
 }
 
 .summary-bar {

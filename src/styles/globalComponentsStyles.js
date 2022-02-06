@@ -114,3 +114,35 @@ export const SectionDivider = styled.div`
     flex-direction: column;
   }
 `;
+
+//Button
+export const Button = styled.button`
+  color: ${(props) => (props.warning ? "white" : "black")};
+  background: ${(props) => (props.warning ? "rgb(235,110,105)" : "white")};
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem 0.4rem;
+  border: ${(props) => (props.warning ? "none" : "1px solid black")};
+  border-radius: 5px;
+  transition: 0.5s;
+  width: 15%;
+  width: fit-content;
+  &:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: ${(props) => (props.warning ? "white" : "black")};
+    background: ${(props) => (props.warning ? "red" : "white")};
+  }
+
+  @media ${(props) => props.theme.breakpoints.smlandscape} {
+    width: 30%;
+    width: fit-content;
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    font-size: 1rem;
+    align-self: center;
+    width: auto;
+    width: fit-content;
+  }
+`;

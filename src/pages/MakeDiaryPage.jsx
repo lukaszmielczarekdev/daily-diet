@@ -81,7 +81,7 @@ const MakeDiary = (props) => {
         />
         <SearchBar
           addProduct={handleAddProduct}
-          placeholder="Search..."
+          placeholder="Find a product..."
           data={ingredientsCopy}
         />
       </SectionText>
