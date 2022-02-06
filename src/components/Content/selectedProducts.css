@@ -29,6 +29,11 @@ ul {
   margin: 0.5rem;
 }
 
+.border-top {
+  border-top: 1px solid black;
+  max-width: fit-content;
+}
+
 .summary-bar {
   display: flex;
   align-items: center;

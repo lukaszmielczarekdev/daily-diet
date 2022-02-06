@@ -50,6 +50,18 @@ const DiaryMaker = (props) => {
                 </React.Fragment>
               ))}
           </ul>
+          <div className="summary-bar-total border-top">
+            <span className="amount-side-left">
+              Kcal: {props.mealTotalMacros.kcal.toFixed(1)}
+            </span>
+            <div>
+              <span>
+                Protein: {props.mealTotalMacros.protein.toFixed(1)} /{" "}
+              </span>
+              <span>Carbs: {props.mealTotalMacros.carbs.toFixed(1)} / </span>
+              <span>Fat: {props.mealTotalMacros.fat.toFixed(1)} </span>
+            </div>
+          </div>
         </div>
       )}
     </>

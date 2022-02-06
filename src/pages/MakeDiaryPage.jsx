@@ -29,15 +29,15 @@ const MakeDiary = (props) => {
         {
           name: document.getElementById("name").value,
           items: items,
-          totalMacros: setTotalMacros(selectedProducts),
+          totalMacros: setTotalMacrosForProducts(selectedProducts),
         },
       ]);
       setSelectedProducts([]);
-      console.log(selectedMeals);
     }
+    console.log(selectedMeals);
   };
 
-  const setTotalMacros = (arr) => {
+  const setTotalMacrosForProducts = (arr) => {
     return arr.reduce(
       (acc, elem) => {
         return {
@@ -45,6 +45,20 @@ const MakeDiary = (props) => {
           carbs: acc.carbs + elem.carbs,
           fat: acc.fat + elem.fat,
           kcal: acc.kcal + elem.kcal,
+        };
+      },
+      { protein: 0, carbs: 0, fat: 0, kcal: 0 }
+    );
+  };
+
+  const setTotalMacrosForMeals = (arr) => {
+    return arr.reduce(
+      (acc, elem) => {
+        return {
+          protein: acc.protein + elem.totalMacros.protein,
+          carbs: acc.carbs + elem.totalMacros.carbs,
+          fat: acc.fat + elem.totalMacros.fat,
+          kcal: acc.kcal + elem.totalMacros.kcal,
         };
       },
       { protein: 0, carbs: 0, fat: 0, kcal: 0 }
@@ -71,11 +85,16 @@ const MakeDiary = (props) => {
   return (
     <Section id="diarybuilder" column>
       <SectionText smaller>
-        <DiaryMaker selectedMeals={selectedMeals} mealTotalMacros={""} />
+        <DiaryMaker
+          selectedMeals={selectedMeals}
+          mealTotalMacros={setTotalMacrosForMeals(selectedMeals)}
+        />
         <SelectedProducts
           calculateAmount={calculateAmount}
           selectedProducts={selectedProducts}
-          selectedProductsTotalMacros={setTotalMacros(selectedProducts)}
+          selectedProductsTotalMacros={setTotalMacrosForProducts(
+            selectedProducts
+          )}
           addMeal={handleAddMeal}
           deleteProduct={handleDeleteProduct}
         />
