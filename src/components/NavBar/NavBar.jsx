@@ -5,16 +5,20 @@ import {
   NavigationTitle,
   NavigationLink,
 } from "./NavBarStyles";
+import { BsGear } from "react-icons/bs";
 
 const NavBar = () => {
   return (
     <Container>
       <NavSection>
-        <NavigationTitle>LOGO</NavigationTitle>
+        <NavigationTitle>
+          <NavigationLink href="/">Daily Diet</NavigationLink>
+        </NavigationTitle>
       </NavSection>
       <NavSection>
-        <NavigationLink href="#diarybuilder">Build a diary</NavigationLink>
-        <NavigationLink href="#about">About</NavigationLink>
+        <NavigationLink href="preferences">
+          <BsGear />
+        </NavigationLink>
       </NavSection>
     </Container>
   );

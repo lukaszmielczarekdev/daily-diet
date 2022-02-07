@@ -13,3 +13,19 @@ export const SectionInnerContainer = styled.div`
     min-height: 85vh;
   }
 `;
+
+export const StyledForm = styled.form``;
+
+export const StyledLabel = styled.label``;
+
+export const StyledInput = styled.input`
+  width: 50px;
+  margin: 0 0.5rem 0 0.5rem;
+`;
+
+/* <input
+  id="ingredientInput"
+  type="text"
+  placeholder={props.placeholder}
+  onChange={handleFilter}
+/>; */
