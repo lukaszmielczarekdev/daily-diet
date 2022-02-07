@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const styles = {
   listStyle: "none",
@@ -38,7 +39,7 @@ const SearchBar = (props) => {
                   props.addProduct(value);
                   setFilteredData([]);
                 }}
-                key={Math.random()}
+                key={uuidv4()}
                 style={styles}
               >
                 {value.name}

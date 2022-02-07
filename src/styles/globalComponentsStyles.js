@@ -64,7 +64,7 @@ export const SectionTitle = styled.h2`
 export const SectionText = styled.p`
   max-width: 800px;
   font-size: ${(props) => (props.smaller ? "1.1rem" : "1.2rem")};
-  line-height: ${(props) => (props.high ? "2.5rem" : "2rem")};
+  line-height: ${(props) => (props.tall ? "2.5rem" : "2rem")};
   font-weight: 300;
   padding-bottom: 1.8rem;
   color: black;

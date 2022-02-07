@@ -15,7 +15,7 @@ const Hero = () => {
         <SectionTitle main center>
           Daily Diet
         </SectionTitle>
-        <SectionText high center main>
+        <SectionText tall center main>
           Diary builder
         </SectionText>
         <LinkButton href={"#diarybuilder"}>Try for free.</LinkButton>

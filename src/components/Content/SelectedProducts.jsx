@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
 import { Button } from "../../styles/globalComponentsStyles";
 import "./selectedProducts.css";
-import { v4 as uuidv4 } from "uuid";
 
 const SelectedProducts = (props) => {
   const userData = useContext(UserDataContext);
@@ -20,7 +19,7 @@ const SelectedProducts = (props) => {
           <input id={"name"} type="text" placeholder={"Meal name"} /> *
           <ul>
             {props.selectedProducts.map((value, index) => (
-              <li key={uuidv4()}>
+              <li key={value.id}>
                 <div className="amount-side-left">
                   <form onSubmit={(e) => handleSubmit(e, index)}>
                     <input

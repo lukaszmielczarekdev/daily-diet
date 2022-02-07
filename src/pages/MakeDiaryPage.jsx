@@ -15,6 +15,7 @@ const MakeDiary = (props) => {
   const ingredientsCopy = JSON.parse(JSON.stringify(Ingredients));
 
   const handleAddProduct = (item) => {
+    item.id = uuidv4();
     setSelectedProducts((selectedProducts) => [...selectedProducts, item]);
     document.getElementById("ingredientInput").value = "";
   };
@@ -77,6 +78,7 @@ const MakeDiary = (props) => {
         <SearchBar
           addProduct={handleAddProduct}
           placeholder="Find a product..."
+          original={Ingredients}
           data={ingredientsCopy}
         />
       </SectionText>
