@@ -25,9 +25,11 @@ const App = () => {
     localStorage.setItem("userData", JSON.stringify(userData));
   }, [userData]);
 
-  const handleSetUserInfo = (key, value) => {
+  const handleSetUserInfo = (values) => {
     const userDataDummy = { ...userData };
-    userDataDummy[key] = value;
+    for (let [key, value] of Object.entries(values)) {
+      userDataDummy[key] = value;
+    }
     setUserData(userDataDummy);
   };
 
