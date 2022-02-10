@@ -1,0 +1,15 @@
+.alice-carousel__dots {
+  margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .alice-carousel__prev-btn,
+  .alice-carousel__next-btn {
+    display: none;
+  }
+}
+
+.alice-carousel__dots-item:not(.__custom) {
+  width: 5px;
+  height: 5px;
+}

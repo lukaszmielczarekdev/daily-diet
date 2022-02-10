@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
 import { SectionText, Button } from "../../styles/globalComponentsStyles";
+import { CarouselCard } from "./DiaryStyles";
 
 const Diary = (props) => {
   const userData = useContext(UserDataContext);
@@ -8,7 +9,7 @@ const Diary = (props) => {
   const macros = userData.calculateMacrosForMeals(props.items);
 
   return (
-    <section className="border">
+    <CarouselCard className="border">
       <SectionText smaller>
         <h4>{props.title}</h4>
         <ul>
@@ -72,7 +73,7 @@ const Diary = (props) => {
           </Button>
         </div>
       </SectionText>
-    </section>
+    </CarouselCard>
   );
 };
 
