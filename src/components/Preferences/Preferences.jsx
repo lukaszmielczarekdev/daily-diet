@@ -3,15 +3,11 @@ import { useForm } from "react-hook-form";
 import UserDataContext from "../../contexts/UserDataContext";
 import {
   Section,
+  SectionInnerContainer,
   SectionTitle,
   Button,
 } from "../../styles/globalComponentsStyles";
-import {
-  SectionInnerContainer,
-  StyledForm,
-  StyledInput,
-  StyledLabel,
-} from "./PreferencesStyles";
+import { StyledForm, StyledInput, StyledLabel } from "./PreferencesStyles";
 
 const Preferences = (props) => {
   const userData = useContext(UserDataContext);
@@ -43,7 +39,6 @@ const Preferences = (props) => {
         <SectionTitle>Preferences</SectionTitle>
         <hr />
         <br />
-
         <br />
         <StyledForm onSubmit={handleSubmitBMI(calculateBMI)}>
           <StyledLabel>

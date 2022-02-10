@@ -25,6 +25,22 @@ export const Section = styled.section`
   }
 `;
 
+// Section inner container
+export const SectionInnerContainer = styled.div`
+  width: 100%;
+  min-height: 85vh;
+  flex-direction: column;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  position: relative;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    min-height: 85vh;
+  }
+`;
+
+// Section Title
 export const SectionTitle = styled.h2`
   font-weight: 800;
   font-size: ${(props) => (props.main ? "2.8rem" : "2.5rem")};
@@ -61,6 +77,7 @@ export const SectionTitle = styled.h2`
   }
 `;
 
+// Section text
 export const SectionText = styled.p`
   max-width: 800px;
   font-size: ${(props) => (props.smaller ? "1.1rem" : "1.2rem")};
@@ -92,6 +109,7 @@ export const SectionText = styled.p`
   }
 `;
 
+//Divider
 export const SectionDivider = styled.div`
   width: 64px;
   height: 6px;

@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import MakeDiary from "./pages/MakeDiaryPage";
 import { getData } from "./utils/localstorage";
 import { initialUserData } from "./data/userdata";
 import UserDataContext from "./contexts/UserDataContext";
@@ -12,7 +11,7 @@ import { AppContainer } from "./AppStyles";
 import UserDiaries from "./components/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/DiaryBuilder/DiaryBuilder";
 import Preferences from "./components/Preferences/Preferences";
-import UserProfile from "./components/UserProfile/UserProfile";
+// import UserProfile from "./components/UserProfile/UserProfile";
 import { Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -113,10 +112,9 @@ const App = () => {
             <Route path="/preferences" component={Preferences} />
             <React.Fragment>
               <Hero />
-              <UserProfile />
+              {/* <UserProfile /> */}
               <UserDiaries />
               <DiaryBuilder />
-              <MakeDiary />
             </React.Fragment>
           </Switch>
           <Footer />
