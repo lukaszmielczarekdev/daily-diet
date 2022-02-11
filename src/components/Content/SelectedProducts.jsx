@@ -17,7 +17,6 @@ const SelectedProducts = (props) => {
       {props.selectedProducts.length !== 0 && (
         <div id="product-select">
           <input id={"name"} type="text" placeholder={"Meal name"} /> *
-          <input id={"name"} type="text" placeholder={"Meal name"} /> *
           <ul>
             {props.selectedProducts.map((value, index) => (
               <li key={value.id}>

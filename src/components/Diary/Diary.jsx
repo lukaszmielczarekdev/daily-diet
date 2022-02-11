@@ -12,6 +12,7 @@ const Diary = (props) => {
     <CarouselCard className="border">
       <SectionText smaller>
         <h4>{props.title}</h4>
+        <span>Kcal demand: {props.kcalDemand}</span>
         <ul>
           {props.items.length !== 0 &&
             props.items.map((meal, mealIndex) => (
@@ -27,12 +28,12 @@ const Diary = (props) => {
                         <div>
                           <span>{ingredient.name}</span>
                           <div className="summary-bar">
-                            <span>Kcal: {ingredient.kcal.toFixed(1)} / </span>
+                            <span>kcal: {ingredient.kcal.toFixed(1)} / </span>
                             <span>
-                              Protein: {ingredient.protein.toFixed(1)} /{" "}
+                              protein: {ingredient.protein.toFixed(1)} /{" "}
                             </span>
-                            <span>Carbs: {ingredient.carbs.toFixed(1)} / </span>
-                            <span>Fat: {ingredient.fat.toFixed(1)} </span>
+                            <span>carbs: {ingredient.carbs.toFixed(1)} / </span>
+                            <span>fat: {ingredient.fat.toFixed(1)} </span>
                           </div>
                         </div>
                       </li>
@@ -41,14 +42,14 @@ const Diary = (props) => {
                 </li>
                 <div className="summary-bar-total">
                   <span className="amount-side-left">
-                    Kcal: {meal.totalMacros.kcal.toFixed(1)}
+                    kcal: {meal.totalMacros.kcal.toFixed(1)}
                   </span>
                   <div>
                     <span>
-                      Protein: {meal.totalMacros.protein.toFixed(1)} /{" "}
+                      protein: {meal.totalMacros.protein.toFixed(1)} /{" "}
                     </span>
-                    <span>Carbs: {meal.totalMacros.carbs.toFixed(1)} / </span>
-                    <span>Fat: {meal.totalMacros.fat.toFixed(1)} </span>
+                    <span>carbs: {meal.totalMacros.carbs.toFixed(1)} / </span>
+                    <span>fat: {meal.totalMacros.fat.toFixed(1)} </span>
                   </div>
                 </div>
               </React.Fragment>
@@ -56,12 +57,12 @@ const Diary = (props) => {
         </ul>
         <div className="summary-bar-total border-top">
           <span className="amount-side-left">
-            Kcal: {macros.kcal.toFixed(1)}
+            kcal: {macros.kcal.toFixed(1)}
           </span>
           <div>
-            <span>Protein: {macros.protein.toFixed(1)} / </span>
-            <span>Carbs: {macros.carbs.toFixed(1)} / </span>
-            <span>Fat: {macros.fat.toFixed(1)} </span>
+            <span>protein: {macros.protein.toFixed(1)} / </span>
+            <span>carbs: {macros.carbs.toFixed(1)} / </span>
+            <span>fat: {macros.fat.toFixed(1)} </span>
           </div>
         </div>
         <div>

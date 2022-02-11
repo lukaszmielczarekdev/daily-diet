@@ -71,3 +71,11 @@ button {
   max-width: fit-content;
   padding: 1rem;
 }
+
+#diary-calory-header {
+  display: flex;
+}
+
+#diary-kcal-demand {
+  font-weight: bolder;
+}

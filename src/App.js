@@ -44,13 +44,20 @@ const App = () => {
   };
 
   const handleSaveDiary = (items) => {
-    if (document.getElementById("diary-name").value) {
+    console.log(document.getElementById("diary-kcal-demand").innerText);
+    if (
+      document.getElementById("diary-name").value &&
+      document.getElementById("diary-kcal-demand").innerText
+    ) {
       const userDataDummy = { ...userData };
       userDataDummy.diaries = [
         ...userDataDummy.diaries,
         {
           id: uuidv4(),
           name: document.getElementById("diary-name").value,
+          kcalDemand: parseInt(
+            document.getElementById("diary-kcal-demand").innerText
+          ),
           items: items,
         },
       ];

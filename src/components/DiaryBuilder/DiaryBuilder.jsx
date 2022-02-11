@@ -78,7 +78,7 @@ const DiaryBuilder = (props) => {
           <SectionText smaller>
             <DiaryMaker
               selectedMeals={selectedMeals}
-              mealTotalMacros={userData.calculateMacrosForMeals(selectedMeals)}
+              diaryTotalMacros={userData.calculateMacrosForMeals(selectedMeals)}
               clean={setSelectedMeals}
             />
             <SelectedProducts

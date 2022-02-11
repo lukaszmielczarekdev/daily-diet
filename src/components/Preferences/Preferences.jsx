@@ -6,13 +6,11 @@ import {
   SectionInnerContainer,
   SectionTitle,
   Button,
-} from "../../styles/globalComponentsStyles";
-import {
-  StyledForm,
   StyledInput,
-  StyledLabel,
   StyledSelect,
-} from "./PreferencesStyles";
+  StyledForm,
+  StyledLabel,
+} from "../../styles/globalComponentsStyles";
 
 const Preferences = (props) => {
   const userData = useContext(UserDataContext);
@@ -35,13 +33,15 @@ const Preferences = (props) => {
     dataCopy.weight = parseInt(data.weight);
     dataCopy.age = parseInt(data.age);
 
-    const BMR = (
-      (9.99 * dataCopy.weight +
-        6.25 * dataCopy.height -
-        (4, 9 * dataCopy.age) +
-        5) *
-      dataCopy.activity
-    ).toFixed(0);
+    const BMR = parseInt(
+      (
+        (9.99 * dataCopy.weight +
+          6.25 * dataCopy.height -
+          (4, 9 * dataCopy.age) +
+          5) *
+        dataCopy.activity
+      ).toFixed(0)
+    );
     userData.setUserInfo({ bmr: BMR, ...dataCopy });
   };
 

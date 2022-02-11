@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+// Section
+// Section inner container
+// Section title
+// Section text
+// Divider
+// Button
+// Input
+// Select
+// Form
+// Label
+
 export const Section = styled.section`
   display: ${(props) => (props.grid ? "grid" : "flex")};
   flex-direction: ${(props) => (props.column ? "column" : "row")};
@@ -40,7 +51,7 @@ export const SectionInnerContainer = styled.div`
   }
 `;
 
-// Section Title
+// Section title
 export const SectionTitle = styled.h2`
   font-weight: 800;
   font-size: ${(props) => (props.main ? "2.8rem" : "2.5rem")};
@@ -109,7 +120,7 @@ export const SectionText = styled.p`
   }
 `;
 
-//Divider
+// Divider
 export const SectionDivider = styled.div`
   width: 64px;
   height: 6px;
@@ -133,14 +144,14 @@ export const SectionDivider = styled.div`
   }
 `;
 
-//Button
+// Button
 export const Button = styled.button`
   color: ${(props) => (props.warning ? "white" : "black")};
   background: ${(props) => (props.warning ? "rgb(235,110,105)" : "white")};
-  margin: 0.5rem 0.5rem 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0;
   cursor: pointer;
   font-size: 1rem;
-  padding: 0.3rem 0.4rem;
+  padding: 0.4rem 0.4rem;
   border: ${(props) =>
     props.warning ? "1px solid rgb(235,110,105)" : "1px solid black"};
   border-radius: 5px;
@@ -164,4 +175,43 @@ export const Button = styled.button`
     width: auto;
     width: fit-content;
   }
+`;
+
+// Input
+export const StyledInput = styled.input`
+  width: ${(props) => (props.text ? "250px" : "50px")};
+  margin: 0 0.5rem 0 0.5rem;
+  border: none;
+  outline: none;
+  :active,
+  :focus-visible,
+  :hover,
+  :focus-within {
+    border: none;
+    outline: none;
+  }
+`;
+
+// Select
+export const StyledSelect = styled.select`
+  margin: 0 0.5rem 0 0.5rem;
+  border: none;
+  outline: none;
+  :active,
+  :focus-visible,
+  :hover,
+  :focus-within {
+    border: none;
+    outline: none;
+  }
+`;
+
+// Form
+export const StyledForm = styled.form`
+  margin: 0.5rem;
+`;
+
+// Label
+export const StyledLabel = styled.label`
+  margin: 0 0.5rem 0 0.5rem;
 `;

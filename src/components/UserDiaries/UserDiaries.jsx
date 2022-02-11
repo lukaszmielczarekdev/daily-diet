@@ -30,6 +30,7 @@ const UserDiaries = () => {
             keyboardNavigation
             items={userData.userData.diaries.map((diary) => (
               <Diary
+                kcalDemand={diary.kcalDemand}
                 key={uuidv4()}
                 title={diary.name}
                 items={diary.items}
