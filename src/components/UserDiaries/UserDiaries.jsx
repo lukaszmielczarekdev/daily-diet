@@ -4,12 +4,8 @@ import UserDataContext from "../../contexts/UserDataContext";
 import {
   Section,
   SectionInnerContainer,
+  Button,
 } from "../../styles/globalComponentsStyles";
-// import {
-//   DiaryCarouselContainer,
-//   CarouselTitle,
-//   CarouselText,
-// } from "./UserDiariesStyles";
 import { v4 as uuidv4 } from "uuid";
 import AliceCarousel from "react-alice-carousel";
 import { breakpoints } from "../../styles/Carousel/carouselConfig";
@@ -24,6 +20,9 @@ const UserDiaries = () => {
       <hr />
       <SectionInnerContainer>
         Your Diaries
+        <a href={"#diarybuilder"}>
+          <Button>New diary</Button>
+        </a>
         {userData.userData.diaries.length !== 0 && (
           <AliceCarousel
             controlsStrategy={"responsive"}
@@ -36,14 +35,6 @@ const UserDiaries = () => {
                 items={diary.items}
                 id={diary.id}
               />
-              // <DiaryCarouselContainer>
-              //   <CarouselTitle center smaller>
-              //     {item.year}
-              //   </CarouselTitle>
-              //   <CarouselText center smaller>
-              //     {item.text}
-              //   </CarouselText>
-              // </DiaryCarouselContainer>
             ))}
           />
         )}

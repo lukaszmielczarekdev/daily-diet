@@ -7,30 +7,42 @@ import {
   SectionTitle,
   Button,
 } from "../../styles/globalComponentsStyles";
-import { StyledForm, StyledInput, StyledLabel } from "./PreferencesStyles";
+import {
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+  StyledSelect,
+} from "./PreferencesStyles";
 
 const Preferences = (props) => {
   const userData = useContext(UserDataContext);
 
   const {
-    register: registerBMI,
-    handleSubmit: handleSubmitBMI,
+    register: registerBMR,
+    handleSubmit: handleSubmitBMR,
     // formState: { errors },
   } = useForm({
     defaultValues: {
       height: userData.userData.height,
       weight: userData.userData.weight,
+      age: userData.userData.age,
     },
   });
 
-  const calculateBMI = (data) => {
+  const calculateBMR = (data) => {
     const dataCopy = { ...data };
     dataCopy.height = parseInt(data.height);
     dataCopy.weight = parseInt(data.weight);
+    dataCopy.age = parseInt(data.age);
 
-    const heightInMeters = dataCopy.height / 100;
-    const BMI = (dataCopy.weight / heightInMeters ** 2).toFixed(2);
-    userData.setUserInfo({ bmi: BMI, ...dataCopy });
+    const BMR = (
+      (9.99 * dataCopy.weight +
+        6.25 * dataCopy.height -
+        (4, 9 * dataCopy.age) +
+        5) *
+      dataCopy.activity
+    ).toFixed(0);
+    userData.setUserInfo({ bmr: BMR, ...dataCopy });
   };
 
   return (
@@ -40,12 +52,12 @@ const Preferences = (props) => {
         <hr />
         <br />
         <br />
-        <StyledForm onSubmit={handleSubmitBMI(calculateBMI)}>
+        <StyledForm onSubmit={handleSubmitBMR(calculateBMR)}>
           <StyledLabel>
             Height(cm):
             <StyledInput
               type="number"
-              {...registerBMI("height", {
+              {...registerBMR("height", {
                 max: 250,
                 min: 1,
                 required: true,
@@ -58,7 +70,7 @@ const Preferences = (props) => {
             Weight(kg):
             <StyledInput
               type="number"
-              {...registerBMI("weight", {
+              {...registerBMR("weight", {
                 max: 500,
                 min: 1,
                 required: true,
@@ -67,7 +79,32 @@ const Preferences = (props) => {
               })}
             />
           </StyledLabel>
-          <Button type="submit">Calculate BMI</Button>
+          <StyledLabel>
+            Age:
+            <StyledInput
+              type="number"
+              {...registerBMR("age", {
+                max: 110,
+                min: 1,
+                required: true,
+                maxLength: 3,
+                pattern: /\d+/,
+              })}
+            />
+          </StyledLabel>
+          <StyledLabel>
+            Activity:
+            <StyledSelect
+              {...registerBMR("activity", {
+                required: true,
+              })}
+            >
+              <option value={1.5}>Low</option>
+              <option value={2}>Medium</option>
+              <option value={2.5}>High</option>
+            </StyledSelect>
+          </StyledLabel>
+          <Button type="submit">Calculate BMR</Button>
         </StyledForm>
       </SectionInnerContainer>
     </Section>

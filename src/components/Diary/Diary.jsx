@@ -65,9 +65,6 @@ const Diary = (props) => {
           </div>
         </div>
         <div>
-          <a href={"#diarybuilder"}>
-            <Button>New diary</Button>
-          </a>
           <Button warning onClick={() => userData.deleteDiary(props.id)}>
             Delete
           </Button>
