@@ -23,7 +23,6 @@ const DiaryMaker = (props) => {
   });
 
   const calculateDemandPercentage = (number1, number2) => {
-    console.log(((number1 / number2) * 100).toFixed(2));
     return ((number1 / number2) * 100).toFixed(2);
   };
 

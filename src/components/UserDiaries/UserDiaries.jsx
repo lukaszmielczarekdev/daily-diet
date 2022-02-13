@@ -17,7 +17,6 @@ const UserDiaries = () => {
 
   return (
     <Section column>
-      <hr />
       <SectionInnerContainer>
         Your Diaries
         <a href={"#diarybuilder"}>

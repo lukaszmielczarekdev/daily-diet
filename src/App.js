@@ -44,7 +44,6 @@ const App = () => {
   };
 
   const handleSaveDiary = (items) => {
-    console.log(document.getElementById("diary-kcal-demand").innerText);
     if (
       document.getElementById("diary-name").value &&
       document.getElementById("diary-kcal-demand").innerText

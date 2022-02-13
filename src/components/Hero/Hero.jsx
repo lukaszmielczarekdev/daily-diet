@@ -1,26 +1,25 @@
 import React from "react";
 import {
-  Section,
-  SectionTitle,
-  SectionText,
-} from "../../styles/globalComponentsStyles";
-import { WelcomeSection, LinkButton, Img } from "./HeroStyles";
-import lemon_logo from "../../assets/Images/lemon_logo.jpg";
+  HeroSection,
+  HeroBg,
+  Header,
+  HeaderSpan,
+  FormContainer,
+} from "./HeroStyles";
+import BmrCalculator from "../BmrCalculator/BmrCalculator";
 
 const Hero = () => {
   return (
-    <Section column hero>
-      <WelcomeSection>
-        <Img src={lemon_logo} />
-        <SectionTitle main center>
-          Daily Diet
-        </SectionTitle>
-        <SectionText tall center main>
-          Diary builder
-        </SectionText>
-        <LinkButton href={"#diarybuilder"}>Try for free.</LinkButton>
-      </WelcomeSection>
-    </Section>
+    <HeroBg>
+      <HeroSection>
+        <Header>
+          <HeaderSpan>Your Minimalist</HeaderSpan>Diet Assistant
+        </Header>
+        <FormContainer>
+          <BmrCalculator />
+        </FormContainer>
+      </HeroSection>
+    </HeroBg>
   );
 };
 

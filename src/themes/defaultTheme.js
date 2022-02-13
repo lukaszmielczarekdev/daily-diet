@@ -1,7 +1,7 @@
 export const defaultTheme = {
   fonts: {
-    title: "Space Grotesk, sans-serif",
-    main: "Space Grotesk, sans-serif",
+    title: "Montserrat, sans-serif",
+    main: "Montserrat, sans-serif",
   },
 
   colors: {

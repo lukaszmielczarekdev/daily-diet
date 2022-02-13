@@ -11,9 +11,9 @@ export const Container = styled.div`
   padding: 1rem 3rem 0rem 3rem;
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr); */
     grid-column-gap: 0.2rem;
     grid-row-gap: 0.2rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
