@@ -26,6 +26,8 @@ export const Select = styled.select`
 
 // Label
 export const Label = styled.label`
+  color: grey;
+  font-size: 0.8rem;
   margin: 0.5rem 0 0.2rem 0;
   display: block;
 `;
