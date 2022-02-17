@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import UserDataContext from "../../contexts/UserDataContext";
+import { calculateMacroPercentage } from "../../utils/calculators";
 import { Form, Label, Input, Button, Select } from "./BmrCalculatorStyles";
 
 const BmrCalculator = (props) => {
@@ -18,21 +19,31 @@ const BmrCalculator = (props) => {
     },
   });
 
-  const calculateBMR = (data) => {
+  const calculateBMR = async (data) => {
     const dataCopy = { ...data };
     dataCopy.height = parseInt(data.height);
     dataCopy.weight = parseInt(data.weight);
     dataCopy.age = parseInt(data.age);
+    dataCopy.activity = parseInt(data.activity);
 
     const BMR = parseInt(
       (
         (9.99 * dataCopy.weight +
           6.25 * dataCopy.height -
-          (4, 9 * dataCopy.age) +
+          4.9 * dataCopy.age +
           5) *
         dataCopy.activity
       ).toFixed(0)
     );
+
+    // set default macroelements percentage
+    const defaultMacrosAmount = calculateMacroPercentage(
+      BMR,
+      userData.userData.demandPercentage.protein,
+      userData.userData.demandPercentage.carbs,
+      userData.userData.demandPercentage.fat
+    );
+    dataCopy["demand"] = defaultMacrosAmount;
 
     userData.setUserInfo({ bmr: BMR, ...dataCopy });
     window.location.href = "#diarybuilder";

@@ -8,10 +8,13 @@ import {
   Button,
 } from "../../styles/globalComponentsStyles";
 import ProgressBar from "../Elements/ProgressBar/ProgressBar";
+import { calculateMacroPercentage } from "../../utils/calculators";
 
 const DiaryMaker = (props) => {
   const userData = useContext(UserDataContext);
-  const [dailyCalories, setDailyCalories] = useState(userData.userData.bmr);
+  const [dailyKcal, setDailyCalories] = useState(userData.userData.bmr);
+  const [demand, setDemand] = useState(userData.userData.demand);
+
   const {
     register: registerCaloriesChange,
     handleSubmit: handleSubmitCaloriesChange,
@@ -22,7 +25,7 @@ const DiaryMaker = (props) => {
     },
   });
 
-  const calculateDemandPercentage = (number1, number2) => {
+  const calculatePercentage = (number1, number2) => {
     return ((number1 / number2) * 100).toFixed(2);
   };
 
@@ -30,34 +33,78 @@ const DiaryMaker = (props) => {
     {
       label: "kcal",
       bgcolor: "#ac2210",
-      completed: calculateDemandPercentage(
-        props.diaryTotalMacros.kcal,
-        dailyCalories
+      completed: calculatePercentage(props.diaryTotalMacros.kcal, dailyKcal),
+    },
+    {
+      label: "protein",
+      bgcolor: "#00695c",
+      completed: calculatePercentage(
+        props.diaryTotalMacros.protein,
+        demand.protein
       ),
     },
-    { label: "protein", bgcolor: "#00695c", completed: 30 },
-    { label: "carbs", bgcolor: "#ef6c00", completed: 53 },
-    { label: "fat", bgcolor: "#1cef00", completed: 53 },
+    {
+      label: "carbs",
+      bgcolor: "#ef6c00",
+      completed: calculatePercentage(
+        props.diaryTotalMacros.carbs,
+        demand.carbs
+      ),
+    },
+    {
+      label: "fat",
+      bgcolor: "#1cef00",
+      completed: calculatePercentage(props.diaryTotalMacros.fat, demand.fat),
+    },
   ];
 
   const [demandCompleted, setDemandCompleted] = useState(demandData);
 
   useEffect(() => {
+    setDemand(
+      calculateMacroPercentage(
+        dailyKcal,
+        userData.userData.demandPercentage.protein,
+        userData.userData.demandPercentage.carbs,
+        userData.userData.demandPercentage.fat
+      )
+    );
     setDemandCompleted([
       {
         label: "kcal",
         bgcolor: "#ac2210",
-        completed: calculateDemandPercentage(
-          props.diaryTotalMacros.kcal,
-          dailyCalories
+        completed: calculatePercentage(props.diaryTotalMacros.kcal, dailyKcal),
+      },
+      {
+        label: "protein",
+        bgcolor: "#00695c",
+        completed: calculatePercentage(
+          props.diaryTotalMacros.protein,
+          demand.protein
         ),
       },
-      { label: "protein", bgcolor: "#00695c", completed: 30 },
-      { label: "carbs", bgcolor: "#ef6c00", completed: 53 },
-      { label: "fat", bgcolor: "#1cef00", completed: 53 },
+      {
+        label: "carbs",
+        bgcolor: "#ef6c00",
+        completed: calculatePercentage(
+          props.diaryTotalMacros.carbs,
+          demand.carbs
+        ),
+      },
+      {
+        label: "fat",
+        bgcolor: "#1cef00",
+        completed: calculatePercentage(props.diaryTotalMacros.fat, demand.fat),
+      },
     ]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dailyCalories, props.diaryTotalMacros.kcal]);
+  }, [
+    dailyKcal,
+    props.diaryTotalMacros.kcal,
+    props.diaryTotalMacros.protein,
+    props.diaryTotalMacros.carbs,
+    props.diaryTotalMacros.fat,
+  ]);
 
   const resetSelected = () => {
     return document.getElementById("diary-name").value ? props.clean([]) : "";
@@ -77,7 +124,7 @@ const DiaryMaker = (props) => {
           <br />
           <ul id="diary-calory-header">
             <li>Calory demand:&nbsp;</li>
-            <li id={"diary-kcal-demand"}>{dailyCalories}</li>
+            <li id={"diary-kcal-demand"}>{dailyKcal}</li>
             <li>
               <StyledForm
                 onChange={handleSubmitCaloriesChange(calculateCalories)}
@@ -110,18 +157,6 @@ const DiaryMaker = (props) => {
               />
             ))}
           </div>
-          {/* <div className="summary-bar-total border-top">
-            <span className="amount-side-left">
-              Kcal: {props.diaryTotalMacros.kcal.toFixed(1)}
-            </span>
-            <div>
-              <span>
-                Protein: {props.diaryTotalMacros.protein.toFixed(1)} /{" "}
-              </span>
-              <span>Carbs: {props.diaryTotalMacros.carbs.toFixed(1)} / </span>
-              <span>Fat: {props.diaryTotalMacros.fat.toFixed(1)} </span>
-            </div>
-          </div> */}
           <hr />
           <ul>
             {props.selectedMeals.length !== 0 &&
