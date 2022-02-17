@@ -13,6 +13,7 @@ export const Filler = styled.div`
   transition: width 1s ease-in-out;
   height: fit-content;
   width: ${(props) => (props.completed ? `${props.completed}%` : "0%")};
+  max-width: 100%;
   background-color: ${(props) => (props.color ? `${props.color}` : "white")};
   border-radius: 5px;
   text-align: right;
