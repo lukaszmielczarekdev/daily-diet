@@ -1,4 +1,4 @@
-#product-select ul {
+/* #product-select ul {
   list-style-type: none;
   margin: 0.5rem 0;
   padding: 0;
@@ -9,13 +9,13 @@
   margin: 0;
   padding: 0;
   align-items: center;
-}
+} */
 
-ul {
+/* ul {
   list-style-type: none;
   margin: 0.5rem 0;
   padding: 0;
-}
+} */
 
 .amount-form {
   width: 50px;
