@@ -30,7 +30,10 @@ const Product = (props) => {
   return (
     <ProductContainer>
       <ProductActions>
-        <ProductForm onChange={handleSubmitAmount(submitAmount)}>
+        <ProductForm
+          onSubmit={handleSubmitAmount(submitAmount)}
+          onChange={handleSubmitAmount(submitAmount)}
+        >
           <ProductInput
             type="number"
             placeholder="Grams:"
