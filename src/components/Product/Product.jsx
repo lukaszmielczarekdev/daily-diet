@@ -4,13 +4,13 @@ import {
   ProductContainer,
   ProductForm,
   ProductInput,
-  ProductButton,
   ElementsList,
   ProductTitle,
   ProductActions,
   Element,
   SummaryContainer,
 } from "./ProductStyles";
+import { ActionButton } from "../../styles/globalComponentsStyles";
 
 const Product = (props) => {
   const {
@@ -19,7 +19,7 @@ const Product = (props) => {
     // formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: 1,
+      amount: props.product.amount,
     },
   });
 
@@ -46,9 +46,14 @@ const Product = (props) => {
             })}
           />
         </ProductForm>
-        <ProductButton warning onClick={() => props.deleteProduct(props.index)}>
+        <ActionButton
+          width={"100%"}
+          margin={"0.5rem 0"}
+          delete
+          onClick={() => props.deleteProduct(props.index)}
+        >
           Delete
-        </ProductButton>
+        </ActionButton>
       </ProductActions>
       <SummaryContainer>
         <ProductTitle>{props.product.name}</ProductTitle>

@@ -1,15 +1,21 @@
 import styled from "styled-components";
 
-// Section
-// Section inner container
-// Section title
-// Section text
-// Divider
-// Button
-// Input
-// Select
-// Form
-// Label
+/*
+Section
+Section inner container
+Section title
+Section text
+Divider
+Button container
+Button
+Action button
+Input
+Select
+Form
+Label 
+List
+List item
+*/
 
 export const Section = styled.section`
   display: ${(props) => (props.grid ? "grid" : "flex")};
@@ -144,6 +150,20 @@ export const SectionDivider = styled.div`
   }
 `;
 
+// Button container
+export const ButtonContainer = styled.div`
+  width: 50%;
+  flex-wrap: wrap;
+  margin: ${(props) => (props.margin ? `${props.margin}` : "0")};
+  list-style: none;
+  display: flex;
+  align-items: center;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
+  }
+`;
+
 // Button
 export const Button = styled.button`
   color: ${(props) => (props.warning ? "white" : "black")};
@@ -174,6 +194,39 @@ export const Button = styled.button`
     align-self: center;
     width: auto;
     width: fit-content;
+  }
+`;
+
+// Action button
+export const ActionButton = styled.button`
+  width: ${(props) => (props.width ? `${props.width}` : "fit-content")};
+  display: ${(props) => (props.block ? "block" : "")};
+  margin: ${(props) => (props.margin ? `${props.margin}` : "0")};
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  border: none;
+  background-color: ${(props) => {
+    if (props.delete)
+      return `
+            rgb(235,110,105);
+        `;
+    if (props.add)
+      return `
+            yellowgreen;
+        `;
+    if (props.save)
+      return `
+            rgb(45,100,245);
+        `;
+  }};
+  border-radius: 10px;
+  cursor: pointer;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
   }
 `;
 
@@ -215,3 +268,11 @@ export const StyledForm = styled.form`
 export const StyledLabel = styled.label`
   margin: 0 0.5rem 0 0.5rem;
 `;
+
+// List
+export const StyledList = styled.ul`
+  list-style: none;
+`;
+
+// List Item
+export const StyledListItem = styled.li``;

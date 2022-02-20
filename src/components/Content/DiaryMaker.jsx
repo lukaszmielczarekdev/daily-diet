@@ -9,6 +9,7 @@ import {
 } from "../../styles/globalComponentsStyles";
 import ProgressBar from "../Elements/ProgressBar/ProgressBar";
 import { calculateMacroPercentage } from "../../utils/calculators";
+import "./selectedProducts.css";
 
 const DiaryMaker = (props) => {
   const userData = useContext(UserDataContext);

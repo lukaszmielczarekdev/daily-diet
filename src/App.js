@@ -33,11 +33,15 @@ const App = () => {
   };
 
   const handleSaveMeal = (items) => {
-    if (document.getElementById("name").value) {
+    const name = document.getElementById("name").value.length;
+    if (3 <= name && name <= 25) {
       const userDataDummy = { ...userData };
       userDataDummy.meals = [
         ...userDataDummy.meals,
-        { name: document.getElementById("name").value, items: items },
+        {
+          name: "[Template] " + document.getElementById("name").value,
+          items: items,
+        },
       ];
       setUserData(userDataDummy);
     }

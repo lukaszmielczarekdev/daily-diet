@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import SearchBar from "../Form/SearchBar";
 import Ingredients from "../../data/ingredients.json";
 import DiaryMaker from "../Content/DiaryMaker";
-import SelectedProducts from "../Content/SelectedProducts";
+import SelectedProducts from "../SelectedProducts/SelectedProducts";
 import {
   Section,
   SectionInnerContainer,
@@ -18,15 +18,26 @@ const DiaryBuilder = (props) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedMeals, setSelectedMeals] = useState([]);
 
-  const ingredientsCopy = JSON.parse(JSON.stringify(Ingredients));
+  const ingredientsCopy = [
+    ...JSON.parse(JSON.stringify(Ingredients)),
+    ...userData.userData.meals,
+  ];
 
   const onDiaryBuilderToggle = () => {
     setDiaryBuilderToggle(!diaryBuilderToggle);
   };
 
   const handleAddProduct = (item) => {
-    item.id = uuidv4();
-    setSelectedProducts((selectedProducts) => [...selectedProducts, item]);
+    console.log(item);
+    if (item.name.startsWith("[Template]")) {
+      setSelectedProducts((selectedProducts) => [
+        ...selectedProducts,
+        ...item.items,
+      ]);
+    } else {
+      item.id = uuidv4();
+      setSelectedProducts((selectedProducts) => [...selectedProducts, item]);
+    }
     document.getElementById("ingredientInput").value = "";
   };
 
@@ -34,6 +45,10 @@ const DiaryBuilder = (props) => {
     const filtered = [...selectedProducts];
     filtered.splice(index, 1);
     setSelectedProducts((selectedProducts) => (selectedProducts = filtered));
+  };
+
+  const handleClearProducts = () => {
+    setSelectedProducts([]);
   };
 
   const handleAddMeal = (items) => {
@@ -89,11 +104,11 @@ const DiaryBuilder = (props) => {
               )}
               addMeal={handleAddMeal}
               deleteProduct={handleDeleteProduct}
+              clearProducts={handleClearProducts}
             />
             <SearchBar
               addProduct={handleAddProduct}
-              placeholder="Find a product..."
-              original={Ingredients}
+              placeholder="Find a product ..."
               data={ingredientsCopy}
             />
           </SectionText>
