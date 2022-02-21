@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const BarWrapper = styled.li`
+  display: flex;
+  align-content: center;
+`;
+
 export const BarContainer = styled.div`
   height: fit-content;
   width: 3rem;
@@ -7,6 +12,8 @@ export const BarContainer = styled.div`
   background-color: lightgray;
   margin: 0.5rem;
   line-height: 1rem;
+  display: flex;
+  align-self: center;
 `;
 
 export const Filler = styled.div`

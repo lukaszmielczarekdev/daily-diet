@@ -20,7 +20,7 @@ const DiaryBuilder = (props) => {
 
   const ingredientsCopy = [
     ...JSON.parse(JSON.stringify(Ingredients)),
-    ...userData.userData.meals,
+    ...JSON.parse(JSON.stringify(userData.userData.meals)),
   ];
 
   const onDiaryBuilderToggle = () => {
@@ -28,7 +28,6 @@ const DiaryBuilder = (props) => {
   };
 
   const handleAddProduct = (item) => {
-    console.log(item);
     if (item.name.startsWith("[Template]")) {
       setSelectedProducts((selectedProducts) => [
         ...selectedProducts,

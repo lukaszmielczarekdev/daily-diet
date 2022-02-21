@@ -24,6 +24,9 @@ const SearchBar = (props) => {
 
   return (
     <div>
+      <br />
+      <br />
+      <br />
       <div>
         <input
           id="ingredientInput"

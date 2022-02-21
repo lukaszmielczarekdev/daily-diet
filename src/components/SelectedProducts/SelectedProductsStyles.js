@@ -4,6 +4,7 @@ import styled from "styled-components";
 Container
 Input
 List
+List item
 */
 
 // Container
@@ -40,3 +41,6 @@ export const ElementsList = styled.ul`
     justify-content: center;
   }
 `;
+
+// List Element
+export const Element = styled.li``;

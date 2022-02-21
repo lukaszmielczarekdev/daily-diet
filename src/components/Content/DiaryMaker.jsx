@@ -3,13 +3,22 @@ import { useForm } from "react-hook-form";
 import UserDataContext from "../../contexts/UserDataContext";
 import {
   StyledForm,
-  StyledInput,
-  StyledLabel,
-  Button,
+  StyledTitle,
+  ButtonContainer,
+  ActionButton,
+  StyledListItem,
+  StyledList,
 } from "../../styles/globalComponentsStyles";
+import {
+  DiaryContainer,
+  ProgressBarsContainer,
+  DiaryInput,
+  StyledSpan,
+} from "./DiaryMakerStyles";
 import ProgressBar from "../Elements/ProgressBar/ProgressBar";
 import { calculateMacroPercentage } from "../../utils/calculators";
-import "./selectedProducts.css";
+import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
+import Summary from "../Elements/Summary/Summary";
 
 const DiaryMaker = (props) => {
   const userData = useContext(UserDataContext);
@@ -108,10 +117,15 @@ const DiaryMaker = (props) => {
   ]);
 
   const resetSelected = () => {
-    return document.getElementById("diary-name").value ? props.clean([]) : "";
+    return document.getElementById("diary-name").value &&
+      document.getElementById("caloric-adjustment").value &&
+      dailyKcal > 0
+      ? props.clean([])
+      : "";
   };
 
   const calculateCalories = (data) => {
+    console.log(userData.userData.bmr + parseInt(data.kcal));
     const calories = userData.userData.bmr + parseInt(data.kcal);
     setDailyCalories((prevState) => (prevState = calories));
   };
@@ -119,36 +133,33 @@ const DiaryMaker = (props) => {
   return (
     <>
       {props.selectedMeals.length !== 0 && (
-        <div id="diary">
-          <input id={"diary-name"} type="text" placeholder={"Diary name"} /> * -{" "}
-          {new Date().toLocaleDateString()}
-          <br />
-          <ul id="diary-calory-header">
-            <li>Calory demand:&nbsp;</li>
-            <li id={"diary-kcal-demand"}>{dailyKcal}</li>
-            <li>
-              <StyledForm
-                onChange={handleSubmitCaloriesChange(calculateCalories)}
-              >
-                <StyledLabel>
-                  + / - kcal *:
-                  <StyledInput
-                    type="number"
-                    {...registerCaloriesChange("kcal", {
-                      max: 10000,
-                      min: -10000,
-                      required: true,
-                      maxLength: 5,
-                      pattern: /\d+/,
-                    })}
-                  />
-                </StyledLabel>
-              </StyledForm>
-            </li>
-          </ul>
-          <div className="summary-bar-total border-top">
-            <br />
-            <br />
+        <DiaryContainer column id="diary">
+          <DiaryInput
+            text
+            id={"diary-name"}
+            type="text"
+            placeholder={"Diary name (3 - 25 chars) *"}
+          />
+          <DiaryContainer>
+            <StyledSpan>Caloric demand:&nbsp;{dailyKcal}</StyledSpan>
+            <StyledForm
+              onChange={handleSubmitCaloriesChange(calculateCalories)}
+            >
+              <DiaryInput
+                id="caloric-adjustment"
+                placeholder={"+ / - kcal *"}
+                type="number"
+                {...registerCaloriesChange("kcal", {
+                  max: 5000,
+                  min: -5000,
+                  required: true,
+                  maxLength: 5,
+                  pattern: /\d+/,
+                })}
+              />
+            </StyledForm>
+          </DiaryContainer>
+          <ProgressBarsContainer>
             {demandCompleted.map((item, idx) => (
               <ProgressBar
                 key={idx}
@@ -157,66 +168,45 @@ const DiaryMaker = (props) => {
                 completed={item.completed}
               />
             ))}
-          </div>
-          <hr />
-          <ul>
+          </ProgressBarsContainer>
+          <StyledList>
             {props.selectedMeals.length !== 0 &&
               props.selectedMeals.map((meal, mealIndex) => (
                 <React.Fragment key={meal.id}>
-                  <li>
-                    <ul>
-                      <span>{meal.name}</span>
-                      {meal.items.map((ingredient, ingIndex) => (
-                        <li key={ingredient.id}>
-                          <div className="amount-side-left">
-                            <span>{ingredient.amount.toFixed(0) + "g"}</span>
-                          </div>
-                          <div>
-                            <span>{ingredient.name}</span>
-                            <div className="summary-bar">
-                              <span>kcal: {ingredient.kcal.toFixed(0)} / </span>
-                              <span>
-                                protein: {ingredient.protein.toFixed(0)} /{" "}
-                              </span>
-                              <span>
-                                carbs: {ingredient.carbs.toFixed(0)} /{" "}
-                              </span>
-                              <span>fat: {ingredient.fat.toFixed(0)} </span>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <div className="summary-bar-total">
-                    <span className="amount-side-left">
-                      kcal: {meal.totalMacros.kcal.toFixed(0)} /
-                    </span>
-                    <div>
-                      <span>
-                        protein: {meal.totalMacros.protein.toFixed(0)} /{" "}
-                      </span>
-                      <span>carbs: {meal.totalMacros.carbs.toFixed(0)} / </span>
-                      <span>fat: {meal.totalMacros.fat.toFixed(0)} </span>
-                    </div>
-                  </div>
+                  <StyledListItem>
+                    <StyledTitle>{meal.name}</StyledTitle>
+                    {meal.items.map((ingredient, ingIndex) => (
+                      <ProductReadOnly
+                        key={ingredient.id}
+                        product={ingredient}
+                        amount={ingredient.amount}
+                      />
+                    ))}
+                  </StyledListItem>
+                  <Summary data={meal.totalMacros} />
                 </React.Fragment>
               ))}
-          </ul>
-          <div>
-            <Button
+          </StyledList>
+          <ButtonContainer fit>
+            <ActionButton
+              save
+              margin={"0 0.5rem 0.5rem 0"}
               onClick={() => {
-                userData.saveDiary(props.selectedMeals);
+                userData.saveDiary(props.selectedMeals, dailyKcal);
                 resetSelected();
               }}
             >
               Save diary
-            </Button>
-            <Button warning onClick={() => props.clean([])}>
+            </ActionButton>
+            <ActionButton
+              delete
+              margin={"0 0.5rem 0.5rem 0"}
+              onClick={() => props.clean([])}
+            >
               Delete
-            </Button>
-          </div>
-        </div>
+            </ActionButton>
+          </ButtonContainer>
+        </DiaryContainer>
       )}
     </>
   );

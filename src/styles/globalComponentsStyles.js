@@ -15,6 +15,7 @@ Form
 Label 
 List
 List item
+Span
 */
 
 export const Section = styled.section`
@@ -95,7 +96,7 @@ export const SectionTitle = styled.h2`
 `;
 
 // Section text
-export const SectionText = styled.p`
+export const SectionText = styled.div`
   max-width: 800px;
   font-size: ${(props) => (props.smaller ? "1.1rem" : "1.2rem")};
   line-height: ${(props) => (props.tall ? "2.5rem" : "2rem")};
@@ -276,3 +277,10 @@ export const StyledList = styled.ul`
 
 // List Item
 export const StyledListItem = styled.li``;
+
+// Title
+export const StyledTitle = styled.span`
+  margin: 0 0.5rem 0 0.5rem;
+  font-weight: bold;
+  color: green;
+`;

@@ -2,13 +2,11 @@ import styled from "styled-components";
 
 /*
 Container
+Product info
 Summary container
-Product actions
 Product Title
 List
 List item
-Form
-Input
 */
 
 // Container
@@ -18,14 +16,21 @@ export const ProductContainer = styled.div`
   font-size: 1.2rem;
 `;
 
+// Product info
+export const ProductInfo = styled.span`
+  width: ${(props) => (props.text ? "250px" : "100px")};
+  background-color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+`;
+
 // Summary container
 export const SummaryContainer = styled.div`
   margin: 0.5rem 0 0.5rem 0.5rem;
-`;
-
-// Product actions
-export const ProductActions = styled.div`
-  margin: 0.5rem 0;
 `;
 
 // Product Title
@@ -46,19 +51,3 @@ export const ElementsList = styled.ul`
 
 // List item
 export const Element = styled.li``;
-
-// Form
-export const ProductForm = styled.form`
-  align-items: center;
-  justify-content: center;
-`;
-
-// Input
-export const ProductInput = styled.input`
-  width: ${(props) => (props.text ? "250px" : "100px")};
-  font-size: 0.8rem;
-  padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
-`;

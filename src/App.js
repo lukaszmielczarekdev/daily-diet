@@ -47,10 +47,13 @@ const App = () => {
     }
   };
 
-  const handleSaveDiary = (items) => {
+  const handleSaveDiary = (items, demand) => {
+    const name = document.getElementById("diary-name").value.length;
     if (
-      document.getElementById("diary-name").value &&
-      document.getElementById("diary-kcal-demand").innerText
+      3 <= name &&
+      name <= 25 &&
+      demand > 0 &&
+      document.getElementById("caloric-adjustment").value
     ) {
       const userDataDummy = { ...userData };
       userDataDummy.diaries = [
@@ -58,9 +61,7 @@ const App = () => {
         {
           id: uuidv4(),
           name: document.getElementById("diary-name").value,
-          kcalDemand: parseInt(
-            document.getElementById("diary-kcal-demand").innerText
-          ),
+          kcalDemand: demand,
           items: items,
         },
       ];
