@@ -1,7 +1,21 @@
 import React, { useContext } from "react";
 import UserDataContext from "../../contexts/UserDataContext";
-import { SectionText, Button } from "../../styles/globalComponentsStyles";
-import { CarouselCard } from "./DiaryStyles";
+import {
+  StyledTitle,
+  ButtonContainer,
+  ActionButton,
+  StyledListItem,
+  StyledList,
+} from "../../styles/globalComponentsStyles";
+import {
+  CarouselCard,
+  DiaryContainer,
+  // ProgressBarsContainer,
+  StyledSpan,
+} from "./DiaryStyles";
+import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
+// import ProgressBar from "../Elements/ProgressBar/ProgressBar";
+import Summary from "../Elements/Summary/Summary";
 
 const Diary = (props) => {
   const userData = useContext(UserDataContext);
@@ -9,68 +23,52 @@ const Diary = (props) => {
   const macros = userData.calculateMacrosForMeals(props.items);
 
   return (
-    <CarouselCard className="border">
-      <SectionText smaller>
-        <h4>{props.title}</h4>
-        <span>Kcal demand: {props.kcalDemand}</span>
-        <ul>
+    <CarouselCard>
+      <DiaryContainer column id="diary">
+        <StyledTitle>{props.title}</StyledTitle>
+        <br />
+        <StyledSpan>Caloric demand:&nbsp;{props.kcalDemand}</StyledSpan>
+        {/* <ProgressBarsContainer>
+          {macros.map((item, idx) => (
+            <ProgressBar
+              key={idx}
+              label={item.label}
+              bgcolor={item.bgcolor}
+              completed={item.completed}
+            />
+          ))}
+        </ProgressBarsContainer> */}
+        <br />
+        <Summary data={macros} />
+        <br />
+        <StyledList>
           {props.items.length !== 0 &&
             props.items.map((meal, mealIndex) => (
-              <React.Fragment key={mealIndex}>
-                <li>
-                  <ul>
-                    <span>{meal.name}</span>
-                    {meal.items.map((ingredient, ingIndex) => (
-                      <li key={ingIndex}>
-                        <div className="amount-side-left">
-                          <span>{ingredient.amount.toFixed(1) + "g"}</span>
-                        </div>
-                        <div>
-                          <span>{ingredient.name}</span>
-                          <div className="summary-bar">
-                            <span>kcal: {ingredient.kcal.toFixed(1)} / </span>
-                            <span>
-                              protein: {ingredient.protein.toFixed(1)} /{" "}
-                            </span>
-                            <span>carbs: {ingredient.carbs.toFixed(1)} / </span>
-                            <span>fat: {ingredient.fat.toFixed(1)} </span>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <div className="summary-bar-total">
-                  <span className="amount-side-left">
-                    kcal: {meal.totalMacros.kcal.toFixed(1)}
-                  </span>
-                  <div>
-                    <span>
-                      protein: {meal.totalMacros.protein.toFixed(1)} /{" "}
-                    </span>
-                    <span>carbs: {meal.totalMacros.carbs.toFixed(1)} / </span>
-                    <span>fat: {meal.totalMacros.fat.toFixed(1)} </span>
-                  </div>
-                </div>
+              <React.Fragment key={meal.index}>
+                <StyledListItem>
+                  <StyledTitle>{meal.name}</StyledTitle>
+                  {meal.items.map((ingredient, ingIndex) => (
+                    <ProductReadOnly
+                      key={ingredient.index}
+                      product={ingredient}
+                      amount={ingredient.amount}
+                    />
+                  ))}
+                </StyledListItem>
+                <Summary data={meal.totalMacros} />
               </React.Fragment>
             ))}
-        </ul>
-        <div className="summary-bar-total border-top">
-          <span className="amount-side-left">
-            kcal: {macros.kcal.toFixed(1)}
-          </span>
-          <div>
-            <span>protein: {macros.protein.toFixed(1)} / </span>
-            <span>carbs: {macros.carbs.toFixed(1)} / </span>
-            <span>fat: {macros.fat.toFixed(1)} </span>
-          </div>
-        </div>
-        <div>
-          <Button warning onClick={() => userData.deleteDiary(props.id)}>
+        </StyledList>
+        <ButtonContainer fit>
+          <ActionButton
+            margin={"0 0.5rem 0.5rem 0"}
+            onClick={() => userData.deleteDiary(props.id)}
+            delete
+          >
             Delete
-          </Button>
-        </div>
-      </SectionText>
+          </ActionButton>
+        </ButtonContainer>
+      </DiaryContainer>
     </CarouselCard>
   );
 };

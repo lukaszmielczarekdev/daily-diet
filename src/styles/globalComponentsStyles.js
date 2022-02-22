@@ -280,7 +280,7 @@ export const StyledListItem = styled.li``;
 
 // Title
 export const StyledTitle = styled.span`
-  margin: 0 0.5rem 0 0.5rem;
+  margin: 0 0.5rem 0 0;
   font-weight: bold;
   color: green;
 `;

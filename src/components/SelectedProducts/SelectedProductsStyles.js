@@ -31,7 +31,7 @@ export const MealNameInput = styled.input`
 // Elements List
 export const ElementsList = styled.ul`
   flex-wrap: wrap;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 1rem 0;
   list-style: none;
   display: flex;
