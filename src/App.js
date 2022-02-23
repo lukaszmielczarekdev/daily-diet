@@ -47,7 +47,7 @@ const App = () => {
     }
   };
 
-  const handleSaveDiary = (items, demand) => {
+  const handleSaveDiary = (items, demand, progress) => {
     const name = document.getElementById("diary-name").value.length;
     if (
       3 <= name &&
@@ -62,6 +62,7 @@ const App = () => {
           id: uuidv4(),
           name: document.getElementById("diary-name").value,
           kcalDemand: demand,
+          progressData: JSON.parse(JSON.stringify(progress)),
           items: items,
         },
       ];

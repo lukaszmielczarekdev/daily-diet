@@ -10,37 +10,31 @@ import {
 import {
   CarouselCard,
   DiaryContainer,
-  // ProgressBarsContainer,
+  ProgressBarsContainer,
   StyledSpan,
 } from "./DiaryStyles";
 import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
-// import ProgressBar from "../Elements/ProgressBar/ProgressBar";
+import ProgressBar from "../Elements/ProgressBar/ProgressBar";
 import Summary from "../Elements/Summary/Summary";
 
 const Diary = (props) => {
   const userData = useContext(UserDataContext);
 
-  const macros = userData.calculateMacrosForMeals(props.items);
-
   return (
     <CarouselCard>
       <DiaryContainer column id="diary">
         <StyledTitle>{props.title}</StyledTitle>
-        <br />
         <StyledSpan>Caloric demand:&nbsp;{props.kcalDemand}</StyledSpan>
-        {/* <ProgressBarsContainer>
-          {macros.map((item, idx) => (
+        <ProgressBarsContainer>
+          {Object.values(props.progressData).map((item, id) => (
             <ProgressBar
-              key={idx}
+              key={id}
               label={item.label}
               bgcolor={item.bgcolor}
               completed={item.completed}
             />
           ))}
-        </ProgressBarsContainer> */}
-        <br />
-        <Summary data={macros} />
-        <br />
+        </ProgressBarsContainer>
         <StyledList>
           {props.items.length !== 0 &&
             props.items.map((meal, mealIndex) => (

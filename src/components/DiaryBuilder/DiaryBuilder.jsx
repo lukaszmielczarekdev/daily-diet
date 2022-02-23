@@ -17,6 +17,7 @@ const DiaryBuilder = (props) => {
   const [diaryBuilderToggle, setDiaryBuilderToggle] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedMeals, setSelectedMeals] = useState([]);
+  const [key, setKey] = useState(Math.random());
 
   const ingredientsCopy = [
     ...JSON.parse(JSON.stringify(Ingredients)),
@@ -25,6 +26,11 @@ const DiaryBuilder = (props) => {
 
   const onDiaryBuilderToggle = () => {
     setDiaryBuilderToggle(!diaryBuilderToggle);
+  };
+
+  const forceRerender = () => {
+    setSelectedMeals([]);
+    setKey(Math.random());
   };
 
   const handleAddProduct = (item) => {
@@ -91,9 +97,10 @@ const DiaryBuilder = (props) => {
         {diaryBuilderToggle && (
           <SectionText smaller>
             <DiaryMaker
+              key={key}
               selectedMeals={selectedMeals}
               diaryTotalMacros={userData.calculateMacrosForMeals(selectedMeals)}
-              clean={setSelectedMeals}
+              clean={forceRerender}
             />
             <SelectedProducts
               calculateAmount={calculateAmount}

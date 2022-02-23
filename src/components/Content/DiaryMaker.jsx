@@ -53,7 +53,7 @@ const DiaryMaker = (props) => {
     return document.getElementById("diary-name").value &&
       document.getElementById("caloric-adjustment").value &&
       dailyDemand
-      ? props.clean([])
+      ? props.clean()
       : "";
   };
 
@@ -95,6 +95,7 @@ const DiaryMaker = (props) => {
             <StyledSpan>Caloric demand:&nbsp;{dailyDemand.kcal}</StyledSpan>
             <StyledForm
               onChange={handleSubmitCaloriesChange(calculateCalories)}
+              onSubmit={handleSubmitCaloriesChange(calculateCalories)}
             >
               <DiaryInput
                 id="caloric-adjustment"
@@ -143,7 +144,11 @@ const DiaryMaker = (props) => {
               save
               margin={"0 0.5rem 0.5rem 0"}
               onClick={() => {
-                userData.saveDiary(props.selectedMeals, dailyDemand.kcal);
+                userData.saveDiary(
+                  props.selectedMeals,
+                  dailyDemand.kcal,
+                  progressBarsData
+                );
                 resetSelected();
               }}
             >
