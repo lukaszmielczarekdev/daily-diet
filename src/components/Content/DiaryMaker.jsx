@@ -16,14 +16,28 @@ import {
   StyledSpan,
 } from "./DiaryMakerStyles";
 import ProgressBar from "../Elements/ProgressBar/ProgressBar";
-import { calculateMacroPercentage } from "../../utils/calculators";
+import {
+  calculateMacroPercentage,
+  calculatePercentage,
+} from "../../utils/calculators";
 import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
 import Summary from "../Elements/Summary/Summary";
+import { progressBarsDataTemplate } from "../Elements/ProgressBar/ProgressBar";
 
 const DiaryMaker = (props) => {
   const userData = useContext(UserDataContext);
-  const [dailyKcal, setDailyCalories] = useState(userData.userData.bmr);
-  const [demand, setDemand] = useState(userData.userData.demand);
+  const [dailyDemand, setDailyDemand] = useState({
+    kcal: userData.userData.bmr,
+    ...userData.userData.demand,
+  });
+  const [progressBarsData, setProgressBarsData] = useState(
+    progressBarsDataTemplate
+  );
+
+  useEffect(() => {
+    calculateCaloriesPercentage(dailyDemand);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dailyDemand, props.diaryTotalMacros]);
 
   const {
     register: registerCaloriesChange,
@@ -35,99 +49,36 @@ const DiaryMaker = (props) => {
     },
   });
 
-  const calculatePercentage = (number1, number2) => {
-    return ((number1 / number2) * 100).toFixed(2);
-  };
-
-  const demandData = [
-    {
-      label: "kcal",
-      bgcolor: "#ac2210",
-      completed: calculatePercentage(props.diaryTotalMacros.kcal, dailyKcal),
-    },
-    {
-      label: "protein",
-      bgcolor: "#00695c",
-      completed: calculatePercentage(
-        props.diaryTotalMacros.protein,
-        demand.protein
-      ),
-    },
-    {
-      label: "carbs",
-      bgcolor: "#ef6c00",
-      completed: calculatePercentage(
-        props.diaryTotalMacros.carbs,
-        demand.carbs
-      ),
-    },
-    {
-      label: "fat",
-      bgcolor: "#1cef00",
-      completed: calculatePercentage(props.diaryTotalMacros.fat, demand.fat),
-    },
-  ];
-
-  const [demandCompleted, setDemandCompleted] = useState(demandData);
-
-  useEffect(() => {
-    setDemand(
-      calculateMacroPercentage(
-        dailyKcal,
-        userData.userData.demandPercentage.protein,
-        userData.userData.demandPercentage.carbs,
-        userData.userData.demandPercentage.fat
-      )
-    );
-    setDemandCompleted([
-      {
-        label: "kcal",
-        bgcolor: "#ac2210",
-        completed: calculatePercentage(props.diaryTotalMacros.kcal, dailyKcal),
-      },
-      {
-        label: "protein",
-        bgcolor: "#00695c",
-        completed: calculatePercentage(
-          props.diaryTotalMacros.protein,
-          demand.protein
-        ),
-      },
-      {
-        label: "carbs",
-        bgcolor: "#ef6c00",
-        completed: calculatePercentage(
-          props.diaryTotalMacros.carbs,
-          demand.carbs
-        ),
-      },
-      {
-        label: "fat",
-        bgcolor: "#1cef00",
-        completed: calculatePercentage(props.diaryTotalMacros.fat, demand.fat),
-      },
-    ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    dailyKcal,
-    props.diaryTotalMacros.kcal,
-    props.diaryTotalMacros.protein,
-    props.diaryTotalMacros.carbs,
-    props.diaryTotalMacros.fat,
-  ]);
-
   const resetSelected = () => {
     return document.getElementById("diary-name").value &&
       document.getElementById("caloric-adjustment").value &&
-      dailyKcal > 0
+      dailyDemand
       ? props.clean([])
       : "";
   };
 
   const calculateCalories = (data) => {
-    console.log(userData.userData.bmr + parseInt(data.kcal));
     const calories = userData.userData.bmr + parseInt(data.kcal);
-    setDailyCalories((prevState) => (prevState = calories));
+    const demand = calculateMacroPercentage(
+      calories,
+      userData.userData.demandPercentage.protein,
+      userData.userData.demandPercentage.carbs,
+      userData.userData.demandPercentage.fat
+    );
+
+    setDailyDemand((prevState) => (prevState = { ...demand }));
+  };
+
+  const calculateCaloriesPercentage = (data) => {
+    const progressBarsDataCopy = { ...progressBarsData };
+
+    for (let [key, value] of Object.entries(data)) {
+      progressBarsDataCopy[key].completed = calculatePercentage(
+        props.diaryTotalMacros[key],
+        value
+      );
+    }
+    setProgressBarsData((prevState) => (prevState = progressBarsDataCopy));
   };
 
   return (
@@ -141,7 +92,7 @@ const DiaryMaker = (props) => {
             placeholder={"Diary name (3 - 25 chars) *"}
           />
           <DiaryContainer>
-            <StyledSpan>Caloric demand:&nbsp;{dailyKcal}</StyledSpan>
+            <StyledSpan>Caloric demand:&nbsp;{dailyDemand.kcal}</StyledSpan>
             <StyledForm
               onChange={handleSubmitCaloriesChange(calculateCalories)}
             >
@@ -160,9 +111,9 @@ const DiaryMaker = (props) => {
             </StyledForm>
           </DiaryContainer>
           <ProgressBarsContainer>
-            {demandCompleted.map((item, idx) => (
+            {Object.values(progressBarsData).map((item, id) => (
               <ProgressBar
-                key={idx}
+                key={id}
                 label={item.label}
                 bgcolor={item.bgcolor}
                 completed={item.completed}
@@ -192,7 +143,7 @@ const DiaryMaker = (props) => {
               save
               margin={"0 0.5rem 0.5rem 0"}
               onClick={() => {
-                userData.saveDiary(props.selectedMeals, dailyKcal);
+                userData.saveDiary(props.selectedMeals, dailyDemand.kcal);
                 resetSelected();
               }}
             >

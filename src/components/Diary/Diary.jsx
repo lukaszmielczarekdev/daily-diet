@@ -44,19 +44,17 @@ const Diary = (props) => {
         <StyledList>
           {props.items.length !== 0 &&
             props.items.map((meal, mealIndex) => (
-              <React.Fragment key={meal.index}>
-                <StyledListItem>
-                  <StyledTitle>{meal.name}</StyledTitle>
-                  {meal.items.map((ingredient, ingIndex) => (
-                    <ProductReadOnly
-                      key={ingredient.index}
-                      product={ingredient}
-                      amount={ingredient.amount}
-                    />
-                  ))}
-                </StyledListItem>
-                <Summary data={meal.totalMacros} />
-              </React.Fragment>
+              <StyledListItem key={Math.random()}>
+                <StyledTitle key={Math.random()}>{meal.name}</StyledTitle>
+                {meal.items.map((ingredient, ingIndex) => (
+                  <ProductReadOnly
+                    key={ingIndex}
+                    product={ingredient}
+                    amount={ingredient.amount}
+                  />
+                ))}
+                <Summary key={Math.random()} data={meal.totalMacros} />
+              </StyledListItem>
             ))}
         </StyledList>
         <ButtonContainer fit>
