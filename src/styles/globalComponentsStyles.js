@@ -123,7 +123,6 @@ export const SectionText = styled.div`
     font-size: ${(props) => (props.smaller ? "1rem" : "1rem")};
     padding: ${(props) => (props.padding ? "1rem" : "")};
     text-align: ${(props) => (props.center ? "center" : "")};
-    align-self: center;
   }
 `;
 

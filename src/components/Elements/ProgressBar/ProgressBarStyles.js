@@ -11,7 +11,7 @@ export const BarContainer = styled.div`
   border-radius: 5px;
   background-color: lightgray;
   margin: 0.5rem;
-  line-height: 1rem;
+  line-height: 1rem !important;
   display: flex;
   align-self: center;
 `;

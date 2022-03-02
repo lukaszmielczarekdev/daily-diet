@@ -27,9 +27,7 @@ export const ProgressBarsContainer = styled.ul`
   display: flex;
   flex-direction: ${(props) => (props.column ? "column" : "row")};
   flex-wrap: wrap;
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  padding: 0.5rem 0;
 `;
 
 // Span

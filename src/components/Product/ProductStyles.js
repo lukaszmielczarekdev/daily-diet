@@ -15,7 +15,7 @@ Input
 export const ProductContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 // Summary container

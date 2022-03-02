@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  Container,
+  SearchList,
+  StyledListItem,
+  StyledInput,
+} from "./SearchBarStyles";
 import { v4 as uuidv4 } from "uuid";
 
 const styles = {
@@ -23,35 +29,31 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div>
-      <br />
-      <br />
-      <br />
-      <div>
-        <input
-          id="ingredientInput"
-          type="text"
-          placeholder={props.placeholder}
-          onChange={handleFilter}
-        />
-        {filteredData.length !== 0 && (
-          <ul style={styles}>
-            {filteredData.map((value) => (
-              <li
-                onClick={() => {
-                  props.addProduct(value);
-                  setFilteredData([]);
-                }}
-                key={uuidv4()}
-                style={styles}
-              >
-                {value.name}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    <Container>
+      <StyledInput
+        text
+        id="ingredientInput"
+        type="text"
+        placeholder={props.placeholder}
+        onChange={handleFilter}
+      />
+      {filteredData.length !== 0 && (
+        <SearchList style={styles}>
+          {filteredData.map((value) => (
+            <StyledListItem
+              onClick={() => {
+                props.addProduct(value);
+                setFilteredData([]);
+              }}
+              key={uuidv4()}
+              style={styles}
+            >
+              {value.name}
+            </StyledListItem>
+          ))}
+        </SearchList>
+      )}
+    </Container>
   );
 };
 
