@@ -70,12 +70,13 @@ export const HeaderSpan = styled.span`
 // Input
 export const FormContainer = styled.div`
   background-color: rgb(255, 255, 255, 0.8);
-  -webkit-box-shadow: 0 0 10px grey;
-  -moz-box-shadow: 0 0 10px grey;
-  box-shadow: 0 0 10px grey;
+  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   margin: 0 -3em 0;
   padding: 2em;
   letter-spacing: 0.5px;
+  border-radius: 25px;
 
   @media ${(props) => props.theme.breakpoints.sm} {
     margin: 2em -3em 0;
