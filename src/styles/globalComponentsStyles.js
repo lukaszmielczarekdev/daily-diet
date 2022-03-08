@@ -51,6 +51,7 @@ export const SectionInnerContainer = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: center;
+  align-items: center;
   position: relative;
 
   @media ${(props) => props.theme.breakpoints.sm} {
@@ -97,6 +98,7 @@ export const SectionTitle = styled.h2`
 
 // Section text
 export const SectionText = styled.div`
+  width: 40%;
   max-width: 800px;
   font-size: ${(props) => (props.smaller ? "1.1rem" : "1.2rem")};
   line-height: ${(props) => (props.tall ? "2.5rem" : "2rem")};
@@ -107,6 +109,7 @@ export const SectionText = styled.div`
   text-align: ${(props) => (props.justify ? "justify" : "")};
 
   @media ${(props) => props.theme.breakpoints.lg} {
+    width: 60%;
     max-width: 650px;
     max-width: ${(props) => (props.main ? "50%" : "")};
     font-size: ${(props) => (props.smaller ? "1rem" : "1rem")};
@@ -115,10 +118,12 @@ export const SectionText = styled.div`
   }
 
   @media ${(props) => props.theme.breakpoints.smlandscape} {
+    width: 70%;
     max-width: ${(props) => (props.main ? "50%" : "")};
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
     max-width: ${(props) => (props.main ? "80%" : "")};
     font-size: ${(props) => (props.smaller ? "1rem" : "1rem")};
     padding: ${(props) => (props.padding ? "1rem" : "")};
@@ -282,4 +287,5 @@ export const StyledTitle = styled.span`
   margin: 0 0.5rem 0 0;
   font-weight: bold;
   color: green;
+  font-size: ${(props) => (props.main ? "1.3rem" : "1rem")};
 `;

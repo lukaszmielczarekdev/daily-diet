@@ -12,7 +12,6 @@ export const HeroBg = styled.div`
   @media ${(props) => props.theme.breakpoints.lg} {
     background-position: 100% 0%;
     background-size: contain;
-    grid-template-columns: 1fr 1fr;
   }
 
   @media ${(props) => props.theme.breakpoints.md} {
@@ -52,7 +51,7 @@ export const HeroSection = styled.div`
 export const Header = styled.h1`
   font-size: 2rem;
   letter-spacing: 1px;
-  padding: 1rem 0;
+  padding: 0;
 
   @media ${(props) => props.theme.breakpoints.sm} {
     font-size: 1.8rem;
@@ -79,6 +78,6 @@ export const FormContainer = styled.div`
   border-radius: 25px;
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    margin: 2em -3em 0;
+    margin: 1em -3em 0;
   }
 `;

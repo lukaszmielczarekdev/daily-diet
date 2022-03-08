@@ -62,14 +62,14 @@ const SelectedProducts = (props) => {
               margin={"0 0.5rem 0.5rem 0"}
               onClick={() => props.addMeal(props.selectedProducts)}
             >
-              Add to diary
+              Add
             </ActionButton>
             <ActionButton
               save
               margin={"0 0.5rem 0.5rem 0"}
               onClick={() => userData.saveMeal(props.selectedProducts)}
             >
-              Save as a template
+              Save
             </ActionButton>
             <ActionButton
               delete

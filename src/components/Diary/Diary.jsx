@@ -9,7 +9,7 @@ import {
 } from "../../styles/globalComponentsStyles";
 import {
   CarouselCard,
-  DiaryContainer,
+  Container,
   ProgressBarsContainer,
   StyledSpan,
 } from "./DiaryStyles";
@@ -22,8 +22,8 @@ const Diary = (props) => {
 
   return (
     <CarouselCard>
-      <DiaryContainer column id="diary">
-        <StyledTitle>{props.title}</StyledTitle>
+      <Container column id="diary">
+        <StyledTitle main>{props.title}</StyledTitle>
         <StyledSpan>Caloric demand:&nbsp;{props.kcalDemand}</StyledSpan>
         <ProgressBarsContainer>
           {Object.values(props.progressData).map((item, id) => (
@@ -60,7 +60,7 @@ const Diary = (props) => {
             Delete
           </ActionButton>
         </ButtonContainer>
-      </DiaryContainer>
+      </Container>
     </CarouselCard>
   );
 };

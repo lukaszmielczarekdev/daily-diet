@@ -19,9 +19,6 @@ const UserDiaries = () => {
     <Section column>
       <SectionInnerContainer>
         Your Diaries
-        <a href={"#diarybuilder"}>
-          <Button>New diary</Button>
-        </a>
         {userData.userData.diaries.length !== 0 && (
           <AliceCarousel
             controlsStrategy={"responsive"}
@@ -39,6 +36,9 @@ const UserDiaries = () => {
             ))}
           />
         )}
+        <a href={"#diarybuilder"}>
+          <Button>New diary</Button>
+        </a>
       </SectionInnerContainer>
     </Section>
   );

@@ -14,12 +14,22 @@ export const CarouselCard = styled.article`
   margin: 2rem 0 2rem 0;
   max-height: 80vh;
   overflow: scroll;
+  padding: 1rem;
 `;
 
 // Container
-export const DiaryContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.column ? "column" : "row")};
+  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 2rem;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    padding: 1rem;
+  }
 `;
 
 // Progress bars container
@@ -28,6 +38,10 @@ export const ProgressBarsContainer = styled.ul`
   flex-direction: ${(props) => (props.column ? "column" : "row")};
   flex-wrap: wrap;
   padding: 0.5rem 0;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    justify-content: center;
+  }
 `;
 
 // Span

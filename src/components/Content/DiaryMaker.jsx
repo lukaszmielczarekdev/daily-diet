@@ -10,7 +10,8 @@ import {
   StyledList,
 } from "../../styles/globalComponentsStyles";
 import {
-  DiaryContainer,
+  Container,
+  Header,
   ProgressBarsContainer,
   DiaryInput,
   StyledSpan,
@@ -84,15 +85,15 @@ const DiaryMaker = (props) => {
   return (
     <>
       {props.selectedMeals.length !== 0 && (
-        <DiaryContainer column id="diary">
+        <Container column id="diary">
           <DiaryInput
             text
             id={"diary-name"}
             type="text"
             placeholder={"Diary name (3 - 25 chars) *"}
           />
-          <DiaryContainer>
-            <StyledSpan>Caloric demand:&nbsp;{dailyDemand.kcal}</StyledSpan>
+          <Header>
+            <StyledSpan>Demand:&nbsp;{dailyDemand.kcal} kcal</StyledSpan>
             <StyledForm
               onChange={handleSubmitCaloriesChange(calculateCalories)}
               onSubmit={handleSubmitCaloriesChange(calculateCalories)}
@@ -110,7 +111,7 @@ const DiaryMaker = (props) => {
                 })}
               />
             </StyledForm>
-          </DiaryContainer>
+          </Header>
           <ProgressBarsContainer>
             {Object.values(progressBarsData).map((item, id) => (
               <ProgressBar
@@ -152,7 +153,7 @@ const DiaryMaker = (props) => {
                 resetSelected();
               }}
             >
-              Save diary
+              Save
             </ActionButton>
             <ActionButton
               delete
@@ -162,7 +163,7 @@ const DiaryMaker = (props) => {
               Delete
             </ActionButton>
           </ButtonContainer>
-        </DiaryContainer>
+        </Container>
       )}
     </>
   );

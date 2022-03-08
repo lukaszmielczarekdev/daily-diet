@@ -11,11 +11,20 @@ List item
 export const ProductsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 2rem;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    padding: 1rem;
+  }
 `;
 
 // Input
 export const MealNameInput = styled.input`
-  width: ${(props) => (props.text ? "50%" : "100px")};
+  width: ${(props) => (props.text ? "100%" : "100px")};
   font-size: 1rem;
   padding: 0.5rem;
   margin: 0.5rem 0;

@@ -88,7 +88,6 @@ const DiaryBuilder = (props) => {
 
   return (
     <Section id="diarybuilder" column>
-      <hr />
       <SectionInnerContainer>
         Diary Builder
         {!diaryBuilderToggle && (
@@ -114,7 +113,7 @@ const DiaryBuilder = (props) => {
             />
             <SearchBar
               addProduct={handleAddProduct}
-              placeholder="Find a product ..."
+              placeholder="Search"
               data={ingredientsCopy}
             />
           </SectionText>
