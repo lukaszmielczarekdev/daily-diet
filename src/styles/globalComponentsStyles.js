@@ -157,7 +157,6 @@ export const SectionDivider = styled.div`
 
 // Button container
 export const ButtonContainer = styled.div`
-  width: 50%;
   flex-wrap: wrap;
   margin: ${(props) => (props.margin ? `${props.margin}` : "0")};
   list-style: none;

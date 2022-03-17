@@ -19,13 +19,13 @@ export const ProductContainer = styled.div`
 // Product info
 export const ProductInfo = styled.span`
   width: ${(props) => (props.text ? "250px" : "100px")};
-  background-color: white;
   font-size: 1rem;
   padding: 0.5rem;
   text-align: center;
   align-content: center;
   justify-content: center;
   display: flex;
+  background-color: transparent;
 `;
 
 // Summary container

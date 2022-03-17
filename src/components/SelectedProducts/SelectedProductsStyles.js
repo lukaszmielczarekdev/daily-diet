@@ -11,11 +11,15 @@ List item
 export const ProductsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   border-radius: 25px;
   padding: 2rem;
+  margin-top: 1rem;
+  background-color: rgb(255, 255, 255, 0.8);
+  -webkit-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  -moz-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgb(255, 255, 255, 0.5);
 
   @media ${(props) => props.theme.breakpoints.sm} {
     padding: 1rem;

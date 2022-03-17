@@ -19,6 +19,7 @@ export const defaultTheme = {
     sm: "screen and (max-width: 640px)",
     md: "screen and (max-width: 768px)",
     lg: "screen and (max-width: 1024px)",
+    lglandscape: "screen and (min-width: 1024px) and (min-height:1366px)",
     xl: "screen and (max-width: 1280px)",
   },
 };

@@ -14,6 +14,11 @@ export const HeroBg = styled.div`
     background-size: contain;
   }
 
+  @media ${(props) => props.theme.breakpoints.lglandscape} {
+    background-position: 400% 0%;
+    background-size: contain;
+  }
+
   @media ${(props) => props.theme.breakpoints.md} {
     background-position: 500% 0%;
     background-size: contain;
@@ -69,9 +74,11 @@ export const HeaderSpan = styled.span`
 // Input
 export const FormContainer = styled.div`
   background-color: rgb(255, 255, 255, 0.8);
-  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  -moz-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
   margin: 0 -3em 0;
   padding: 2em;
   letter-spacing: 0.5px;

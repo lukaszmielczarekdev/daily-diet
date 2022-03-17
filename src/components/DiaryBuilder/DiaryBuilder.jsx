@@ -11,6 +11,7 @@ import {
 } from "../../styles/globalComponentsStyles";
 import { v4 as uuidv4 } from "uuid";
 import UserDataContext from "../../contexts/UserDataContext";
+import { Background } from "./DiaryBuilderStyles";
 
 const DiaryBuilder = (props) => {
   const userData = useContext(UserDataContext);
@@ -87,39 +88,43 @@ const DiaryBuilder = (props) => {
   };
 
   return (
-    <Section id="diarybuilder" column>
-      <SectionInnerContainer>
-        Diary Builder
-        {!diaryBuilderToggle && (
-          <Button onClick={() => onDiaryBuilderToggle()}>Add diary</Button>
-        )}
-        {diaryBuilderToggle && (
-          <SectionText smaller>
-            <DiaryMaker
-              key={key}
-              selectedMeals={selectedMeals}
-              diaryTotalMacros={userData.calculateMacrosForMeals(selectedMeals)}
-              clean={forceRerender}
-            />
-            <SelectedProducts
-              calculateAmount={calculateAmount}
-              selectedProducts={selectedProducts}
-              selectedProductsTotalMacros={userData.calculateMacrosForProducts(
-                selectedProducts
-              )}
-              addMeal={handleAddMeal}
-              deleteProduct={handleDeleteProduct}
-              clearProducts={handleClearProducts}
-            />
-            <SearchBar
-              addProduct={handleAddProduct}
-              placeholder="Search"
-              data={ingredientsCopy}
-            />
-          </SectionText>
-        )}
-      </SectionInnerContainer>
-    </Section>
+    <Background>
+      <Section id="diarybuilder" column>
+        <SectionInnerContainer>
+          Diary Builder
+          {!diaryBuilderToggle && (
+            <Button onClick={() => onDiaryBuilderToggle()}>Add diary</Button>
+          )}
+          {diaryBuilderToggle && (
+            <SectionText smaller>
+              <DiaryMaker
+                key={key}
+                selectedMeals={selectedMeals}
+                diaryTotalMacros={userData.calculateMacrosForMeals(
+                  selectedMeals
+                )}
+                clean={forceRerender}
+              />
+              <SelectedProducts
+                calculateAmount={calculateAmount}
+                selectedProducts={selectedProducts}
+                selectedProductsTotalMacros={userData.calculateMacrosForProducts(
+                  selectedProducts
+                )}
+                addMeal={handleAddMeal}
+                deleteProduct={handleDeleteProduct}
+                clearProducts={handleClearProducts}
+              />
+              <SearchBar
+                addProduct={handleAddProduct}
+                placeholder="Search"
+                data={ingredientsCopy}
+              />
+            </SectionText>
+          )}
+        </SectionInnerContainer>
+      </Section>
+    </Background>
   );
 };
 

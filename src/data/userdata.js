@@ -2,6 +2,7 @@ export const initialUserData = {
   login: "",
   password: "",
   email: "",
+  status: { loggedIn: false },
   weight: 0,
   height: 0,
   age: 0,

@@ -4,6 +4,8 @@ import styled from "styled-components";
 export const Form = styled.form`
   align-items: center;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 // Input
@@ -27,9 +29,10 @@ export const Select = styled.select`
 // Label
 export const Label = styled.label`
   color: grey;
+  border-radius: 10px;
   font-size: 0.8rem;
   margin: 0.5rem 0 0.2rem 0;
-  display: block;
+  align-items: center;
 `;
 
 // Button
@@ -40,7 +43,7 @@ export const Button = styled.button`
   display: block;
   color: white;
   border: none;
-  background-color: yellowgreen;
+  background-color: rgba(154, 205, 50, 0.9);
   border-radius: 10px;
   cursor: pointer;
 `;

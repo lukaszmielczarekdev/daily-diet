@@ -123,10 +123,9 @@ const App = () => {
           <Switch>
             <Route path="/preferences" component={Preferences} />
             <React.Fragment>
-              <Hero />
+              {userData.bmr ? <DiaryBuilder /> : <Hero />}
               {/* <UserProfile /> */}
               <UserDiaries />
-              <DiaryBuilder />
             </React.Fragment>
           </Switch>
           <Footer />
