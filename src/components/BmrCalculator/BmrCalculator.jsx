@@ -46,7 +46,6 @@ const BmrCalculator = (props) => {
     dataCopy["demand"] = defaultMacrosAmount;
 
     userData.setUserInfo({ bmr: BMR, ...dataCopy });
-    window.location.href = "#diarybuilder";
   };
 
   return (

@@ -11,7 +11,7 @@ import { AppContainer } from "./AppStyles";
 import UserDiaries from "./components/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/DiaryBuilder/DiaryBuilder";
 import Preferences from "./components/Preferences/Preferences";
-// import UserProfile from "./components/UserProfile/UserProfile";
+import UserProfile from "./components/UserProfile/UserProfile";
 import { Route, Switch } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -121,12 +121,24 @@ const App = () => {
         <AppContainer>
           <NavBar />
           <Switch>
-            <Route path="/preferences" component={Preferences} />
-            <React.Fragment>
-              {userData.bmr ? <DiaryBuilder /> : <Hero />}
-              {/* <UserProfile /> */}
-              <UserDiaries />
-            </React.Fragment>
+            <Route
+              path="/"
+              exact
+              component={userData.bmr ? UserProfile : Hero}
+            />
+            <Route
+              path="/preferences"
+              component={userData.bmr ? Preferences : Hero}
+            />
+            s
+            <Route
+              path="/builder"
+              component={userData.bmr ? DiaryBuilder : Hero}
+            />
+            <Route
+              path="/diaries"
+              component={userData.bmr ? UserDiaries : Hero}
+            />
           </Switch>
           <Footer />
         </AppContainer>
