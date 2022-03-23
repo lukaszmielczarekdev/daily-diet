@@ -5,8 +5,6 @@ Container
 Product info
 Summary container
 Product Title
-List
-List item
 */
 
 // Container
@@ -37,17 +35,3 @@ export const SummaryContainer = styled.div`
 export const ProductTitle = styled.div`
   margin: 0 0 0 0.5rem;
 `;
-
-// List
-export const ElementsList = styled.ul`
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  margin: 0 0 0 0.5rem;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  color: green;
-`;
-
-// List item
-export const Element = styled.li``;

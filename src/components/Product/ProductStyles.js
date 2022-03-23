@@ -5,8 +5,6 @@ Container
 Summary container
 Product actions
 Product Title
-List
-List item
 Form
 Input
 */
@@ -32,20 +30,6 @@ export const ProductActions = styled.div`
 export const ProductTitle = styled.div`
   margin: 0 0 0 0.5rem;
 `;
-
-// List
-export const ElementsList = styled.ul`
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  margin: 0 0 0 0.5rem;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  color: green;
-`;
-
-// List item
-export const Element = styled.li``;
 
 // Form
 export const ProductForm = styled.form`

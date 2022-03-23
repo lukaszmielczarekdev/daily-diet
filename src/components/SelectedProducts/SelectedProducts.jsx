@@ -7,11 +7,8 @@ import {
   StyledListItem,
 } from "../../styles/globalComponentsStyles";
 import Product from "../Product/Product";
-import {
-  ProductsContainer,
-  MealNameInput,
-  ElementsList,
-} from "./SelectedProductsStyles";
+import { ProductsContainer, MealNameInput } from "./SelectedProductsStyles";
+import Summary from "../Elements/Summary/Summary";
 
 const SelectedProducts = (props) => {
   const userData = useContext(UserDataContext);
@@ -39,23 +36,7 @@ const SelectedProducts = (props) => {
               </StyledListItem>
             ))}
           </StyledList>
-          <ElementsList>
-            <StyledListItem>
-              Kcal: {props.selectedProductsTotalMacros.kcal.toFixed(0)}
-              &nbsp;|&nbsp;
-            </StyledListItem>
-            <StyledListItem>
-              Protein: {props.selectedProductsTotalMacros.protein.toFixed(0)}
-              &nbsp;|&nbsp;
-            </StyledListItem>
-            <StyledListItem>
-              Carbs: {props.selectedProductsTotalMacros.carbs.toFixed(0)}
-              &nbsp;|&nbsp;
-            </StyledListItem>
-            <StyledListItem>
-              Fat: {props.selectedProductsTotalMacros.fat.toFixed(0)}
-            </StyledListItem>
-          </ElementsList>
+          <Summary data={props.selectedProductsTotalMacros} />
           <ButtonContainer fit>
             <ActionButton
               add

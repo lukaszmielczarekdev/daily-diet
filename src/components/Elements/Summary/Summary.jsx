@@ -1,22 +1,27 @@
 import React from "react";
 import { ElementsList, Element } from "./SummaryStyles";
 
-const Summary = (props) => {
+const Summary = ({
+  data: { kcal, protein, carbs, fat },
+  fontSize,
+  margin,
+  color,
+}) => {
   return (
-    <ElementsList>
+    <ElementsList fontSize={fontSize} margin={margin} color={color}>
       <Element>
-        Kcal: {props.data.kcal.toFixed(0)}
+        Kcal: {kcal.toFixed(0)}
         &nbsp;|&nbsp;
       </Element>
       <Element>
-        Protein: {props.data.protein.toFixed(0)}
+        Protein: {protein.toFixed(0)}
         &nbsp;|&nbsp;
       </Element>
       <Element>
-        Carbs: {props.data.carbs.toFixed(0)}
+        Carbs: {carbs.toFixed(0)}
         &nbsp;|&nbsp;
       </Element>
-      <Element>Fat: {props.data.fat.toFixed(0)}</Element>
+      <Element>Fat: {fat.toFixed(0)}</Element>
     </ElementsList>
   );
 };

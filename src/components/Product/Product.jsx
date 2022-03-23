@@ -4,13 +4,12 @@ import {
   ProductContainer,
   ProductForm,
   ProductInput,
-  ElementsList,
   ProductTitle,
   ProductActions,
-  Element,
   SummaryContainer,
 } from "./ProductStyles";
 import { ActionButton } from "../../styles/globalComponentsStyles";
+import Summary from "../Elements/Summary/Summary";
 
 const Product = (props) => {
   const {
@@ -57,16 +56,12 @@ const Product = (props) => {
       </ProductActions>
       <SummaryContainer>
         <ProductTitle>{props.product.name}</ProductTitle>
-        <ElementsList>
-          <Element>Kcal: {props.product.kcal.toFixed(0)}&nbsp;|&nbsp;</Element>
-          <Element>
-            Protein: {props.product.protein.toFixed(0)}&nbsp;|&nbsp;
-          </Element>
-          <Element>
-            Carbs: {props.product.carbs.toFixed(0)}&nbsp;|&nbsp;
-          </Element>
-          <Element>Fat: {props.product.fat.toFixed(0)} </Element>
-        </ElementsList>
+        <Summary
+          data={props.product}
+          fontSize="0.9rem"
+          color={"green"}
+          margin={"0 0 0 0.5rem"}
+        />
       </SummaryContainer>
     </ProductContainer>
   );
