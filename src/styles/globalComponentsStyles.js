@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 /*
@@ -9,6 +10,7 @@ Divider
 Button container
 Button
 Action button
+Link
 Input
 Select
 Form
@@ -16,6 +18,7 @@ Label
 List
 List item
 Span
+Link
 */
 
 export const Section = styled.section`
@@ -232,6 +235,17 @@ export const ActionButton = styled.button`
   @media ${(props) => props.theme.breakpoints.sm} {
     width: 100%;
   }
+`;
+
+// Link
+export const Link = styled(NavLink)`
+  color: black;
+  margin: 0.5rem 0 0.5rem 0;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.4rem 0.4rem;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 
 // Input

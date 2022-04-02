@@ -32,6 +32,8 @@ export const StyledInput = styled.input`
 
 // List
 export const SearchList = styled.ul`
+  padding: 0;
+  cursor: pointer;
   list-style: none;
   position: absolute;
   z-index: 1;
@@ -39,6 +41,8 @@ export const SearchList = styled.ul`
 
 // List Item
 export const StyledListItem = styled.li`
+  padding: 0;
+  cursor: pointer;
   background-color: white;
   @media ${(props) => props.theme.breakpoints.sm} {
     margin: 0.5rem 0 0 0;

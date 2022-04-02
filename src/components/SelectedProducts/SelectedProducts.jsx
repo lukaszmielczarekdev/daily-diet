@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import UserDataContext from "../../contexts/UserDataContext";
+import React from "react";
 import {
   ButtonContainer,
   ActionButton,
@@ -9,53 +8,67 @@ import {
 import Product from "../Product/Product";
 import { ProductsContainer, MealNameInput } from "./SelectedProductsStyles";
 import Summary from "../Elements/Summary/Summary";
+import { useSelector, useDispatch } from "react-redux";
+import { calculateMacrosForProducts } from "../../utils/calculators";
+import { mealAdded, mealSaved, productsRemoved } from "../../store/userItems";
 
-const SelectedProducts = (props) => {
-  const userData = useContext(UserDataContext);
+const SelectedProducts = () => {
+  const dispatch = useDispatch();
+  const { temporaryProducts } = useSelector((state) => state.user.userItems);
 
   return (
     <>
-      {props.selectedProducts.length !== 0 && (
+      {temporaryProducts.length !== 0 && (
         <ProductsContainer id="product-select">
           <MealNameInput
             text
-            id={"name"}
+            id={"meal-name"}
             type="text"
-            placeholder={"Meal name (3 - 25 chars) *"}
+            placeholder={"Meal name (3 - 25 chars)"}
           />
           <StyledList>
-            {props.selectedProducts.map((elem, index) => (
+            {temporaryProducts.map((elem) => (
               <StyledListItem key={elem.id}>
-                <Product
-                  key={elem.id}
-                  product={elem}
-                  index={index}
-                  calculateAmount={props.calculateAmount}
-                  deleteProduct={props.deleteProduct}
-                />
+                <Product product={elem} />
               </StyledListItem>
             ))}
           </StyledList>
-          <Summary data={props.selectedProductsTotalMacros} />
+          <Summary data={calculateMacrosForProducts(temporaryProducts)} />
           <ButtonContainer fit>
             <ActionButton
               add
               margin={"0 0.5rem 0.5rem 0"}
-              onClick={() => props.addMeal(props.selectedProducts)}
+              onClick={() =>
+                dispatch(
+                  mealAdded({
+                    name: document.getElementById("meal-name").value,
+                    products: temporaryProducts,
+                  })
+                )
+              }
             >
               Add
             </ActionButton>
             <ActionButton
               save
               margin={"0 0.5rem 0.5rem 0"}
-              onClick={() => userData.saveMeal(props.selectedProducts)}
+              onClick={() =>
+                dispatch(
+                  mealSaved({
+                    name:
+                      "[Template] " +
+                      document.getElementById("meal-name").value,
+                    products: temporaryProducts,
+                  })
+                )
+              }
             >
               Save
             </ActionButton>
             <ActionButton
               delete
               margin={"0 0.5rem 0.5rem 0"}
-              onClick={() => props.clearProducts()}
+              onClick={() => dispatch(productsRemoved())}
             >
               Delete
             </ActionButton>

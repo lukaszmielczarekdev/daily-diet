@@ -1,22 +1,18 @@
-import React, { useContext } from "react";
-import UserDataContext from "../../contexts/UserDataContext";
+import React from "react";
 import {
   Section,
   SectionInnerContainer,
+  Link,
 } from "../../styles/globalComponentsStyles";
 import { Background } from "./UserProfileStyles";
 
-const UserProfile = (props) => {
-  const userData = useContext(UserDataContext);
-
+const UserProfile = () => {
   return (
     <Background>
       <Section>
         <SectionInnerContainer>
           Your Profile
-          {userData.userData.bmr === 0 &&
-            "Complete your profile info to calculate your BMI."}
-          {userData.userData.bmr !== 0 && `BMR = ${userData.userData.bmr}`}
+          <Link to="/builder">New diary</Link>
         </SectionInnerContainer>
       </Section>
     </Background>

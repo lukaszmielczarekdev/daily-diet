@@ -10,20 +10,30 @@ import {
 } from "./ProductStyles";
 import { ActionButton } from "../../styles/globalComponentsStyles";
 import Summary from "../Elements/Summary/Summary";
+import { useDispatch } from "react-redux";
+import Ingredients from "../../data/ingredients.json";
+import { productRemoved, productAmountCalculated } from "../../store/userItems";
 
-const Product = (props) => {
+const Product = ({ product }) => {
+  const dispatch = useDispatch();
   const {
     register: registerAmount,
     handleSubmit: handleSubmitAmount,
     // formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: props.product.amount,
+      amount: product.amount,
     },
   });
 
   const submitAmount = (data) => {
-    props.calculateAmount(Number(data.amount), props.index);
+    dispatch(
+      productAmountCalculated({
+        ingredients: Ingredients,
+        id: product.id,
+        amount: data.amount,
+      })
+    );
   };
 
   return (
@@ -37,6 +47,7 @@ const Product = (props) => {
             type="number"
             placeholder="Grams:"
             {...registerAmount("amount", {
+              valueAsNumber: true,
               max: 5000,
               min: 1,
               required: true,
@@ -49,15 +60,15 @@ const Product = (props) => {
           width={"100%"}
           margin={"0.5rem 0"}
           delete
-          onClick={() => props.deleteProduct(props.index)}
+          onClick={() => dispatch(productRemoved({ id: product.id }))}
         >
           Delete
         </ActionButton>
       </ProductActions>
       <SummaryContainer>
-        <ProductTitle>{props.product.name}</ProductTitle>
+        <ProductTitle>{product.name}</ProductTitle>
         <Summary
-          data={props.product}
+          data={product}
           fontSize="0.9rem"
           color={"green"}
           margin={"0 0 0 0.5rem"}

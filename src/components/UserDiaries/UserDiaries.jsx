@@ -1,44 +1,43 @@
-import React, { useContext } from "react";
+import React from "react";
 import Diary from "../Diary/Diary";
-import UserDataContext from "../../contexts/UserDataContext";
 import {
   Section,
   SectionInnerContainer,
-  Button,
+  Link,
 } from "../../styles/globalComponentsStyles";
-import { v4 as uuidv4 } from "uuid";
 import AliceCarousel from "react-alice-carousel";
 import { breakpoints } from "../../styles/Carousel/carouselConfig";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "../../styles/Carousel/carousel.css";
+import { useSelector } from "react-redux";
 
 const UserDiaries = () => {
-  const userData = useContext(UserDataContext);
+  const { diaries } = useSelector((state) => state.user.userItems);
 
   return (
     <Section column>
       <SectionInnerContainer>
+        <Link to="/builder">New diary</Link>
         Your Diaries
-        {userData.userData.diaries.length !== 0 && (
+        {diaries.length !== 0 && (
           <AliceCarousel
             controlsStrategy={"responsive"}
             responsive={breakpoints}
             keyboardNavigation
-            items={userData.userData.diaries.map((diary) => (
-              <Diary
-                progressData={diary.progressData}
-                kcalDemand={diary.kcalDemand}
-                key={uuidv4()}
-                title={diary.name}
-                items={diary.items}
-                id={diary.id}
-              />
-            ))}
+            items={diaries.map(
+              ({ id, name, meals, demand, demandCoverage }) => (
+                <Diary
+                  progressData={demandCoverage}
+                  kcalDemand={demand.kcal}
+                  key={id}
+                  title={name}
+                  items={meals}
+                  id={id}
+                />
+              )
+            )}
           />
         )}
-        <a href={"#diarybuilder"}>
-          <Button>New diary</Button>
-        </a>
       </SectionInnerContainer>
     </Section>
   );

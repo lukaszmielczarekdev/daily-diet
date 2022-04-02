@@ -1,14 +1,13 @@
 import React from "react";
 import { BarWrapper, BarContainer, Filler, Label } from "./ProgressBarStyles";
 
-const ProgressBar = (props) => {
-  const { bgcolor, completed } = props;
+const ProgressBar = ({ bgcolor, completed, label }) => {
   return (
     <BarWrapper>
-      <Label color={"black"}>{props.label}</Label>
+      <Label color={"black"}>{label}</Label>
       <BarContainer>
-        <Filler completed={completed} color={bgcolor}>
-          <Label fontWeight={"bold"}>{`${completed}%`}</Label>
+        <Filler completed={parseInt(completed)} color={bgcolor}>
+          <Label fontWeight={"bold"}>{`${parseInt(completed)}%`}</Label>
         </Filler>
       </BarContainer>
     </BarWrapper>

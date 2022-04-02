@@ -1,24 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Container,
   SearchList,
   StyledListItem,
   StyledInput,
 } from "./SearchBarStyles";
-import { v4 as uuidv4 } from "uuid";
+import { productAdded } from "../../store/userItems";
 
-const styles = {
-  listStyle: "none",
-  padding: "0",
-  cursor: "pointer",
-};
-
-const SearchBar = (props) => {
+const SearchBar = ({ data, placeholder }) => {
   const [filteredData, setFilteredData] = useState([]);
+  const dispatch = useDispatch();
 
   const handleFilter = (e) => {
     const searchData = e.target.value;
-    const newFilter = props.data.filter((value) => {
+    const newFilter = data.filter((value) => {
       return value.name.toLowerCase().includes(searchData.toLowerCase());
     });
     if (searchData === "") {
@@ -32,23 +28,22 @@ const SearchBar = (props) => {
     <Container>
       <StyledInput
         text
-        id="ingredientInput"
+        id="ingredient-input"
         type="text"
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         onChange={handleFilter}
       />
       {filteredData.length !== 0 && (
-        <SearchList style={styles}>
-          {filteredData.map((value) => (
+        <SearchList>
+          {filteredData.map((item) => (
             <StyledListItem
               onClick={() => {
-                props.addProduct(value);
+                dispatch(productAdded({ product: item }));
                 setFilteredData([]);
               }}
-              key={uuidv4()}
-              style={styles}
+              key={item.id}
             >
-              {value.name}
+              {item.name}
             </StyledListItem>
           ))}
         </SearchList>
