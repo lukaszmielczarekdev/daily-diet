@@ -46,10 +46,10 @@ export const calculateMacrosForProducts = (products) => {
   return products.reduce(
     (acc, elem) => {
       return {
+        kcal: acc.kcal + elem.kcal,
         protein: acc.protein + elem.protein,
         carbs: acc.carbs + elem.carbs,
         fat: acc.fat + elem.fat,
-        kcal: acc.kcal + elem.kcal,
       };
     },
     { protein: 0, carbs: 0, fat: 0, kcal: 0 }
@@ -60,10 +60,10 @@ export const calculateMacrosForMeals = (meals) => {
   return meals.reduce(
     (acc, elem) => {
       return {
+        kcal: acc.kcal + elem.nutrients.kcal,
         protein: acc.protein + elem.nutrients.protein,
         carbs: acc.carbs + elem.nutrients.carbs,
         fat: acc.fat + elem.nutrients.fat,
-        kcal: acc.kcal + elem.nutrients.kcal,
       };
     },
     { protein: 0, carbs: 0, fat: 0, kcal: 0 }

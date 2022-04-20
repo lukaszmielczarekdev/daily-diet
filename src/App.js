@@ -1,13 +1,13 @@
 import React from "react";
-import Footer from "./components/Footer/Footer";
-import Hero from "./components/Hero/Hero";
-import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/organisms/Footer/Footer";
+import Hero from "./components/pages/Hero/Hero";
+import NavBar from "./components/organisms/NavBar/NavBar";
 import ThemeManager from "./themes/themeManager";
 import { AppContainer } from "./AppStyles";
-import UserDiaries from "./components/UserDiaries/UserDiaries";
-import DiaryBuilder from "./components/DiaryBuilder/DiaryBuilder";
-import Preferences from "./components/Preferences/Preferences";
-import UserProfile from "./components/UserProfile/UserProfile";
+import UserDiaries from "./components/pages/UserDiaries/UserDiaries";
+import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
+import Preferences from "./components/pages/Preferences/Preferences";
+import UserProfile from "./components/pages/UserProfile/UserProfile";
 import { Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
