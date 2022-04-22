@@ -31,7 +31,7 @@ export const ContentContainer = styled.div`
   font-weight: 300;
   padding-bottom: 1.8rem;
   color: black;
-  text-align: ${({ justify }) => (justify ? "justify" : "")};
+  text-align: ${({ text }) => (text ? text : "")};
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: ${({ smaller }) => (smaller ? "0.8rem" : "1rem")};
@@ -46,10 +46,10 @@ export const ContentContainer = styled.div`
 `;
 
 export const Background = styled.div`
-  background: white
+  background: ${({ bgcolor }) => (bgcolor ? bgcolor : "white")}
     ${({ background }) => (background ? `url(${background})` : "")} no-repeat;
   background-position: 100% 0%;
-  min-height: 85vh;
+  min-height: ${({ height }) => (height ? height : "")};
   background-size: contain;
   display: grid;
 

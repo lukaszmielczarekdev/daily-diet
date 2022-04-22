@@ -16,7 +16,13 @@ const NavBar = () => {
         </NavigationTitle>
       </NavSection>
       <NavSection>
-        <NavigationLink href="preferences">
+        <NavigationLink href="diaries" weight={"Normal"} size={"1rem"}>
+          Diaries
+        </NavigationLink>
+        <NavigationLink href="profile" weight={"Normal"} size={"1rem"}>
+          Profile
+        </NavigationLink>
+        <NavigationLink href="preferences" size={"1rem"}>
           <BsGear />
         </NavigationLink>
       </NavSection>

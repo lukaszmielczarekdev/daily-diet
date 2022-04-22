@@ -120,12 +120,12 @@ const slice = createSlice({
     },
 
     diaryAdded: (state, action) => {
-      const length = document.getElementById("diary-name").value.length;
+      const length = action.payload.name.length;
 
       if (3 <= length && length <= 25 && action.payload.demand.kcal > 0) {
         state.diaries.push({
           id: uuidv4(),
-          name: document.getElementById("diary-name").value,
+          name: action.payload.name,
           demand: action.payload.demand,
           meals: action.payload.meals,
           nutrients: action.payload.nutrients,

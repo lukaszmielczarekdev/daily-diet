@@ -5,7 +5,12 @@ import salad from "../../../assets/Images/salad.jpg";
 
 const UserProfile = () => {
   return (
-    <Container background={salad}>
+    <Container
+      background={salad}
+      text={"center"}
+      height={"94vh"}
+      fill={"yellowgreen"}
+    >
       Your Profile
       <Link to="/builder">New diary</Link>
     </Container>

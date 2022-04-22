@@ -13,7 +13,7 @@ const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
 
   return (
-    <Container column>
+    <Container column text={"center"} height={"94vh"} fill={"yellowgreen"}>
       <Link to="/builder">New diary</Link>
       {diaries.length !== 0 && (
         <Wrapper>

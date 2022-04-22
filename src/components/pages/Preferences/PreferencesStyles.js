@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import pizza from "../../assets/Images/pizza.jpg";
 
-// Background
 export const Background = styled.div`
   background: white url(${pizza}) no-repeat;
   background-position: 100% 0%;

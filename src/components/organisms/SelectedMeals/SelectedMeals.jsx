@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { StyledForm } from "../../../styles/globalComponentsStyles";
 import {
@@ -24,6 +24,8 @@ import ListOfMeals from "../../molecules/ListOfMeals/ListOfMeals";
 
 const SelectedMeals = () => {
   const dispatch = useDispatch();
+  const diaryName = useRef();
+
   const { demandAmount, demandPercentage } = useSelector(
     (state) => state.user.userProfile
   );
@@ -90,7 +92,7 @@ const SelectedMeals = () => {
         <Container column>
           <DiaryInput
             text
-            id={"diary-name"}
+            ref={diaryName}
             type="text"
             placeholder={"Diary name (3 - 25 chars)"}
           />
@@ -139,6 +141,7 @@ const SelectedMeals = () => {
                     demandCoverage: progressData,
                     nutrients: currentMacrosAmount,
                     meals: temporaryMeals,
+                    name: diaryName.current.value,
                   })
                 );
                 resetBuilder();

@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 // Footer Wrapper
 export const FooterContainer = styled.section`
-  max-width: 80%;
   padding: 2rem;
-  margin: 1rem auto;
   box-sizing: content-box;
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     padding: 2rem 0 0 0;

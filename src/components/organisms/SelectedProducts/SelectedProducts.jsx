@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "../../atoms/Button/Button";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import { ProductsContainer, MealNameInput } from "./SelectedProductsStyles";
@@ -15,16 +15,17 @@ import ListOfProducts from "../../molecules/ListOfProducts/ListOfProducts";
 const SelectedProducts = () => {
   const dispatch = useDispatch();
   const { temporaryProducts } = useSelector((state) => state.user.userItems);
+  const mealName = useRef();
 
   return (
     <ProductsContainer id="product-select">
       <MealNameInput
         text
-        id={"meal-name"}
+        ref={mealName}
         type="text"
         placeholder={"Meal name (3 - 25 chars)"}
       />
-      <ListOfProducts products={temporaryProducts} />
+      <ListOfProducts />
       <Summary centered data={calculateMacrosForProducts(temporaryProducts)} />
       <ControlPanel fit>
         <Button
@@ -33,7 +34,7 @@ const SelectedProducts = () => {
           onClick={() =>
             dispatch(
               mealAdded({
-                name: document.getElementById("meal-name").value,
+                name: mealName.current.value,
                 products: temporaryProducts,
               })
             )
@@ -47,8 +48,7 @@ const SelectedProducts = () => {
           onClick={() =>
             dispatch(
               mealSaved({
-                name:
-                  "[Template] " + document.getElementById("meal-name").value,
+                name: "[Template] " + String(mealName.current.value),
                 products: temporaryProducts,
               })
             )

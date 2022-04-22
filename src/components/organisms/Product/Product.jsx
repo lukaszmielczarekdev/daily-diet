@@ -17,6 +17,7 @@ import {
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
+
   const {
     register: registerAmount,
     handleSubmit: handleSubmitAmount,

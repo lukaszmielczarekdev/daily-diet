@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "./components/organisms/Footer/Footer";
 import Hero from "./components/pages/Hero/Hero";
+import Calculator from "./components/pages/Calculator/Calculator";
 import NavBar from "./components/organisms/NavBar/NavBar";
 import ThemeManager from "./themes/themeManager";
 import { AppContainer } from "./AppStyles";
@@ -19,10 +20,15 @@ const App = () => {
       <AppContainer>
         <NavBar />
         <Switch>
-          <Route path="/" exact component={bmr ? UserProfile : Hero} />
-          <Route path="/preferences" component={bmr ? Preferences : Hero} />
-          <Route path="/builder" component={bmr ? DiaryBuilder : Hero} />
-          <Route path="/diaries" component={bmr ? UserDiaries : Hero} />
+          <Route path="/" exact>
+            <Route path="/" exact component={Hero} />
+            {!bmr && <Route path="/" exact component={Calculator} />}
+          </Route>
+          <Route path="/profile" exact component={UserProfile} />
+          <Route path="/preferences" component={Preferences} />
+          <Route path="/diaries" component={UserDiaries} />
+          <Route path="/builder" component={bmr ? DiaryBuilder : Calculator} />
+          <Route path="*" component={Hero} />
         </Switch>
         <Footer />
       </AppContainer>

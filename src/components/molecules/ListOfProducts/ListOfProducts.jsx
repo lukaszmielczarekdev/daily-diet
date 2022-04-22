@@ -1,10 +1,13 @@
 import { List, ListItem } from "./ListOfProductsStyles";
 import Product from "../../organisms/Product/Product";
+import { useSelector } from "react-redux";
 
-const ListOfProducts = ({ products }) => {
+const ListOfProducts = () => {
+  const { temporaryProducts } = useSelector((state) => state.user.userItems);
+
   return (
     <List>
-      {products.map((elem) => (
+      {temporaryProducts.map((elem) => (
         <ListItem key={elem.id}>
           <Product product={elem} />
         </ListItem>

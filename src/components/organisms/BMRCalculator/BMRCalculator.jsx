@@ -11,9 +11,12 @@ import {
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { bmrChanged, demandChanged } from "../../../store/userProfile";
+import { useHistory } from "react-router-dom";
 
 const BMRCalculator = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { protein, carbs, fat } = useSelector(
     (state) => state.user.userProfile.demandPercentage
   );
@@ -51,6 +54,7 @@ const BMRCalculator = () => {
         demandAmount: calculateMacrosAmount(bmr, protein, carbs, fat),
       })
     );
+    history.push(`/builder`);
   };
 
   return (

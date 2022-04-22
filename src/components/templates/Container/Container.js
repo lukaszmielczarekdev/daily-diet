@@ -1,12 +1,15 @@
 import { Section, Background, ContentContainer } from "./ContainerStyles";
+import SectionDivider from "../../atoms/SectionDivider/SectionDivider";
 
 const Container = (props) => {
   return (
-    <Background {...props}>
-      <Section {...props}>
-        <ContentContainer {...props}>{props.children}</ContentContainer>
-      </Section>
-    </Background>
+    <SectionDivider {...props}>
+      <Background {...props}>
+        <Section {...props}>
+          <ContentContainer {...props}>{props.children}</ContentContainer>
+        </Section>
+      </Background>
+    </SectionDivider>
   );
 };
 
