@@ -13,7 +13,6 @@ const UserDiaries = () => {
       <Link to="/builder">New diary</Link>
       {diaries.length !== 0 && (
         <Carousel
-          width={"90vw"}
           breakpoints
           items={diaries.map(({ id, name, meals, demand, demandCoverage }) => (
             <Diary

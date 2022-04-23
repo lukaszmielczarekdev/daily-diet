@@ -3,26 +3,22 @@ import styled from "styled-components";
 export const Section = styled.section`
   display: ${({ grid }) => (grid ? "grid" : "flex")};
   flex-direction: ${({ column }) => (column ? "column" : "row")};
-  padding: ${({ nopadding }) => (nopadding ? "0" : "3rem")};
   box-sizing: content-box;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   align-content: center;
+  margin: 5rem 0;
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: ${({ nopadding }) => (nopadding ? "0" : "3rem")};
     flex-direction: column;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    padding: ${({ hero }) => (hero ? "0 1rem 0 1rem" : "3rem 1rem 1rem 1rem")};
-    width: calc(100vw - 2rem);
+    /* padding: ${({ hero }) =>
+      hero ? "0 1rem 0 1rem" : "3rem 1rem 1rem 1rem"}; */
+    /* width: calc(100vw - 2rem); */
     flex-direction: column;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding-top: ${({ hero }) => (hero ? ".5rem" : "")};
   }
 `;
 
@@ -40,7 +36,7 @@ export const ContentContainer = styled.div`
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     font-size: ${({ smaller }) => (smaller ? "0.8rem" : "1rem")};
-    padding: ${({ padding }) => (padding ? "1rem" : "")};
+    /* padding: ${({ padding }) => (padding ? "1rem" : "")}; */
     text-align: ${({ center }) => (center ? "center" : "")};
   }
 `;
