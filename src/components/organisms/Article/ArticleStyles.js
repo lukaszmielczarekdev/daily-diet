@@ -6,11 +6,15 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 100%;
   padding: 3rem;
 
   @media ${({ theme }) => theme.breakpoints.md} {
     grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1rem;
   }
 `;
 

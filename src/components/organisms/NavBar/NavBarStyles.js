@@ -14,7 +14,7 @@ export const Container = styled.div`
   @media ${(props) => props.theme.breakpoints.sm} {
     column-gap: 0.2rem;
     row-gap: 0.2rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 2rem 1rem;
   }
 `;
 

@@ -15,7 +15,6 @@ const Carousel = ({
   return (
     <Container>
       <AliceCarousel
-        autoWidth
         autoPlay={autoPlay}
         autoPlayInterval={autoPlayInterval}
         autoPlayStrategy={autoPlayStrategy}
