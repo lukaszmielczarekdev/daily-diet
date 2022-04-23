@@ -1,4 +1,10 @@
-export const breakpoints = {
+import styled from "styled-components";
+
+export const Wrapper = styled.div`
+  width: ${({ width }) => (width ? width : "100%")};
+`;
+
+export const chunks = {
   0: {
     items: 1,
   },
@@ -18,9 +24,9 @@ export const breakpoints = {
     items: 2,
   },
   1610: {
-    items: 2,
+    items: 3,
   },
   2550: {
-    items: 2,
+    items: 4,
   },
 };
