@@ -7,8 +7,7 @@ const Preferences = () => {
     <Container
       background={pizza}
       text={"center"}
-      height={"94vh"}
-      fill={"yellowgreen"}
+      fill={({ theme }) => theme.colors.backgroundPrimary}
     ></Container>
   );
 };

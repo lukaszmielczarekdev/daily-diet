@@ -7,6 +7,7 @@ import { Container } from "./CarouselStyles";
 
 const Carousel = ({
   items,
+  infinite,
   breakpoints,
   autoPlay,
   autoPlayInterval,
@@ -15,6 +16,7 @@ const Carousel = ({
   return (
     <Container>
       <AliceCarousel
+        infinite={infinite}
         autoPlay={autoPlay}
         autoPlayInterval={autoPlayInterval}
         autoPlayStrategy={autoPlayStrategy}

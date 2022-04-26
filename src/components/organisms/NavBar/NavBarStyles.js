@@ -9,9 +9,9 @@ export const Container = styled.div`
   column-gap: 0.5rem;
   padding: 2.5rem;
   height: 6vh;
-  background-color: yellowgreen;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
 
-  @media ${(props) => props.theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     column-gap: 0.2rem;
     row-gap: 0.2rem;
     padding: 2rem 1rem;
@@ -47,7 +47,7 @@ export const IconsSection = styled.div`
 `;
 
 export const NavigationLink = styled.a`
-  color: black;
+  color: ${({ theme }) => theme.colors.dark};
   font-size: ${({ size }) => (size ? size : "1.2rem")};
   font-weight: ${({ weight }) => (weight ? weight : "bold")};
   transition: 0.4s ease;

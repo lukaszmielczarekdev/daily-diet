@@ -2,7 +2,7 @@ import { Wrapper, Divider, StyledPath } from "./SectionDividerStyles";
 
 const SectionDivider = (props) => {
   return (
-    <Wrapper {...props}>
+    <Wrapper>
       <Divider {...props}>
         <svg
           data-name="Layer 1"

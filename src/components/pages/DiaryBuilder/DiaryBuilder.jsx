@@ -17,7 +17,7 @@ const DiaryBuilder = () => {
       id="diarybuilder"
       text={"center"}
       height={"94vh"}
-      fill={"yellowgreen"}
+      fill={({ theme }) => theme.colors.backgroundPrimary}
     >
       {bmr && (
         <>

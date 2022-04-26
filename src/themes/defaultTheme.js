@@ -6,10 +6,15 @@ export const defaultTheme = {
 
   colors: {
     primary: "black",
-    backgroundPrimary: "white",
-    accent: "black",
-    button: "rgb(0, 110, 185)",
-    backgroundSecondary: "rgb(45, 50, 75)",
+    secondary: "white",
+    backgroundPrimary: "rgb(240, 250, 240)",
+    backgroundSecondary: "white",
+    green: "rgb(125, 215, 120)",
+    yellow: "rgb(240, 235, 85)",
+    warning: "rgb(235, 110, 105)",
+    gray: "rgb(40, 38, 38)",
+    dark: "black",
+    semiTransparent: "rgb(98,98,98)",
   },
 
   breakpoints: {

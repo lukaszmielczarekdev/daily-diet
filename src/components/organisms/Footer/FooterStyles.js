@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const FooterContainer = styled.section`
   padding: 2rem;
   box-sizing: content-box;
-  background-color: yellowgreen;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   display: flex;
   justify-content: center;
   min-height: 50vh;

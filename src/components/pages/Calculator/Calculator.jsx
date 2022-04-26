@@ -2,13 +2,32 @@ import React from "react";
 import Title from "../../atoms/Title/Title";
 import BmrCalculator from "../../organisms/BMRCalculator/BMRCalculator";
 import Container from "../../templates/Container/Container";
-import burger from "../../../assets/Images/logo.jpg";
+import Attributes from "../../molecules/Attributes/Attributes";
+import { Wrapper, Description, InnerContainer } from "./CalculatorStyles";
+import { attributes } from "../../../data/constants";
 
-const Calculator = () => {
+const Calculator = ({ title, margin }) => {
   return (
-    <Container background={burger} text={"center"} height={"94vh"}>
-      <Title primary={"BMR"} secondary={"Calculator"} />
-      <BmrCalculator />
+    <Container id={"calculator"} text={"center"}>
+      <Wrapper margin={margin} padding={"1rem 5rem"}>
+        <InnerContainer>
+          <BmrCalculator />
+        </InnerContainer>
+        <InnerContainer>
+          <Title
+            primary={"BMR Calculator"}
+            secondary={"Care About Nutrition For Your Health"}
+          />
+
+          <Description>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam
+            quis sint repellat. Exercitationem numquam alias quia harum,
+            reprehenderit ipsa nisi atque quis voluptatum ad aut asperiores
+            voluptas repellendus molestiae commodi mollitia.
+          </Description>
+          <Attributes items={attributes} />
+        </InnerContainer>
+      </Wrapper>
     </Container>
   );
 };

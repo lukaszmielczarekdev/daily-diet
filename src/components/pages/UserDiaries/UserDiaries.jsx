@@ -9,7 +9,11 @@ const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
 
   return (
-    <Container column text={"center"} height={"94vh"} fill={"yellowgreen"}>
+    <Container
+      column
+      text={"center"}
+      fill={({ theme }) => theme.colors.backgroundPrimary}
+    >
       <Link to="/builder">New diary</Link>
       {diaries.length !== 0 && (
         <Carousel

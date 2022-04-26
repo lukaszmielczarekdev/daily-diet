@@ -107,7 +107,7 @@ const BMRCalculator = () => {
           <option value={2}>Medium</option>
           <option value={2.5}>High</option>
         </Select>
-        <Button type="submit">Get Started</Button>
+        <Button type="submit">Get BMR</Button>
       </Form>
     </FormContainer>
   );

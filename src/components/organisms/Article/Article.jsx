@@ -1,16 +1,47 @@
-import { Wrapper, Description } from "./ArticleStyles";
+import { Wrapper, Description, Container } from "./ArticleStyles";
+import Anchor from "../../atoms/Anchor/Anchor";
+import Title from "../../atoms/Title/Title";
+import { useSelector } from "react-redux";
 
-const Article = ({ title, description, link, image }) => {
+const Article = ({
+  title,
+  description,
+  link,
+  altLink,
+  image,
+  padding,
+  margin,
+}) => {
+  const { bmr } = useSelector((state) => state.user.userProfile);
+
   return (
-    <Wrapper>
-      <div>
-        <span>{title}</span>
+    <Wrapper padding={padding} margin={margin}>
+      <Container>
+        <Title
+          primary={title}
+          secondary={"Care About Nutrition For Your Health"}
+        />
         <Description>{description}</Description>
-        <button>{link}</button>
-      </div>
-      <div>
-        <img alt="pizza" src={image} width="80%" />
-      </div>
+        <Anchor
+          href={!bmr ? link : altLink}
+          color={"black"}
+          green
+          width={"fit-content"}
+        >
+          Get Started.
+        </Anchor>
+        <Anchor
+          href={!bmr ? link : altLink}
+          color={"black"}
+          yellow
+          width={"fit-content"}
+        >
+          Learn more.
+        </Anchor>
+      </Container>
+      <Container>
+        <img alt="pizza" src={image} width={"100%"} />
+      </Container>
     </Wrapper>
   );
 };

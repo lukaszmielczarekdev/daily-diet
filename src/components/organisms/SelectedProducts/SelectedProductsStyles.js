@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ProductsContainer = styled.div`
   display: flex;
+  text-align: left;
   flex-direction: column;
   border-radius: 25px;
   padding: 2rem;

@@ -1,20 +1,22 @@
 import React from "react";
 import Container from "../../templates/Container/Container";
-// import Title from "../../atoms/Title/Title";
 import Carousel from "../../organisms/Carousel/Carousel";
 import Article from "../../organisms/Article/Article";
 import { features } from "../../../data/constants";
 
 const Hero = () => {
   return (
-    <Container text={"center"} height={"94vh"} fill={"yellowgreen"}>
-      {/* <Title primary={"Daily"} secondary={"Diet Assistant"} /> */}
+    <Container
+      text={"center"}
+      fill={({ theme }) => theme.colors.backgroundPrimary}
+    >
       <Carousel
+        infinite
         autoPlay
-        autoPlayInterval={5000}
+        autoPlayInterval={10000}
         autoPlayStrategy={"all"}
         items={features.map((feature) => (
-          <Article {...feature} />
+          <Article {...feature} padding={"1rem 5rem"} />
         ))}
       />
     </Container>

@@ -8,10 +8,8 @@ const UserProfile = () => {
     <Container
       background={salad}
       text={"center"}
-      height={"94vh"}
-      fill={"yellowgreen"}
+      fill={({ theme }) => theme.colors.backgroundPrimary}
     >
-      Your Profile
       <Link to="/builder">New diary</Link>
     </Container>
   );

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  text-align: left;
   flex-direction: ${({ column }) => (column ? "column" : "row")};
   background-color: rgb(255, 255, 255, 0.8);
   -webkit-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
