@@ -9,14 +9,14 @@ import { attributes } from "../../../data/constants";
 const Calculator = ({ title, margin }) => {
   return (
     <Container id={"calculator"} text={"center"}>
-      <Wrapper margin={margin} padding={"1rem 5rem"}>
-        <InnerContainer>
+      <Wrapper margin={margin} padding={"1rem 2rem"}>
+        <InnerContainer center>
           <BmrCalculator />
         </InnerContainer>
         <InnerContainer>
           <Title
-            primary={"BMR Calculator"}
-            secondary={"Care About Nutrition For Your Health"}
+            titlePrimary={"BMR Calculator"}
+            titleSecondary={"Care About Nutrition For Your Health"}
           />
 
           <Description>

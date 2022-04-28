@@ -12,9 +12,10 @@ const Carousel = ({
   autoPlay,
   autoPlayInterval,
   autoPlayStrategy,
+  background,
 }) => {
   return (
-    <Container>
+    <Container background={background}>
       <AliceCarousel
         infinite={infinite}
         autoPlay={autoPlay}

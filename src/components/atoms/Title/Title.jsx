@@ -1,10 +1,10 @@
 import { StyledTitle, TitleSpan } from "./TitleStyles";
 
-const Title = ({ primary, secondary }) => {
+const Title = ({ titlePrimary, titleSecondary }) => {
   return (
     <StyledTitle>
-      <TitleSpan>{primary}</TitleSpan>
-      {secondary}
+      <TitleSpan>{titlePrimary}</TitleSpan>
+      {titleSecondary}
     </StyledTitle>
   );
 };

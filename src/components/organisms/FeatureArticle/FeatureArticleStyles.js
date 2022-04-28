@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.article`
   display: ${({ flex }) => (flex ? "flex" : "grid")};
   text-align: left;
-  grid-template-columns: ${({ columns }) => (columns ? columns : "1fr 1fr")};
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -20,12 +20,17 @@ export const Wrapper = styled.article`
   }
 `;
 
+export const Description = styled.p`
+  text-align: left;
+  letter-spacing: 0.6px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.semiTransparent};
+`;
+
 export const Container = styled.div`
   padding: 1rem 2rem;
-
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1rem 1rem;
-  }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;

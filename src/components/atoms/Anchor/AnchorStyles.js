@@ -4,7 +4,7 @@ export const StyledAnchor = styled.a`
   color: black;
   display: inline-block;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.8rem 1.2rem;
   margin: 1rem 1rem 1rem 0;
   border-radius: 10px 0;

@@ -22,8 +22,4 @@ export const StyledTitle = styled.span`
   color: green;
   display: flex;
   font-size: ${({ main }) => (main ? "1.3rem" : "1rem")};
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    justify-content: center;
-  }
 `;

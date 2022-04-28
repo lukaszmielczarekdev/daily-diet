@@ -1,0 +1,42 @@
+import styled from "styled-components";
+
+export const StyledTitle = styled.h3`
+  color: white;
+  font-size: 2rem;
+  font-weight: normal;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  margin: 1rem 0;
+  white-space: pre-line;
+
+  position: absolute;
+  bottom: 16px;
+  left: 32px;
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    font-size: 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 0.6rem;
+  }
+`;
+
+export const TitleSpan = styled.span`
+  white-space: pre-line;
+  text-align: left;
+  font-weight: normal;
+  color: white;
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    font-size: 0.8rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 0.6rem;
+  }
+`;

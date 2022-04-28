@@ -17,7 +17,7 @@ const ProductReadOnly = ({ product }) => {
           data={product}
           fontSize="0.9rem"
           color={"green"}
-          margin={"0 0 0 0.5rem"}
+          margin={"0"}
         />
       </SummaryContainer>
     </ProductContainer>

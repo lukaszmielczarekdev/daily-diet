@@ -12,7 +12,6 @@ export const ProductActions = styled.div`
 
 export const ProductForm = styled.form`
   align-items: center;
-  justify-content: center;
 `;
 
 export const ProductInput = styled.input`
@@ -20,6 +19,6 @@ export const ProductInput = styled.input`
   font-size: 0.8rem;
   padding: 0.4rem;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px 0;
   text-align: center;
 `;

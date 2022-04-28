@@ -21,5 +21,6 @@ export const Divider = styled.div`
 `;
 
 export const StyledPath = styled.path`
-  fill: ${({ fill }) => (fill ? fill : "white")};
+  fill: ${({ fillColor }) =>
+    fillColor ? ({ theme }) => theme.colors.backgroundPrimary : "white"};
 `;

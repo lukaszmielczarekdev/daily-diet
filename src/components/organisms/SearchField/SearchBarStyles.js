@@ -22,7 +22,7 @@ export const StyledInput = styled.input`
   padding: 0.5rem;
   margin: 0.5rem 0;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px 0;
   text-align: center;
 
   @media ${(props) => props.theme.breakpoints.sm} {

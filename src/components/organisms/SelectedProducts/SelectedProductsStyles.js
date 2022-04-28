@@ -4,15 +4,11 @@ export const ProductsContainer = styled.div`
   display: flex;
   text-align: left;
   flex-direction: column;
-  border-radius: 25px;
   padding: 2rem;
   margin-top: 1rem;
-  background-color: rgb(255, 255, 255, 0.8);
-  -webkit-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  -moz-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgb(255, 255, 255, 0.5);
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  border-radius: 25px 0;
+
   min-width: 40vw;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
@@ -26,7 +22,7 @@ export const MealNameInput = styled.input`
   padding: 0.5rem;
   margin: 0.5rem 0;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px 0;
   text-align: center;
 
   @media ${({ theme }) => theme.breakpoints.sm} {

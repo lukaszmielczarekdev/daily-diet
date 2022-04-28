@@ -13,12 +13,7 @@ const DiaryBuilder = () => {
   const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
-    <Container
-      id="diarybuilder"
-      text={"center"}
-      height={"94vh"}
-      fill={({ theme }) => theme.colors.backgroundPrimary}
-    >
+    <Container id="diarybuilder" text={"center"} height={"94vh"} fillColor>
       {bmr && (
         <>
           <SelectedMeals />

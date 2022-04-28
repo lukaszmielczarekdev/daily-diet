@@ -6,7 +6,6 @@ export const StyledButton = styled.button`
   margin: ${({ margin }) => (margin ? `${margin}` : "0")};
   font-size: 0.8rem;
   padding: 0.5rem;
-  border-radius: 10px 0;
   text-align: center;
   color: ${({ color }) => (color ? `${color}` : "white")};
   border: ${({ border }) => (border ? `${border}` : "none")};

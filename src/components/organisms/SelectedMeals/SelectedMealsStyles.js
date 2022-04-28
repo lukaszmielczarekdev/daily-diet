@@ -4,13 +4,8 @@ export const Container = styled.div`
   display: flex;
   text-align: left;
   flex-direction: ${({ column }) => (column ? "column" : "row")};
-  background-color: rgb(255, 255, 255, 0.8);
-  -webkit-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  -moz-box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  box-shadow: 0 8px 32px 0px rgba(30, 40, 135, 0.35);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgb(255, 255, 255, 0.5);
-  border-radius: 25px;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  border-radius: 25px 0;
   padding: 2rem;
   min-width: 40vw;
 
@@ -51,7 +46,7 @@ export const DiaryInput = styled.input`
   padding: 0.3rem;
   margin: 0.3rem 0;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px 0;
   text-align: center;
 `;
 

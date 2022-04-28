@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 0.5rem;
+  margin: 1rem 0;
 `;
 
 export const Span = styled.div`
@@ -18,10 +18,10 @@ export const Icon = styled.div`
   }
 `;
 
-export const Description = styled.p`
+export const Description = styled.span`
   text-align: left;
   letter-spacing: 0.5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.2;
   margin: 1rem;
   color: ${({ theme }) => theme.colors.semiTransparent};

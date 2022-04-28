@@ -27,5 +27,13 @@ export const Description = styled.p`
 `;
 
 export const InnerContainer = styled.div`
-  padding: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ center }) => (center ? "center" : "")};
+  align-items: ${({ center }) => (center ? "center" : "")};
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1rem 0;
+  }
 `;

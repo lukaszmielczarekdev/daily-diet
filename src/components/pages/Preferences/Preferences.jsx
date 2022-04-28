@@ -1,14 +1,12 @@
 import React from "react";
 import Container from "../../templates/Container/Container";
-import pizza from "../../../assets/Images/pizza.jpg";
+import Article from "../../organisms/Article/Article";
 
 const Preferences = () => {
   return (
-    <Container
-      background={pizza}
-      text={"center"}
-      fill={({ theme }) => theme.colors.backgroundPrimary}
-    ></Container>
+    <Container text={"center"} fillColor>
+      <Article padding={"1rem 2rem"} left={"left"} right={"right"} />
+    </Container>
   );
 };
 

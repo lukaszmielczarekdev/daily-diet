@@ -2,6 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
+  padding: 1rem 2rem;
+  background-color: ${({ theme, background }) =>
+    background ? theme.colors.backgroundPrimary : "transparent"};
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 1rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1rem 0;
+  }
 `;
 
 export const chunks = {

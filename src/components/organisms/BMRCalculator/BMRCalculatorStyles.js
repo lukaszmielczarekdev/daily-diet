@@ -48,12 +48,12 @@ export const Button = styled.button`
 `;
 
 export const FormContainer = styled.div`
-  min-width: 300px;
-  width: 60%;
+  min-width: 250px;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   padding: 2rem;
   letter-spacing: 0.5px;
   border-radius: 25px 0;
+  width: 100%;
 
   @media ${({ theme }) => theme.breakpoints.md} {
     width: 100%;
