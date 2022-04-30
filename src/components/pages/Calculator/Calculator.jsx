@@ -5,12 +5,13 @@ import Container from "../../templates/Container/Container";
 import Attributes from "../../molecules/Attributes/Attributes";
 import { Wrapper, Description, InnerContainer } from "./CalculatorStyles";
 import { attributes } from "../../../data/constants";
+import board from "../../../assets/Images/board.png";
 
 const Calculator = ({ title, margin }) => {
   return (
     <Container id={"calculator"} text={"center"}>
       <Wrapper margin={margin} padding={"1rem 2rem"}>
-        <InnerContainer center>
+        <InnerContainer center image={board}>
           <BmrCalculator />
         </InnerContainer>
         <InnerContainer>

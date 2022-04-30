@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper = styled.article`
   display: ${({ flex }) => (flex ? "flex" : "grid")};
-  text-align: left;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
@@ -11,6 +10,11 @@ export const Wrapper = styled.article`
   margin: ${({ margin }) => (margin ? margin : 0)};
 
   @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 1rem 0;
+    grid-template-columns: 60% 40%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -30,9 +34,15 @@ export const Description = styled.p`
 `;
 
 export const Container = styled.div`
-  padding: 1rem 2rem;
+  padding: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;
   }
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: left;
 `;

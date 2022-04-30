@@ -11,6 +11,10 @@ export const Wrapper = styled.article`
   margin: ${({ margin }) => (margin ? margin : 0)};
 
   @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 1rem 0;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
   }

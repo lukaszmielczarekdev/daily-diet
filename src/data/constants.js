@@ -1,7 +1,7 @@
-import pizza from "../assets/Images/pizza_feature.jpg";
-import fish from "../assets/Images/fish_feature.jpg";
-import cinnamon from "../assets/Images/cinnamon_feature.jpg";
-import salad from "../assets/Images/salad_feature.jpg";
+import pizza from "../assets/Images/pizza.png";
+import salad5 from "../assets/Images/salad5.png";
+import salad3 from "../assets/Images/salad3.png";
+import salad from "../assets/Images/salad.jpg";
 import { RiFileList2Line } from "react-icons/ri";
 import { IoFitnessOutline } from "react-icons/io5";
 import { MdFitnessCenter } from "react-icons/md";
@@ -27,7 +27,7 @@ export const features = [
     titleSecondary: "Daily Diet Assistant",
     description:
       "Lorem ipsum dolor sit amet. Sed expedita internos ut alias ducimus quo autem expedita est debitis consequatur aut consectetur quis ut architecto fugit est iste doloribus. Est omnis numquam rem dolores dolor qui maxime accusamus et sint veniam non velit sunt. Qui tempora consequatur qui sint facere ",
-    image: fish,
+    image: salad3,
     link: "test1",
     altLink: "/builder",
     alt: "fish",
@@ -39,7 +39,7 @@ export const features = [
     description:
       "Lorem ipsum dolor sit amet. Sed expedita internos ut alias ducimus quo autem expedita est debitis consequatur aut consectetur quis ut architecto fugit est iste doloribus. Est omnis numquam rem dolores dolor qui maxime accusamus et sint veniam non velit sunt. Qui tempora consequatur qui sint facere",
 
-    image: cinnamon,
+    image: salad5,
     link: "test2",
     altLink: "/builder",
     alt: "cinnamon",

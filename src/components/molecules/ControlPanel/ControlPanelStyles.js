@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  flex-wrap: wrap;
+  flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
   margin: ${({ margin }) => (margin ? `${margin}` : "0")};
   list-style: none;
   display: flex;
@@ -9,5 +9,6 @@ export const Container = styled.div`
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     width: 100%;
+    flex-wrap: wrap;
   }
 `;

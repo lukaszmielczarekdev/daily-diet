@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTitle = styled.h3`
-  color: white;
+  color: ${({ color }) => (color ? `${color}` : "white")};
   font-size: 2rem;
   font-weight: normal;
   text-align: left;
@@ -27,7 +27,7 @@ export const TitleSpan = styled.span`
   white-space: pre-line;
   text-align: left;
   font-weight: normal;
-  color: white;
+  color: ${({ color }) => (color ? `${color}` : "white")};
   display: block;
   font-size: 1rem;
   margin-bottom: 1rem;

@@ -8,6 +8,11 @@ export const Wrapper = styled.article`
   margin: ${({ margin }) => (margin ? margin : 0)};
 
   @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 1rem 0;
+    grid-template-columns: 40% 60%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -27,6 +32,8 @@ export const Description = styled.p`
 `;
 
 export const InnerContainer = styled.div`
+  background: ${({ image }) => `url(${image}) center no-repeat`};
+  background-size: contain;
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;

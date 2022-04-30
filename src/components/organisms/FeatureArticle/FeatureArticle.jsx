@@ -1,4 +1,4 @@
-import { Wrapper, Container } from "./FeatureArticleStyles";
+import { Wrapper, Container, Actions } from "./FeatureArticleStyles";
 import Anchor from "../../atoms/Anchor/Anchor";
 import Title from "../../atoms/Title/Title";
 import Description from "../../atoms/Description/Description";
@@ -22,25 +22,27 @@ const FeatureArticle = ({
       <Container>
         <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
         <Description>{description}</Description>
-        <Anchor
-          href={!bmr ? link : altLink}
-          color={"black"}
-          green
-          width={"fit-content"}
-        >
-          Get Started.
-        </Anchor>
-        <Anchor
-          href={!bmr ? link : altLink}
-          color={"black"}
-          yellow
-          width={"fit-content"}
-        >
-          Learn more.
-        </Anchor>
+        <Actions>
+          <Anchor
+            href={!bmr ? link : altLink}
+            color={"black"}
+            green
+            width={"fit-content"}
+          >
+            Get Started.
+          </Anchor>
+          <Anchor
+            href={!bmr ? link : altLink}
+            color={"black"}
+            yellow
+            width={"fit-content"}
+          >
+            Learn more.
+          </Anchor>
+        </Actions>
       </Container>
       <Container>
-        <img alt={alt} src={image} width={"100%"} />
+        <img alt={alt} src={image} width={"80%"} />
       </Container>
     </Wrapper>
   );
