@@ -37,10 +37,10 @@ const UserDiaries = () => {
                 "By creating diaries, you facilitate the implementation of the diet by observing your body and making adjustments depending on what effect you want to achieve.\n\nYou can use the available ready-made products and you can also add your own compositions.\n\nCreated diaries can be shared with others."
               }
             />
-            <Attributes items={diaryAttributes} />
             <Link color={"green"} to="/builder">
               New diary
             </Link>
+            <Attributes items={diaryAttributes} />
           </>
         }
       />

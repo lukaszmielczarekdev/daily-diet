@@ -8,8 +8,8 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  width: ${({ text }) => (text ? "250px" : "100px")};
-  font-size: 1rem;
+  width: ${({ text }) => (text ? "200px" : "80px")};
+  font-size: 0.8rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border: 1px solid black;
@@ -27,7 +27,7 @@ export const Label = styled.label`
 `;
 
 export const Select = styled.select`
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 10px 0;
@@ -36,9 +36,9 @@ export const Select = styled.select`
 
 export const Button = styled.button`
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0.8rem;
-  width: 30%;
+  width: 50%;
   display: block;
   color: white;
   border: none;
@@ -47,16 +47,16 @@ export const Button = styled.button`
   cursor: pointer;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 50%;
+    width: 60%;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 50%;
+    width: 60%;
   }
 `;
 
 export const FormContainer = styled.div`
-  min-width: 250px;
+  min-width: 300px;
   letter-spacing: 0.5px;
   border-radius: 25px 0;
   width: 100%;

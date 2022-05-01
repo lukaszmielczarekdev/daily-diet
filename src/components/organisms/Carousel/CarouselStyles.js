@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
-  max-width: 1600px;
+  max-width: 1280px;
   padding: 1rem;
   background-color: ${({ theme, background }) =>
     background ? theme.colors.backgroundPrimary : "transparent"};

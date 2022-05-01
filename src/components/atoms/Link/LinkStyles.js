@@ -12,6 +12,6 @@ export const StyledLink = styled(NavLink)`
     if (color === "red") return `${theme.colors.warning}`;
     if (color === "green") return `${theme.colors.green}`;
     if (color === "yellow") return `${theme.colors.yellow};`;
-    else return `transparent`;
+    else return `white`;
   }};
 `;

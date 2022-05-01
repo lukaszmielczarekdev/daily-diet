@@ -15,7 +15,6 @@ const Hero = () => {
         items={features.map((feature) => (
           <FeatureArticle
             {...feature}
-            padding={"1rem 2rem"}
             titlePrimary={feature.titlePrimary}
             titleSecondary={feature.titleSecondary}
             alt={feature.alt}

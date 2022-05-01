@@ -14,7 +14,11 @@ export const StyledTitle = styled.h3`
   bottom: 16px;
   left: 32px;
 
-  @media ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    font-size: 1.5rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 1rem;
   }
 

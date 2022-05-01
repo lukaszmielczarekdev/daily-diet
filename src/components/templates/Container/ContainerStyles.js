@@ -21,13 +21,11 @@ export const Section = styled.section`
 export const ContentContainer = styled.div`
   font-size: ${({ smaller }) => (smaller ? "1.1rem" : "1.2rem")};
   font-weight: 300;
-  padding-bottom: 1.8rem;
   color: black;
   text-align: ${({ text }) => (text ? text : "left")};
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: ${({ smaller }) => (smaller ? "0.8rem" : "1rem")};
-    padding-bottom: 1.5rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: normal;
   text-align: left;
   letter-spacing: 1px;
@@ -9,8 +9,8 @@ export const StyledTitle = styled.h2`
   margin: 1rem 0 1.5rem 0;
   white-space: pre-line;
 
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 1.3rem;
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    font-size: 2rem;
   }
 `;
 

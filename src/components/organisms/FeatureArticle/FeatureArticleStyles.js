@@ -1,25 +1,25 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
-  display: ${({ flex }) => (flex ? "flex" : "grid")};
-  grid-template-columns: 1fr 1fr;
+  max-width: 1280px;
+  display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   padding: ${({ padding }) => (padding ? padding : 0)};
   margin: ${({ margin }) => (margin ? margin : 0)};
 
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 1rem;
+  }
+
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 1rem 0;
-    grid-template-columns: 60% 40%;
+    padding: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem;
   }
 `;
@@ -35,9 +35,11 @@ export const Description = styled.p`
 
 export const Container = styled.div`
   padding: 1rem;
+  max-width: 60%;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;
+    max-width: 100%;
   }
 `;
 

@@ -3,6 +3,7 @@ import Anchor from "../../atoms/Anchor/Anchor";
 import Title from "../../atoms/Title/Title";
 import Description from "../../atoms/Description/Description";
 import { useSelector } from "react-redux";
+import Image from "../../atoms/Image/Image";
 
 const FeatureArticle = ({
   titleSecondary,
@@ -12,13 +13,12 @@ const FeatureArticle = ({
   altLink,
   image,
   alt,
-  padding,
   margin,
 }) => {
   const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
-    <Wrapper padding={padding} margin={margin}>
+    <Wrapper padding={"3rem"} margin={margin}>
       <Container>
         <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
         <Description>{description}</Description>
@@ -42,7 +42,7 @@ const FeatureArticle = ({
         </Actions>
       </Container>
       <Container>
-        <img alt={alt} src={image} width={"80%"} />
+        <Image alt={alt} src={image} width={"100%"} />
       </Container>
     </Wrapper>
   );

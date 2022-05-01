@@ -10,7 +10,7 @@ import board from "../../../assets/Images/board.png";
 const Calculator = ({ title, margin }) => {
   return (
     <Container id={"calculator"} text={"center"}>
-      <Wrapper margin={margin} padding={"1rem 2rem"}>
+      <Wrapper>
         <InnerContainer center image={board}>
           <BmrCalculator />
         </InnerContainer>

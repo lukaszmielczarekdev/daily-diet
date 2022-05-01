@@ -9,14 +9,20 @@ export const Wrapper = styled.article`
   align-content: center;
   padding: ${({ padding }) => (padding ? padding : 0)};
   margin: ${({ margin }) => (margin ? margin : 0)};
+  max-width: 1280px;
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 1rem;
+  }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 1rem 0;
+    padding: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
+    padding: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {

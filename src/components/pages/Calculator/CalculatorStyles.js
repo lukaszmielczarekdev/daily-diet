@@ -1,23 +1,28 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
-  display: grid;
+  max-width: 1280px;
+  display: flex;
   text-align: left;
-  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   padding: ${({ padding }) => (padding ? padding : 0)};
   margin: ${({ margin }) => (margin ? margin : 0)};
+  justify-content: space-between;
+  padding: 3rem;
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 1rem;
+  }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 1rem 0;
-    grid-template-columns: 40% 60%;
+    padding: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem;
   }
 `;
@@ -34,13 +39,16 @@ export const Description = styled.p`
 export const InnerContainer = styled.div`
   background: ${({ image }) => `url(${image}) center no-repeat`};
   background-size: contain;
-  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: ${({ center }) => (center ? "center" : "")};
   align-items: ${({ center }) => (center ? "center" : "")};
 
+  padding: 1rem;
+  max-width: 60%;
+
   @media ${({ theme }) => theme.breakpoints.sm} {
-    padding: 1rem 0;
+    padding: 1rem;
+    max-width: 100%;
   }
 `;
