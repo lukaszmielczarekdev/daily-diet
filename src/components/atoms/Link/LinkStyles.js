@@ -9,6 +9,11 @@ export const StyledLink = styled(NavLink)`
   border-radius: 10px 0;
   width: fit-content;
 
+  transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.1);
+  }
+
   background-color: ${({ color, theme }) => {
     if (color === "red") return `${theme.colors.warning}`;
     if (color === "green") return `${theme.colors.green}`;

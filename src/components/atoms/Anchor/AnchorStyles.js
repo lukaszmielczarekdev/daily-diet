@@ -14,6 +14,11 @@ export const StyledAnchor = styled.a`
     else return `white`;
   }};
 
+  transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.1);
+  }
+
   @media ${({ theme }) => theme.breakpoints.sm} {
     margin: 0.5rem 0.5rem 0.5rem 0;
     font-size: 0.8rem;

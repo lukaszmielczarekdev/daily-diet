@@ -16,6 +16,11 @@ export const Icon = styled.div`
   @media ${({ theme }) => theme.breakpoints.sm} {
     width: 1rem;
   }
+
+  transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Description = styled.span`
