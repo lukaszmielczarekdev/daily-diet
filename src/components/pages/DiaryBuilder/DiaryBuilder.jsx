@@ -13,7 +13,7 @@ const DiaryBuilder = () => {
   const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
-    <Container id="diarybuilder" text={"center"} height={"94vh"} fillColor>
+    <Container id="diarybuilder" height={"94vh"} fillColor>
       {bmr && (
         <>
           <SelectedMeals />

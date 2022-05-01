@@ -6,7 +6,7 @@ import { features } from "../../../data/constants";
 
 const Hero = () => {
   return (
-    <Container text={"center"} fillColor>
+    <Container fillColor>
       <Carousel
         infinite
         autoPlay

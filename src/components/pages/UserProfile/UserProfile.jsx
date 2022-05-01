@@ -5,7 +5,7 @@ import Article from "../../organisms/Article/Article";
 
 const UserProfile = () => {
   return (
-    <Container text={"center"} fillColor>
+    <Container fillColor>
       <Article left={"left"} right={<Link to="/builder">New diary</Link>} />
     </Container>
   );

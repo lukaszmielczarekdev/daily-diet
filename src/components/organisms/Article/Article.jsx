@@ -1,10 +1,10 @@
-import { Wrapper, Container } from "./ArticleStyles";
+import { Wrapper, InnerContainer } from "./ArticleStyles";
 
-const Article = ({ left, right, padding, margin, columns }) => {
+const Article = ({ id, backgroundLeft, backgroundRight, left, right }) => {
   return (
-    <Wrapper padding={padding} margin={margin} columns={columns}>
-      <Container>{left}</Container>
-      <Container>{right}</Container>
+    <Wrapper id={id}>
+      <InnerContainer backgroundLeft={backgroundLeft}>{left}</InnerContainer>
+      <InnerContainer backgroundRight={backgroundRight}>{right}</InnerContainer>
     </Wrapper>
   );
 };

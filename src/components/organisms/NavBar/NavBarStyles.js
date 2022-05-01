@@ -8,7 +8,9 @@ export const Container = styled.div`
   grid-template-rows: 1fr;
   column-gap: 0.5rem;
   padding: 2.5rem;
+  margin: auto;
   height: 6vh;
+  max-width: 1280px;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
 
   @media ${({ theme }) => theme.breakpoints.sm} {

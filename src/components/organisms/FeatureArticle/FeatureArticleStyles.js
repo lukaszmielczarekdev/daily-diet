@@ -6,8 +6,8 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: ${({ padding }) => (padding ? padding : 0)};
-  margin: ${({ margin }) => (margin ? margin : 0)};
+  padding: 3rem;
+  margin: 0;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     padding: 1rem;

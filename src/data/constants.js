@@ -74,8 +74,8 @@ export const attributes = [
   {
     id: 2,
     icon: <RiFileList2Line size={"100%"} color="orange" />,
-    primary: "Basis of",
-    secondary: "diet",
+    primary: "Better",
+    secondary: "results",
   },
 ];
 
@@ -95,7 +95,7 @@ export const diaryAttributes = [
   {
     id: 2,
     icon: <BsBook size={"100%"} color="orange" />,
-    primary: "Easy to",
-    secondary: "use",
+    primary: "Easy",
+    secondary: "to use",
   },
 ];

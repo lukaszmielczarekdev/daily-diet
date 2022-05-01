@@ -15,11 +15,8 @@ const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
 
   return (
-    <Container column text={"center"} fillColor>
+    <Container text={"center"} fillColor>
       <Article
-        padding={"1rem 2rem"}
-        margin={"3rem 0"}
-        columns={"40% 60%"}
         left={
           <Image
             alt={"eggs on the table"}

@@ -13,12 +13,11 @@ const FeatureArticle = ({
   altLink,
   image,
   alt,
-  margin,
 }) => {
   const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
-    <Wrapper padding={"3rem"} margin={margin}>
+    <Wrapper>
       <Container>
         <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
         <Description>{description}</Description>

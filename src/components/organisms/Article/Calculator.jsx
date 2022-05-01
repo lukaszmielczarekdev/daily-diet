@@ -1,20 +1,28 @@
 import React from "react";
+import Title from "../../atoms/Title/Title";
 import BmrCalculator from "../../organisms/BMRCalculator/BMRCalculator";
+import Container from "../../templates/Container/Container";
 import Attributes from "../../molecules/Attributes/Attributes";
+import { Wrapper, Description, InnerContainer } from "./CalculatorStyles";
 import { attributes } from "../../../data/constants";
 import board from "../../../assets/Images/board.png";
 import ArticleContent from "../../organisms/ArticleContent/ArticleContent";
-import Article from "../../organisms/Article/Article";
-import Container from "../../templates/Container/Container";
 
-const Calculator = () => {
+const Calculator = ({
+  titlePrimary,
+  titleSecondary,
+  description,
+  id,
+  background,
+}) => {
   return (
-    <Container>
-      <Article
-        id={"calculator"}
-        backgroundLeft={board}
-        left={<BmrCalculator />}
-        right={
+    // id={"calculator"}
+    <Container id={id}>
+      <Wrapper>
+        <InnerContainer center background={board}>
+          {/* <BmrCalculator /> */}
+        </InnerContainer>
+        <InnerContainer>
           <ArticleContent
             titlePrimary={"BMR CALCULATOR"}
             titleSecondary={"Care About Nutrition For Your Health"}
@@ -23,8 +31,8 @@ const Calculator = () => {
             }
             children={<Attributes items={attributes} />}
           />
-        }
-      />
+        </InnerContainer>
+      </Wrapper>
     </Container>
   );
 };

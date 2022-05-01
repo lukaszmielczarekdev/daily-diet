@@ -11,7 +11,7 @@ const Preferences = () => {
   return (
     <Container text={"center"} fillColor>
       <Article
-        padding={"1rem 2rem"}
+        // padding={"1rem 2rem"}
         left={
           <ControlPanel nowrap>
             <ProductDetails

@@ -7,6 +7,7 @@ export const StyledLink = styled(NavLink)`
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 10px 0;
+  width: fit-content;
 
   background-color: ${({ color, theme }) => {
     if (color === "red") return `${theme.colors.warning}`;
