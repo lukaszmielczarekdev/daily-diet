@@ -12,12 +12,12 @@ const ProductDetails = ({ primary, secondary, description, image }) => {
   return (
     <Wrapper>
       <ImageContainer>
-        <StyledImage src={image} width={"180px"} />
+        <StyledImage src={image} />
       </ImageContainer>
       <InfoContainer>
         <Span>{primary}</Span>
         <Header>{secondary}</Header>
-        <Description>{description}</Description>
+        <Description marginBottom={"0"}>{description}</Description>
       </InfoContainer>
     </Wrapper>
   );

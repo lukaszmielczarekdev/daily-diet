@@ -12,6 +12,14 @@ export const StyledTitle = styled.h2`
   @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2rem;
   }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 1.5rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const TitleSpan = styled.span`
@@ -23,4 +31,12 @@ export const TitleSpan = styled.span`
   font-size: 1rem;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 0.8rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    font-size: 0.8rem;
+  }
 `;

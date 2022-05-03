@@ -5,7 +5,7 @@ export const StyledAnchor = styled.a`
   display: inline-block;
   cursor: pointer;
   font-size: 0.8rem;
-  padding: 0.8rem 1.2rem;
+  padding: 0.5rem;
   margin: 1rem 1rem 1rem 0;
   border-radius: 10px 0;
   background-color: ${({ yellow, green, theme }) => {
@@ -19,8 +19,11 @@ export const StyledAnchor = styled.a`
     transform: scale(1.1);
   }
 
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 0.6rem;
+  }
+
   @media ${({ theme }) => theme.breakpoints.sm} {
-    margin: 0.5rem 0.5rem 0.5rem 0;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
 `;

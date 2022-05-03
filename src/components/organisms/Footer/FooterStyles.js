@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Footer Wrapper
 export const FooterContainer = styled.section`
   padding: 2rem;
   box-sizing: content-box;

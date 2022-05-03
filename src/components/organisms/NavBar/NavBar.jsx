@@ -12,7 +12,7 @@ const NavBar = () => {
     <Container>
       <NavSection>
         <NavigationTitle>
-          <NavigationLink href="/">Daily Diet</NavigationLink>
+          <NavigationLink href="/"> Daily Diet</NavigationLink>
         </NavigationTitle>
       </NavSection>
       <NavSection>

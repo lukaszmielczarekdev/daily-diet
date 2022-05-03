@@ -26,13 +26,18 @@ export const Icon = styled.div`
 export const Description = styled.span`
   text-align: left;
   letter-spacing: 0.5px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.2;
   margin: 1rem;
   color: ${({ theme }) => theme.colors.semiTransparent};
 
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    font-size: 0.6rem;
+    margin: 0.5rem;
+  }
+
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     margin: 0.5rem;
   }
 `;

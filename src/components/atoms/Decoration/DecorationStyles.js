@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 export const StyledImage = styled.img`
-  width: ${({ width }) => (width ? `${width}` : "90%")};
+  width: 10rem;
   border-radius: 25px 0;
+  position: absolute;
+  z-index: 5;
+  opacity: 80%;
+  margin-top: ${({ margin }) => (margin ? `${margin}` : 0)};
+
+  left: ${({ left }) => (left ? `${left}` : "50%")};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 90%;
+    width: 100%;
+    width: 8rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {
@@ -13,7 +20,8 @@ export const StyledImage = styled.img`
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 100%;
+    width: 80%;
+    width: 5rem;
   }
 `;
 

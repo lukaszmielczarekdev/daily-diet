@@ -10,13 +10,15 @@ import Attributes from "../../molecules/Attributes/Attributes";
 import eggs from "../../../assets/Images/eggs.jpg";
 import { diaryAttributes } from "../../../data/constants";
 import { useSelector } from "react-redux";
+import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 
 const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
 
   return (
-    <Container text={"center"} fillColor>
+    <Container fillColor>
       <Article
+        padding={"5rem 3rem 1rem 3rem"}
         left={
           <Image
             alt={"eggs on the table"}
@@ -41,23 +43,25 @@ const UserDiaries = () => {
           </>
         }
       />
-      <Article />
-      {diaries.length !== 0 && (
-        <Carousel
-          background
-          breakpoints
-          items={diaries.map(({ id, name, meals, demand, demandCoverage }) => (
-            <Diary
-              progressData={demandCoverage}
-              kcalDemand={demand.kcal}
-              key={id}
-              title={name}
-              items={meals}
-              id={id}
-            />
-          ))}
-        />
-      )}
+      <ControlPanel margin={"1rem 0 3rem 0"}>
+        {diaries.length !== 0 && (
+          <Carousel
+            breakpoints
+            items={diaries.map(
+              ({ id, name, meals, demand, demandCoverage }) => (
+                <Diary
+                  progressData={demandCoverage}
+                  kcalDemand={demand.kcal}
+                  key={id}
+                  title={name}
+                  items={meals}
+                  id={id}
+                />
+              )
+            )}
+          />
+        )}
+      </ControlPanel>
     </Container>
   );
 };

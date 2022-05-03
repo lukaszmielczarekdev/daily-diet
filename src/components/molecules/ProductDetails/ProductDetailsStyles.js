@@ -4,13 +4,18 @@ export const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 200px;
-  max-width: 350px;
+  min-width: 150px;
+  max-width: 300px;
   margin: 1rem;
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    margin: 1rem 0;
+    max-width: 350px;
+  }
 `;
 
 export const StyledImage = styled.img`
-  width: ${({ width }) => (width ? `${width}` : "100%")};
+  width: 180px;
   border-radius: 50%;
 
   transition: all 0.2s ease-in-out;
@@ -26,7 +31,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const Header = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: normal;
   text-align: left;
   letter-spacing: 1px;
@@ -35,7 +40,7 @@ export const Header = styled.h2`
   white-space: pre-line;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 `;
 
@@ -50,8 +55,8 @@ export const Span = styled.span`
 
 export const InfoContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  margin-top: -35%;
+  margin-top: -30%;
   border-radius: 25px;
-  padding: 100px 1rem 1rem 1rem;
+  padding: 100px 1.5rem 1.5rem 1.5rem;
   z-index: 0;
 `;

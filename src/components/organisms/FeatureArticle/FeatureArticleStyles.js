@@ -6,7 +6,7 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: 3rem;
+  padding: 3rem 3rem 0 3rem;
   margin: 0;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
@@ -35,7 +35,7 @@ export const Description = styled.p`
 
 export const Container = styled.div`
   padding: 1rem;
-  max-width: 60%;
+  max-width: 65%;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;

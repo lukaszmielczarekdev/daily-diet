@@ -27,7 +27,7 @@ const SelectedProducts = () => {
       />
       <ListOfProducts />
       <Summary centered data={calculateMacrosForProducts(temporaryProducts)} />
-      <ControlPanel fit>
+      <ControlPanel fit justify={"left"}>
         <Button
           add
           margin={"0 0.5rem 0.5rem 0"}

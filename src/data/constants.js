@@ -8,6 +8,7 @@ import { MdFitnessCenter } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 import { MdAccessTime } from "react-icons/md";
+import { IoFastFoodOutline } from "react-icons/io5";
 
 export const features = [
   {
@@ -97,5 +98,56 @@ export const diaryAttributes = [
     icon: <BsBook size={"100%"} color="orange" />,
     primary: "Easy",
     secondary: "to use",
+  },
+];
+
+export const meals = [
+  {
+    id: 0,
+    image: salad5,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 1,
+    image: salad5,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 2,
+    image: salad5,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+];
+
+export const tips = [
+  {
+    id: 0,
+    color: "red",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "salad is good",
+    description:
+      "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 1,
+    color: "green",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "salad is good",
+    description:
+      "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 2,
+    color: "yellow",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "salad is good",
+    description:
+      "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
   },
 ];

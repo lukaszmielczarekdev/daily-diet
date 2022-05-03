@@ -7,7 +7,7 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: 3rem;
+  padding: ${({ padding }) => (padding ? padding : "3rem")};
   margin: 0;
   justify-content: space-between;
 
@@ -46,12 +46,11 @@ export const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: ${({ center }) => (center ? "center" : "")};
   align-items: ${({ center }) => (center ? "center" : "")};
-
   padding: 1rem;
-  max-width: 60%;
+  max-width: 70%;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    padding: 1rem;
+    padding: 1rem 0;
     max-width: 100%;
   }
 `;

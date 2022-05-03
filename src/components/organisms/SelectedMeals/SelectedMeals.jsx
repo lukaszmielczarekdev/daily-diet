@@ -130,7 +130,7 @@ const SelectedMeals = () => {
             )}
           </ProgressBarsContainer>
           <ListOfMeals meals={temporaryMeals} />
-          <ControlPanel>
+          <ControlPanel justify={"left"}>
             <Button
               save
               margin={"0 0.5rem 0.5rem 0"}

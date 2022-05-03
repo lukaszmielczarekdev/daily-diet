@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CarouselCard = styled.article`
-  padding: 1rem 2rem;
+  padding: 1rem;
   display: flex;
 `;
 
@@ -12,7 +12,9 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundBright};
   border-radius: 25px 0;
   padding: 2rem;
-  max-width: 50vw;
+  width: 100%;
+  /* max-width: 50vw; */
+  margin: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem;

@@ -8,6 +8,8 @@ import {
   FormContainer,
   Input,
   Label,
+  StyledSpan,
+  Container,
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { bmrChanged, demandChanged } from "../../../store/userProfile";
@@ -17,6 +19,7 @@ const BMRCalculator = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const { bmr } = useSelector((state) => state.user.userProfile);
   const { protein, carbs, fat } = useSelector(
     (state) => state.user.userProfile.demandPercentage
   );
@@ -54,61 +57,68 @@ const BMRCalculator = () => {
         demandAmount: calculateMacrosAmount(bmr, protein, carbs, fat),
       })
     );
-    history.push(`/builder`);
   };
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmitBMR(calculateBMR)}>
-        <Label>Height(cm):</Label>
-        <Input
-          type="number"
-          {...registerBMR("height", {
-            valueAsNumber: true,
-            max: 250,
-            min: 1,
-            required: true,
-            maxLength: 3,
-            pattern: /\d+/,
-          })}
-        />
-        <Label>Weight(kg):</Label>
-        <Input
-          type="number"
-          {...registerBMR("weight", {
-            valueAsNumber: true,
-            max: 500,
-            min: 1,
-            required: true,
-            maxLength: 3,
-            pattern: /\d+/,
-          })}
-        />
-        <Label>Age:</Label>
-        <Input
-          type="number"
-          {...registerBMR("age", {
-            valueAsNumber: true,
-            max: 110,
-            min: 1,
-            required: true,
-            maxLength: 3,
-            pattern: /\d+/,
-          })}
-        />
-        <Label>Activity:</Label>
-        <Select
-          {...registerBMR("activity", {
-            valueAsNumber: true,
-            required: true,
-          })}
-        >
-          <option value={1.5}>Low</option>
-          <option value={2}>Medium</option>
-          <option value={2.5}>High</option>
-        </Select>
-        <Button type="submit">Get BMR</Button>
-      </Form>
+      {!bmr ? (
+        <Form onSubmit={handleSubmitBMR(calculateBMR)}>
+          <Label>Height(cm):</Label>
+          <Input
+            type="number"
+            {...registerBMR("height", {
+              valueAsNumber: true,
+              max: 250,
+              min: 1,
+              required: true,
+              maxLength: 3,
+              pattern: /\d+/,
+            })}
+          />
+          <Label>Weight(kg):</Label>
+          <Input
+            type="number"
+            {...registerBMR("weight", {
+              valueAsNumber: true,
+              max: 500,
+              min: 1,
+              required: true,
+              maxLength: 3,
+              pattern: /\d+/,
+            })}
+          />
+          <Label>Age:</Label>
+          <Input
+            type="number"
+            {...registerBMR("age", {
+              valueAsNumber: true,
+              max: 110,
+              min: 1,
+              required: true,
+              maxLength: 3,
+              pattern: /\d+/,
+            })}
+          />
+          <Label>Activity:</Label>
+          <Select
+            {...registerBMR("activity", {
+              valueAsNumber: true,
+              required: true,
+            })}
+          >
+            <option value={1.5}>Low</option>
+            <option value={2}>Medium</option>
+            <option value={2.5}>High</option>
+          </Select>
+          <Button type="submit">Get BMR</Button>
+        </Form>
+      ) : (
+        <Container>
+          <Label>Your BMR:</Label>
+          <StyledSpan>{bmr}</StyledSpan>
+          <Button onClick={() => history.push(`/builder`)}>New diary</Button>
+        </Container>
+      )}
     </FormContainer>
   );
 };

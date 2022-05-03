@@ -6,6 +6,7 @@ export const Container = styled.div`
   list-style: none;
   display: flex;
   align-items: center;
+  justify-content: ${({ justify }) => (justify ? justify : "center")};
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     width: 100%;

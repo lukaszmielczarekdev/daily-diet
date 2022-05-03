@@ -16,7 +16,7 @@ export const Container = styled.div`
   @media ${({ theme }) => theme.breakpoints.sm} {
     column-gap: 0.2rem;
     row-gap: 0.2rem;
-    padding: 2rem 1rem;
+    padding: 2rem 0.5rem;
   }
 `;
 
@@ -32,12 +32,12 @@ export const NavigationTitle = styled.div`
   align-content: center;
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 
   @media ${(props) => props.theme.breakpoints.smlandscape} {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 `;
@@ -60,12 +60,12 @@ export const NavigationLink = styled.a`
   }
 
   @media ${(props) => props.theme.breakpoints.smlandscape} {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 `;

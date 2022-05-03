@@ -22,7 +22,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact>
             <Route path="/" exact component={Hero} />
-            {!bmr && <Route path="/" exact component={Calculator} />}
+            <Route path="/" exact component={Calculator} />
           </Route>
           <Route path="/profile" exact component={UserProfile} />
           <Route path="/preferences" component={Preferences} />
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/builder" component={bmr ? DiaryBuilder : Calculator} />
           <Route path="*" component={Hero} />
         </Switch>
-        <Footer />
+        <Footer fillColor />
       </AppContainer>
     </ThemeManager>
   );
