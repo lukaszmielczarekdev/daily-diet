@@ -8,7 +8,7 @@ export const defaultTheme = {
     primary: "black",
     secondary: "white",
     backgroundPrimary: "rgb(240, 250, 240)",
-    backgroundBright: "rgb(245, 255, 250);",
+    backgroundBright: "rgb(245, 255, 250)",
     backgroundSecondary: "white",
     green: "rgb(125, 215, 120)",
     yellow: "rgb(240, 235, 85)",

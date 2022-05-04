@@ -10,11 +10,8 @@ import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
 import Preferences from "./components/pages/Preferences/Preferences";
 import UserProfile from "./components/pages/UserProfile/UserProfile";
 import { Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const App = () => {
-  const { bmr } = useSelector((state) => state.user.userProfile);
-
   return (
     <ThemeManager>
       <AppContainer>
@@ -27,7 +24,7 @@ const App = () => {
           <Route path="/profile" exact component={UserProfile} />
           <Route path="/preferences" component={Preferences} />
           <Route path="/diaries" component={UserDiaries} />
-          <Route path="/builder" component={bmr ? DiaryBuilder : Calculator} />
+          <Route path="/builder" component={DiaryBuilder} />
           <Route path="*" component={Hero} />
         </Switch>
         <Footer fillColor />

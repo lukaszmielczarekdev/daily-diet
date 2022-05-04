@@ -24,16 +24,16 @@ export const chunks = {
     items: 1,
   },
   760: {
-    items: 1,
+    items: 2,
   },
   960: {
     items: 2,
   },
   1022: {
-    items: 2,
+    items: 3,
   },
   1278: {
-    items: 2,
+    items: 3,
   },
   1610: {
     items: 3,

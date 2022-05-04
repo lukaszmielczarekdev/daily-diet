@@ -17,7 +17,9 @@ const ProductDetails = ({ primary, secondary, description, image }) => {
       <InfoContainer>
         <Span>{primary}</Span>
         <Header>{secondary}</Header>
-        <Description marginBottom={"0"}>{description}</Description>
+        <Description smallText marginBottom={"0"}>
+          {description}
+        </Description>
       </InfoContainer>
     </Wrapper>
   );

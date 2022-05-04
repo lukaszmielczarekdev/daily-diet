@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, round } from "lodash";
 
 export const calculatePercentage = (number1, number2) => {
   const result = (number1 / number2) * 100;
@@ -15,9 +15,8 @@ export const calculateMacrosPercentage = (
 ) => {
   const completed = cloneDeep(template);
   for (let key of Object.keys(demandAmount)) {
-    completed[key].completed = calculatePercentage(
-      currentAmount[key],
-      demandAmount[key]
+    completed[key].completed = round(
+      calculatePercentage(currentAmount[key], demandAmount[key])
     );
   }
   return completed;
@@ -46,10 +45,10 @@ export const calculateMacrosForProducts = (products) => {
   return products.reduce(
     (acc, elem) => {
       return {
-        kcal: acc.kcal + elem.kcal,
-        protein: acc.protein + elem.protein,
-        carbs: acc.carbs + elem.carbs,
-        fat: acc.fat + elem.fat,
+        kcal: round(acc.kcal + elem.kcal, 2),
+        protein: round(acc.protein + elem.protein, 2),
+        carbs: round(acc.carbs + elem.carbs, 2),
+        fat: round(acc.fat + elem.fat, 2),
       };
     },
     { protein: 0, carbs: 0, fat: 0, kcal: 0 }
@@ -60,10 +59,10 @@ export const calculateMacrosForMeals = (meals) => {
   return meals.reduce(
     (acc, elem) => {
       return {
-        kcal: acc.kcal + elem.nutrients.kcal,
-        protein: acc.protein + elem.nutrients.protein,
-        carbs: acc.carbs + elem.nutrients.carbs,
-        fat: acc.fat + elem.nutrients.fat,
+        kcal: round(acc.kcal + elem.nutrients.kcal, 2),
+        protein: round(acc.protein + elem.nutrients.protein, 2),
+        carbs: round(acc.carbs + elem.nutrients.carbs, 2),
+        fat: round(acc.fat + elem.nutrients.fat, 2),
       };
     },
     { protein: 0, carbs: 0, fat: 0, kcal: 0 }

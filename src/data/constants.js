@@ -151,3 +151,35 @@ export const tips = [
       "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
   },
 ];
+
+export const steps = [
+  {
+    id: 0,
+    color: "red",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "Calculate Your BMR",
+    description:
+      "Your Basal Metabolic Rate is the number of calories you burn as your body performs basic life-sustaining functions.",
+  },
+  {
+    id: 1,
+    color: "green",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "Create Your Diet",
+    description: "Diet diaries allow you to better control your diet.",
+  },
+  {
+    id: 2,
+    color: "yellow",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "Train Properly",
+    description: "fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 3,
+    color: "yellow",
+    icon: <IoFastFoodOutline size={"100%"} />,
+    header: "Track Your Progress",
+    description: "fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+];

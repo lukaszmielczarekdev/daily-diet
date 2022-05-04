@@ -6,11 +6,19 @@ const ArticleContent = ({
   titleSecondary,
   description,
   children,
+  text,
+  smallText,
 }) => {
   return (
     <>
-      <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
-      <Description>{description}</Description>
+      <Title
+        titlePrimary={titlePrimary}
+        titleSecondary={titleSecondary}
+        text={text}
+      />
+      <Description smallText={smallText} text={text}>
+        {description}
+      </Description>
       {children}
     </>
   );

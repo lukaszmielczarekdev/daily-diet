@@ -11,9 +11,13 @@ import eggs from "../../../assets/Images/eggs.jpg";
 import { diaryAttributes } from "../../../data/constants";
 import { useSelector } from "react-redux";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
+import Card3 from "../../molecules/Card3/Card3";
+import RoundChart from "../../organisms/RoundChart/RoundChart";
+import CheckList from "../../molecules/CheckList/CheckList";
 
 const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
+  const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
     <Container fillColor>
@@ -36,7 +40,8 @@ const UserDiaries = () => {
                 "By creating diaries, you facilitate the implementation of the diet by observing your body and making adjustments depending on what effect you want to achieve.\n\nYou can use the available ready-made products and you can also add your own compositions.\n\nCreated diaries can be shared with others."
               }
             />
-            <Link color={"green"} to="/builder">
+
+            <Link color={"green"} to={!bmr ? "/" : "/builder"}>
               New diary
             </Link>
             <Attributes items={diaryAttributes} />
@@ -59,6 +64,30 @@ const UserDiaries = () => {
                 />
               )
             )}
+          />
+        )}
+      </ControlPanel>
+      <ControlPanel margin={"1rem 0 3rem 0"}>
+        {diaries.length !== 0 && (
+          <Carousel
+            breakpoints
+            items={diaries.map(({ id, name, demandCoverage, meals, date }) => (
+              <Card3
+                fillColor
+                key={id}
+                header={name}
+                description={date}
+                main={<RoundChart data={[demandCoverage.kcal.completed]} />}
+                footer={
+                  <CheckList
+                    smallText
+                    color={"rgb(125, 215, 120)"}
+                    data={meals}
+                    element={"name"}
+                  />
+                }
+              />
+            ))}
           />
         )}
       </ControlPanel>

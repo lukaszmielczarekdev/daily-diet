@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledTitle = styled.h2`
   font-size: 3rem;
   font-weight: normal;
-  text-align: left;
+  text-align: ${({ text }) => (text ? text : "left")};
   letter-spacing: 1px;
   line-height: 1.3;
   margin: 1rem 0 1.5rem 0;
@@ -24,7 +24,7 @@ export const StyledTitle = styled.h2`
 
 export const TitleSpan = styled.span`
   white-space: pre-line;
-  text-align: left;
+  text-align: ${({ text }) => (text ? text : "left")};
   font-weight: normal;
   color: ${({ theme }) => theme.colors.green};
   display: block;

@@ -1,17 +1,17 @@
-import { Wrapper, IconContainer, InfoContainer, Header } from "./CardStyles";
+import { Wrapper, IconContainer, InfoContainer, Header } from "./Card2Styles";
 import Description from "../../atoms/Description/Description";
 
-const Card = ({ header, description, icon, color, fillColor }) => {
+const Card2 = ({ header, description, icon, color, fillColor }) => {
   return (
     <Wrapper>
       <IconContainer color={color}>{icon}</IconContainer>
       <InfoContainer fillColor={fillColor}>
         <Header>{header}</Header>
-        <Description smallText marginBottom={"0"}>
+        <Description smallText marginBottom={"0"} text={"center"}>
           {description}
         </Description>
       </InfoContainer>
     </Wrapper>
   );
 };
-export default Card;
+export default Card2;

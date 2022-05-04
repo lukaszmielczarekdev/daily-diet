@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin: ${({ margin }) => (margin ? `${margin}` : "0")};
   list-style: none;
   display: flex;
-  align-items: center;
+  align-items: ${({ align }) => (align ? `${align}` : "center")};
   justify-content: ${({ justify }) => (justify ? justify : "center")};
 
   @media ${({ theme }) => theme.breakpoints.sm} {

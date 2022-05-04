@@ -1,9 +1,9 @@
 import { StyledTitle, TitleSpan } from "./TitleStyles";
 
-const Title = ({ titlePrimary, titleSecondary }) => {
+const Title = ({ titlePrimary, titleSecondary, text }) => {
   return (
-    <StyledTitle>
-      <TitleSpan>{titlePrimary}</TitleSpan>
+    <StyledTitle text={text}>
+      <TitleSpan text={text}>{titlePrimary}</TitleSpan>
       {titleSecondary}
     </StyledTitle>
   );

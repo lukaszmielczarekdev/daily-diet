@@ -35,6 +35,14 @@ const Preferences = () => {
             "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf"
           }
         />
+        <ProductDetails
+          image={salad5}
+          primary={"Healthy"}
+          secondary={"Pizza"}
+          description={
+            "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf"
+          }
+        />
       </ControlPanel>
     </Container>
   );
