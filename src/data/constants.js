@@ -183,3 +183,33 @@ export const steps = [
     description: "fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
   },
 ];
+
+export const placeholders = [
+  {
+    id: -1,
+    date: null,
+    name: "Add New Diary",
+    demand: "",
+    meals: [],
+    nutrients: "",
+    demandCoverage: { kcal: { completed: "" } },
+  },
+  {
+    id: -2,
+    date: null,
+    name: "Add New Diary",
+    demand: "",
+    meals: [],
+    nutrients: "",
+    demandCoverage: { kcal: { completed: "" } },
+  },
+  {
+    id: -3,
+    date: null,
+    name: "Add New Diary",
+    demand: "",
+    meals: [],
+    nutrients: "",
+    demandCoverage: { kcal: { completed: "" } },
+  },
+];

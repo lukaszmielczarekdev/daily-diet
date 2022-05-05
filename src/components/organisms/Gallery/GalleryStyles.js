@@ -21,15 +21,13 @@ export const Wrapper = styled.article`
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
-    flex-direction: column-reverse;
     padding: 1rem;
   }
 `;
 
 export const InnerContainer = styled.div`
-  background: ${({ backgroundLeft, backgroundRight }) => {
-    if (backgroundLeft) return `url(${backgroundLeft}) center no-repeat`;
-    if (backgroundRight) return `url(${backgroundRight}) center no-repeat`;
+  background: ${({ background }) => {
+    if (background) return `url(${background}) center no-repeat`;
     else return `transparent`;
   }};
   background-size: contain;

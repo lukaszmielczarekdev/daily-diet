@@ -21,5 +21,5 @@ export const SummaryContainer = styled.div`
 `;
 
 export const ProductTitle = styled.div`
-  margin: 0 0 1rem 0.5rem;
+  margin: 0 0 1rem 0;
 `;

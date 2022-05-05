@@ -35,10 +35,11 @@ export const InfoContainer = styled.div`
   border: 1px solid #eaeaea;
   border-radius: 25px;
   padding: 1.5rem;
-  min-width: 250px;
+  min-width: 300px;
   height: 500px;
   max-width: 300px;
   overflow: scroll;
+  cursor: pointer;
 
   transition: all 0.2s ease-in-out;
   :hover {

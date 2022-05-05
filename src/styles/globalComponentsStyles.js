@@ -14,6 +14,8 @@ export const StyledList = styled.ul`
 
 export const StyledListItem = styled.li`
   margin: ${({ margin }) => (margin ? margin : "0")};
+  padding: ${({ padding }) => (padding ? padding : "0")};
+  border-top: ${({ border }) => (border ? "1px solid #eaeaea" : "")};
 `;
 
 export const StyledTitle = styled.span`

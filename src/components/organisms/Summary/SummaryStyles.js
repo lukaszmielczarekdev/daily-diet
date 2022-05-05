@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0.5rem;
+  margin: 0.5rem 0;
 `;
 
 export const Title = styled.div`
@@ -18,7 +18,7 @@ export const List = styled.ul`
   align-items: center;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    justify-content: ${({ centered }) => (centered ? "center" : "")};
+    justify-content: ${({ centered }) => (centered ? "space-between" : "")};
   }
 `;
 
