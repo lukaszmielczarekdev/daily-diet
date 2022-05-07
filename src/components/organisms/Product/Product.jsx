@@ -5,6 +5,7 @@ import {
   ProductForm,
   ProductInput,
   ProductActions,
+  SummaryContainer,
 } from "./ProductStyles";
 import Button from "../../atoms/Button/Button";
 import Summary from "../Summary/Summary";
@@ -67,13 +68,15 @@ const Product = ({ product }) => {
           Delete
         </Button>
       </ProductActions>
-      <Summary
-        data={product}
-        fontSize="0.9rem"
-        color={"green"}
-        margin={"0"}
-        name={product.name}
-      />
+      <SummaryContainer>
+        <Summary
+          data={product}
+          fontSize="0.9rem"
+          color={"green"}
+          margin={"0"}
+          name={product.name}
+        />
+      </SummaryContainer>
     </ProductContainer>
   );
 };

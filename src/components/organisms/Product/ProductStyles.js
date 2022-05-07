@@ -7,7 +7,11 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductActions = styled.div`
-  margin: 0.5rem 0;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+`;
+
+export const SummaryContainer = styled.div`
+  margin: 0.3rem 0 0.3rem 0.3rem;
 `;
 
 export const ProductForm = styled.form`

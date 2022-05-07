@@ -1,14 +1,17 @@
 import pizza from "../assets/Images/pizza.png";
 import salad5 from "../assets/Images/salad5.png";
 import salad3 from "../assets/Images/salad3.png";
+import salad2 from "../assets/Images/salad2.png";
+import salad4 from "../assets/Images/salad4.png";
 import salad from "../assets/Images/salad.jpg";
-import { RiFileList2Line } from "react-icons/ri";
+import { RiFileList2Line, RiNumbersLine } from "react-icons/ri";
 import { IoFitnessOutline } from "react-icons/io5";
 import { MdFitnessCenter } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
-import { BiEdit } from "react-icons/bi";
+import { BiEdit, BiLike, BiSearchAlt } from "react-icons/bi";
 import { MdAccessTime } from "react-icons/md";
 import { IoFastFoodOutline } from "react-icons/io5";
+import { GiMeal } from "react-icons/gi";
 
 export const features = [
   {
@@ -125,6 +128,37 @@ export const meals = [
   },
 ];
 
+export const exampleMeals = [
+  {
+    id: 0,
+    image: salad5,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 1,
+    image: salad3,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 2,
+    image: salad2,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+  {
+    id: 3,
+    image: salad4,
+    primary: "salad",
+    secondary: "salad is good",
+    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+];
+
 export const tips = [
   {
     id: 0,
@@ -181,6 +215,39 @@ export const steps = [
     icon: <IoFastFoodOutline size={"100%"} />,
     header: "Track Your Progress",
     description: "fgvfcd d rdfh bgcfg hvhgc hghf d fgvfcd d rdf",
+  },
+];
+
+export const diaryBuilderSteps = [
+  {
+    id: 0,
+    color: "green",
+    icon: <BiSearchAlt size={"100%"} />,
+    header: "Use the Product Finder",
+    description:
+      "Start typing the name of the selected product and the matching results will appear in the list.",
+  },
+  {
+    id: 1,
+    color: "yellow",
+    icon: <BiLike size={"100%"} />,
+    header: "Choose the Product You Like",
+    description: "The product database is constantly expanded with new items.",
+  },
+  {
+    id: 2,
+    color: "green",
+    icon: <RiNumbersLine size={"100%"} />,
+    header: "Enter Quantity of the Product",
+    description: "The amount of a given product is counted in grams.",
+  },
+  {
+    id: 3,
+    color: "yellow",
+    icon: <GiMeal size={"100%"} />,
+    header: "Build a Meal From Selected Products",
+    description:
+      "You can build meals from selected products and then add them to your diary.",
   },
 ];
 

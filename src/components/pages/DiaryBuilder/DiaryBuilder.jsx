@@ -4,7 +4,14 @@ import Ingredients from "../../../data/ingredients.json";
 import SelectedMeals from "../../organisms/SelectedMeals/SelectedMeals";
 import SelectedProducts from "../../organisms/SelectedProducts/SelectedProducts";
 import Container from "../../templates/Container/Container";
+import Gallery from "../../organisms/Gallery/Gallery";
+import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
+import Card2 from "../../molecules/Card2/Card2";
 import { useSelector } from "react-redux";
+import { diaryBuilderSteps } from "../../../data/constants";
+import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
+import { exampleMeals } from "../../../data/constants";
+import Title from "../../atoms/Title/Title";
 
 const DiaryBuilder = () => {
   const { meals, temporaryProducts } = useSelector(
@@ -13,12 +20,39 @@ const DiaryBuilder = () => {
   const { bmr } = useSelector((state) => state.user.userProfile);
 
   return (
-    <Container id="diarybuilder" height={"94vh"} fillColor>
+    <Container id="diarybuilder" fillColor>
+      <Gallery
+        text={"center"}
+        justify={"center"}
+        description={
+          "Diet diaries are made up of meals, which in turn are made up of the products you have chosen. You can save built meals as templates and use them later."
+        }
+        padding={"3rem 3rem 3rem 3rem"}
+        titlePrimary={"Build your diary by"}
+        titleSecondary={"Fallowing These Steps"}
+        children={
+          <ControlPanel align={"baseline"}>
+            {diaryBuilderSteps.map((step) => (
+              <Card2 fillColor {...step} />
+            ))}
+          </ControlPanel>
+        }
+      />
+      <Title text={"center"} titlePrimary={"Example Meals"} />
+      <ControlPanel margin={"1rem 0 3rem 0"}>
+        {exampleMeals.map((meal) => (
+          <ProductDetails {...meal} />
+        ))}
+      </ControlPanel>
+      <Title text={"center"} titlePrimary={"Builder"} />
       {bmr && (
         <>
           <SelectedMeals />
           {temporaryProducts.length !== 0 && <SelectedProducts />}
-          <SearchBar placeholder="Search" data={[...Ingredients, ...meals]} />
+          <SearchBar
+            placeholder="Search (min. 3 chars)"
+            data={[...Ingredients, ...meals]}
+          />
         </>
       )}
     </Container>

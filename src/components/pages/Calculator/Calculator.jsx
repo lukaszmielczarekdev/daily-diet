@@ -26,15 +26,8 @@ const Calculator = () => {
         titleSecondary={"4 Easy Steps"}
         children={
           <ControlPanel align={"baseline"}>
-            {steps.map(({ id, color, icon, header, description }) => (
-              <Card2
-                fillColor
-                key={id}
-                color={color}
-                icon={icon}
-                header={header}
-                description={description}
-              />
+            {steps.map((step) => (
+              <Card2 fillColor {...step} />
             ))}
           </ControlPanel>
         }
@@ -56,15 +49,8 @@ const Calculator = () => {
         }
       />
       <ControlPanel margin={"0 0 3rem 0"}>
-        {tips.map(({ id, color, icon, header, description }) => (
-          <Card
-            fillColor
-            key={id}
-            color={color}
-            icon={icon}
-            header={header}
-            description={description}
-          />
+        {tips.map((tip) => (
+          <Card fillColor {...tip} />
         ))}
       </ControlPanel>
     </Container>

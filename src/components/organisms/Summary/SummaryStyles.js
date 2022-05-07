@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  margin: 0 0 1rem 0.5rem;
+  margin: 0 0 1rem 0;
 `;
 
 export const List = styled.ul`
