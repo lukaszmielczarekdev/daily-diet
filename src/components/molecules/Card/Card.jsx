@@ -7,7 +7,7 @@ const Card = ({ header, description, icon, color, fillColor }) => {
       <IconContainer color={color}>{icon}</IconContainer>
       <InfoContainer fillColor={fillColor}>
         <Header>{header}</Header>
-        <Description smallText marginBottom={"0"}>
+        <Description thinText smallText marginBottom={"0"}>
           {description}
         </Description>
       </InfoContainer>

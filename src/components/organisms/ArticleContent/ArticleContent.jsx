@@ -17,7 +17,7 @@ const ArticleContent = ({
         text={text}
         small={smallText}
       />
-      <Description smallText={smallText} text={text}>
+      <Description thinText smallText={smallText} text={text}>
         {description}
       </Description>
       {children}

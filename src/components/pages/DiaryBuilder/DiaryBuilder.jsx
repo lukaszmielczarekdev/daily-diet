@@ -27,7 +27,7 @@ const DiaryBuilder = () => {
         description={
           "Diet diaries are made up of meals, which in turn are made up of the products you have chosen. You can save built meals as templates and use them later."
         }
-        padding={"3rem 3rem 3rem 3rem"}
+        padding={"3rem"}
         titlePrimary={"Build your diary by"}
         titleSecondary={"Fallowing These Steps"}
         children={
@@ -39,7 +39,7 @@ const DiaryBuilder = () => {
         }
       />
       <Title text={"center"} titlePrimary={"Example Meals"} />
-      <ControlPanel margin={"1rem 0 3rem 0"}>
+      <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
         {exampleMeals.map((meal) => (
           <ProductDetails {...meal} />
         ))}

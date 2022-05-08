@@ -21,7 +21,7 @@ const TextField = ({
         small={small}
         margin={margin}
       />
-      <Description smallText={small} marginBottom={marginBottom}>
+      <Description thinText smallText={small} marginBottom={marginBottom}>
         {description}
       </Description>
       {children}

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Text = styled.p`
   text-align: ${({ text }) => (text ? text : "left")};
+  font-weight: ${({ thinText }) => (thinText ? 300 : "normal")};
   letter-spacing: 0.6px;
   font-size: ${({ smallText }) => (smallText ? "0.8rem" : "1rem")};
   margin-bottom: ${({ marginBottom }) =>

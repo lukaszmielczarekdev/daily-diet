@@ -9,6 +9,7 @@ import UserDiaries from "./components/pages/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
 import Preferences from "./components/pages/Preferences/Preferences";
 import UserProfile from "./components/pages/UserProfile/UserProfile";
+import Articles from "./components/pages/Articles/Articles";
 import { Route, Switch } from "react-router-dom";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/" exact>
             <Route path="/" exact component={Hero} />
             <Route path="/" exact component={Calculator} />
+            <Route path="/" exact component={Articles} />
           </Route>
           <Route path="/profile" exact component={UserProfile} />
           <Route path="/preferences" component={Preferences} />

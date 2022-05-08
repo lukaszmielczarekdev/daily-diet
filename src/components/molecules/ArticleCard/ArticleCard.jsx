@@ -1,27 +1,25 @@
 import {
   Wrapper,
   ImageContainer,
-  InfoContainer,
   StyledImage,
+  InfoContainer,
   Header,
-  Span,
-} from "./ProductDetailsStyles";
+} from "./ArticleCardStyles";
 import Description from "../../atoms/Description/Description";
 
-const ProductDetails = ({ primary, secondary, description, image }) => {
+const ArticleCard = ({ title, description, image }) => {
   return (
     <Wrapper>
       <ImageContainer>
         <StyledImage src={image} />
       </ImageContainer>
       <InfoContainer>
-        <Span>{primary}</Span>
-        <Header>{secondary}</Header>
-        <Description thinText smallText marginBottom={"0"}>
+        <Header>{title}</Header>
+        <Description marginBottom={"0"} text={"left"} thinText>
           {description}
         </Description>
       </InfoContainer>
     </Wrapper>
   );
 };
-export default ProductDetails;
+export default ArticleCard;

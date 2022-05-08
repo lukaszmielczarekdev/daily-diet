@@ -6,7 +6,7 @@ const Card3 = ({ header, description, fillColor, main, footer, onClick }) => {
     <Wrapper>
       <InfoContainer fillColor={fillColor} onClick={onClick}>
         <Header>{header}</Header>
-        <Description smallText marginBottom={"0"} text={"center"}>
+        <Description thinText smallText marginBottom={"0"} text={"center"}>
           {description}
         </Description>
         {main}
