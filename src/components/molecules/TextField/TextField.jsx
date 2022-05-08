@@ -1,12 +1,31 @@
 import Description from "../../atoms/Description/Description";
 import Title from "../../atoms/Title/Title";
+import { Wrapper } from "./TextFieldStyles";
 
-const TextField = ({ titlePrimary, titleSecondary, description }) => {
+const TextField = ({
+  titlePrimary,
+  titleSecondary,
+  description,
+  small,
+  marginBottom,
+  margin,
+  children,
+  padding,
+  width,
+}) => {
   return (
-    <>
-      <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
-      <Description>{description}</Description>
-    </>
+    <Wrapper padding={padding} width={width}>
+      <Title
+        titlePrimary={titlePrimary}
+        titleSecondary={titleSecondary}
+        small={small}
+        margin={margin}
+      />
+      <Description smallText={small} marginBottom={marginBottom}>
+        {description}
+      </Description>
+      {children}
+    </Wrapper>
   );
 };
 

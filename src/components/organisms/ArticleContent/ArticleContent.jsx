@@ -15,6 +15,7 @@ const ArticleContent = ({
         titlePrimary={titlePrimary}
         titleSecondary={titleSecondary}
         text={text}
+        small={smallText}
       />
       <Description smallText={smallText} text={text}>
         {description}

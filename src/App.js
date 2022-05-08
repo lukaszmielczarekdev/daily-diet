@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/builder" component={DiaryBuilder} />
           <Route path="*" component={Hero} />
         </Switch>
-        <Footer fillColor />
+        <Footer />
       </AppContainer>
     </ThemeManager>
   );

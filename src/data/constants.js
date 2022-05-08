@@ -280,3 +280,22 @@ export const placeholders = [
     demandCoverage: { kcal: { completed: "" } },
   },
 ];
+
+export const benefits = [
+  {
+    id: 1,
+    name: "Easy to use",
+  },
+  {
+    id: 2,
+    name: "Accessible",
+  },
+  {
+    id: 3,
+    name: "Customizable",
+  },
+  {
+    id: 4,
+    name: "Free",
+  },
+];
