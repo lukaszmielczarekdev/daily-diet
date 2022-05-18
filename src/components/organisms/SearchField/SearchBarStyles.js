@@ -13,8 +13,8 @@ export const Wrapper = styled.section`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.backgroundBright};
   border-radius: 25px;
-  margin: 1rem 1rem 5rem 1rem;
-  padding: 2rem;
+  margin: ${({ margin }) => (margin ? margin : "1rem 1rem 5rem 1rem")};
+  padding: 1rem;
   border: 1px solid #eaeaea;
   -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);

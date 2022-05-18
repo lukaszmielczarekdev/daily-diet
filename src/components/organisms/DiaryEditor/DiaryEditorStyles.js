@@ -25,6 +25,17 @@ export const ProgressBarsContainer = styled.ul`
   justify-content: center;
 `;
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: ${({ column }) => (column ? "column" : "row")};
+  justify-content: center;
+  align-items: center;
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    flex-direction: column;
+  }
+`;
+
 export const StyledSpan = styled.span`
   display: flex;
   margin: 0.5rem 0;
@@ -36,9 +47,10 @@ export const DiaryInput = styled.input`
   width: ${({ text }) => (text ? "50%" : "100px")};
   font-size: 1rem;
   padding: 0.5rem;
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
   border: 1px solid black;
   border-radius: 10px 0;
+  align-self: center;
 
   @media ${(props) => props.theme.breakpoints.sm} {
     width: ${({ text }) => (text ? "100%" : "100px")};
@@ -51,4 +63,17 @@ export const ElementsList = styled.ul`
   margin: 1rem 0;
   list-style: none;
   display: flex;
+`;
+
+export const MealNameInput = styled.input`
+  width: ${({ text }) => (text ? "50%" : "100px")};
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid black;
+  border-radius: 10px 0;
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: ${({ text }) => (text ? "100%" : "100px")};
+  }
 `;

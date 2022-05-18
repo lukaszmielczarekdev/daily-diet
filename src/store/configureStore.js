@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./reducer";
-import logger from "./middleware/logger";
+// import logger from "./middleware/logger";
 
 const configStore = () => {
   return configureStore({
     reducer,
-    middleware: [logger({ status: "successful" })],
+    // middleware: [logger({ status: "successful" })],
   });
 };
 

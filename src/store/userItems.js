@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getStoreData } from "./utils";
 import { v4 as uuidv4 } from "uuid";
 import { calculateMacrosForProducts } from "../utils/calculators";
+import * as api from "../api";
 
 const INITIAL_STATE = {
   products: [],
@@ -9,7 +10,53 @@ const INITIAL_STATE = {
   meals: [],
   temporaryMeals: [],
   diaries: [],
+  status: null,
 };
+
+export const getDiaries = createAsyncThunk("userItems/getDiaries", async () => {
+  try {
+    const { data } = await api.fetchDiaries();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const createDiary = createAsyncThunk(
+  "userItems/createDiary",
+  async (diary) => {
+    try {
+      const { data } = await api.createDiary(diary);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const updateDiary = createAsyncThunk(
+  "userItems/updateDiary",
+  async ({ id, diary }) => {
+    try {
+      const { data } = await api.updateDiary(id, diary);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteDiary = createAsyncThunk(
+  "userItems/deleteDiary",
+  async (id) => {
+    try {
+      await api.deleteDiary(id);
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const slice = createSlice({
   name: "userItems",
@@ -118,29 +165,51 @@ const slice = createSlice({
     mealsRemoved: (state) => {
       state.temporaryMeals = [];
     },
-
-    diaryAdded: (state, action) => {
-      const length = action.payload.name.length;
-
-      if (3 <= length && length <= 25 && action.payload.demand.kcal > 0) {
-        state.diaries.push({
-          id: uuidv4(),
-          date: new Date().toLocaleDateString(),
-          name: action.payload.name,
-          demand: action.payload.demand,
-          meals: action.payload.meals,
-          nutrients: action.payload.nutrients,
-          demandCoverage: action.payload.demandCoverage,
-        });
-
-        state.temporaryMeals = [];
-      }
+  },
+  extraReducers: {
+    [getDiaries.pending]: (state) => {
+      state.status = "loading";
     },
-
-    diaryRemoved: (state, action) => {
-      state.diaries = state.diaries.filter(
-        (diary) => diary.id !== action.payload.id
+    [getDiaries.fulfilled]: (state, action) => {
+      state.diaries = action.payload;
+      state.status = "success";
+    },
+    [getDiaries.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [createDiary.pending]: (state) => {
+      state.status = "loading";
+    },
+    [createDiary.fulfilled]: (state) => {
+      state.temporaryMeals = [];
+      state.status = "success";
+    },
+    [createDiary.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [updateDiary.pending]: (state) => {
+      state.status = "loading";
+    },
+    [updateDiary.fulfilled]: (state, action) => {
+      state.diaries = state.diaries.map((diary) =>
+        diary._id === action.payload._id ? action.payload : diary
       );
+      state.status = "success";
+    },
+    [updateDiary.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [deleteDiary.pending]: (state) => {
+      state.status = "loading";
+    },
+    [deleteDiary.fulfilled]: (state, action) => {
+      state.diaries = state.diaries.filter(
+        (diary) => diary._id !== action.payload
+      );
+      state.status = "success";
+    },
+    [deleteDiary.rejected]: (state) => {
+      state.status = "failed";
     },
   },
 });
@@ -155,8 +224,6 @@ export const {
   productAdded,
   productRemoved,
   productsRemoved,
-  diaryAdded,
-  diaryRemoved,
   productAmountCalculated,
 } = slice.actions;
 

@@ -12,38 +12,45 @@ import {
 } from "../../../store/userItems";
 import ListOfProducts from "../../molecules/ListOfProducts/ListOfProducts";
 
-const SelectedProducts = () => {
+const SelectedProducts = ({ margin, diaryEditorMode }) => {
   const dispatch = useDispatch();
   const { temporaryProducts } = useSelector((state) => state.user.userItems);
+
   const mealName = useRef();
 
   return (
-    <ProductsContainer id="product-select">
+    <ProductsContainer id="product-select" margin={margin}>
       <MealNameInput
         text
         ref={mealName}
         type="text"
         placeholder={"Meal name (3 - 25 chars)"}
       />
-      <ListOfProducts />
+      <ListOfProducts collection={temporaryProducts} />
       <Summary centered data={calculateMacrosForProducts(temporaryProducts)} />
       <ControlPanel fit justify={"left"}>
         <Button
           add
           margin={"0 0.5rem 0.5rem 0"}
           onClick={() =>
-            dispatch(
-              mealAdded({
-                name: mealName.current.value,
-                products: temporaryProducts,
-              })
-            )
+            diaryEditorMode
+              ? diaryEditorMode({
+                  name: mealName.current.value,
+                  products: temporaryProducts,
+                })
+              : dispatch(
+                  mealAdded({
+                    name: mealName.current.value,
+                    products: temporaryProducts,
+                  })
+                )
           }
         >
           Add
         </Button>
         <Button
           save
+          color={"black"}
           margin={"0 0.5rem 0.5rem 0"}
           onClick={() =>
             dispatch(

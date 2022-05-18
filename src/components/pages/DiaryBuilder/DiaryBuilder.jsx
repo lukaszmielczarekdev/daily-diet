@@ -33,7 +33,7 @@ const DiaryBuilder = () => {
         children={
           <ControlPanel align={"baseline"}>
             {diaryBuilderSteps.map((step) => (
-              <Card2 fillColor {...step} />
+              <Card2 fillColor {...step} key={step.id} />
             ))}
           </ControlPanel>
         }
@@ -41,7 +41,7 @@ const DiaryBuilder = () => {
       <Title text={"center"} titlePrimary={"Example Meals"} />
       <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
         {exampleMeals.map((meal) => (
-          <ProductDetails {...meal} />
+          <ProductDetails key={meal.id} {...meal} />
         ))}
       </ControlPanel>
       <Title text={"center"} titlePrimary={"Builder"} />

@@ -15,7 +15,7 @@ import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import ProductReadOnly from "../../organisms/ProductReadOnly/ProductReadOnly";
 import Summary from "../../organisms/Summary/Summary";
 import { useDispatch } from "react-redux";
-import { diaryRemoved } from "../../../store/userItems";
+import { deleteDiary } from "../../../store/userItems";
 import Gallery from "../../organisms/Gallery/Gallery";
 import RoundChart from "../../organisms/RoundChart/RoundChart";
 
@@ -27,15 +27,16 @@ const Diary = ({
   progressData,
   items,
   resetView,
+  toggleEditMode,
 }) => {
   const dispatch = useDispatch();
 
   return (
     <Container>
       <Gallery
+        smallText
         text={"center"}
         justify={"center"}
-        description={"Lorem ipsum dolor sit amet consectetur adipisicing elit."}
         padding={"0rem 3rem 3rem 3rem"}
         titlePrimary={date}
         titleSecondary={title}
@@ -80,7 +81,16 @@ const Diary = ({
               <Button
                 margin={"0 0.5rem 0.5rem 0"}
                 onClick={() => {
-                  dispatch(diaryRemoved({ id }));
+                  toggleEditMode();
+                }}
+                edit
+              >
+                Edit
+              </Button>
+              <Button
+                margin={"0 0.5rem 0.5rem 0"}
+                onClick={() => {
+                  dispatch(deleteDiary(id));
                   resetView();
                 }}
                 remove
@@ -88,6 +98,16 @@ const Diary = ({
                 Delete
               </Button>
             </ControlPanel>
+            <Button
+              color={"black"}
+              margin={"1.5rem 0 0 0"}
+              align={"center"}
+              onClick={() => {
+                resetView();
+              }}
+            >
+              Close
+            </Button>
           </InnerContainer>
         }
       />

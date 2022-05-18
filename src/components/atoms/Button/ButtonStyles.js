@@ -7,14 +7,16 @@ export const StyledButton = styled.button`
   font-size: 0.8rem;
   padding: 0.5rem;
   text-align: center;
+  align-self: ${({ align }) => (align ? `${align}` : "initial")};
   color: ${({ color }) => (color ? `${color}` : "white")};
   border: ${({ border }) => (border ? `${border}` : "none")};
   border-radius: 10px 0;
   cursor: pointer;
-  background-color: ${({ remove, add, save, theme }) => {
+  background-color: ${({ remove, add, save, edit, theme }) => {
     if (remove) return `${theme.colors.warning}`;
     if (add) return `${theme.colors.green}`;
     if (save) return `${theme.colors.yellow};`;
+    if (edit) return `${theme.colors.lightBlue};`;
     else return `transparent`;
   }};
 

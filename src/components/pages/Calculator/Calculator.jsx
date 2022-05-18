@@ -27,7 +27,7 @@ const Calculator = () => {
         children={
           <ControlPanel align={"baseline"}>
             {steps.map((step) => (
-              <Card2 fillColor {...step} />
+              <Card2 fillColor {...step} key={step.id} />
             ))}
           </ControlPanel>
         }
@@ -50,7 +50,7 @@ const Calculator = () => {
       />
       <ControlPanel margin={"0 0 3rem 0"}>
         {tips.map((tip) => (
-          <Card fillColor {...tip} />
+          <Card fillColor {...tip} key={tip.id} />
         ))}
       </ControlPanel>
     </Container>

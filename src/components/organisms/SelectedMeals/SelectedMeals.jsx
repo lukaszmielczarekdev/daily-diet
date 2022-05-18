@@ -19,10 +19,12 @@ import {
   calculateMacrosForMeals,
 } from "../../../utils/calculators";
 import { useSelector, useDispatch } from "react-redux";
-import { diaryAdded, mealsRemoved } from "../../../store/userItems";
+// import { diaryAdded, mealsRemoved } from "../../../store/userItems";
+import { createDiary, mealsRemoved } from "../../../store/userItems";
 import ListOfMeals from "../../molecules/ListOfMeals/ListOfMeals";
+// import { v4 as uuidv4 } from "uuid";
 
-const SelectedMeals = () => {
+const SelectedMeals = ({ margin }) => {
   const dispatch = useDispatch();
   const diaryName = useRef();
 
@@ -86,10 +88,29 @@ const SelectedMeals = () => {
     setCurrentDiaryDemand((prevState) => (prevState = { ...demandAmount }));
   };
 
+  const handleCreateDiary = () => {
+    const length = diaryName.current.value.length;
+
+    if (3 <= length && length <= 25 && currentDiaryDemand.kcal > 0) {
+      dispatch(
+        createDiary({
+          // id: uuidv4(),
+          date: new Date().toLocaleDateString(),
+          demand: currentDiaryDemand,
+          demandCoverage: progressData,
+          nutrients: currentMacrosAmount,
+          meals: temporaryMeals,
+          name: diaryName.current.value,
+        })
+      );
+      resetBuilder();
+    }
+  };
+
   return (
     <>
       {temporaryMeals.length !== 0 && (
-        <Container column>
+        <Container column margin={margin}>
           <DiaryInput
             text
             ref={diaryName}
@@ -133,19 +154,17 @@ const SelectedMeals = () => {
           <ControlPanel justify={"left"}>
             <Button
               save
+              color={"black"}
               margin={"0 0.5rem 0.5rem 0"}
-              onClick={() => {
-                dispatch(
-                  diaryAdded({
-                    demand: currentDiaryDemand,
-                    demandCoverage: progressData,
-                    nutrients: currentMacrosAmount,
-                    meals: temporaryMeals,
-                    name: diaryName.current.value,
-                  })
-                );
-                resetBuilder();
-              }}
+              onClick={() => handleCreateDiary()}
+              // dispatch(
+              // diaryAdded({
+              //   demand: currentDiaryDemand,
+              //   demandCoverage: progressData,
+              //   nutrients: currentMacrosAmount,
+              //   meals: temporaryMeals,
+              //   name: diaryName.current.value,
+              // })
             >
               Save
             </Button>

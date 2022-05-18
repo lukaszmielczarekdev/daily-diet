@@ -1,4 +1,5 @@
 import { cloneDeep, round } from "lodash";
+import Ingredients from "../data/ingredients.json";
 
 export const calculatePercentage = (number1, number2) => {
   const result = (number1 / number2) * 100;
@@ -13,6 +14,9 @@ export const calculateMacrosPercentage = (
   currentAmount,
   template
 ) => {
+  if (!demandAmount) {
+    demandAmount = 0;
+  }
   const completed = cloneDeep(template);
   for (let key of Object.keys(demandAmount)) {
     completed[key].completed = round(
@@ -39,6 +43,7 @@ export const calculateMacrosAmount = (
     amount.fat = Math.round(((fatPercentage / 100) * totalKcal) / 9);
     return amount;
   }
+  return { kcal: 0, protein: 0, carbs: 0, fat: 0 };
 };
 
 export const calculateMacrosForProducts = (products) => {
@@ -51,7 +56,7 @@ export const calculateMacrosForProducts = (products) => {
         fat: round(acc.fat + elem.fat, 2),
       };
     },
-    { protein: 0, carbs: 0, fat: 0, kcal: 0 }
+    { kcal: 0, protein: 0, carbs: 0, fat: 0 }
   );
 };
 
@@ -65,6 +70,21 @@ export const calculateMacrosForMeals = (meals) => {
         fat: round(acc.fat + elem.nutrients.fat, 2),
       };
     },
-    { protein: 0, carbs: 0, fat: 0, kcal: 0 }
+    { kcal: 0, protein: 0, carbs: 0, fat: 0 }
   );
+};
+
+export const calculateProductAmount = (products, productId, amount) => {
+  const productsCopy = cloneDeep(products);
+  const ingredients = Ingredients;
+  const selectedProduct = productsCopy.find((item) => item.id === productId);
+
+  const templateProduct = ingredients.find(
+    (product) => product.name === selectedProduct.name
+  );
+
+  for (let elem of ["kcal", "protein", "carbs", "fat", "amount"]) {
+    selectedProduct[elem] = templateProduct[elem] * amount;
+  }
+  return productsCopy;
 };

@@ -10,6 +10,7 @@ export const defaultTheme = {
     backgroundPrimary: "rgb(240, 250, 240)",
     backgroundBright: "rgb(245, 255, 250)",
     backgroundSecondary: "white",
+    lightBlue: "rgb(9, 167, 233)",
     green: "rgb(125, 215, 120)",
     yellow: "rgb(240, 235, 85)",
     warning: "rgb(235, 110, 105)",

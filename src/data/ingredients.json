@@ -174,9 +174,9 @@
     "name": "Beef (shoulder tender)",
     "category": "meat",
     "kcal": 2.208,
-    "protein": 0,
+    "protein": 0.26,
     "carbs": 0,
-    "fat": 0,
+    "fat": 0.08,
     "amount": 1
   }
 ]

@@ -11,6 +11,7 @@ const Gallery = ({
   description,
   text,
   justify,
+  smallText,
 }) => {
   return (
     <Wrapper id={id} padding={padding} text={text} justify={justify}>
@@ -21,6 +22,7 @@ const Gallery = ({
           titleSecondary={titleSecondary}
           description={description}
           children={children}
+          smallText={smallText}
         />
       </InnerContainer>
     </Wrapper>

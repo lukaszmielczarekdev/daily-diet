@@ -19,7 +19,7 @@ import {
 import { IoFishOutline } from "react-icons/io5";
 import { BsBox, BsDroplet } from "react-icons/bs";
 
-const SearchBar = ({ data, placeholder }) => {
+const SearchBar = ({ data, placeholder, margin }) => {
   const [filteredData, setFilteredData] = useState([]);
   const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ const SearchBar = ({ data, placeholder }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper margin={margin}>
       <Container>
         <StyledInput
           text
