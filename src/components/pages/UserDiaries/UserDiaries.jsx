@@ -205,17 +205,17 @@ const UserDiaries = () => {
           }
         />
         <ControlPanel margin={"1rem 0 0 0"}>
-          {diaries.length !== 0 && (
+          {Array.isArray(diaries) && diaries?.length !== 0 && (
             <Carousel
               infinite
               breakpoints
               items={renderCards().map(
-                ({ _id, name, demandCoverage, meals, date }) => (
+                ({ _id, name, demandCoverage, meals, createdAt }) => (
                   <Card3
                     fillColor
                     key={_id}
                     onClick={
-                      date
+                      createdAt
                         ? () => {
                             setCurrentDiary(findDiary(_id));
                             setCurrentDiaryBackup(findDiary(_id));
@@ -227,9 +227,9 @@ const UserDiaries = () => {
                           }
                     }
                     header={name}
-                    description={date}
+                    description={createdAt}
                     main={
-                      date ? (
+                      createdAt ? (
                         <RoundChart
                           data={[demandCoverage.kcal.completed]}
                           label={"KCAL"}
@@ -283,7 +283,7 @@ const UserDiaries = () => {
             items={currentDiary.meals}
             id={currentDiary._id}
             resetView={resetView}
-            date={currentDiary.date}
+            createdAt={currentDiary.createdAt}
             toggleEditMode={toggleEditMode}
             currentDiary={currentDiary}
           />

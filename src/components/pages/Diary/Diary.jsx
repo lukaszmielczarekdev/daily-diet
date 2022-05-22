@@ -22,7 +22,7 @@ import RoundChart from "../../organisms/RoundChart/RoundChart";
 const Diary = ({
   id,
   title,
-  date,
+  createdAt,
   kcalDemand,
   progressData,
   items,
@@ -38,7 +38,7 @@ const Diary = ({
         text={"center"}
         justify={"center"}
         padding={"0rem 3rem 3rem 3rem"}
-        titlePrimary={date}
+        titlePrimary={createdAt}
         titleSecondary={title}
         children={
           <InnerContainer column id="diary">

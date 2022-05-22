@@ -22,7 +22,6 @@ import { useSelector, useDispatch } from "react-redux";
 // import { diaryAdded, mealsRemoved } from "../../../store/userItems";
 import { createDiary, mealsRemoved } from "../../../store/userItems";
 import ListOfMeals from "../../molecules/ListOfMeals/ListOfMeals";
-// import { v4 as uuidv4 } from "uuid";
 
 const SelectedMeals = ({ margin }) => {
   const dispatch = useDispatch();
@@ -94,8 +93,6 @@ const SelectedMeals = ({ margin }) => {
     if (3 <= length && length <= 25 && currentDiaryDemand.kcal > 0) {
       dispatch(
         createDiary({
-          // id: uuidv4(),
-          date: new Date().toLocaleDateString(),
           demand: currentDiaryDemand,
           demandCoverage: progressData,
           nutrients: currentMacrosAmount,
@@ -157,14 +154,6 @@ const SelectedMeals = ({ margin }) => {
               color={"black"}
               margin={"0 0.5rem 0.5rem 0"}
               onClick={() => handleCreateDiary()}
-              // dispatch(
-              // diaryAdded({
-              //   demand: currentDiaryDemand,
-              //   demandCoverage: progressData,
-              //   nutrients: currentMacrosAmount,
-              //   meals: temporaryMeals,
-              //   name: diaryName.current.value,
-              // })
             >
               Save
             </Button>

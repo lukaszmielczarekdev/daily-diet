@@ -16,7 +16,7 @@ export const StyledAnchor = styled.a`
 
   transition: all 0.2s ease-in-out;
   :hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {

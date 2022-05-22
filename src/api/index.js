@@ -1,9 +1,21 @@
 import axios from "axios";
 
-const url = "https://daily-diet.herokuapp.com/diaries";
+const API = axios.create({ baseURL: "http://daily-diet.herokuapp.com" });
 
-export const fetchDiaries = () => axios.get(url);
-export const createDiary = (newDiary) => axios.post(url, newDiary);
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem("profile")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("profile")).token
+    }`;
+  }
+  return req;
+});
+
+export const fetchDiaries = () => API.get("/diaries");
+export const createDiary = (newDiary) => API.post("/diaries", newDiary);
 export const updateDiary = (id, updatedDiary) =>
-  axios.patch(`${url}/${id}`, updatedDiary);
-export const deleteDiary = (id) => axios.delete(`${url}/${id}`);
+  API.patch(`/diaries/${id}`, updatedDiary);
+export const deleteDiary = (id) => API.delete(`/diaries/${id}`);
+
+export const signIn = (data) => API.post("/user/signin", data);
+export const signUp = (data) => API.post("/user/signup", data);

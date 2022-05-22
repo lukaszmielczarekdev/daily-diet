@@ -28,7 +28,7 @@ import { updateDiary } from "../../../store/userItems";
 
 const DiaryEditor = ({
   currentDiary,
-  currentDiary: { _id, date, name, demand, meals, demandCoverage },
+  currentDiary: { _id, createdAt, name, demand, meals, demandCoverage },
   updateDiaryDemand,
   toggleEditMode,
   calculateAmount,
@@ -58,7 +58,7 @@ const DiaryEditor = ({
         text={"center"}
         justify={"center"}
         padding={"0rem 3rem 3rem 3rem"}
-        titlePrimary={date}
+        titlePrimary={createdAt}
         children={
           <>
             <DiaryInput
