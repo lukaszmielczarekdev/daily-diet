@@ -4,8 +4,7 @@ import { googleLogout } from "@react-oauth/google";
 import * as api from "../api";
 
 const INITIAL_STATE = {
-  user: null,
-  token: null,
+  status: null,
 };
 
 export const signin = createAsyncThunk("auth/signin", async (formData) => {
@@ -38,8 +37,6 @@ const slice = createSlice({
 
     logout: (state, action) => {
       localStorage.removeItem("profile");
-      state.user = null;
-      state.token = null;
       googleLogout();
     },
   },

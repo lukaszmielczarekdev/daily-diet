@@ -26,8 +26,11 @@ const slice = createSlice({
       state.demandPercentage = action.payload.demandPercentage;
       state.demandAmount = action.payload.demandAmount;
     },
+    resetProfile: (state, action) => {
+      state = INITIAL_STATE;
+    },
   },
 });
 
-export const { bmrChanged, demandChanged } = slice.actions;
+export const { bmrChanged, demandChanged, resetProfile } = slice.actions;
 export default slice.reducer;

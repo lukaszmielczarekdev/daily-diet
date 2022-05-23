@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import Button from "../../atoms/Button/Button";
 import {
   Container,
   NavSection,
@@ -9,7 +8,11 @@ import {
 } from "./NavBarStyles";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../store/auth";
-// import { BsGear } from "react-icons/bs";
+import { diariesRemoved } from "../../../store/userItems";
+import { resetProfile } from "../../../store/userProfile";
+import { BsGear } from "react-icons/bs";
+import { GrLogout } from "react-icons/gr";
+import decode from "jwt-decode";
 
 const NavBar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -17,25 +20,33 @@ const NavBar = () => {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
-    // const token = user?.credential;
-
-    //JWT... (manual sign up)
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location, user?.credential]);
-
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     dispatch(logout());
+    dispatch(diariesRemoved());
+    dispatch(resetProfile());
     setUser(null);
     history.push("/");
-  };
+  }, [dispatch, history]);
+
+  useEffect(() => {
+    const token = user?.credential;
+
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        handleLogout();
+      }
+    }
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [handleLogout, location, user?.credential]);
 
   return (
     <Container>
       <NavSection>
         <NavigationTitle>
           <NavigationLink href="/"> Daily Diet</NavigationLink>
-          {user ? user.clientId : "Not logged"}
         </NavigationTitle>
       </NavSection>
       <NavSection>
@@ -47,14 +58,15 @@ const NavBar = () => {
             Sign In
           </NavigationLink>
         ) : (
-          <Button remove onClick={() => handleLogout()}>
-            Logout
-          </Button>
+          <NavigationLink>
+            <GrLogout onClick={() => handleLogout()} size={"1rem"} />
+          </NavigationLink>
         )}
-
-        {/* <NavigationLink href="preferences" size={"1rem"}>
-          <BsGear />
-        </NavigationLink> */}
+        {user && (
+          <NavigationLink href="preferences">
+            <BsGear size={"1rem"} />
+          </NavigationLink>
+        )}
       </NavSection>
     </Container>
   );
