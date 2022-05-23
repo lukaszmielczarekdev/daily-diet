@@ -56,7 +56,7 @@ const slice = createSlice({
           credential: action.payload.token,
         })
       );
-
+      window.location.href = "/";
       state.status = "success";
     },
     [signin.rejected]: (state) => {
