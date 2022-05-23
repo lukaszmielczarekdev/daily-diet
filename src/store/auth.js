@@ -48,15 +48,15 @@ const slice = createSlice({
       state.status = "loading";
     },
     [signin.fulfilled]: (state, action) => {
-      state.user = action.payload.user.email;
+      state.user = action.payload.user.name;
       localStorage.setItem(
         "profile",
         JSON.stringify({
-          clientId: action.payload.user.email,
+          clientId: action.payload.user.name,
           credential: action.payload.token,
         })
       );
-      window.location.href = "/";
+
       state.status = "success";
     },
     [signin.rejected]: (state) => {
