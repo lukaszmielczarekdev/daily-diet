@@ -48,11 +48,11 @@ const slice = createSlice({
       state.status = "loading";
     },
     [signin.fulfilled]: (state, action) => {
-      state.user = action.payload.user.name;
+      state.user = action.payload.user.email;
       localStorage.setItem(
         "profile",
         JSON.stringify({
-          clientId: action.payload.user.name,
+          clientId: action.payload.user.email,
           credential: action.payload.token,
         })
       );
