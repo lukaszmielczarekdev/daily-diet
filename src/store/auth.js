@@ -30,11 +30,12 @@ const slice = createSlice({
   initialState: getStoreData("user.authData", INITIAL_STATE),
   reducers: {
     auth: (state, action) => {
-      localStorage.setItem("profile", JSON.stringify(action.payload));
       state.user = action.payload?.clientId;
-      state.token = action.payload?.credential;
+      localStorage.setItem(
+        "profile",
+        JSON.stringify({ username: action.payload.clientId, ...action.payload })
+      );
     },
-
     logout: (state, action) => {
       localStorage.removeItem("profile");
       googleLogout();
@@ -49,7 +50,8 @@ const slice = createSlice({
       localStorage.setItem(
         "profile",
         JSON.stringify({
-          clientId: action.payload.user.name,
+          username: action.payload.user.name,
+          clientId: action.payload.user._id,
           credential: action.payload.token,
         })
       );
@@ -67,7 +69,8 @@ const slice = createSlice({
       localStorage.setItem(
         "profile",
         JSON.stringify({
-          clientId: action.payload.user.name,
+          username: action.payload.user.name,
+          clientId: action.payload.user._id,
           credential: action.payload.token,
         })
       );

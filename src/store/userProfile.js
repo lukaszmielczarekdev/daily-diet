@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getStoreData } from "./utils";
+import * as api from "../api";
 
 const INITIAL_STATE = {
   weight: null,
@@ -11,26 +12,39 @@ const INITIAL_STATE = {
   demandAmount: { protein: null, carbs: null, fat: null },
 };
 
+export const updateProfile = createAsyncThunk(
+  "userProfile/updateProfile",
+  async ({ id, updatedProfile }) => {
+    try {
+      const { data } = await api.updateProfile(id, updatedProfile);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const slice = createSlice({
   name: "userProfile",
   initialState: getStoreData("user.userProfile", INITIAL_STATE),
   reducers: {
-    bmrChanged: (state, action) => {
-      state.weight = action.payload.weight;
-      state.height = action.payload.height;
-      state.age = action.payload.age;
-      state.activity = action.payload.activity;
-      state.bmr = action.payload.bmr;
-    },
-    demandChanged: (state, action) => {
-      state.demandPercentage = action.payload.demandPercentage;
-      state.demandAmount = action.payload.demandAmount;
-    },
     resetProfile: (state, action) => {
       state = INITIAL_STATE;
     },
   },
+  extraReducers: {
+    [updateProfile.pending]: (state) => {
+      state.status = "loading";
+    },
+    [updateProfile.fulfilled]: (state, action) => {
+      state = action.payload;
+      state.status = "success";
+    },
+    [updateProfile.rejected]: (state) => {
+      state.status = "failed";
+    },
+  },
 });
 
-export const { bmrChanged, demandChanged, resetProfile } = slice.actions;
+export const { resetProfile } = slice.actions;
 export default slice.reducer;

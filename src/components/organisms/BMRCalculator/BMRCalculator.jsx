@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { calculateMacrosAmount } from "../../../utils/calculators";
 import {
@@ -12,12 +12,18 @@ import {
   Container,
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
-import { bmrChanged, demandChanged } from "../../../store/userProfile";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { updateProfile } from "../../../store/userProfile";
 
 const BMRCalculator = () => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location, user?.credential]);
 
   const { bmr } = useSelector((state) => state.user.userProfile);
   const { protein, carbs, fat } = useSelector(
@@ -41,27 +47,31 @@ const BMRCalculator = () => {
       (9.99 * weight + 6.25 * height - 4.9 * age + 5) * activity
     );
 
-    dispatch(
-      bmrChanged({
-        weight,
-        height,
-        age,
-        activity,
-        bmr,
-      })
-    );
+    const demandPercentage = { protein, carbs, fat };
+    const demandAmount = calculateMacrosAmount(bmr, protein, carbs, fat);
 
-    dispatch(
-      demandChanged({
-        demandPercentage: { protein, carbs, fat },
-        demandAmount: calculateMacrosAmount(bmr, protein, carbs, fat),
-      })
-    );
+    const editedProfile = {
+      weight,
+      height,
+      age,
+      activity,
+      bmr,
+      demandPercentage,
+      demandAmount,
+    };
+
+    dispatch(updateProfile({ id: user.clientId, userProfile: editedProfile }));
   };
 
   return (
     <FormContainer>
-      {!bmr ? (
+      {!user?.credential && (
+        <Container>
+          <Label>Get your BMR</Label>
+          <Button onClick={() => history.push(`/auth`)}>Sign in</Button>
+        </Container>
+      )}
+      {user?.credential && !bmr && (
         <Form onSubmit={handleSubmitBMR(calculateBMR)}>
           <Label>Height(cm):</Label>
           <Input
@@ -112,7 +122,8 @@ const BMRCalculator = () => {
           </Select>
           <Button type="submit">Get BMR</Button>
         </Form>
-      ) : (
+      )}
+      {user?.credenial && bmr && (
         <Container>
           <Label>Your BMR:</Label>
           <StyledSpan>{bmr}</StyledSpan>
