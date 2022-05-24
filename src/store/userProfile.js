@@ -14,9 +14,9 @@ const INITIAL_STATE = {
 
 export const updateProfile = createAsyncThunk(
   "userProfile/updateProfile",
-  async ({ id, updatedProfile }) => {
+  async ({ id, userProfile }) => {
     try {
-      const { data } = await api.updateProfile(id, updatedProfile);
+      const { data } = await api.updateProfile(id, userProfile);
       return data;
     } catch (error) {
       console.log(error);
