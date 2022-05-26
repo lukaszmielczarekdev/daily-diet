@@ -37,7 +37,7 @@ const slice = createSlice({
       state.status = "loading";
     },
     [updateProfile.fulfilled]: (state, action) => {
-      state = action.payload;
+      state = { ...action.payload.profile };
       state.status = "success";
     },
     [updateProfile.rejected]: (state) => {
