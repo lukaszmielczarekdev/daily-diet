@@ -16,7 +16,11 @@ export const updateProfile = createAsyncThunk(
   "userProfile/updateProfile",
   async ({ id, userProfile }) => {
     try {
+      console.log("Thunk userProfile");
+      console.log(userProfile);
       const { data } = await api.updateProfile(id, userProfile);
+      console.log("Thunk response after update");
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
