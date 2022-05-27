@@ -60,7 +60,7 @@ const BMRCalculator = () => {
       demandAmount,
     };
 
-    dispatch(updateProfile({ id: user.clientId, profile }));
+    dispatch(updateProfile(profile));
   };
 
   return (

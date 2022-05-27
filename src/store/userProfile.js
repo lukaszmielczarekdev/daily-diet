@@ -3,20 +3,20 @@ import { getStoreData } from "./utils";
 import * as api from "../api";
 
 const INITIAL_STATE = {
-  weight: 0,
-  height: 0,
-  age: 0,
-  activity: 0,
-  bmr: 0,
+  weight: null,
+  height: null,
+  age: null,
+  activity: null,
+  bmr: null,
   demandPercentage: { protein: 20, carbs: 50, fat: 30 },
-  demandAmount: { protein: 0, carbs: 0, fat: 0 },
+  demandAmount: { protein: null, carbs: null, fat: null },
 };
 
 export const updateProfile = createAsyncThunk(
   "userProfile/updateProfile",
-  async ({ id, profile }) => {
+  async (profile) => {
     try {
-      const { data } = await api.updateUserProfile(id, profile);
+      const { data } = await api.updateUserProfile(profile);
       console.log("Thunk response after update");
       console.log(data);
       return data;
