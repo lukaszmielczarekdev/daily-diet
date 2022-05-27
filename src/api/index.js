@@ -20,4 +20,4 @@ export const deleteDiary = (id) => API.delete(`/diaries/${id}`);
 export const signIn = (data) => API.post("/user/signin", data);
 export const signUp = (data) => API.post("/user/signup", data);
 export const updateProfile = (id, updatedProfile) =>
-  API.patch(`/user/${id}`, updatedProfile);
+  API.patch(`/user/update/${id}`, updatedProfile);

@@ -16,8 +16,6 @@ export const updateProfile = createAsyncThunk(
   "userProfile/updateProfile",
   async ({ id, userProfile }) => {
     try {
-      console.log("Thunk userProfile");
-      console.log(userProfile);
       const { data } = await api.updateProfile(id, userProfile);
       console.log("Thunk response after update");
       console.log(data);
@@ -41,7 +39,8 @@ const slice = createSlice({
       state.status = "loading";
     },
     [updateProfile.fulfilled]: (state, action) => {
-      state = { ...action.payload.profile };
+      console.log(action.payload);
+      state = { ...action.payload?.profile };
       state.status = "success";
     },
     [updateProfile.rejected]: (state) => {
