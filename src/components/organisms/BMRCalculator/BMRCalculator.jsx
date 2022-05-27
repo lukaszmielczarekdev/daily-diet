@@ -36,9 +36,9 @@ const BMRCalculator = () => {
     // formState: { errors },
   } = useForm({
     defaultValues: {
-      height: null,
-      weight: null,
-      age: null,
+      height: 0,
+      weight: 0,
+      age: 0,
     },
   });
 
@@ -50,7 +50,7 @@ const BMRCalculator = () => {
     const demandPercentage = { protein, carbs, fat };
     const demandAmount = calculateMacrosAmount(bmr, protein, carbs, fat);
 
-    const editedProfile = {
+    const profile = {
       weight,
       height,
       age,
@@ -60,7 +60,7 @@ const BMRCalculator = () => {
       demandAmount,
     };
 
-    dispatch(updateProfile({ id: user.clientId, userProfile: editedProfile }));
+    dispatch(updateProfile({ id: user.clientId, profile }));
   };
 
   return (
@@ -123,7 +123,7 @@ const BMRCalculator = () => {
           <Button type="submit">Get BMR</Button>
         </Form>
       )}
-      {user?.credenial && bmr && (
+      {user?.credential && bmr && (
         <Container>
           <Label>Your BMR:</Label>
           <StyledSpan>{bmr}</StyledSpan>
