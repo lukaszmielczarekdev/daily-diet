@@ -20,5 +20,5 @@ export const deleteDiary = (id) => API.delete(`/diaries/${id}`);
 export const fetchUsers = () => API.get("/user");
 export const signIn = (data) => API.post("/user/signin", data);
 export const signUp = (data) => API.post("/user/signup", data);
-export const updateUserProfile = (id, updatedProfile) =>
-  API.patch(`/user/${id}`, updatedProfile);
+export const updateUserProfile = (id, profile) =>
+  API.patch(`/user/${id}`, profile);
