@@ -49,6 +49,7 @@ const slice = createSlice({
     },
     logout: (state, action) => {
       localStorage.removeItem("profile");
+      state.user = INITIAL_STATE;
       googleLogout();
     },
   },
