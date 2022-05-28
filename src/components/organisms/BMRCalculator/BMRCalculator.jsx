@@ -50,7 +50,16 @@ const BMRCalculator = () => {
     const demandPercentage = { protein, carbs, fat };
     const demandAmount = calculateMacrosAmount(bmr, protein, carbs, fat);
 
-    const profile = {
+    console.log("type of inputs");
+    console.log(typeof weight);
+    console.log(typeof height);
+    console.log(typeof age);
+    console.log(typeof activity);
+    console.log(typeof demandAmount);
+    console.log(typeof demandPercentage);
+    console.log("...");
+
+    const data = {
       weight,
       height,
       age,
@@ -59,8 +68,13 @@ const BMRCalculator = () => {
       demandPercentage,
       demandAmount,
     };
+    console.log("BMR Calculator component");
+    console.log("data:");
+    console.log(data);
+    console.log("typeof data:");
+    console.log(typeof data);
 
-    dispatch(updateProfile(profile));
+    dispatch(updateProfile({ id: user.clientId, userProfile: data }));
   };
 
   return (
