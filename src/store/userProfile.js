@@ -14,9 +14,9 @@ const INITIAL_STATE = {
 
 export const updateProfile = createAsyncThunk(
   "userProfile/updateProfile",
-  async ({ id, profile }) => {
+  async (profile) => {
     try {
-      const { data } = await api.updateUserProfile(id, profile);
+      const { data } = await api.updateUserProfile(profile);
       console.log("Thunk response after update");
       console.log(data);
       return data;
