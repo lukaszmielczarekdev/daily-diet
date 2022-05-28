@@ -50,9 +50,16 @@ const NavBar = () => {
         </NavigationTitle>
       </NavSection>
       <NavSection>
-        <NavigationLink href="diaries" weight={"Normal"} size={"1rem"}>
-          Diaries
-        </NavigationLink>
+        {user && (
+          <NavigationLink href="diaries" weight={"Normal"} size={"1rem"}>
+            Diaries
+          </NavigationLink>
+        )}
+        {user && (
+          <NavigationLink href="profile" weight={"Normal"} size={"1rem"}>
+            Profile
+          </NavigationLink>
+        )}
         {!user ? (
           <NavigationLink href="/auth" weight={"Normal"} size={"1rem"}>
             Sign In

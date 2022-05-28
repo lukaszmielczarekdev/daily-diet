@@ -5,7 +5,18 @@ import * as api from "../api";
 
 const INITIAL_STATE = {
   status: null,
+  user: null,
+  users: [],
 };
+
+export const getUsers = createAsyncThunk("userItems/getUsers", async () => {
+  try {
+    const { data } = await api.fetchUsers();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const signin = createAsyncThunk("auth/signin", async (formData) => {
   try {
@@ -42,6 +53,16 @@ const slice = createSlice({
     },
   },
   extraReducers: {
+    [getUsers.pending]: (state) => {
+      state.status = "loading";
+    },
+    [getUsers.fulfilled]: (state, action) => {
+      state.users = action.payload;
+      state.status = "success";
+    },
+    [getUsers.rejected]: (state) => {
+      state.status = "failed";
+    },
     [signin.pending]: (state) => {
       state.status = "loading";
     },
