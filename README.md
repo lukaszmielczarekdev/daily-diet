@@ -1,7 +1,8 @@
 # DAILY DIET
 
-[LIVE SITE](https://daily-diet.pages.dev)
-Just for testing. Work in progress...
+[LIVE SITE - FRONTEND](https://daily-diet.pages.dev)
+
+[LIVE SITE - BACKEND](https://daily-diet.herokuapp.com/)
 
 ## Table of contents
 

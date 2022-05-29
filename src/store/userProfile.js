@@ -8,8 +8,9 @@ const INITIAL_STATE = {
   age: null,
   activity: null,
   bmr: null,
-  demandPercentage: { protein: 20, carbs: 50, fat: 30 },
+  demandPercentage: { protein: null, carbs: null, fat: null },
   demandAmount: { protein: null, carbs: null, fat: null },
+  status: null,
 };
 
 export const updateProfile = createAsyncThunk(
@@ -37,8 +38,7 @@ const slice = createSlice({
       state.status = "loading";
     },
     [updateProfile.fulfilled]: (state, action) => {
-      state = action.payload.profile;
-      state.status = "success";
+      state = { ...action.payload.profile, status: "success" };
     },
     [updateProfile.rejected]: (state) => {
       state.status = "failed";
