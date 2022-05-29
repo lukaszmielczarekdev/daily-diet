@@ -6,15 +6,16 @@ import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { auth, signin, signup } from "../../../store/auth";
-import { useHistory } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import { notify } from "../../../store/utils";
+import { useHistory } from "react-router-dom";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const history = useHistory();
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const {
     register: registerSignUp,
@@ -51,7 +52,7 @@ const Auth = () => {
     if (data.password === data.confirmpassword) {
       dispatch(signup(data));
       resetSignUp();
-    } else console.log("password fields must have the same value");
+    } else notify("Password fields must have the same value.");
   };
 
   const googleSuccess = async (credentialResponse) => {
@@ -66,8 +67,7 @@ const Auth = () => {
   };
 
   const googleFailure = (error) => {
-    console.log("Google Sign in was unsuccessful. Try Again");
-    console.log(error);
+    notify("Login failed. Try again.");
   };
 
   return (

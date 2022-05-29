@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getStoreData } from "./utils";
+import { getStoreData, notify } from "./utils";
 import { v4 as uuidv4 } from "uuid";
 import { calculateMacrosForProducts } from "../utils/calculators";
 import * as api from "../api";
@@ -19,6 +19,7 @@ export const getDiaries = createAsyncThunk("userItems/getDiaries", async () => {
     return data;
   } catch (error) {
     console.log(error);
+    notify(error.response.data.message);
   }
 });
 
@@ -27,9 +28,11 @@ export const createDiary = createAsyncThunk(
   async (diary) => {
     try {
       const { data } = await api.createDiary(diary);
+      notify("Diary created.");
       return data;
     } catch (error) {
       console.log(error);
+      notify(error.response.data.message);
     }
   }
 );
@@ -39,9 +42,11 @@ export const updateDiary = createAsyncThunk(
   async ({ id, diary }) => {
     try {
       const { data } = await api.updateDiary(id, diary);
+      notify("Diary updated.");
       return data;
     } catch (error) {
       console.log(error);
+      notify(error.response.data.message);
     }
   }
 );
@@ -51,9 +56,11 @@ export const deleteDiary = createAsyncThunk(
   async (id) => {
     try {
       await api.deleteDiary(id);
+      notify("Diary deleted.");
       return id;
     } catch (error) {
       console.log(error);
+      notify(error.response.data.message);
     }
   }
 );

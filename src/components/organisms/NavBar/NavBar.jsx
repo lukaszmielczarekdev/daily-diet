@@ -50,17 +50,17 @@ const NavBar = () => {
         </NavigationTitle>
       </NavSection>
       <NavSection>
-        {user && (
+        {user?.credential && (
           <NavigationLink href="diaries" weight={"Normal"} size={"1rem"}>
             Diaries
           </NavigationLink>
         )}
-        {user && (
+        {user?.credential && (
           <NavigationLink href="profile" weight={"Normal"} size={"1rem"}>
             Profile
           </NavigationLink>
         )}
-        {!user ? (
+        {!user?.credential ? (
           <NavigationLink href="/auth" weight={"Normal"} size={"1rem"}>
             Sign In
           </NavigationLink>
@@ -69,7 +69,7 @@ const NavBar = () => {
             <GrLogout onClick={() => handleLogout()} size={"1rem"} />
           </NavigationLink>
         )}
-        {user && (
+        {user?.credential && (
           <NavigationLink href="preferences">
             <BsGear size={"1rem"} />
           </NavigationLink>

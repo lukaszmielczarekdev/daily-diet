@@ -60,6 +60,9 @@ const BMRCalculator = () => {
       demandAmount,
     };
 
+    console.log("data from BMR Calc");
+    console.log(data);
+
     dispatch(updateProfile({ id: user.clientId, profile: data }));
   };
 

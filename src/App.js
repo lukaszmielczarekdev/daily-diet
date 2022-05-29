@@ -13,6 +13,7 @@ import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
 import { Route, Switch } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="*" component={Hero} />
           </Switch>
           <Footer />
+          <Toaster />
         </AppContainer>
       </GoogleOAuthProvider>
     </ThemeManager>

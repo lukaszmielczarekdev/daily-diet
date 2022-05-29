@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getStoreData } from "./utils";
+import { getStoreData, notify } from "./utils";
 import * as api from "../api";
 
 const INITIAL_STATE = {
@@ -18,9 +18,11 @@ export const updateProfile = createAsyncThunk(
   async ({ id, profile }) => {
     try {
       const { data } = await api.updateUserProfile(id, profile);
+      notify("Profile updated.");
       return data;
     } catch (error) {
       console.log(error);
+      notify(error.response.data.message);
     }
   }
 );
@@ -38,7 +40,7 @@ const slice = createSlice({
       state.status = "loading";
     },
     [updateProfile.fulfilled]: (state, action) => {
-      state = { ...action.payload.profile, status: "success" };
+      state = { ...action.payload?.profile, status: "success" };
     },
     [updateProfile.rejected]: (state) => {
       state.status = "failed";
