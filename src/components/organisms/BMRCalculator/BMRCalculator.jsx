@@ -43,9 +43,9 @@ const BMRCalculator = () => {
     // formState: { errors },
   } = useForm({
     defaultValues: {
-      height: 0,
-      weight: 0,
-      age: 0,
+      height: "",
+      weight: "",
+      age: "",
     },
   });
 

@@ -6,7 +6,6 @@ import { benefits } from "../../../data/constants";
 import TextField from "../../molecules/TextField/TextField";
 import Header from "../../atoms/Header/Header";
 import Link from "../../atoms/Link/Link";
-import RoundChart from "../RoundChart/RoundChart";
 
 const Footer = (props) => {
   return (
@@ -22,14 +21,6 @@ const Footer = (props) => {
             small
             margin={"1rem 0"}
             width={"300px"}
-          />
-          <RoundChart
-            data={[100]}
-            label={"Satisfaction"}
-            size={"240px"}
-            nameSize={"12px"}
-            valueSize={"25px"}
-            offset={-10}
           />
           <CheckList
             justify={"left"}
