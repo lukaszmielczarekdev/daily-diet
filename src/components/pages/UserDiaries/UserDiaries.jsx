@@ -32,8 +32,14 @@ import { v4 as uuidv4 } from "uuid";
 
 const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
-  const { bmr, demandAmount, demandPercentage } = useSelector(
-    (state) => state.user.userProfile
+  const { bmr, demandAmount, demandPercentage } = useSelector((state) =>
+    state.user.authData.currentUser?.profile
+      ? state.user.authData.currentUser.profile
+      : {
+          bmr: 0,
+          demandAmount: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
+          demandPercentage: { protein: 0, carbs: 0, fat: 0 },
+        }
   );
 
   const dispatch = useDispatch();

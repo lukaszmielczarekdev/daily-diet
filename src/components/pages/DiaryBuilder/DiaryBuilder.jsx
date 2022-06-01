@@ -17,7 +17,12 @@ const DiaryBuilder = () => {
   const { meals, temporaryProducts } = useSelector(
     (state) => state.user.userItems
   );
-  const { bmr } = useSelector((state) => state.user.userProfile);
+
+  const bmr = useSelector((state) =>
+    state.user.authData.currentUser?.profile.bmr
+      ? state.user.authData.currentUser.profile.bmr
+      : 0
+  );
 
   return (
     <Container id="diarybuilder" fillColor>

@@ -27,9 +27,19 @@ const SelectedMeals = ({ margin }) => {
   const dispatch = useDispatch();
   const diaryName = useRef();
 
-  const { demandAmount, demandPercentage } = useSelector(
-    (state) => state.user.userProfile
+  // const { demandAmount, demandPercentage } = useSelector(
+  //   (state) => state.user.userProfile
+  // );
+
+  const { demandAmount, demandPercentage } = useSelector((state) =>
+    state.user.authData.currentUser?.profile
+      ? state.user.authData.currentUser.profile
+      : {
+          demandAmount: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
+          demandPercentage: { protein: 0, carbs: 0, fat: 0 },
+        }
   );
+
   const { temporaryMeals } = useSelector((state) => state.user.userItems);
 
   const [currentDiaryDemand, setCurrentDiaryDemand] = useState({

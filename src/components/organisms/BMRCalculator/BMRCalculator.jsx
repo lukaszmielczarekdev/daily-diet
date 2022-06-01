@@ -13,7 +13,7 @@ import {
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { updateProfile } from "../../../store/userProfile";
+import { updateProfile } from "../../../store/auth";
 
 const BMRCalculator = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -25,9 +25,16 @@ const BMRCalculator = () => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location, user?.credential]);
 
-  const { bmr } = useSelector((state) => state.user.userProfile);
-  const { protein, carbs, fat } = useSelector(
-    (state) => state.user.userProfile.demandPercentage
+  const bmr = useSelector((state) =>
+    state.user.authData.currentUser?.profile.bmr
+      ? state.user.authData.currentUser.profile.bmr
+      : 0
+  );
+
+  const { protein, carbs, fat } = useSelector((state) =>
+    state.user.authData.currentUser?.profile
+      ? state.user.authData.currentUser.profile.demandPercentage
+      : { protein: 0, carbs: 0, fat: 0 }
   );
 
   const {
@@ -59,9 +66,6 @@ const BMRCalculator = () => {
       demandPercentage,
       demandAmount,
     };
-
-    console.log("data from BMR Calc");
-    console.log(data);
 
     dispatch(updateProfile({ id: user.clientId, profile: data }));
   };
@@ -126,7 +130,7 @@ const BMRCalculator = () => {
           <Button type="submit">Get BMR</Button>
         </Form>
       )}
-      {user?.credential && bmr && (
+      {bmr && (
         <Container>
           <Label>Your BMR:</Label>
           <StyledSpan>{bmr}</StyledSpan>

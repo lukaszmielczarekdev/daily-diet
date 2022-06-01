@@ -37,6 +37,19 @@ export const signup = createAsyncThunk("auth/signup", async (formData) => {
   }
 });
 
+export const updateProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async ({ id, profile }) => {
+    try {
+      const { data } = await api.updateUserProfile(id, profile);
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
 const slice = createSlice({
   name: "authData",
   initialState: getStoreData("user.authData", INITIAL_STATE),
@@ -50,13 +63,14 @@ const slice = createSlice({
             ...action.payload,
           })
         );
-        notify(`Hello`);
+        notify("Hello");
       }
       state.status = "success";
     },
 
     logout: (state, action) => {
       localStorage.removeItem("profile");
+      state.currentUser = null;
       googleLogout();
     },
   },
@@ -85,7 +99,7 @@ const slice = createSlice({
           })
         );
         window.location.href = "/";
-        state.currentUser = action.payload.user.profile;
+        state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
@@ -106,13 +120,24 @@ const slice = createSlice({
             credential: action.payload?.token,
           })
         );
-        state.currentUser = action.payload.user.profile;
+        state.currentUser = action.payload.user;
         window.location.href = "/";
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
     },
     [signup.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [updateProfile.pending]: (state) => {
+      state.status = "loading";
+    },
+    [updateProfile.fulfilled]: (state, action) => {
+      state.currentUser.profile = action.payload;
+      state.status = "success";
+      notify("Profile updated.");
+    },
+    [updateProfile.rejected]: (state) => {
       state.status = "failed";
     },
   },
