@@ -96,6 +96,7 @@ const slice = createSlice({
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
+      window.location = "/";
     },
     [signin.rejected]: (state) => {
       state.status = "failed";
@@ -114,6 +115,7 @@ const slice = createSlice({
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
+      window.location = "/";
     },
     [externalSignin.rejected]: (state) => {
       state.status = "failed";
@@ -131,6 +133,7 @@ const slice = createSlice({
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
+      window.location = "/";
     },
     [signup.rejected]: (state) => {
       state.status = "failed";

@@ -29,6 +29,7 @@ import {
   calculateMacrosAmount,
 } from "../../../utils/calculators";
 import { v4 as uuidv4 } from "uuid";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserDiaries = () => {
   const { diaries } = useSelector((state) => state.user.userItems);
@@ -41,6 +42,7 @@ const UserDiaries = () => {
           demandPercentage: { protein: 0, carbs: 0, fat: 0 },
         }
   );
+  const status = useSelector((state) => state.user.authData.status);
 
   const dispatch = useDispatch();
 
@@ -211,59 +213,62 @@ const UserDiaries = () => {
           }
         />
         <ControlPanel margin={"1rem 0 0 0"}>
-          {Array.isArray(diaries) && diaries?.length !== 0 && (
-            <Carousel
-              infinite
-              breakpoints
-              items={renderCards().map(
-                ({ _id, name, demandCoverage, meals, createdAt }) => (
-                  <Card3
-                    fillColor
-                    key={_id}
-                    onClick={
-                      createdAt
-                        ? () => {
-                            setCurrentDiary(findDiary(_id));
-                            setCurrentDiaryBackup(findDiary(_id));
-                            setEditMode(null);
-                          }
-                        : () => {
-                            setEditMode(null);
-                            history.push(bmr ? "/builder" : "/");
-                          }
-                    }
-                    header={name}
-                    description={createdAt}
-                    main={
-                      createdAt ? (
-                        <RoundChart
-                          data={[demandCoverage.kcal.completed]}
-                          label={"KCAL"}
-                          size={"260px"}
-                          nameSize={"12px"}
-                          valueSize={"25px"}
-                          offset={-10}
-                        />
-                      ) : (
-                        <IoAddCircleOutline
-                          size={"150px"}
+          <ClipLoader loading={status === "loading"} size={150} />
+          {status !== "loading" &&
+            Array.isArray(diaries) &&
+            diaries?.length !== 0 && (
+              <Carousel
+                infinite
+                breakpoints
+                items={renderCards().map(
+                  ({ _id, name, demandCoverage, meals, createdAt }) => (
+                    <Card3
+                      fillColor
+                      key={_id}
+                      onClick={
+                        createdAt
+                          ? () => {
+                              setCurrentDiary(findDiary(_id));
+                              setCurrentDiaryBackup(findDiary(_id));
+                              setEditMode(null);
+                            }
+                          : () => {
+                              setEditMode(null);
+                              history.push(bmr ? "/builder" : "/");
+                            }
+                      }
+                      header={name}
+                      description={createdAt}
+                      main={
+                        createdAt ? (
+                          <RoundChart
+                            data={[demandCoverage.kcal.completed]}
+                            label={"KCAL"}
+                            size={"260px"}
+                            nameSize={"12px"}
+                            valueSize={"25px"}
+                            offset={-10}
+                          />
+                        ) : (
+                          <IoAddCircleOutline
+                            size={"150px"}
+                            color={"rgb(125, 215, 120)"}
+                          />
+                        )
+                      }
+                      footer={
+                        <CheckList
+                          smallText
                           color={"rgb(125, 215, 120)"}
+                          data={meals}
+                          element={"name"}
                         />
-                      )
-                    }
-                    footer={
-                      <CheckList
-                        smallText
-                        color={"rgb(125, 215, 120)"}
-                        data={meals}
-                        element={"name"}
-                      />
-                    }
-                  />
-                )
-              )}
-            />
-          )}
+                      }
+                    />
+                  )
+                )}
+              />
+            )}
         </ControlPanel>
       </Container>
       {currentDiary &&

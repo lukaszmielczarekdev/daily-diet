@@ -4,18 +4,19 @@ import { useForm } from "react-hook-form";
 import { Form, Button, FormContainer, Input, StyledSpan } from "./AuthStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { externalSignin, signin, signup } from "../../../store/auth";
 import { GoogleLogin } from "@react-oauth/google";
 import { notify } from "../../../store/utils";
-import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const history = useHistory();
 
   const dispatch = useDispatch();
+
+  const status = useSelector((state) => state.user.authData.status);
 
   const {
     register: registerSignUp,
@@ -60,7 +61,6 @@ const Auth = () => {
 
     try {
       dispatch(externalSignin(response));
-      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -73,100 +73,103 @@ const Auth = () => {
 
   return (
     <Container fillColor>
-      <FormContainer>
-        <RiLock2Line size={"2rem"} />
-        <StyledSpan>{isSignUp ? "Sign Up" : "Sign In"}</StyledSpan>
-        <Form
-          onSubmit={
-            isSignUp
-              ? handleRegisterSignUp(handleSignUp)
-              : handleRegisterSignIn(handleSignIn)
-          }
-        >
-          {isSignUp ? (
-            <>
-              <Input
-                type="text"
-                placeholder={"User Name *"}
-                {...registerSignUp("username", {
-                  required: true,
-                  maxLength: 15,
-                })}
-              />
-              <Input
-                type={isPasswordVisible ? "text" : "password"}
-                placeholder={"Password *"}
-                {...registerSignUp("password", {
-                  required: true,
-                  maxLength: 25,
-                })}
-              />
-              <Input
-                type={isPasswordVisible ? "text" : "password"}
-                placeholder={"Confirm Password *"}
-                {...registerSignUp("confirmpassword", {
-                  required: true,
-                  maxLength: 25,
-                })}
-              />
-              <VisibilityIcon
-                condition={isPasswordVisible}
-                toggler={() => setIsPasswordVisible(!isPasswordVisible)}
-              />
-              <Input
-                type="text"
-                placeholder={"Email Address *"}
-                {...registerSignUp("email", {
-                  required: true,
-                  maxLength: 25,
-                })}
-              />
-            </>
-          ) : (
-            <>
-              <Input
-                type="text"
-                placeholder={"Email Address *"}
-                {...registerSignIn("email", {
-                  required: true,
-                  maxLength: 25,
-                })}
-              />
-              <Input
-                type={isPasswordVisible ? "text" : "password"}
-                placeholder={"Password *"}
-                {...registerSignIn("password", {
-                  required: true,
-                  maxLength: 25,
-                })}
-              />
-              <VisibilityIcon
-                condition={isPasswordVisible}
-                toggler={() => setIsPasswordVisible(!isPasswordVisible)}
-              />
-            </>
-          )}
-          <Button type="submit" green>
-            {isSignUp ? "Sign Up" : "Sign In"}
-          </Button>
-          {!isSignUp && (
-            <GoogleLogin
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              width={"240px"}
-            />
-          )}
-          <StyledSpan
-            pointer
-            margin={"1rem 0 0 0"}
-            onClick={() => setIsSignUp(!isSignUp)}
+      <ClipLoader loading={status === "loading"} size={150} />
+      {status !== "loading" && (
+        <FormContainer>
+          <RiLock2Line size={"2rem"} />
+          <StyledSpan>{isSignUp ? "Sign Up" : "Sign In"}</StyledSpan>
+          <Form
+            onSubmit={
+              isSignUp
+                ? handleRegisterSignUp(handleSignUp)
+                : handleRegisterSignIn(handleSignIn)
+            }
           >
-            {isSignUp
-              ? "Already have an account? Sign In"
-              : "Don't have an account? Sign Up "}
-          </StyledSpan>
-        </Form>
-      </FormContainer>
+            {isSignUp ? (
+              <>
+                <Input
+                  type="text"
+                  placeholder={"User Name *"}
+                  {...registerSignUp("username", {
+                    required: true,
+                    maxLength: 15,
+                  })}
+                />
+                <Input
+                  type={isPasswordVisible ? "text" : "password"}
+                  placeholder={"Password *"}
+                  {...registerSignUp("password", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                />
+                <Input
+                  type={isPasswordVisible ? "text" : "password"}
+                  placeholder={"Confirm Password *"}
+                  {...registerSignUp("confirmpassword", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                />
+                <VisibilityIcon
+                  condition={isPasswordVisible}
+                  toggler={() => setIsPasswordVisible(!isPasswordVisible)}
+                />
+                <Input
+                  type="text"
+                  placeholder={"Email Address *"}
+                  {...registerSignUp("email", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                />
+              </>
+            ) : (
+              <>
+                <Input
+                  type="text"
+                  placeholder={"Email Address *"}
+                  {...registerSignIn("email", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                />
+                <Input
+                  type={isPasswordVisible ? "text" : "password"}
+                  placeholder={"Password *"}
+                  {...registerSignIn("password", {
+                    required: true,
+                    maxLength: 25,
+                  })}
+                />
+                <VisibilityIcon
+                  condition={isPasswordVisible}
+                  toggler={() => setIsPasswordVisible(!isPasswordVisible)}
+                />
+              </>
+            )}
+            <Button type="submit" green>
+              {isSignUp ? "Sign Up" : "Sign In"}
+            </Button>
+            {!isSignUp && (
+              <GoogleLogin
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                width={"240px"}
+              />
+            )}
+            <StyledSpan
+              pointer
+              margin={"1rem 0 0 0"}
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
+              {isSignUp
+                ? "Already have an account? Sign In"
+                : "Don't have an account? Sign Up "}
+            </StyledSpan>
+          </Form>
+        </FormContainer>
+      )}
     </Container>
   );
 };
