@@ -32,13 +32,13 @@ export const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: ${({ justify }) => (justify ? justify : "center")};
-  font-size: ${({ smallText }) => (smallText ? "0.8rem" : "1rem")};
+  font-size: ${({ smallText }) => (smallText ? "0.9rem" : "1rem")};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    font-size: ${({ smallText }) => (smallText ? "0.6rem" : "0.8rem")};
+    font-size: ${({ smallText }) => (smallText ? "0.7rem" : "0.8rem")};
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: ${({ smallText }) => (smallText ? "0.6rem" : "0.8rem")};
+    font-size: ${({ smallText }) => (smallText ? "0.7rem" : "0.8rem")};
   }
 `;

@@ -32,12 +32,12 @@ export const Description = styled.span`
   color: ${({ theme }) => theme.colors.semiTransparent};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     margin: 0.5rem;
   }
 `;
