@@ -16,7 +16,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
-import { diariesRemoved } from "./store/userItems";
+import { itemsRemoved } from "./store/userItems";
 import { logout } from "./store/auth";
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
-    dispatch(diariesRemoved());
+    dispatch(itemsRemoved());
     setUser(null);
     history.push("/");
   }, [dispatch, history]);

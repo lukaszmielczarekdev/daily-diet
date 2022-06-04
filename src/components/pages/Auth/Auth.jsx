@@ -5,7 +5,7 @@ import { Form, Button, FormContainer, Input, StyledSpan } from "./AuthStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { auth, signin, signup } from "../../../store/auth";
+import { externalSignin, signin, signup } from "../../../store/auth";
 import { GoogleLogin } from "@react-oauth/google";
 import { notify } from "../../../store/utils";
 import { useHistory } from "react-router-dom";
@@ -59,7 +59,7 @@ const Auth = () => {
     const response = await credentialResponse;
 
     try {
-      dispatch(auth(response));
+      dispatch(externalSignin(response));
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -67,6 +67,7 @@ const Auth = () => {
   };
 
   const googleFailure = (error) => {
+    console.log(error);
     notify("Login failed. Try again.");
   };
 

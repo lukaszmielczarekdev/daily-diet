@@ -12,23 +12,26 @@ import {
   Container,
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { updateProfile } from "../../../store/auth";
 
 const BMRCalculator = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+
+  const currentUser = useSelector((state) =>
+    state.user.authData.currentUser ? state.user.authData.currentUser : ""
+  );
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location, user?.credential]);
+  }, [user?.credential, currentUser]);
 
   const bmr = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
       ? state.user.authData.currentUser.profile.bmr
-      : 0
+      : ""
   );
 
   const { protein, carbs, fat } = useSelector((state) =>

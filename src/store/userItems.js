@@ -173,8 +173,9 @@ const slice = createSlice({
       state.temporaryMeals = [];
     },
 
-    diariesRemoved: (state) => {
+    itemsRemoved: (state) => {
       state.diaries = [];
+      state.temporaryMeals = [];
     },
   },
   extraReducers: {
@@ -236,7 +237,7 @@ export const {
   productRemoved,
   productsRemoved,
   productAmountCalculated,
-  diariesRemoved,
+  itemsRemoved,
 } = slice.actions;
 
 export default slice.reducer;

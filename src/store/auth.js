@@ -28,6 +28,18 @@ export const signin = createAsyncThunk("auth/signin", async (formData) => {
   }
 });
 
+export const externalSignin = createAsyncThunk(
+  "auth/externalSignin",
+  async (response) => {
+    try {
+      const { data } = await api.externalSignIn(response);
+      return data;
+    } catch (error) {
+      notify(error.response.data.message);
+    }
+  }
+);
+
 export const signup = createAsyncThunk("auth/signup", async (formData) => {
   try {
     const { data } = await api.signUp(formData);
@@ -54,20 +66,6 @@ const slice = createSlice({
   name: "authData",
   initialState: getStoreData("user.authData", INITIAL_STATE),
   reducers: {
-    auth: (state, action) => {
-      if (action.payload?.credential) {
-        localStorage.setItem(
-          "profile",
-          JSON.stringify({
-            username: action.payload.clientId,
-            ...action.payload,
-          })
-        );
-        notify("Hello");
-      }
-      state.status = "success";
-    },
-
     logout: (state, action) => {
       localStorage.removeItem("profile");
       state.currentUser = null;
@@ -92,19 +90,32 @@ const slice = createSlice({
       if (action.payload?.token) {
         localStorage.setItem(
           "profile",
-          JSON.stringify({
-            username: action.payload.user.name,
-            clientId: action.payload.user._id,
-            credential: action.payload.token,
-          })
+          JSON.stringify({ credential: action.payload.token })
         );
-        window.location.href = "/";
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
     },
     [signin.rejected]: (state) => {
+      state.status = "failed";
+    },
+
+    [externalSignin.pending]: (state) => {
+      state.status = "loading";
+    },
+    [externalSignin.fulfilled]: (state, action) => {
+      if (action.payload?.token) {
+        localStorage.setItem(
+          "profile",
+          JSON.stringify({ credential: action.payload.token })
+        );
+        state.currentUser = action.payload.user;
+        notify(`Hello ${action.payload.user.name}`);
+      }
+      state.status = "success";
+    },
+    [externalSignin.rejected]: (state) => {
       state.status = "failed";
     },
     [signup.pending]: (state) => {
@@ -114,14 +125,9 @@ const slice = createSlice({
       if (action.payload?.token) {
         localStorage.setItem(
           "profile",
-          JSON.stringify({
-            username: action.payload?.user.name,
-            clientId: action.payload?.user._id,
-            credential: action.payload?.token,
-          })
+          JSON.stringify({ credential: action.payload.token })
         );
         state.currentUser = action.payload.user;
-        window.location.href = "/";
         notify(`Hello ${action.payload.user.name}`);
       }
       state.status = "success";
