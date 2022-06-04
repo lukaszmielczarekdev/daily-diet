@@ -83,9 +83,9 @@ const BMRCalculator = () => {
       )}
       {user?.credential && !bmr && (
         <Form onSubmit={handleSubmitBMR(calculateBMR)}>
-          <Label>Height(cm):</Label>
           <Input
             type="number"
+            placeholder={"Height(cm)"}
             {...registerBMR("height", {
               valueAsNumber: true,
               max: 250,
@@ -95,9 +95,9 @@ const BMRCalculator = () => {
               pattern: /\d+/,
             })}
           />
-          <Label>Weight(kg):</Label>
           <Input
             type="number"
+            placeholder={"Weight(kg)"}
             {...registerBMR("weight", {
               valueAsNumber: true,
               max: 500,
@@ -107,9 +107,9 @@ const BMRCalculator = () => {
               pattern: /\d+/,
             })}
           />
-          <Label>Age:</Label>
           <Input
             type="number"
+            placeholder={"Age"}
             {...registerBMR("age", {
               valueAsNumber: true,
               max: 110,
@@ -119,7 +119,6 @@ const BMRCalculator = () => {
               pattern: /\d+/,
             })}
           />
-          <Label>Activity:</Label>
           <Select
             {...registerBMR("activity", {
               valueAsNumber: true,
@@ -135,8 +134,7 @@ const BMRCalculator = () => {
       )}
       {bmr && (
         <Container>
-          <Label>Your BMR:</Label>
-          <StyledSpan>{bmr}</StyledSpan>
+          <StyledSpan>BMR: {bmr}</StyledSpan>
           <Button onClick={() => history.push(`/builder`)}>New diary</Button>
         </Container>
       )}

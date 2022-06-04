@@ -17,7 +17,8 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input`
-  width: ${({ text }) => (text ? "200px" : "80px")};
+  width: ${({ text }) => (text ? "200px" : "100px")};
+  margin: 0.8rem 0;
   font-size: 0.8rem;
   padding: 0.5rem;
   border: 1px solid black;
@@ -55,18 +56,20 @@ export const Label = styled.label`
 `;
 
 export const Select = styled.select`
+  width: ${({ text }) => (text ? "200px" : "100px")};
   font-size: 0.8rem;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0.8rem 0;
   border-radius: 10px 0;
   text-align: center;
 `;
 
 export const Button = styled.button`
-  margin: 1rem 0;
+  width: ${({ text }) => (text ? "200px" : "100px")};
+  margin: 0.8rem 0;
   font-size: 0.8rem;
   padding: 0.8rem;
-  width: 50%;
+  /* width: 50%; */
   display: block;
   color: white;
   border: none;
@@ -80,11 +83,11 @@ export const Button = styled.button`
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 60%;
+    /* width: 60%; */
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 60%;
+    /* width: 60%; */
   }
 `;
 
