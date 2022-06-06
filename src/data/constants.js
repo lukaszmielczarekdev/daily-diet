@@ -131,6 +131,24 @@ export const meals = [
   },
 ];
 
+export const userItemCategories = [
+  {
+    id: 0,
+    image: salad5,
+    primary: "Diaries",
+  },
+  {
+    id: 1,
+    image: salad3,
+    primary: "Meals",
+  },
+  {
+    id: 2,
+    image: salad2,
+    primary: "Products",
+  },
+];
+
 export const exampleMeals = [
   {
     id: 0,

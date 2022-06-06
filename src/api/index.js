@@ -23,3 +23,9 @@ export const signIn = (data) => API.post("/user/signin", data);
 export const signUp = (data) => API.post("/user/signup", data);
 export const updateUserProfile = (id, profile) =>
   API.patch(`/user/${id}`, profile);
+
+export const fetchProducts = () => API.get("/products");
+export const createProduct = (newDiary) => API.post("/products", newDiary);
+export const updateProduct = (id, updatedDiary) =>
+  API.patch(`/products/${id}`, updatedDiary);
+export const deleteProduct = (id) => API.delete(`/products/${id}`);

@@ -56,7 +56,7 @@ export const deleteDiary = createAsyncThunk(
   async (id) => {
     try {
       await api.deleteDiary(id);
-      notify("Diary deleted.");
+      notify("Diary deleted");
       return id;
     } catch (error) {
       console.log(error);

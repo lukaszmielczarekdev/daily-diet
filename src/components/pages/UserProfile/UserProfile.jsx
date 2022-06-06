@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import Container from "../../templates/Container/Container";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Article from "../../organisms/Article/Article";
 import { getUsers } from "../../../store/auth";
+import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
+import { userItemCategories } from "../../../data/constants";
+import MenuItem from "../../molecules/MenuItem/MenuItem";
 
 const UserProfile = () => {
-  const { users } = useSelector((state) => state.user.authData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,15 +17,15 @@ const UserProfile = () => {
   return (
     <Container fillColor>
       <Article
-        left={<span>users</span>}
-        right={
-          <ul>
-            {Array.isArray(users) &&
-              users?.length !== 0 &&
-              users.map((user) => <li>{user.name}</li>)}
-          </ul>
-        }
+        padding={"3rem 3rem 2rem 3rem"}
+        left={<span>left</span>}
+        right={<span>right</span>}
       />
+      <ControlPanel align={"baseline"}>
+        {userItemCategories.map((category) => (
+          <MenuItem key={category.id} {...category} />
+        ))}
+      </ControlPanel>
     </Container>
   );
 };

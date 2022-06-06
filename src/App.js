@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import { itemsRemoved } from "./store/userItems";
+import { productsRemoved } from "./store/products";
 import { logout } from "./store/auth";
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
   const handleLogout = useCallback(() => {
     dispatch(logout());
     dispatch(itemsRemoved());
+    dispatch(productsRemoved());
     setUser(null);
     history.push("/");
   }, [dispatch, history]);
