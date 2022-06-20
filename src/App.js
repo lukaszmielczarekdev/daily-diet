@@ -16,8 +16,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
-import { itemsRemoved } from "./store/userItems";
-import { productsRemoved } from "./store/products";
+import { getProducts } from "./store/products";
+import { getMeals } from "./store/meals";
+import { getDiaries } from "./store/diaries";
 import { logout } from "./store/auth";
 
 const App = () => {
@@ -28,8 +29,6 @@ const App = () => {
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
-    dispatch(itemsRemoved());
-    dispatch(productsRemoved());
     setUser(null);
     history.push("/");
   }, [dispatch, history]);
@@ -47,6 +46,12 @@ const App = () => {
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [handleLogout, user?.credential, location]);
+
+  useEffect(() => {
+    dispatch(getDiaries());
+    dispatch(getMeals());
+    dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <ThemeManager>

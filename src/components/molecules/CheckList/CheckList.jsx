@@ -31,8 +31,8 @@ const CheckList = ({
     >
       <ChildrenContainer>{children}</ChildrenContainer>
       <List>
-        {data.map((elem) => (
-          <ListItem key={elem.id} smallText={smallText} justify={justify}>
+        {data.map((elem, index) => (
+          <ListItem key={index} smallText={smallText} justify={justify}>
             {arrow ? (
               <MdKeyboardArrowRight color={color} fontSize={"1.5rem"} />
             ) : (

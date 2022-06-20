@@ -9,15 +9,15 @@ import {
 } from "./ProductStyles";
 import Button from "../../atoms/Button/Button";
 import Summary from "../Summary/Summary";
-import { useDispatch } from "react-redux";
-import Ingredients from "../../../data/ingredients.json";
+import { useDispatch, useSelector } from "react-redux";
 import {
   productRemoved,
   productAmountCalculated,
-} from "../../../store/userItems";
+} from "../../../store/helpers";
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.resources.products);
 
   const {
     register: registerAmount,
@@ -32,7 +32,7 @@ const Product = ({ product }) => {
   const submitAmount = (data) => {
     dispatch(
       productAmountCalculated({
-        ingredients: Ingredients,
+        products,
         id: product.id,
         amount: data.amount,
       })
@@ -70,11 +70,11 @@ const Product = ({ product }) => {
       </ProductActions>
       <SummaryContainer>
         <Summary
-          data={product}
+          data={product.nutrients}
           fontSize="0.9rem"
           color={"green"}
           margin={"0"}
-          name={product.name}
+          title={product.title}
         />
       </SummaryContainer>
     </ProductContainer>

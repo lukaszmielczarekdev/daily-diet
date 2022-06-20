@@ -3,6 +3,7 @@ import { getStoreData, notify } from "./utils";
 import * as api from "../api";
 
 const INITIAL_STATE = {
+  status: null,
   products: [],
 };
 
@@ -83,7 +84,8 @@ const slice = createSlice({
     [createProduct.pending]: (state) => {
       state.status = "loading";
     },
-    [createProduct.fulfilled]: (state) => {
+    [createProduct.fulfilled]: (state, action) => {
+      state.products.push(action.payload);
       state.status = "success";
     },
     [createProduct.rejected]: (state) => {

@@ -19,15 +19,9 @@ export const ProductsContainer = styled.div`
   }
 `;
 
-export const MealNameInput = styled.input`
-  width: ${({ text }) => (text ? "100%" : "100px")};
-  font-size: 1rem;
-  padding: 0.5rem;
+export const StyledSpan = styled.span`
+  display: flex;
   margin: 0.5rem 0;
-  border: 1px solid black;
-  border-radius: 10px 0;
-
-  @media ${(props) => props.theme.breakpoints.sm} {
-    width: ${({ text }) => (text ? "100%" : "100px")};
-  }
+  font-size: 1rem;
+  justify-content: center;
 `;

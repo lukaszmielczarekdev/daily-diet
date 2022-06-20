@@ -16,6 +16,8 @@ const ProductEditable = ({
   calculateAmount,
   removeProduct,
   mealId,
+  mealIndex,
+  productIndex,
 }) => {
   const {
     register: registerAmount,
@@ -28,7 +30,14 @@ const ProductEditable = ({
   });
 
   const submitAmount = (data) => {
-    calculateAmount(mealId, products, product.id, data.amount);
+    calculateAmount(
+      mealId,
+      products,
+      product._id,
+      data.amount,
+      mealIndex,
+      productIndex
+    );
   };
 
   return (
@@ -55,18 +64,20 @@ const ProductEditable = ({
           width={"100%"}
           margin={"0.5rem 0"}
           remove
-          onClick={() => removeProduct(mealId, product.id)}
+          onClick={() =>
+            removeProduct(mealId, product._id, mealIndex, productIndex)
+          }
         >
           Delete
         </Button>
       </ProductActions>
       <SummaryContainer>
         <Summary
-          data={product}
+          data={product.nutrients}
           fontSize="0.9rem"
           color={"green"}
           margin={"0"}
-          name={product.name}
+          title={product.title}
         />
       </SummaryContainer>
     </ProductContainer>

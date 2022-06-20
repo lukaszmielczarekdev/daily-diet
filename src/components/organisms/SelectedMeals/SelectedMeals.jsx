@@ -8,9 +8,6 @@ import {
   DiaryInput,
   StyledSpan,
 } from "./SelectedMealsStyles";
-import ProgressBar, {
-  progressBarsDataTemplate,
-} from "../ProgressBar/ProgressBar";
 import Button from "../../atoms/Button/Button";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import {
@@ -19,28 +16,35 @@ import {
   calculateMacrosForMeals,
 } from "../../../utils/calculators";
 import { useSelector, useDispatch } from "react-redux";
-// import { diaryAdded, mealsRemoved } from "../../../store/userItems";
-import { createDiary, mealsRemoved } from "../../../store/userItems";
+import { mealsRemoved, productsRemoved } from "../../../store/helpers";
+import { createDiary, updateDiary } from "../../../store/diaries";
 import ListOfMeals from "../../molecules/ListOfMeals/ListOfMeals";
+import RoundChart from "../RoundChart/RoundChart";
+import { v4 as uuidv4 } from "uuid";
+import { notify } from "../../../store/utils";
+import {
+  currentItemSet,
+  currentItemRemoved,
+  editedMealsAdded,
+} from "../../../store/helpers";
 
-const SelectedMeals = ({ margin }) => {
+const SelectedMeals = ({ margin, editMode }) => {
   const dispatch = useDispatch();
-  const diaryName = useRef();
+  const diaryTitle = useRef();
 
-  // const { demandAmount, demandPercentage } = useSelector(
-  //   (state) => state.user.userProfile
-  // );
-
-  const { demandAmount, demandPercentage } = useSelector((state) =>
+  const { bmr, demandAmount, demandPercentage } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile
       : {
+          bmr: 0,
           demandAmount: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
           demandPercentage: { protein: 0, carbs: 0, fat: 0 },
         }
   );
 
-  const { temporaryMeals } = useSelector((state) => state.user.userItems);
+  const { temporaryMeals, currentItemBackup } = useSelector(
+    (state) => state.user.helpers
+  );
 
   const [currentDiaryDemand, setCurrentDiaryDemand] = useState({
     ...demandAmount,
@@ -58,11 +62,7 @@ const SelectedMeals = ({ margin }) => {
   } = useForm();
 
   const [progressData, setProgressData] = useState(
-    calculateMacrosPercentage(
-      currentDiaryDemand,
-      currentMacrosAmount,
-      progressBarsDataTemplate
-    )
+    calculateMacrosPercentage(currentDiaryDemand, currentMacrosAmount)
   );
 
   useEffect(() => {
@@ -73,23 +73,27 @@ const SelectedMeals = ({ margin }) => {
   useEffect(() => {
     const percentage = calculateMacrosPercentage(
       currentDiaryDemand,
-      currentMacrosAmount,
-      progressBarsDataTemplate
+      currentMacrosAmount
     );
 
     setProgressData((prevState) => (prevState = percentage));
   }, [currentDiaryDemand, currentMacrosAmount]);
 
   const calculateCurrentDiaryDemand = ({ kcal }) => {
-    const calories = demandAmount.kcal + parseInt(kcal);
-    const amount = calculateMacrosAmount(
-      calories,
-      demandPercentage.protein,
-      demandPercentage.carbs,
-      demandPercentage.fat
-    );
+    if (!kcal) kcal = 0;
+    if (kcal <= 5000 && kcal >= -5000) {
+      const calories = demandAmount.kcal + parseInt(kcal);
+      const amount = calculateMacrosAmount(
+        calories,
+        demandPercentage.protein,
+        demandPercentage.carbs,
+        demandPercentage.fat
+      );
 
-    setCurrentDiaryDemand((prevState) => (prevState = { ...amount }));
+      setCurrentDiaryDemand((prevState) => (prevState = { ...amount }));
+    } else {
+      notify("Maximum adjustment is 5000 kcal");
+    }
   };
 
   const resetBuilder = () => {
@@ -98,87 +102,155 @@ const SelectedMeals = ({ margin }) => {
   };
 
   const handleCreateDiary = () => {
-    const length = diaryName.current.value.length;
+    const title = diaryTitle.current.value.trim();
 
-    if (3 <= length && length <= 25 && currentDiaryDemand.kcal > 0) {
+    if (
+      title &&
+      title.length >= 3 &&
+      title.length <= 25 &&
+      currentDiaryDemand.kcal > 0 &&
+      temporaryMeals.length !== 0
+    ) {
       dispatch(
         createDiary({
-          demand: currentDiaryDemand,
-          demandCoverage: progressData,
-          nutrients: currentMacrosAmount,
+          id: uuidv4(),
+          title: diaryTitle.current.value,
           meals: temporaryMeals,
-          name: diaryName.current.value,
+          nutrients: currentMacrosAmount,
+          calorieAdjustment: currentDiaryDemand.kcal - bmr,
         })
       );
+
+      dispatch(mealsRemoved());
+      dispatch(productsRemoved());
       resetBuilder();
+    } else {
+      notify("Something is missing");
+    }
+  };
+
+  const handleUpdateDiary = () => {
+    const title = diaryTitle.current.value.trim();
+
+    if (
+      title &&
+      title.length >= 3 &&
+      title.length <= 25 &&
+      currentDiaryDemand.kcal > 0 &&
+      temporaryMeals.length !== 0
+    ) {
+      dispatch(
+        updateDiary({
+          id: currentItemBackup._id,
+          diary: {
+            id: currentItemBackup.id,
+            title: diaryTitle.current.value,
+            meals: temporaryMeals,
+            nutrients: currentMacrosAmount,
+            calorieAdjustment: currentDiaryDemand.kcal - bmr,
+          },
+        })
+      );
+
+      dispatch(mealsRemoved());
+      dispatch(productsRemoved());
+      dispatch(currentItemRemoved());
+      resetBuilder();
+    } else {
+      notify("Something is missing");
     }
   };
 
   return (
     <>
-      {temporaryMeals.length !== 0 && (
-        <Container column margin={margin}>
-          <DiaryInput
-            text
-            ref={diaryName}
-            type="text"
-            placeholder={"Diary name (3 - 25 chars)"}
-          />
-          <Header>
-            <StyledSpan>Demand:&nbsp;{currentDiaryDemand.kcal} kcal</StyledSpan>
-            <StyledForm
-              onChange={handleSubmitCaloriesChange(calculateCurrentDiaryDemand)}
-              onSubmit={handleSubmitCaloriesChange(calculateCurrentDiaryDemand)}
-            >
-              <DiaryInput
-                id="caloric-adjustment"
-                placeholder={"+ - kcal"}
-                type="number"
-                {...registerCaloriesChange("kcal", {
-                  valueAsNumber: true,
-                  max: 5000,
-                  min: -5000,
-                  required: true,
-                  maxLength: 5,
-                  pattern: /\d+/,
-                })}
-              />
-            </StyledForm>
-          </Header>
-          <ProgressBarsContainer>
-            {Object.values(progressData).map(
-              ({ label, bgcolor, completed }, id) => (
-                <ProgressBar
-                  key={id}
-                  label={label}
-                  bgcolor={bgcolor}
-                  completed={completed}
-                />
-              )
-            )}
-          </ProgressBarsContainer>
-          <ListOfMeals meals={temporaryMeals} />
-          <ControlPanel justify={"left"}>
+      <Container column margin={margin}>
+        <ProgressBarsContainer>
+          {Object.keys(progressData).map((key, id) => (
+            <RoundChart
+              data={[progressData[key]]}
+              label={key}
+              size={"200px"}
+              nameSize={"10px"}
+              valueSize={"16px"}
+              offset={-4}
+              key={id}
+            />
+          ))}
+        </ProgressBarsContainer>
+        <DiaryInput
+          text
+          ref={diaryTitle}
+          type="text"
+          placeholder={"Diary title (3 - 25 length)"}
+        />
+        <Header>
+          <StyledForm
+            onChange={handleSubmitCaloriesChange(calculateCurrentDiaryDemand)}
+            onSubmit={handleSubmitCaloriesChange(calculateCurrentDiaryDemand)}
+          >
+            <DiaryInput
+              id="caloric-adjustment"
+              placeholder={"+ - kcal"}
+              type="number"
+              defaultValue={currentDiaryDemand.calorieAdjustment}
+              {...registerCaloriesChange("kcal", {
+                valueAsNumber: true,
+                pattern: /\d+/,
+              })}
+            />
+          </StyledForm>
+          <StyledSpan>Demand:&nbsp;{currentDiaryDemand.kcal} kcal</StyledSpan>
+        </Header>
+        <ListOfMeals meals={temporaryMeals} />
+        <ControlPanel border justify={"left"}>
+          <Button
+            add
+            margin={"0 0.5rem 0.5rem 0"}
+            onClick={() => {
+              editMode ? handleUpdateDiary() : handleCreateDiary();
+            }}
+          >
+            {editMode ? "Update" : "Save"}
+          </Button>
+          {editMode && (
             <Button
               save
               color={"black"}
               margin={"0 0.5rem 0.5rem 0"}
-              onClick={() => handleCreateDiary()}
-            >
-              Save
-            </Button>
-            <Button
-              remove
-              margin={"0 0.5rem 0.5rem 0"}
               onClick={() => {
-                dispatch(mealsRemoved());
+                dispatch(editedMealsAdded({ meals: currentItemBackup.meals }));
+                dispatch(
+                  currentItemSet({
+                    item: currentItemBackup,
+                    type: "diary",
+                  })
+                );
               }}
             >
-              Delete
+              Reset
             </Button>
-          </ControlPanel>
-        </Container>
-      )}
+          )}
+          <Button
+            remove
+            margin={"0 0.5rem 0.5rem 0"}
+            onClick={() => {
+              dispatch(mealsRemoved());
+            }}
+          >
+            Delete all
+          </Button>
+        </ControlPanel>
+        <Button
+          color={"black"}
+          margin={"1.5rem 0 0 0"}
+          align={"center"}
+          onClick={() => {
+            dispatch(currentItemRemoved());
+          }}
+        >
+          Close
+        </Button>
+      </Container>
     </>
   );
 };

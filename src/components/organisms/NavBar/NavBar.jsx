@@ -16,31 +16,31 @@ const NavBar = ({ handleLogout }) => {
     <Container>
       <NavSection>
         <NavigationTitle>
-          <NavigationLink href="/"> Daily Diet</NavigationLink>
+          <NavigationLink to="/"> Daily Diet</NavigationLink>
         </NavigationTitle>
       </NavSection>
       <NavSection>
         {currentUser && (
-          <NavigationLink href="diaries" weight={"Normal"} size={"1rem"}>
-            Diaries
+          <NavigationLink to="/diaries" weight={"Normal"} size={"1rem"}>
+            Inspirations
           </NavigationLink>
         )}
         {currentUser && (
-          <NavigationLink href="profile" weight={"Normal"} size={"1rem"}>
+          <NavigationLink to="/profile" weight={"Normal"} size={"1rem"}>
             Profile
           </NavigationLink>
         )}
         {!currentUser ? (
-          <NavigationLink href="/auth" weight={"Normal"} size={"1rem"}>
+          <NavigationLink to="/auth" weight={"Normal"} size={"1rem"}>
             Sign In
           </NavigationLink>
         ) : (
-          <NavigationLink>
+          <NavigationLink to="/">
             <GrLogout onClick={() => handleLogout()} size={"1rem"} />
           </NavigationLink>
         )}
         {currentUser && (
-          <NavigationLink href="preferences">
+          <NavigationLink to="/preferences">
             <BsGear size={"1rem"} />
           </NavigationLink>
         )}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
-  margin: 0.5rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
 `;
 
 export const StyledLabel = styled.label`
@@ -24,4 +24,11 @@ export const StyledTitle = styled.span`
   color: green;
   display: flex;
   font-size: ${({ main }) => (main ? "1.3rem" : "1rem")};
+`;
+
+export const ProgressBarsContainer = styled.ul`
+  display: flex;
+  flex-direction: ${({ column }) => (column ? "column" : "row")};
+  flex-wrap: wrap;
+  justify-content: center;
 `;

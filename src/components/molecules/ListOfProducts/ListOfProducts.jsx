@@ -1,12 +1,12 @@
 import { List, ListItem } from "./ListOfProductsStyles";
 import Product from "../../organisms/Product/Product";
 
-const ListOfProducts = ({ collection }) => {
+const ListOfProducts = ({ products }) => {
   return (
     <List>
-      {collection.map((elem) => (
-        <ListItem key={elem.id}>
-          <Product product={elem} />
+      {products.map((product) => (
+        <ListItem key={product.id}>
+          <Product product={product} />
         </ListItem>
       ))}
     </List>

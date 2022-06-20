@@ -1,28 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchBar from "../../organisms/SearchField/SearchBar";
-import Ingredients from "../../../data/ingredients.json";
 import SelectedMeals from "../../organisms/SelectedMeals/SelectedMeals";
 import SelectedProducts from "../../organisms/SelectedProducts/SelectedProducts";
 import Container from "../../templates/Container/Container";
 import Gallery from "../../organisms/Gallery/Gallery";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import Card2 from "../../molecules/Card2/Card2";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { diaryBuilderSteps } from "../../../data/constants";
 import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
 import { exampleMeals } from "../../../data/constants";
 import Title from "../../atoms/Title/Title";
+import { productsRemoved, mealsRemoved } from "../../../store/helpers";
 
 const DiaryBuilder = () => {
-  const { meals, temporaryProducts } = useSelector(
-    (state) => state.user.userItems
+  const { temporaryProducts, temporaryMeals } = useSelector(
+    (state) => state.user.helpers
   );
+  const { meals } = useSelector((state) => state.resources.meals);
+  const { products } = useSelector((state) => state.resources.products);
 
   const bmr = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
       ? state.user.authData.currentUser.profile.bmr
       : 0
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(productsRemoved());
+      dispatch(mealsRemoved());
+    };
+  }, [dispatch]);
 
   return (
     <Container id="diarybuilder" fillColor>
@@ -43,23 +54,23 @@ const DiaryBuilder = () => {
           </ControlPanel>
         }
       />
+      <Title text={"center"} titlePrimary={"Diary Creator"} />
+      {bmr && (
+        <>
+          {temporaryMeals.length !== 0 && <SelectedMeals />}
+          {temporaryProducts.length !== 0 && <SelectedProducts />}
+          <SearchBar
+            placeholder="Search (min. 3 chars)"
+            data={[...meals, ...products]}
+          />
+        </>
+      )}
       <Title text={"center"} titlePrimary={"Example Meals"} />
       <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
         {exampleMeals.map((meal) => (
           <ProductDetails key={meal.id} {...meal} />
         ))}
       </ControlPanel>
-      <Title text={"center"} titlePrimary={"Builder"} />
-      {bmr && (
-        <>
-          <SelectedMeals />
-          {temporaryProducts.length !== 0 && <SelectedProducts />}
-          <SearchBar
-            placeholder="Search (min. 3 chars)"
-            data={[...Ingredients, ...meals]}
-          />
-        </>
-      )}
     </Container>
   );
 };

@@ -8,7 +8,7 @@ import {
   Wrapper,
   IconContainer,
 } from "./SearchBarStyles";
-import { productAdded } from "../../../store/userItems";
+import { productAdded } from "../../../store/helpers";
 import {
   GiGrainBundle,
   GiFruitBowl,
@@ -27,7 +27,7 @@ const SearchBar = ({ data, placeholder, margin }) => {
     if (e.target.value.length >= 3) {
       const searchData = e.target.value;
       const newFilter = data.filter((value) => {
-        return value.name.toLowerCase().includes(searchData.toLowerCase());
+        return value.title.toLowerCase().includes(searchData.toLowerCase());
       });
       if (searchData === "") {
         setFilteredData([]);
@@ -83,10 +83,10 @@ const SearchBar = ({ data, placeholder, margin }) => {
                   dispatch(productAdded({ product: item }));
                   setFilteredData([]);
                 }}
-                key={item.id}
+                key={item._id}
               >
                 <IconContainer>{renderIcon(item.category)}</IconContainer>
-                {item.name}
+                {item.title}
               </StyledListItem>
             ))}
           </SearchList>

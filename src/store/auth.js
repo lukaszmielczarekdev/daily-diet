@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   users: [],
 };
 
-export const getUsers = createAsyncThunk("userItems/getUsers", async () => {
+export const getUsers = createAsyncThunk("auth/getUsers", async () => {
   try {
     const { data } = await api.fetchUsers();
     return data;
@@ -95,9 +95,9 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
+        window.location.href = "/";
       }
       state.status = "success";
-      window.location = "/";
     },
     [signin.rejected]: (state) => {
       state.status = "failed";
@@ -114,9 +114,9 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
+        window.location.href = "/";
       }
       state.status = "success";
-      window.location = "/";
     },
     [externalSignin.rejected]: (state) => {
       state.status = "failed";
@@ -132,9 +132,9 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
+        window.location.href = "/";
       }
       state.status = "success";
-      window.location = "/";
     },
     [signup.rejected]: (state) => {
       state.status = "failed";
@@ -145,7 +145,7 @@ const slice = createSlice({
     [updateProfile.fulfilled]: (state, action) => {
       state.currentUser.profile = action.payload;
       state.status = "success";
-      notify("Profile updated.");
+      notify("Profile updated");
     },
     [updateProfile.rejected]: (state) => {
       state.status = "failed";

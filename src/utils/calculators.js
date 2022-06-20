@@ -1,29 +1,49 @@
-import { cloneDeep, round } from "lodash";
-import Ingredients from "../data/ingredients.json";
+import { round } from "lodash";
 
 export const calculatePercentage = (number1, number2) => {
   const result = (number1 / number2) * 100;
 
   return result >= 0 && isFinite(result) && typeof result === "number"
-    ? parseFloat(result)
+    ? parseFloat(round(result))
     : 0;
 };
 
-export const calculateMacrosPercentage = (
-  demandAmount,
-  currentAmount,
-  template
-) => {
+export const calculateMacrosPercentage = (demandAmount, currentAmount) => {
   if (!demandAmount) {
     demandAmount = 0;
   }
-  const completed = cloneDeep(template);
+
+  const coverage = { kcal: 0, protein: 0, carbs: 0, fat: 0 };
   for (let key of Object.keys(demandAmount)) {
-    completed[key].completed = round(
+    coverage[key] = round(
       calculatePercentage(currentAmount[key], demandAmount[key])
     );
   }
-  return completed;
+  return coverage;
+};
+
+export const calculateDemandCoverage = (
+  bmr,
+  demandPercentage,
+  currentAmount,
+  calorieAdjustment
+) => {
+  const calculatedDemand = calculateMacrosAmount(
+    bmr + calorieAdjustment,
+    demandPercentage.protein,
+    demandPercentage.carbs,
+    demandPercentage.fat
+  );
+
+  const coverage = { kcal: 0, protein: 0, carbs: 0, fat: 0 };
+
+  for (let key of Object.keys(coverage)) {
+    coverage[key] = round(
+      calculatePercentage(currentAmount[key], calculatedDemand[key])
+    );
+  }
+
+  return coverage;
 };
 
 export const calculateMacrosAmount = (
@@ -47,7 +67,10 @@ export const calculateMacrosAmount = (
 };
 
 export const calculateMacrosForProducts = (products) => {
-  return products.reduce(
+  const unpackedNutrients = [];
+  products.map((product) => unpackedNutrients.push(product.nutrients));
+
+  return unpackedNutrients.reduce(
     (acc, elem) => {
       return {
         kcal: round(acc.kcal + elem.kcal, 2),
@@ -61,6 +84,9 @@ export const calculateMacrosForProducts = (products) => {
 };
 
 export const calculateMacrosForMeals = (meals) => {
+  const unpackedNutrients = [];
+  meals.map((meal) => unpackedNutrients.push(meal.nutrients));
+
   return meals.reduce(
     (acc, elem) => {
       return {
@@ -72,19 +98,4 @@ export const calculateMacrosForMeals = (meals) => {
     },
     { kcal: 0, protein: 0, carbs: 0, fat: 0 }
   );
-};
-
-export const calculateProductAmount = (products, productId, amount) => {
-  const productsCopy = cloneDeep(products);
-  const ingredients = Ingredients;
-  const selectedProduct = productsCopy.find((item) => item.id === productId);
-
-  const templateProduct = ingredients.find(
-    (product) => product.name === selectedProduct.name
-  );
-
-  for (let elem of ["kcal", "protein", "carbs", "fat", "amount"]) {
-    selectedProduct[elem] = templateProduct[elem] * amount;
-  }
-  return productsCopy;
 };

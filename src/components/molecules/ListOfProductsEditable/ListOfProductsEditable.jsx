@@ -6,14 +6,17 @@ const ListOfProductsEditable = ({
   calculateAmount,
   mealId,
   removeProduct,
+  mealIndex,
 }) => {
   return (
     <List>
-      {collection.map((elem) => (
-        <ListItem key={elem.id}>
+      {collection.map((elem, index) => (
+        <ListItem key={index}>
           <ProductEditable
             mealId={mealId}
             product={elem}
+            productIndex={index}
+            mealIndex={mealIndex}
             products={collection}
             calculateAmount={calculateAmount}
             removeProduct={removeProduct}

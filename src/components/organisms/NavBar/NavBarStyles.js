@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ export const IconsSection = styled.div`
   justify-content: ${(props) => (props.center ? "center" : "")};
 `;
 
-export const NavigationLink = styled.a`
+export const NavigationLink = styled(NavLink)`
   color: ${({ theme }) => theme.colors.dark};
   font-size: ${({ size }) => (size ? size : "1.2rem")};
   font-weight: ${({ weight }) => (weight ? weight : "bold")};

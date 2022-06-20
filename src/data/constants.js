@@ -13,8 +13,8 @@ import { MdFitnessCenter } from "react-icons/md";
 import { BsBook } from "react-icons/bs";
 import { BiEdit, BiLike, BiSearchAlt } from "react-icons/bi";
 import { MdAccessTime } from "react-icons/md";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { GiMeal } from "react-icons/gi";
+import { IoFastFoodOutline, IoRestaurantOutline } from "react-icons/io5";
+import { GrDocumentText } from "react-icons/gr";
 
 export const features = [
   {
@@ -68,13 +68,13 @@ export const features = [
 export const attributes = [
   {
     id: 0,
-    icon: <IoFitnessOutline size={"100%"} color="red" />,
+    icon: <IoFitnessOutline size={"100%"} color="green" />,
     primary: "Weight",
     secondary: "control",
   },
   {
     id: 1,
-    icon: <MdFitnessCenter size={"100%"} color="green" />,
+    icon: <MdFitnessCenter size={"100%"} color="red" />,
     primary: "Workout",
     secondary: "plan",
   },
@@ -89,13 +89,13 @@ export const attributes = [
 export const diaryAttributes = [
   {
     id: 0,
-    icon: <BiEdit size={"100%"} color="red" />,
+    icon: <BiEdit size={"100%"} color="green" />,
     primary: "Highly",
     secondary: "customizable",
   },
   {
     id: 1,
-    icon: <MdAccessTime size={"100%"} color="green" />,
+    icon: <MdAccessTime size={"100%"} color="red" />,
     primary: "Easily",
     secondary: "accessible",
   },
@@ -134,18 +134,24 @@ export const meals = [
 export const userItemCategories = [
   {
     id: 0,
-    image: salad5,
+    icon: <GrDocumentText size={"100%"} />,
+    color: "green",
     primary: "Diaries",
+    name: "diary",
   },
   {
     id: 1,
-    image: salad3,
+    icon: <IoRestaurantOutline size={"100%"} />,
+    color: "red",
     primary: "Meals",
+    name: "meal",
   },
   {
     id: 2,
-    image: salad2,
+    icon: <IoFastFoodOutline size={"100%"} />,
+    color: "yellow",
     primary: "Products",
+    name: "product",
   },
 ];
 
@@ -183,7 +189,7 @@ export const exampleMeals = [
 export const tips = [
   {
     id: 0,
-    color: "red",
+    color: "green",
     icon: <IoFastFoodOutline size={"100%"} />,
     header: "salad is good",
     description:
@@ -191,7 +197,7 @@ export const tips = [
   },
   {
     id: 1,
-    color: "green",
+    color: "red",
     icon: <IoFastFoodOutline size={"100%"} />,
     header: "salad is good",
     description:
@@ -210,7 +216,7 @@ export const tips = [
 export const steps = [
   {
     id: 0,
-    color: "red",
+    color: "green",
     icon: <IoFastFoodOutline size={"100%"} />,
     header: "Calculate Your BMR",
     description:
@@ -218,7 +224,7 @@ export const steps = [
   },
   {
     id: 1,
-    color: "green",
+    color: "red",
     icon: <IoFastFoodOutline size={"100%"} />,
     header: "Create Your Diet",
     description: "Diet diaries allow you to better control your diet.",
@@ -250,33 +256,33 @@ export const diaryBuilderSteps = [
   },
   {
     id: 1,
-    color: "yellow",
+    color: "red",
     icon: <BiLike size={"100%"} />,
     header: "Choose the Product You Like",
     description: "The product database is constantly expanded with new items.",
   },
   {
     id: 2,
-    color: "green",
+    color: "yellow",
     icon: <RiNumbersLine size={"100%"} />,
     header: "Enter Quantity of the Product",
     description: "The amount of a given product is counted in grams.",
   },
   {
     id: 3,
-    color: "yellow",
-    icon: <GiMeal size={"100%"} />,
+    color: "green",
+    icon: <IoRestaurantOutline size={"100%"} />,
     header: "Build a Meal From Selected Products",
     description:
       "You can build meals from selected products and then add them to your diary.",
   },
 ];
 
-export const placeholders = [
+export const diaryPlaceholders = [
   {
     _id: -1,
-    date: null,
-    name: "Add New Diary",
+    createdAt: null,
+    title: "Add New Diary",
     demand: "",
     meals: [],
     nutrients: "",
@@ -284,8 +290,8 @@ export const placeholders = [
   },
   {
     _id: -2,
-    date: null,
-    name: "Add New Diary",
+    createdAt: null,
+    title: "Add New Diary",
     demand: "",
     meals: [],
     nutrients: "",
@@ -293,12 +299,62 @@ export const placeholders = [
   },
   {
     _id: -3,
-    date: null,
-    name: "Add New Diary",
+    createdAt: null,
+    title: "Add New Diary",
     demand: "",
     meals: [],
     nutrients: "",
     demandCoverage: { kcal: { completed: "" } },
+  },
+];
+
+export const mealPlaceholders = [
+  {
+    _id: -1,
+    createdAt: null,
+    title: "Add New Meal",
+    products: [],
+    nutrients: "",
+  },
+  {
+    _id: -2,
+    createdAt: null,
+    title: "Add New Meal",
+    products: [],
+    nutrients: "",
+  },
+  {
+    _id: -3,
+    createdAt: null,
+    title: "Add New Meal",
+    products: [],
+    nutrients: "",
+  },
+];
+export const productPlaceholders = [
+  {
+    _id: -11,
+    createdAt: "",
+    title: "Add New Product",
+    category: "",
+    nutrients: { kcal: "", protein: "", carbs: "", fat: "" },
+    amount: "",
+  },
+  {
+    _id: -12,
+    createdAt: "",
+    title: "Add New Product",
+    category: "",
+    nutrients: { kcal: "", protein: "", carbs: "", fat: "" },
+    amount: "",
+  },
+  {
+    _id: -13,
+    createdAt: "",
+    title: "Add New Product",
+    category: "",
+    nutrients: { kcal: "", protein: "", carbs: "", fat: "" },
+    amount: "",
   },
 ];
 

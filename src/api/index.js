@@ -25,7 +25,13 @@ export const updateUserProfile = (id, profile) =>
   API.patch(`/user/${id}`, profile);
 
 export const fetchProducts = () => API.get("/products");
-export const createProduct = (newDiary) => API.post("/products", newDiary);
-export const updateProduct = (id, updatedDiary) =>
-  API.patch(`/products/${id}`, updatedDiary);
+export const createProduct = (newProduct) => API.post("/products", newProduct);
+export const updateProduct = (id, updatedProduct) =>
+  API.patch(`/products/${id}`, updatedProduct);
 export const deleteProduct = (id) => API.delete(`/products/${id}`);
+
+export const fetchMeals = () => API.get("/meals");
+export const createMeal = (newMeal) => API.post("/meals", newMeal);
+export const updateMeal = (id, updatedMeal) =>
+  API.patch(`/meals/${id}`, updatedMeal);
+export const deleteMeal = (id) => API.delete(`/meals/${id}`);

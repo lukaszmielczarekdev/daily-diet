@@ -12,9 +12,9 @@ const ProductReadOnly = ({ product }) => {
     <ProductContainer>
       <ProductInfo>{product.amount + "g"}</ProductInfo>
       <SummaryContainer>
-        <ProductTitle>{product.name}</ProductTitle>
+        <ProductTitle>{product.title}</ProductTitle>
         <Summary
-          data={product}
+          data={product.nutrients}
           fontSize="0.9rem"
           color={"green"}
           margin={"0"}

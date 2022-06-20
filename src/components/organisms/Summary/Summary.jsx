@@ -4,8 +4,6 @@ import { List, Element, Container, Title } from "./SummaryStyles";
 const Summary = (props) => {
   const labels = ["kcal", "protein", "carbs", "fat"];
 
-  // memo hook too many rerenders
-
   const unpackData = (items) => {
     const arr = [];
 
@@ -22,8 +20,8 @@ const Summary = (props) => {
   };
 
   return (
-    <Container>
-      <Title>{props.name}</Title>
+    <Container {...props}>
+      <Title>{props.title}</Title>
       <List {...props}>{unpackData(props.data)}</List>
     </Container>
   );

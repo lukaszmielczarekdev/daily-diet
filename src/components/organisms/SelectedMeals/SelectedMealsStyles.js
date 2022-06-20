@@ -46,7 +46,7 @@ export const StyledSpan = styled.span`
 `;
 
 export const DiaryInput = styled.input`
-  width: ${({ text }) => (text ? "50%" : "100px")};
+  width: ${({ text }) => (text ? "100%" : "100px")};
   font-size: 1rem;
   padding: 0.5rem;
   margin: 0.5rem 0;
