@@ -1,72 +1,97 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 
-export const Container = styled.div`
+export const Container = styled.nav`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  column-gap: 0.5rem;
-  padding: 2.5rem;
-  margin: auto;
-  height: 6vh;
+  width: 100%;
   max-width: 1280px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  margin: auto;
+`;
+
+export const NavLogo = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const NavAuth = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    display: none;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    display: none;
+  }
+`;
+
+export const NavLinks = styled.ul`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    display: none;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    display: none;
+  }
+`;
+
+// mobile
+export const NavHamburgerMenu = styled.div`
+  display: ${({ mobile }) => (mobile ? "none" : "flex")};
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    display: ${({ mobile }) => (mobile ? "flex" : "none")};
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    display: ${({ mobile }) => (mobile ? "flex" : "none")};
+  }
+`;
+
+export const NavLinksHamburger = styled.ul``;
+
+export const NavOverlay = styled.div`
+  display: ${({ isOpened }) => (isOpened ? "flex" : "none")};
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    column-gap: 0.2rem;
-    row-gap: 0.2rem;
-    padding: 2rem 0.5rem;
-  }
+  transition: 0.5s ease;
+  flex-direction: column;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
 `;
 
-export const NavSection = styled.div`
-  display: flex;
-  align-content: center;
-  justify-content: space-around;
+export const CloseIcon = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 35px;
 `;
 
-export const NavigationTitle = styled.div`
-  margin: 1rem;
-  font-size: 1.2rem;
-  align-content: center;
+export const HamburgerIcon = styled.div`
+  cursor: pointer;
 
-  @media ${(props) => props.theme.breakpoints.sm} {
-    font-size: 0.8rem;
-    margin: 0.5rem;
+  @media ${({ theme }) => theme.breakpoints.md} {
+    display: flex;
   }
 
-  @media ${(props) => props.theme.breakpoints.smlandscape} {
-    font-size: 0.8rem;
-    margin: 0.5rem;
-  }
-`;
-
-export const IconsSection = styled.div`
-  display: flex;
-  align-content: center;
-  justify-content: ${(props) => (props.center ? "center" : "")};
-`;
-
-export const NavigationLink = styled(NavLink)`
-  color: ${({ theme }) => theme.colors.dark};
-  font-size: ${({ size }) => (size ? size : "1.2rem")};
-  font-weight: ${({ weight }) => (weight ? weight : "bold")};
-  transition: 0.4s ease;
-  margin: 1rem;
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  @media ${(props) => props.theme.breakpoints.smlandscape} {
-    font-size: 0.8rem;
-    margin: 0.5rem;
-  }
-
-  @media ${(props) => props.theme.breakpoints.sm} {
-    font-size: 0.8rem;
-    margin: 0.5rem;
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    display: flex;
   }
 `;
