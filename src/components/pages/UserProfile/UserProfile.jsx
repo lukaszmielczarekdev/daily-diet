@@ -25,6 +25,7 @@ import {
   currentItemRemoved,
   productsRemoved,
   mealsRemoved,
+  itemCreateModeRemoved,
 } from "../../../store/helpers";
 
 const UserProfile = () => {
@@ -35,8 +36,13 @@ const UserProfile = () => {
   const { products } = useSelector((state) => state.resources.products);
   const { status } = useSelector((state) => state.resources.diaries);
 
-  const { currentItem, currentItemType, currentCategory, itemEditMode } =
-    useSelector((state) => state.user.helpers);
+  const {
+    currentItem,
+    currentItemType,
+    currentCategory,
+    itemEditMode,
+    itemCreateMode,
+  } = useSelector((state) => state.user.helpers);
 
   useEffect(() => {
     return () => {
@@ -76,7 +82,7 @@ const UserProfile = () => {
       <Gallery
         text={"center"}
         justify={"center"}
-        padding={"2rem 3rem 3rem 3rem"}
+        padding={"2rem 3rem 0 3rem"}
         titlePrimary={"Your"}
         titleSecondary={"Created items"}
         children={
@@ -85,8 +91,10 @@ const UserProfile = () => {
               <MenuItem
                 key={category.id}
                 {...category}
+                active={currentCategory === category.name}
                 onClick={() => {
                   dispatch(currentCategorySet(category.name));
+                  dispatch(itemCreateModeRemoved());
                   dispatch(currentItemRemoved());
                   dispatch(productsRemoved());
                   dispatch(mealsRemoved());
@@ -97,7 +105,7 @@ const UserProfile = () => {
         }
       />
       {currentCategory === "diary" && status !== "loading" && (
-        <ControlPanel margin={"1rem 0 0 0"}>
+        <ControlPanel margin={"0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(diaries) && (
             <Carousel
@@ -112,7 +120,7 @@ const UserProfile = () => {
         </ControlPanel>
       )}
       {currentCategory === "meal" && status !== "loading" && (
-        <ControlPanel margin={"1rem 0 0 0"}>
+        <ControlPanel margin={"0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(meals) && (
             <Carousel
@@ -127,7 +135,7 @@ const UserProfile = () => {
         </ControlPanel>
       )}
       {currentCategory === "product" && status !== "loading" && (
-        <ControlPanel margin={"1rem 0 0 0"}>
+        <ControlPanel margin={"0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(products) && (
             <Carousel
@@ -141,6 +149,7 @@ const UserProfile = () => {
           {((currentItem && currentItemType === "product") || itemEditMode) && (
             <ProductCreator editMode />
           )}
+          {itemCreateMode && <ProductCreator />}
         </ControlPanel>
       )}
     </Container>

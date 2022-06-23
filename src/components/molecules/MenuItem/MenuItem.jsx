@@ -1,8 +1,6 @@
 import {
   Wrapper,
-  // ImageContainer,
   InfoContainer,
-  // StyledImage,
   IconContainer,
   Header,
   Span,
@@ -16,9 +14,10 @@ const MenuItem = ({
   color,
   icon,
   onClick,
+  active,
 }) => {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper active={active} onClick={onClick}>
       <IconContainer color={color}>{icon}</IconContainer>
       <InfoContainer>
         <Span>{primary}</Span>

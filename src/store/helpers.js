@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   currentItemType: null,
   currentItemBackup: null,
   itemEditMode: null,
+  itemCreateMode: null,
   currentCategory: null,
 };
 
@@ -64,6 +65,7 @@ const slice = createSlice({
       state.currentItemType = action.payload.type;
       state.currentItemBackup = action.payload.item;
       state.itemEditMode = null;
+      state.itemCreateMode = null;
     },
 
     currentItemRemoved: (state) => {
@@ -75,10 +77,23 @@ const slice = createSlice({
 
     itemEditModeSet: (state) => {
       state.itemEditMode = true;
+      state.itemCreateMode = null;
     },
 
     itemEditModeRemoved: (state) => {
       state.itemEditMode = null;
+    },
+
+    itemCreateModeSet: (state) => {
+      state.itemCreateMode = true;
+      state.currentItem = null;
+      state.currentItemType = null;
+      state.currentItemBackup = null;
+      state.itemEditMode = null;
+    },
+
+    itemCreateModeRemoved: (state) => {
+      state.itemCreateMode = null;
     },
 
     productAmountCalculated: (state, action) => {
@@ -151,6 +166,8 @@ export const {
   currentItemRemoved,
   itemEditModeSet,
   itemEditModeRemoved,
+  itemCreateModeSet,
+  itemCreateModeRemoved,
   currentCategorySet,
   currentCategoryRemoved,
 } = slice.actions;

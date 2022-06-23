@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import RoundChart from "../RoundChart/RoundChart";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { calculatePercentage } from "../../../utils/calculators";
-import { currentItemSet, itemEditModeSet } from "../../../store/helpers";
+import { currentItemSet, itemCreateModeSet } from "../../../store/helpers";
 
 const ProductCard = ({
   product,
@@ -28,7 +28,7 @@ const ProductCard = ({
               dispatch(currentItemSet({ item: product, type: "product" }));
             }
           : () => {
-              dispatch(itemEditModeSet());
+              dispatch(itemCreateModeSet());
             }
       }
       header={title}

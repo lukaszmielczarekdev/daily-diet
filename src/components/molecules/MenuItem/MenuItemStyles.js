@@ -6,6 +6,8 @@ export const Wrapper = styled.article`
   align-items: center;
   margin: 1rem;
   cursor: pointer;
+  padding-bottom: 1rem;
+  border-bottom: ${({ active }) => (active ? "1px solid lightgray" : "")};
 
   transition: all 0.2s ease-in-out;
   :hover {

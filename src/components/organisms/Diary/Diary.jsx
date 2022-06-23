@@ -23,7 +23,6 @@ import {
   calculateMacrosForMeals,
 } from "../../../utils/calculators";
 import {
-  currentCategoryRemoved,
   currentItemRemoved,
   itemEditModeSet,
   editedMealsAdded,
@@ -177,7 +176,6 @@ const Diary = ({ editMode }) => {
                 align={"center"}
                 onClick={() => {
                   dispatch(currentItemRemoved());
-                  dispatch(currentCategoryRemoved());
                   dispatch(productsRemoved());
                   dispatch(mealsRemoved());
                 }}

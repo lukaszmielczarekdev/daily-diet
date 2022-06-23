@@ -25,7 +25,6 @@ import {
   itemEditModeSet,
   currentItemRemoved,
   editedProductsAdded,
-  currentCategoryRemoved,
   productsRemoved,
 } from "../../../store/helpers";
 
@@ -174,7 +173,6 @@ const ProductCreator = ({ editMode }) => {
                   align={"center"}
                   onClick={() => {
                     dispatch(currentItemRemoved());
-                    dispatch(currentCategoryRemoved());
                     dispatch(productsRemoved());
                   }}
                 >
@@ -201,6 +199,7 @@ const ProductCreator = ({ editMode }) => {
                     })}
                   />
                   <Input
+                    text
                     type="number"
                     placeholder={
                       itemEditMode
@@ -217,6 +216,7 @@ const ProductCreator = ({ editMode }) => {
                     })}
                   />
                   <Input
+                    text
                     type="number"
                     placeholder={
                       itemEditMode
@@ -233,6 +233,7 @@ const ProductCreator = ({ editMode }) => {
                     })}
                   />
                   <Input
+                    text
                     type="number"
                     placeholder={
                       itemEditMode
@@ -249,6 +250,7 @@ const ProductCreator = ({ editMode }) => {
                     })}
                   />
                   <Input
+                    text
                     type="number"
                     placeholder={
                       itemEditMode
@@ -278,7 +280,9 @@ const ProductCreator = ({ editMode }) => {
                     <option value={"drink"}>Drink</option>
                     <option value={"other"}>Other</option>
                   </Select>
-                  <CustomButton type="submit">Create</CustomButton>
+                  <CustomButton type="submit">
+                    {itemEditMode ? "Update" : "Create"}
+                  </CustomButton>
                 </Form>
                 <Button
                   color={"black"}
@@ -286,7 +290,6 @@ const ProductCreator = ({ editMode }) => {
                   align={"center"}
                   onClick={() => {
                     dispatch(currentItemRemoved());
-                    dispatch(currentCategoryRemoved());
                     dispatch(productsRemoved());
                   }}
                 >
