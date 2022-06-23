@@ -8,7 +8,6 @@ export const FooterContainer = styled.section`
   align-items: center;
   margin: 1rem;
   gap: 1rem;
-  flex-wrap: wrap;
   width: 100%;
   border-bottom: 1px solid #eaeaea;
 
@@ -17,7 +16,6 @@ export const FooterContainer = styled.section`
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1rem;
     gap: 1rem 5rem;
   }
 
@@ -37,8 +35,16 @@ export const Wrapper = styled.div`
   align-items: center;
   margin: auto;
 
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 2rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 2rem 1rem;
+  }
+
   @media ${({ theme }) => theme.breakpoints.sm} {
     flex-direction: column;
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 `;

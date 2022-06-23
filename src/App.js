@@ -7,7 +7,6 @@ import ThemeManager from "./themes/themeManager";
 import { AppContainer } from "./AppStyles";
 import UserDiaries from "./components/pages/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
-import Preferences from "./components/pages/Preferences/Preferences";
 import UserProfile from "./components/pages/UserProfile/UserProfile";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
@@ -69,7 +68,6 @@ const App = () => {
               <Route path="/" exact component={Articles} />
             </Route>
             <Route path="/profile" exact component={UserProfile} />
-            <Route path="/preferences" component={Preferences} />
             <Route path="/diaries" component={UserDiaries} />
             <Route path="/builder" component={DiaryBuilder} />
             <Route path="/auth" component={Auth} />

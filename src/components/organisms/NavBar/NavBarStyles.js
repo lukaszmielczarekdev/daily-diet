@@ -6,8 +6,21 @@ export const Container = styled.nav`
   max-width: 1280px;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 2rem 4rem;
+  justify-self: center;
   margin: auto;
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 1.5rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 1.5rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1.5rem 1rem;
+  }
 `;
 
 export const NavLogo = styled.div`
@@ -48,6 +61,7 @@ export const NavLinks = styled.ul`
 // mobile
 export const NavHamburgerMenu = styled.div`
   display: ${({ mobile }) => (mobile ? "none" : "flex")};
+  padding-right: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.md} {
     display: ${({ mobile }) => (mobile ? "flex" : "none")};

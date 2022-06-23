@@ -34,11 +34,10 @@ const NavBar = ({ handleLogout }) => {
       <NavLinks>
         <LinkItem to="/" children={"Home"} />
         {currentUser && <LinkItem to="/diaries" children={"Inspirations"} />}
-        {currentUser && <LinkItem to="/profile" children={"Profile"} />}
-        {currentUser && <LinkItem to="/preferences" children={"Preferences"} />}
         <LinkItem to="/" children={"About"} />
       </NavLinks>
       <NavAuth>
+        {currentUser && <LinkItem to="/profile" children={"Profile"} />}
         {!currentUser ? (
           <LinkItem
             add
@@ -73,43 +72,34 @@ const NavBar = ({ handleLogout }) => {
               to="/"
               onClick={() => setMenuOpened(false)}
               children={"Home"}
-              margin={"1.8rem"}
-              size={"1.5rem"}
+              margin={"1.6rem"}
+              size={"1.2rem"}
             />
             {currentUser && (
               <LinkItem
                 to="/diaries"
                 onClick={() => setMenuOpened(false)}
                 children={"Inspirations"}
-                margin={"1.8rem"}
-                size={"1.5rem"}
-              />
-            )}
-            {currentUser && (
-              <LinkItem
-                to="/profile"
-                onClick={() => setMenuOpened(false)}
-                children={"Profile"}
-                margin={"1.8rem"}
-                size={"1.5rem"}
-              />
-            )}
-            {currentUser && (
-              <LinkItem
-                to="/preferences"
-                onClick={() => setMenuOpened(false)}
-                children={"Preferences"}
-                margin={"1.8rem"}
-                size={"1.5rem"}
+                margin={"1.6rem"}
+                size={"1.2rem"}
               />
             )}
             <LinkItem
               to="/"
               onClick={() => setMenuOpened(false)}
               children={"About"}
-              margin={"1.8rem"}
-              size={"1.5rem"}
+              margin={"1.6rem"}
+              size={"1.2rem"}
             />
+            {currentUser && (
+              <LinkItem
+                to="/profile"
+                onClick={() => setMenuOpened(false)}
+                children={"Profile"}
+                margin={"2.5rem 2rem 0 2rem"}
+                size={"1.2rem"}
+              />
+            )}
             {!currentUser ? (
               <LinkItem
                 add
@@ -119,8 +109,8 @@ const NavBar = ({ handleLogout }) => {
                 to="/auth"
                 onClick={() => setMenuOpened(false)}
                 children={"Sign In / Register"}
-                margin={"2.5rem 2rem 0 2rem"}
-                size={"1.2rem"}
+                margin={"1.6rem"}
+                size={"1rem"}
               />
             ) : (
               <LinkItem
@@ -134,8 +124,8 @@ const NavBar = ({ handleLogout }) => {
                   handleLogout();
                 }}
                 children={"Logout"}
-                margin={"2.5rem 2rem 0 2rem"}
-                size={"1.2rem"}
+                margin={"1.6rem"}
+                size={"1rem"}
               />
             )}
           </NavLinksHamburger>
