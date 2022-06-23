@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input`
-  width: ${({ text }) => (text ? "200px" : "100px")};
+  width: ${({ text }) => (text ? "200px" : "120px")};
   margin: 0.8rem 0;
   font-size: 0.8rem;
   padding: 0.5rem;

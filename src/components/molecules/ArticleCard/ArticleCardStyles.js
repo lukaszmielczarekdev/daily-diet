@@ -4,21 +4,17 @@ export const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 350px;
+  max-width: 45%;
   align-items: center;
   margin: 1rem 0;
   cursor: pointer;
 
-  @media ${({ theme }) => theme.breakpoints.lg} {
-    max-width: 250px;
-  }
-
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    max-width: 300px;
+    max-width: 45%;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    max-width: 300px;
+    max-width: 100%;
   }
 `;
 

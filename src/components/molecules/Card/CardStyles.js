@@ -7,6 +7,10 @@ export const Wrapper = styled.article`
   align-items: center;
   max-width: 350px;
   margin: 1rem;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    max-width: 300px;
+  }
 `;
 
 export const IconContainer = styled.div`

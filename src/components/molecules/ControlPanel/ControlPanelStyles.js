@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: ${({ align }) => (align ? `${align}` : "center")};
   justify-content: ${({ justify }) => (justify ? justify : "center")};
   max-width: 1280px;
+  column-gap: 0.5rem;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     width: 100%;

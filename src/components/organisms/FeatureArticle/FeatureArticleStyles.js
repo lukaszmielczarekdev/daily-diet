@@ -10,7 +10,7 @@ export const Wrapper = styled.article`
   margin: 0;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {

@@ -2,7 +2,6 @@ import React from "react";
 import Container from "../../templates/Container/Container";
 import Gallery from "../../organisms/Gallery/Gallery";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
-import Link from "../../atoms/Link/Link";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 import { tipsAndTricksArticles } from "../../../data/constants";
 
@@ -27,9 +26,6 @@ const Articles = () => {
                 <ArticleCard {...article} key={article.id} />
               ))}
             </ControlPanel>
-            <Link to={"/"} color={"green"}>
-              All Articles
-            </Link>
           </>
         }
       />

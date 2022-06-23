@@ -41,7 +41,7 @@ export const InnerContainer = styled.div`
     if (backgroundRight) return `url(${backgroundRight}) center no-repeat`;
     else return `transparent`;
   }};
-  background-size: contain;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: ${({ center }) => (center ? "center" : "")};

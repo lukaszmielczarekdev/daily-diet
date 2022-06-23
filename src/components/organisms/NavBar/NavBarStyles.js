@@ -29,6 +29,19 @@ export const NavLogo = styled.div`
   align-items: center;
 `;
 
+export const Logo = styled.img`
+  margin-left: 1rem;
+  width: 40px;
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    margin-left: 0;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    margin-left: 1rem;
+  }
+`;
+
 export const NavAuth = styled.div`
   display: flex;
   justify-content: flex-end;

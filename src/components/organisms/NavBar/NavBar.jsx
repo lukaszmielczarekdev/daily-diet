@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Container,
   NavLogo,
+  Logo,
   NavLinks,
   NavAuth,
   NavHamburgerMenu,
@@ -10,7 +11,7 @@ import {
   CloseIcon,
 } from "./NavBarStyles";
 import { useSelector } from "react-redux";
-
+import logo from "../../../assets/Images/website_logo.png";
 import LinkItem from "../../molecules/LinkItem/LinkItem";
 
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -23,6 +24,7 @@ const NavBar = ({ handleLogout }) => {
   return (
     <Container>
       <NavLogo>
+        <Logo src={logo} alt={"website logo"} />
         <LinkItem
           to="/"
           margin={"0"}
