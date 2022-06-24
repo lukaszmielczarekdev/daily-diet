@@ -26,6 +26,7 @@ import {
   currentItemRemoved,
   editedProductsAdded,
   productsRemoved,
+  itemCreateModeRemoved,
 } from "../../../store/helpers";
 
 const ProductCreator = ({ editMode }) => {
@@ -114,6 +115,7 @@ const ProductCreator = ({ editMode }) => {
     );
     dispatch(productsRemoved());
     dispatch(currentItemRemoved());
+    dispatch(itemCreateModeRemoved());
   };
 
   return (
@@ -291,6 +293,7 @@ const ProductCreator = ({ editMode }) => {
                   onClick={() => {
                     dispatch(currentItemRemoved());
                     dispatch(productsRemoved());
+                    dispatch(itemCreateModeRemoved());
                   }}
                 >
                   Close

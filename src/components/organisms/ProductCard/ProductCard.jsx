@@ -38,13 +38,18 @@ const ProductCard = ({
           <RoundChart
             data={[calculatePercentage(nutrients.kcal, demandAmount.kcal)]}
             label={"KCAL"}
-            size={"260px"}
-            nameSize={"12px"}
-            valueSize={"25px"}
-            offset={-10}
+            size={"90%"}
+            nameSize={"14px"}
+            valueSize={"18px"}
+            offset={-12}
+            ringSize={"73%"}
           />
         ) : (
-          <IoAddCircleOutline size={"150px"} color={"rgb(125, 215, 120)"} />
+          <>
+            <br />
+            <br />
+            <IoAddCircleOutline size={"150px"} color={"rgb(125, 215, 120)"} />
+          </>
         )
       }
     />

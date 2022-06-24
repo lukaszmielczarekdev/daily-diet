@@ -5,8 +5,8 @@ export const Wrapper = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
-  padding: 1rem 0.5rem;
+  margin: 1.5rem;
+  padding: 0.5rem;
   text-align: center;
 `;
 
@@ -34,10 +34,10 @@ export const Header = styled.h2`
 export const InfoContainer = styled.div`
   border: 1px solid #eaeaea;
   border-radius: 25px;
-  padding: 1.5rem;
-  min-width: 300px;
+  padding: 1rem;
+  min-width: 280px;
   height: 500px;
-  max-width: 300px;
+  max-width: 280px;
   overflow: scroll;
   cursor: pointer;
 
@@ -51,7 +51,7 @@ export const InfoContainer = styled.div`
       transform: scale(1);
     }
 
-    max-width: 350px;
+    max-width: 320px;
   }
 
   -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);

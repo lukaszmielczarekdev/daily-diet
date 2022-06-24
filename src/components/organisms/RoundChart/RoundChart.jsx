@@ -9,6 +9,7 @@ const RoundChart = ({
   valueSize,
   offset,
   hover,
+  ringSize,
 }) => {
   const options = {
     colors: ["rgb(125, 215, 120)"],
@@ -16,7 +17,7 @@ const RoundChart = ({
       radialBar: {
         hollow: {
           margin: 0,
-          size: "70%",
+          size: ringSize,
           background: "transparent",
         },
         track: {
@@ -37,6 +38,7 @@ const RoundChart = ({
           value: {
             color: "black",
             fontSize: valueSize,
+            offsetY: 2,
             show: true,
           },
         },

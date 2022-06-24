@@ -109,10 +109,11 @@ const Diary = ({ editMode }) => {
                   <RoundChart
                     data={[demandData[key]]}
                     label={key}
-                    size={"200px"}
-                    nameSize={"10px"}
-                    valueSize={"16px"}
+                    size={"50%"}
+                    nameSize={"8px"}
+                    valueSize={"12px"}
                     offset={-4}
+                    ringSize={"60%"}
                     key={id}
                   />
                 ))}

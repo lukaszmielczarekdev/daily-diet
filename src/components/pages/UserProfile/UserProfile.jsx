@@ -18,6 +18,7 @@ import Meal from "../../organisms/Meal/Meal";
 import MealCard from "../../organisms/MealCard/MealCard";
 import ProductCard from "../../organisms/ProductCard/ProductCard";
 import ProductCreator from "../../organisms/ProductCreator/ProductCreator";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
 
 import {
   currentCategorySet,
@@ -25,6 +26,7 @@ import {
   currentItemRemoved,
   productsRemoved,
   mealsRemoved,
+  itemCreateModeSet,
   itemCreateModeRemoved,
 } from "../../../store/helpers";
 
@@ -50,6 +52,7 @@ const UserProfile = () => {
       dispatch(currentCategoryRemoved());
       dispatch(productsRemoved());
       dispatch(mealsRemoved());
+      dispatch(itemCreateModeRemoved());
     };
   }, [dispatch]);
 
@@ -83,7 +86,6 @@ const UserProfile = () => {
         text={"center"}
         justify={"center"}
         padding={"2rem 3rem 0 3rem"}
-        titlePrimary={"Your"}
         titleSecondary={"Created items"}
         children={
           <ControlPanel align={"baseline"}>
@@ -93,7 +95,11 @@ const UserProfile = () => {
                 {...category}
                 active={currentCategory === category.name}
                 onClick={() => {
-                  dispatch(currentCategorySet(category.name));
+                  dispatch(
+                    currentCategorySet(
+                      currentCategory === category.name ? "" : category.name
+                    )
+                  );
                   dispatch(itemCreateModeRemoved());
                   dispatch(currentItemRemoved());
                   dispatch(productsRemoved());
@@ -105,7 +111,7 @@ const UserProfile = () => {
         }
       />
       {currentCategory === "diary" && status !== "loading" && (
-        <ControlPanel margin={"0"}>
+        <ControlPanel margin={"0 0 2rem 0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(diaries) && (
             <Carousel
@@ -117,10 +123,21 @@ const UserProfile = () => {
             />
           )}
           {currentItem && currentItemType === "diary" && <Diary editMode />}
+          {!currentItem && (
+            <LinkItem
+              add
+              color={"white"}
+              padding={"0.6rem"}
+              radius={"10px 0"}
+              to="/builder"
+              children={"Create new diary"}
+              size={"0.8rem"}
+            />
+          )}
         </ControlPanel>
       )}
       {currentCategory === "meal" && status !== "loading" && (
-        <ControlPanel margin={"0"}>
+        <ControlPanel margin={"0 0 2rem 0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(meals) && (
             <Carousel
@@ -132,10 +149,21 @@ const UserProfile = () => {
             />
           )}
           {currentItem && currentItemType === "meal" && <Meal editMode />}
+          {!currentItem && (
+            <LinkItem
+              add
+              color={"white"}
+              padding={"0.6rem"}
+              radius={"10px 0"}
+              to="/builder"
+              children={"Create new meal"}
+              size={"0.8rem"}
+            />
+          )}
         </ControlPanel>
       )}
       {currentCategory === "product" && status !== "loading" && (
-        <ControlPanel margin={"0"}>
+        <ControlPanel margin={"0 0 2rem 0"}>
           <ClipLoader loading={status === "loading"} size={150} />
           {Array.isArray(products) && (
             <Carousel
@@ -150,6 +178,18 @@ const UserProfile = () => {
             <ProductCreator editMode />
           )}
           {itemCreateMode && <ProductCreator />}
+          {!currentItem && !itemCreateMode && (
+            <LinkItem
+              add
+              onClick={() => dispatch(itemCreateModeSet())}
+              color={"white"}
+              padding={"0.6rem"}
+              radius={"10px 0"}
+              to="/profile"
+              children={"Create new product"}
+              size={"0.8rem"}
+            />
+          )}
         </ControlPanel>
       )}
     </Container>

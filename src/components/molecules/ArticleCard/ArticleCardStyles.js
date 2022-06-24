@@ -7,7 +7,6 @@ export const Wrapper = styled.article`
   max-width: 45%;
   align-items: center;
   margin: 1rem 0;
-  cursor: pointer;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     max-width: 45%;
