@@ -5,18 +5,30 @@ export const Wrapper = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 350px;
-  margin: 1rem;
+  margin: 1rem 0;
+  max-width: 30%;
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    max-width: 30%;
+  }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    max-width: 300px;
+    max-width: 30%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    max-width: 30%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    max-width: 100%;
   }
 `;
 
 export const IconContainer = styled.div`
   display: flex;
   justify-content: left;
-  margin-left: 10%;
+  margin-left: 20%;
   z-index: 2;
   width: 60px;
   height: 60px;

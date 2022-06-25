@@ -31,6 +31,8 @@ export const ChildrenContainer = styled.div`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
+  font-weight: 300;
+  letter-spacing: 0.6px;
   justify-content: ${({ justify }) => (justify ? justify : "center")};
   font-size: ${({ smallText }) => (smallText ? "0.9rem" : "1rem")};
 

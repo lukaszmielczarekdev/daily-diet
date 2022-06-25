@@ -6,13 +6,13 @@ export const ProductsContainer = styled.div`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.backgroundBright};
   border-radius: 25px;
-  margin: ${({ margin }) => (margin ? margin : "1rem")};
+  margin: ${({ margin }) => (margin ? margin : "0")};
+  margin-top: 1rem;
   padding: 2rem;
   border: 1px solid #eaeaea;
   -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
-  min-width: 300px;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem;

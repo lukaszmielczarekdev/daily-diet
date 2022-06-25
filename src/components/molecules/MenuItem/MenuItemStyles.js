@@ -11,7 +11,7 @@ export const Wrapper = styled.article`
 
   transition: all 0.2s ease-in-out;
   :hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {

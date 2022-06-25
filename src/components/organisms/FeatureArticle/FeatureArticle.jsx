@@ -2,7 +2,6 @@ import { Wrapper, Container, Actions } from "./FeatureArticleStyles";
 import Anchor from "../../atoms/Anchor/Anchor";
 import Title from "../../atoms/Title/Title";
 import Description from "../../atoms/Description/Description";
-import { useSelector } from "react-redux";
 import Image from "../../atoms/Image/Image";
 
 const FeatureArticle = ({
@@ -14,33 +13,17 @@ const FeatureArticle = ({
   image,
   alt,
 }) => {
-  const bmr = useSelector((state) =>
-    state.user.authData.currentUser?.profile.bmr
-      ? state.user.authData.currentUser.profile.bmr
-      : 0
-  );
-
   return (
     <Wrapper>
       <Container>
         <Title titlePrimary={titlePrimary} titleSecondary={titleSecondary} />
         <Description>{description}</Description>
         <Actions>
-          <Anchor
-            href={!bmr ? link : altLink}
-            color={"black"}
-            green
-            width={"fit-content"}
-          >
-            Get Started.
+          <Anchor href={link} color={"black"} green width={"fit-content"}>
+            Get Started
           </Anchor>
-          <Anchor
-            href={!bmr ? link : altLink}
-            color={"black"}
-            yellow
-            width={"fit-content"}
-          >
-            Learn more.
+          <Anchor href={altLink} color={"black"} yellow width={"fit-content"}>
+            Learn more
           </Anchor>
         </Actions>
       </Container>

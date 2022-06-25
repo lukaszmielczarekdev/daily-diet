@@ -4,9 +4,21 @@ export const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 250px;
+  max-width: 20%;
   align-items: center;
-  margin: 1rem;
+  margin: 1rem 0.5rem;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    max-width: 45%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    max-width: 20%;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    max-width: 100%;
+  }
 `;
 
 export const IconContainer = styled.div`
@@ -15,6 +27,18 @@ export const IconContainer = styled.div`
   height: 60px;
   padding: 1rem;
   border-radius: 15px 0;
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    width: 50px;
+    height: 50px;
+    padding: 0.8rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    width: 50px;
+    height: 50px;
+    padding: 0.8rem;
+  }
 
   background-color: ${({ color, theme }) => {
     if (color === "red") return `${theme.colors.warning}`;

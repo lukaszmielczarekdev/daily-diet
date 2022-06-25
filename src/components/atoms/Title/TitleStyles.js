@@ -33,10 +33,10 @@ export const TitleSpan = styled.span`
   margin-bottom: 0.5rem;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    font-size: ${({ small }) => (small ? "0.6rem" : "0.8rem")};
+    font-size: 0.8rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: ${({ small }) => (small ? "0.6rem" : "0.8rem")};
+    font-size: 0.8rem;
   }
 `;

@@ -13,6 +13,7 @@ const Footer = (props) => {
       <Wrapper>
         <FooterContainer>
           <TextField
+            color={"black"}
             titlePrimary={"The most important is"}
             titleSecondary={"The satisfaction of our users"}
             description={
@@ -24,17 +25,17 @@ const Footer = (props) => {
           />
           <CheckList
             justify={"left"}
-            smallText
             arrow
             padding={"0 2rem"}
             margin={"0 2rem"}
-            children={<Header type={"h4"} text={"Why our app ?"} />}
+            children={<Header type={"h4"} text={"Why Daily Diet ?"} />}
             color={"rgb(125, 215, 120)"}
             data={benefits}
             element={"name"}
             align={"baseline"}
           />
           <TextField
+            color={"black"}
             titlePrimary={"Always be"}
             titleSecondary={"Up to date"}
             description={

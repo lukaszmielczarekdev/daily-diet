@@ -9,7 +9,8 @@ export const Text = styled.p`
     marginBottom ? `${marginBottom}` : "1.5rem"};
   line-height: 1.5;
   white-space: pre-line;
-  color: ${({ theme }) => theme.colors.semiTransparent};
+  color: ${({ color, theme }) =>
+    color ? color : theme.colors.semiTransparent};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     font-size: ${({ smallText }) => (smallText ? "0.8rem" : "0.8rem")};

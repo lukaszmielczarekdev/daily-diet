@@ -35,7 +35,6 @@ export const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: ${({ center }) => (center ? "center" : "")};
   align-items: ${({ center }) => (center ? "center" : "")};
-  padding: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;

@@ -20,10 +20,10 @@ export const StyledAnchor = styled.a`
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 `;

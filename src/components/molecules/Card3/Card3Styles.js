@@ -35,15 +35,15 @@ export const InfoContainer = styled.div`
   border: 1px solid #eaeaea;
   border-radius: 25px;
   padding: 1rem;
-  min-width: 280px;
+  min-width: 300px;
   height: 500px;
-  max-width: 280px;
+  max-width: 300px;
   overflow: scroll;
   cursor: pointer;
 
   transition: all 0.2s ease-in-out;
   :hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {

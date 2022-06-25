@@ -18,14 +18,15 @@ const Calculator = () => {
       <Gallery
         text={"center"}
         justify={"center"}
-        description={
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam quis sint repellat. Exercitationem numquam alias quia harum, reprehenderit ipsa nisi atque quis voluptatum ad aut asperiores voluptas repellendus molestiae commodi mollitia."
-        }
-        padding={"2rem 3rem 3rem 3rem"}
+        padding={"1rem 3rem 3rem 3rem"}
         titlePrimary={"build your figure in"}
         titleSecondary={"4 Easy Steps"}
         children={
-          <ControlPanel align={"baseline"}>
+          <ControlPanel
+            align={"baseline"}
+            justify={"space-between"}
+            padding={"2rem 0 0 0"}
+          >
             {steps.map((step) => (
               <Card2 fillColor {...step} key={step.id} />
             ))}
@@ -35,20 +36,24 @@ const Calculator = () => {
       <Article
         id={"calculator"}
         backgroundLeft={board}
-        padding={"3rem 3rem 2rem 3rem"}
+        padding={"2rem 3rem 3rem 3rem"}
         left={<BmrCalculator />}
         right={
           <ArticleContent
             titlePrimary={"BMR CALCULATOR"}
-            titleSecondary={"Nutrition For Your Health"}
+            titleSecondary={"This is where it starts"}
             description={
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam quis sint repellat. Exercitationem numquam alias quia harum, reprehenderit ipsa nisi atque quis voluptatum ad aut asperiores voluptas repellendus molestiae commodi mollitia.\n\nExercitationem numquam alias quia harum, reprehenderit ipsa nisi atque quis voluptatum ad aut asperiores voluptas repellendus molestiae commodi mollitia."
+              "Diet and training are the two basic tools that allow us to discover our body's maximum potential. In addition to our genetic predispositions (physical and mental conditions), the diet and skillful training (along with regeneration) are the elements that determine how much we can achieve.\n\nKnowing the daily caloric demand, you can calculate the demand for individual macronutrients. This requires the percentage breakdown of macronutrients, which by default is 20% for protein, 50% for carbohydrates and 30% for fat.\nThe percentages can be changed in the user profile section."
             }
             children={<Attributes items={attributes} />}
           />
         }
       />
-      <ControlPanel margin={"0 0 3rem 0"}>
+      <ControlPanel
+        padding={"1rem 3rem 3rem 3rem"}
+        align={"baseline"}
+        justify={"space-between"}
+      >
         {tips.map((tip) => (
           <Card fillColor {...tip} key={tip.id} />
         ))}

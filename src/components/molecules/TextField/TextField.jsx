@@ -12,6 +12,7 @@ const TextField = ({
   children,
   padding,
   width,
+  color,
 }) => {
   return (
     <Wrapper padding={padding} width={width}>
@@ -21,7 +22,12 @@ const TextField = ({
         small={small}
         margin={margin}
       />
-      <Description thinText smallText={small} marginBottom={marginBottom}>
+      <Description
+        thinText
+        smallText={small}
+        color={color}
+        marginBottom={marginBottom}
+      >
         {description}
       </Description>
       {children}
