@@ -14,8 +14,9 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateProfile } from "../../../store/auth";
+import { currentCategoryRemoved } from "../../../store/helpers";
 
-const BMRCalculator = () => {
+const BMRCalculator = ({ editMode, noMarginTop }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const history = useHistory();
@@ -71,18 +72,21 @@ const BMRCalculator = () => {
     };
 
     dispatch(updateProfile({ id: user.clientId, profile: data }));
+
+    editMode && dispatch(currentCategoryRemoved());
   };
 
   return (
-    <FormContainer>
+    <FormContainer noMarginTop={noMarginTop}>
       {!user?.credential && (
         <Container>
           <Label>Get your BMR</Label>
           <Button onClick={() => history.push(`/auth`)}>Sign in</Button>
         </Container>
       )}
-      {user?.credential && !bmr && (
+      {((user?.credential && !bmr) || editMode) && (
         <Form onSubmit={handleSubmitBMR(calculateBMR)}>
+          <StyledSpan>BMR: {bmr}</StyledSpan>
           <Input
             type="number"
             placeholder={"Height(cm)"}
@@ -129,10 +133,10 @@ const BMRCalculator = () => {
             <option value={2}>Medium</option>
             <option value={2.5}>High</option>
           </Select>
-          <Button type="submit">Get BMR</Button>
+          <Button type="submit">{editMode ? "Update" : "Get BMR"}</Button>
         </Form>
       )}
-      {bmr && (
+      {bmr && !editMode && (
         <Container>
           <StyledSpan>BMR: {bmr}</StyledSpan>
           <Button onClick={() => history.push(`/builder`)}>New diary</Button>

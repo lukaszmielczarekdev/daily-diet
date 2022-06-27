@@ -150,6 +150,16 @@ export const userItemCategories = [
   },
 ];
 
+export const preferences = [
+  {
+    id: 0,
+    icon: <AiOutlineCalculator size={"100%"} />,
+    color: "green",
+    primary: "BMR",
+    name: "bmr",
+  },
+];
+
 export const exampleMeals = [
   {
     id: 0,

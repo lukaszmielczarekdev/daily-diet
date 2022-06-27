@@ -69,7 +69,6 @@ export const Button = styled.button`
   margin: 0.8rem 0;
   font-size: 0.8rem;
   padding: 0.8rem;
-  /* width: 50%; */
   display: block;
   color: white;
   border: none;
@@ -81,14 +80,6 @@ export const Button = styled.button`
   :hover {
     transform: scale(1.03);
   }
-
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    /* width: 60%; */
-  }
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    /* width: 60%; */
-  }
 `;
 
 export const FormContainer = styled.div`
@@ -98,6 +89,7 @@ export const FormContainer = styled.div`
   width: 100%;
   z-index: 2;
   margin-top: 4rem;
+  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "4rem")};
   padding: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.md} {

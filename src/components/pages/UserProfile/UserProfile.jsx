@@ -7,6 +7,7 @@ import MenuItem from "../../molecules/MenuItem/MenuItem";
 import Gallery from "../../organisms/Gallery/Gallery";
 import ClipLoader from "react-spinners/ClipLoader";
 import Carousel from "../../organisms/Carousel/Carousel";
+import BmrCalculator from "../../organisms/BMRCalculator/BMRCalculator";
 import {
   diaryPlaceholders,
   mealPlaceholders,
@@ -19,6 +20,7 @@ import MealCard from "../../organisms/MealCard/MealCard";
 import ProductCard from "../../organisms/ProductCard/ProductCard";
 import ProductCreator from "../../organisms/ProductCreator/ProductCreator";
 import LinkItem from "../../molecules/LinkItem/LinkItem";
+import { preferences } from "../../../data/constants";
 
 import {
   currentCategorySet,
@@ -82,6 +84,39 @@ const UserProfile = () => {
 
   return (
     <Container fillColor>
+      <Gallery
+        text={"center"}
+        justify={"center"}
+        padding={"2rem 3rem 0 3rem"}
+        titleSecondary={"Preferences"}
+        children={
+          <ControlPanel align={"baseline"}>
+            {preferences.map((option) => (
+              <MenuItem
+                key={option.id}
+                {...option}
+                active={currentCategory === option.name}
+                onClick={() => {
+                  dispatch(
+                    currentCategorySet(
+                      currentCategory === option.name ? "" : option.name
+                    )
+                  );
+                  dispatch(itemCreateModeRemoved());
+                  dispatch(currentItemRemoved());
+                  dispatch(productsRemoved());
+                  dispatch(mealsRemoved());
+                }}
+              />
+            ))}
+          </ControlPanel>
+        }
+      />
+      {currentCategory === "bmr" && status !== "loading" && (
+        <ControlPanel margin={"0 0 2rem 0"}>
+          <BmrCalculator editMode noMarginTop />
+        </ControlPanel>
+      )}
       <Gallery
         text={"center"}
         justify={"center"}

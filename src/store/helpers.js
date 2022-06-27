@@ -41,6 +41,7 @@ const slice = createSlice({
     currentCategorySet: (state, action) => {
       state.currentCategory = action.payload;
     },
+
     currentCategoryRemoved: (state) => {
       state.currentCategory = null;
     },
