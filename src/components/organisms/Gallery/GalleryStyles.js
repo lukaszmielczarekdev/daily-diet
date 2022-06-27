@@ -12,11 +12,11 @@ export const Wrapper = styled.article`
   justify-content: ${({ justify }) => (justify ? justify : "space-between")};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1rem;
+    padding: 2rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {

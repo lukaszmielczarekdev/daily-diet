@@ -13,14 +13,9 @@ export const Container = styled.div`
   max-width: 1280px;
   gap: 0.5rem;
 
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1.5rem;
-  }
-
   @media ${({ theme }) => theme.breakpoints.sm} {
     width: 100%;
     flex-wrap: wrap;
     margin: 0;
-    padding: 1rem;
   }
 `;
