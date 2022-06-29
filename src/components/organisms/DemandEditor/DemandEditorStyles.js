@@ -17,26 +17,6 @@ export const Input = styled.input`
   text-align: center;
 `;
 
-export const StyledSpan = styled.span`
-  margin: 1rem 0;
-  font-size: 0.8rem;
-  padding: 0.8rem;
-  display: block;
-  color: white;
-  border: none;
-  text-align: center;
-  background-color: ${({ theme }) => theme.colors.green};
-  border-radius: 10px 0;
-
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 60%;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 60%;
-  }
-`;
-
 export const Button = styled.button`
   width: ${({ text }) => (text ? "200px" : "100px")};
   margin: 0.8rem 0;

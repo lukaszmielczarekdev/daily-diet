@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  Button,
-  FormContainer,
-  Input,
-  StyledSpan,
-} from "./DemandEditorStyles";
+import { Form, Button, FormContainer, Input } from "./DemandEditorStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../../store/auth";
 import { currentCategoryRemoved } from "../../../store/helpers";
@@ -75,12 +69,9 @@ const DemandEditor = ({ noMarginTop }) => {
     <FormContainer noMarginTop={noMarginTop}>
       {user?.credential && (
         <Form onSubmit={handleSubmitDemand(setDemand)}>
-          <StyledSpan>
-            Protein: {protein}% | Carbs: {carbs}% | Fat: {fat}%
-          </StyledSpan>
           <Input
             type="number"
-            placeholder={"Protein %"}
+            placeholder={`Protein ${protein}%`}
             {...registerDemand("protein", {
               valueAsNumber: true,
               max: 100,
@@ -92,7 +83,7 @@ const DemandEditor = ({ noMarginTop }) => {
           />
           <Input
             type="number"
-            placeholder={"Carbs %"}
+            placeholder={`Carbs ${carbs}%`}
             {...registerDemand("carbs", {
               valueAsNumber: true,
               max: 100,
@@ -104,7 +95,7 @@ const DemandEditor = ({ noMarginTop }) => {
           />
           <Input
             type="number"
-            placeholder={"Fat %"}
+            placeholder={`Fat ${fat}%`}
             {...registerDemand("fat", {
               valueAsNumber: true,
               max: 100,
