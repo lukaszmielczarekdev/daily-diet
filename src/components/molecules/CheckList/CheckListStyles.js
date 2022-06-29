@@ -34,7 +34,7 @@ export const ListItem = styled.li`
   font-weight: 300;
   letter-spacing: 0.6px;
   justify-content: ${({ justify }) => (justify ? justify : "center")};
-  font-size: ${({ smallText }) => (smallText ? "0.9rem" : "1rem")};
+  font-size: ${({ smallText }) => (smallText ? "0.9rem" : "0.9rem")};
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     font-size: ${({ smallText }) => (smallText ? "0.7rem" : "0.8rem")};

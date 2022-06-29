@@ -21,7 +21,7 @@ import {
 import { IoMdCreate } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
 import { GiWeightLiftingUp, GiProgression } from "react-icons/gi";
-import { AiOutlineCalculator } from "react-icons/ai";
+import { AiOutlineCalculator, AiOutlinePercentage } from "react-icons/ai";
 
 export const features = [
   {
@@ -157,6 +157,13 @@ export const preferences = [
     color: "green",
     primary: "BMR",
     name: "bmr",
+  },
+  {
+    id: 0,
+    icon: <AiOutlinePercentage size={"100%"} />,
+    color: "yellow",
+    primary: "Demand",
+    name: "demandPercentage",
   },
 ];
 
