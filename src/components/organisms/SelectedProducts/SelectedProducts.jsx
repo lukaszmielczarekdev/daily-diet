@@ -83,7 +83,7 @@ const SelectedProducts = ({ margin, editMode }) => {
       />
       <ListOfProducts products={temporaryProducts} />
       <Summary centered data={calculateMacrosForProducts(temporaryProducts)} />
-      <ControlPanel fit border justify={"left"}>
+      <ControlPanel fit border justify={"left"} padding={"1rem 0 0 0"}>
         {!editMode && (
           <Button
             add

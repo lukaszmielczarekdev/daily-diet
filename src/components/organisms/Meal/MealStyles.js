@@ -5,7 +5,7 @@ export const ProductsContainer = styled.div`
   text-align: left;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.backgroundBright};
-  border-radius: 25px;
+  border-radius: 25px 0;
   margin: ${({ margin }) => (margin ? margin : "0")};
   margin-top: 1rem;
   padding: 2rem;

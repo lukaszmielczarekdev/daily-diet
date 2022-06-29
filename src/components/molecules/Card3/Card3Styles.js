@@ -33,7 +33,7 @@ export const Header = styled.h2`
 
 export const InfoContainer = styled.div`
   border: 1px solid #eaeaea;
-  border-radius: 25px;
+  border-radius: 25px 0;
   padding: 1rem;
   min-width: 300px;
   height: 500px;

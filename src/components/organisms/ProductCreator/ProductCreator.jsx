@@ -141,7 +141,7 @@ const ProductCreator = ({ editMode }) => {
                     {key}: {Math.round(value * 100)}
                   </Span>
                 ))}
-                <ControlPanel border fit>
+                <ControlPanel border fit padding={"1rem 0 0 0"}>
                   {editMode && (
                     <>
                       <Button

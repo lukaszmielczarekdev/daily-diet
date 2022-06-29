@@ -12,7 +12,7 @@ export const Wrapper = styled.section`
   text-align: left;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.backgroundBright};
-  border-radius: 25px;
+  border-radius: 25px 0;
   margin: ${({ margin }) => (margin ? margin : "1rem 1rem 5rem 1rem")};
   padding: 1rem;
   border: 1px solid #eaeaea;

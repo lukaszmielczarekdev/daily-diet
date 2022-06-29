@@ -54,6 +54,12 @@ const DiaryBuilder = () => {
           </ControlPanel>
         }
       />
+      <Title text={"center"} titlePrimary={"Example Meals"} />
+      <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
+        {exampleMeals.map((meal) => (
+          <ProductDetails key={meal.id} {...meal} />
+        ))}
+      </ControlPanel>
       <Title text={"center"} titlePrimary={"Diary Creator"} />
       {bmr && (
         <>
@@ -65,12 +71,6 @@ const DiaryBuilder = () => {
           />
         </>
       )}
-      <Title text={"center"} titlePrimary={"Example Meals"} />
-      <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
-        {exampleMeals.map((meal) => (
-          <ProductDetails key={meal.id} {...meal} />
-        ))}
-      </ControlPanel>
     </Container>
   );
 };

@@ -169,10 +169,11 @@ const SelectedMeals = ({ margin, editMode }) => {
             <RoundChart
               data={[progressData[key]]}
               label={key}
-              size={"200px"}
-              nameSize={"10px"}
-              valueSize={"16px"}
+              size={"50%"}
+              nameSize={"8px"}
+              valueSize={"12px"}
               offset={-4}
+              ringSize={"60%"}
               key={id}
             />
           ))}
@@ -202,7 +203,7 @@ const SelectedMeals = ({ margin, editMode }) => {
           <StyledSpan>Demand:&nbsp;{currentDiaryDemand.kcal} kcal</StyledSpan>
         </Header>
         <ListOfMeals meals={temporaryMeals} />
-        <ControlPanel border justify={"left"}>
+        <ControlPanel border justify={"left"} padding={"1rem 0 0 0"}>
           <Button
             add
             margin={"0 0.5rem 0.5rem 0"}

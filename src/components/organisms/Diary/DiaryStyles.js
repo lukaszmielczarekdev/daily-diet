@@ -5,7 +5,7 @@ export const InnerContainer = styled.div`
   text-align: left;
   flex-direction: ${({ column }) => (column ? "column" : "row")};
   background-color: ${({ theme }) => theme.colors.backgroundBright};
-  border-radius: 25px;
+  border-radius: 25px 0;
   margin-top: 1rem;
   padding: 2rem;
   border: 1px solid #eaeaea;

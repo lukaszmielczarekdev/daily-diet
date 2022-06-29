@@ -12,7 +12,7 @@ export const Container = styled.div`
   text-align: left;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.backgroundBright};
-  border-radius: 25px;
+  border-radius: 25px 0;
   margin: ${({ margin }) => (margin ? margin : "")};
   padding: 1rem;
   border: 1px solid #eaeaea;

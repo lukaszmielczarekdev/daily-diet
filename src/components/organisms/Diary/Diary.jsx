@@ -145,7 +145,7 @@ const Diary = ({ editMode }) => {
                 fontWeight={"bolder"}
                 data={calculateMacrosForMeals(meals)}
               />
-              <ControlPanel border fit>
+              <ControlPanel border fit padding={"1rem 0 0 0"}>
                 {editMode && (
                   <>
                     <Button

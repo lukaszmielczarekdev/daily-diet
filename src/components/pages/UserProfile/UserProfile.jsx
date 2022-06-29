@@ -8,6 +8,7 @@ import Gallery from "../../organisms/Gallery/Gallery";
 import ClipLoader from "react-spinners/ClipLoader";
 import Carousel from "../../organisms/Carousel/Carousel";
 import BmrCalculator from "../../organisms/BMRCalculator/BMRCalculator";
+import DemandEditor from "../../organisms/DemandEditor/DemandEditor";
 import {
   diaryPlaceholders,
   mealPlaceholders,
@@ -114,7 +115,12 @@ const UserProfile = () => {
       />
       {currentCategory === "bmr" && status !== "loading" && (
         <ControlPanel margin={"0 0 2rem 0"}>
-          <BmrCalculator editMode noMarginTop />
+          <BmrCalculator editMode alternateView />
+        </ControlPanel>
+      )}
+      {currentCategory === "demandPercentage" && status !== "loading" && (
+        <ControlPanel margin={"0 0 2rem 0"}>
+          <DemandEditor />
         </ControlPanel>
       )}
       <Gallery

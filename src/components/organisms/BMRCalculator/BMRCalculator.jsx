@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 import { updateProfile } from "../../../store/auth";
 import { currentCategoryRemoved } from "../../../store/helpers";
 
-const BMRCalculator = ({ editMode, noMarginTop }) => {
+const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const history = useHistory();
@@ -77,7 +77,7 @@ const BMRCalculator = ({ editMode, noMarginTop }) => {
   };
 
   return (
-    <FormContainer noMarginTop={noMarginTop}>
+    <FormContainer noMarginTop={noMarginTop} alternateView={alternateView}>
       {!user?.credential && (
         <Container>
           <Label>Get your BMR</Label>
@@ -86,7 +86,7 @@ const BMRCalculator = ({ editMode, noMarginTop }) => {
       )}
       {((user?.credential && !bmr) || editMode) && (
         <Form onSubmit={handleSubmitBMR(calculateBMR)}>
-          <StyledSpan>BMR: {bmr}</StyledSpan>
+          <StyledSpan>BMR: {bmr ? bmr : 0} kcal</StyledSpan>
           <Input
             type="number"
             placeholder={"Height(cm)"}
@@ -123,6 +123,7 @@ const BMRCalculator = ({ editMode, noMarginTop }) => {
               pattern: /\d+/,
             })}
           />
+          <Label color={alternateView ? "black" : "white"}>Activity</Label>
           <Select
             {...registerBMR("activity", {
               valueAsNumber: true,
