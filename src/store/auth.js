@@ -62,6 +62,31 @@ export const updateProfile = createAsyncThunk(
   }
 );
 
+export const updateUserData = createAsyncThunk(
+  "auth/updateUserData",
+  async ({ id, userData }) => {
+    try {
+      const { data } = await api.updateUserData(id, userData);
+      notify("Successfully updated");
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk("auth/deleteUser", async (id) => {
+  try {
+    await api.deleteUser(id);
+    notify("User deleted");
+    return id;
+  } catch (error) {
+    console.log(error);
+    notify(error.response.data.message);
+  }
+});
+
 const slice = createSlice({
   name: "authData",
   initialState: getStoreData("user.authData", INITIAL_STATE),
@@ -148,6 +173,29 @@ const slice = createSlice({
       notify("Profile updated");
     },
     [updateProfile.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [updateUserData.pending]: (state) => {
+      state.status = "loading";
+    },
+    [updateUserData.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.currentUser.name = action.payload.user.name;
+      state.currentUser.email = action.payload.user.email;
+      state.status = "success";
+      notify("Successfully updated");
+    },
+    [updateUserData.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [deleteUser.pending]: (state) => {
+      state.status = "loading";
+    },
+    [deleteUser.fulfilled]: (state, action) => {
+      state.currentUser = null;
+      state.status = "success";
+    },
+    [deleteUser.rejected]: (state) => {
       state.status = "failed";
     },
   },

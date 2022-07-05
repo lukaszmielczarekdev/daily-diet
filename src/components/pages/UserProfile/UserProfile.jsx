@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../templates/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
@@ -22,6 +22,7 @@ import ProductCard from "../../organisms/ProductCard/ProductCard";
 import ProductCreator from "../../organisms/ProductCreator/ProductCreator";
 import LinkItem from "../../molecules/LinkItem/LinkItem";
 import { preferences } from "../../../data/constants";
+import decode from "jwt-decode";
 
 import {
   currentCategorySet,
@@ -32,6 +33,7 @@ import {
   itemCreateModeSet,
   itemCreateModeRemoved,
 } from "../../../store/helpers";
+import UserDataEditor from "../../organisms/UserDataEditor/UserDataEditor";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -40,6 +42,10 @@ const UserProfile = () => {
   const { meals } = useSelector((state) => state.resources.meals);
   const { products } = useSelector((state) => state.resources.products);
   const { status } = useSelector((state) => state.resources.diaries);
+  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  const token = user?.credential;
+  const decodedToken = decode(token);
 
   const {
     currentItem,
@@ -92,24 +98,28 @@ const UserProfile = () => {
         titleSecondary={"Preferences"}
         children={
           <ControlPanel align={"baseline"}>
-            {preferences.map((option) => (
-              <MenuItem
-                key={option.id}
-                {...option}
-                active={currentCategory === option.name}
-                onClick={() => {
-                  dispatch(
-                    currentCategorySet(
-                      currentCategory === option.name ? "" : option.name
-                    )
-                  );
-                  dispatch(itemCreateModeRemoved());
-                  dispatch(currentItemRemoved());
-                  dispatch(productsRemoved());
-                  dispatch(mealsRemoved());
-                }}
-              />
-            ))}
+            {preferences.map(
+              (option) =>
+                (!option.google ||
+                  decodedToken.iss !== "https://accounts.google.com") && (
+                  <MenuItem
+                    key={option.id}
+                    {...option}
+                    active={currentCategory === option.name}
+                    onClick={() => {
+                      dispatch(
+                        currentCategorySet(
+                          currentCategory === option.name ? "" : option.name
+                        )
+                      );
+                      dispatch(itemCreateModeRemoved());
+                      dispatch(currentItemRemoved());
+                      dispatch(productsRemoved());
+                      dispatch(mealsRemoved());
+                    }}
+                  />
+                )
+            )}
           </ControlPanel>
         }
       />
@@ -121,6 +131,11 @@ const UserProfile = () => {
       {currentCategory === "demandPercentage" && status !== "loading" && (
         <ControlPanel margin={"0 0 2rem 0"}>
           <DemandEditor />
+        </ControlPanel>
+      )}
+      {currentCategory === "userData" && status !== "loading" && (
+        <ControlPanel margin={"0 0 2rem 0"}>
+          <UserDataEditor />
         </ControlPanel>
       )}
       <Gallery

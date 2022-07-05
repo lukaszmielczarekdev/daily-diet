@@ -9,8 +9,8 @@ export const StyledAnchor = styled.a`
   margin: 1rem 1rem 1rem 0;
   border-radius: 10px 0;
   background-color: ${({ yellow, green, theme }) => {
-    if (green) return `${theme.colors.green}`;
-    if (yellow) return `${theme.colors.yellow};`;
+    if (green ? 1 : 0) return `${theme.colors.green}`;
+    if (yellow ? 1 : 0) return `${theme.colors.yellow};`;
     else return `white`;
   }};
 

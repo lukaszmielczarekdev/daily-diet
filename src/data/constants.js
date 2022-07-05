@@ -7,7 +7,11 @@ import salad from "../assets/Images/salad.jpg";
 import yerba_article from "../assets/Images/yerba_article.jpg";
 import pizza_article from "../assets/Images/pizza_article.jpg";
 import nuts_article from "../assets/Images/nuts_article.jpg";
-import { RiFileList2Line, RiNumbersLine } from "react-icons/ri";
+import {
+  RiFileList2Line,
+  RiNumbersLine,
+  RiAccountCircleLine,
+} from "react-icons/ri";
 import { IoFitnessOutline } from "react-icons/io5";
 import { MdFitnessCenter } from "react-icons/md";
 import { BsBook, BsClock } from "react-icons/bs";
@@ -157,13 +161,23 @@ export const preferences = [
     color: "green",
     primary: "BMR",
     name: "bmr",
+    google: false,
   },
   {
-    id: 0,
+    id: 1,
+    icon: <RiAccountCircleLine size={"100%"} />,
+    color: "red",
+    primary: "Account",
+    name: "userData",
+    google: true,
+  },
+  {
+    id: 2,
     icon: <AiOutlinePercentage size={"100%"} />,
     color: "yellow",
     primary: "Demand",
     name: "demandPercentage",
+    google: false,
   },
 ];
 

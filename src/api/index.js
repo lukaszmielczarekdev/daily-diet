@@ -22,7 +22,10 @@ export const externalSignIn = (data) => API.post("/user/externalsignin", data);
 export const signIn = (data) => API.post("/user/signin", data);
 export const signUp = (data) => API.post("/user/signup", data);
 export const updateUserProfile = (id, profile) =>
-  API.patch(`/user/${id}`, profile);
+  API.patch(`/user/profile/${id}`, profile);
+export const updateUserData = (id, userData) =>
+  API.patch(`/user/userData/${id}`, userData);
+export const deleteUser = (id) => API.delete(`/user/${id}`);
 
 export const fetchProducts = () => API.get("/products");
 export const createProduct = (newProduct) => API.post("/products", newProduct);

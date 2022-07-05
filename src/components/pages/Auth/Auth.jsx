@@ -53,7 +53,7 @@ const Auth = () => {
     if (data.password === data.confirmpassword) {
       dispatch(signup(data));
       resetSignUp();
-    } else notify("Password fields must have the same value.");
+    } else notify("Password fields must have the same value");
   };
 
   const googleSuccess = async (credentialResponse) => {
