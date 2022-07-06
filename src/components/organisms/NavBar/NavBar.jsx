@@ -98,7 +98,7 @@ const NavBar = ({ handleLogout }) => {
                 to="/profile"
                 onClick={() => setMenuOpened(false)}
                 children={"Profile"}
-                margin={"2.5rem 2rem 0 2rem"}
+                margin={"2.5rem 1.6rem 0 1.6rem"}
                 size={"1.2rem"}
               />
             )}
