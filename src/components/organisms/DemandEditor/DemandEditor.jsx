@@ -68,51 +68,53 @@ const DemandEditor = ({ noMarginTop }) => {
   return (
     <FormContainer noMarginTop={noMarginTop}>
       {user?.credential && (
-        <Form onSubmit={handleSubmitDemand(setDemand)}>
-          <Input
-            type="number"
-            placeholder={`Protein ${protein}%`}
-            {...registerDemand("protein", {
-              valueAsNumber: true,
-              max: 100,
-              min: 1,
-              required: true,
-              maxLength: 3,
-              pattern: /\d+/,
-            })}
-          />
-          <Input
-            type="number"
-            placeholder={`Carbs ${carbs}%`}
-            {...registerDemand("carbs", {
-              valueAsNumber: true,
-              max: 100,
-              min: 1,
-              required: true,
-              maxLength: 3,
-              pattern: /\d+/,
-            })}
-          />
-          <Input
-            type="number"
-            placeholder={`Fat ${fat}%`}
-            {...registerDemand("fat", {
-              valueAsNumber: true,
-              max: 100,
-              min: 1,
-              required: true,
-              maxLength: 3,
-              pattern: /\d+/,
-            })}
-          />
-          <Button type="submit">Update</Button>
+        <>
+          <Form onSubmit={handleSubmitDemand(setDemand)}>
+            <Input
+              type="number"
+              placeholder={`Protein ${protein}%`}
+              {...registerDemand("protein", {
+                valueAsNumber: true,
+                max: 100,
+                min: 1,
+                required: true,
+                maxLength: 3,
+                pattern: /\d+/,
+              })}
+            />
+            <Input
+              type="number"
+              placeholder={`Carbs ${carbs}%`}
+              {...registerDemand("carbs", {
+                valueAsNumber: true,
+                max: 100,
+                min: 1,
+                required: true,
+                maxLength: 3,
+                pattern: /\d+/,
+              })}
+            />
+            <Input
+              type="number"
+              placeholder={`Fat ${fat}%`}
+              {...registerDemand("fat", {
+                valueAsNumber: true,
+                max: 100,
+                min: 1,
+                required: true,
+                maxLength: 3,
+                pattern: /\d+/,
+              })}
+            />
+            <Button type="submit">Update</Button>
+          </Form>
           <Button
             warning
             onClick={() => setDemand({ protein: 20, carbs: 50, fat: 30 })}
           >
             Default
           </Button>
-        </Form>
+        </>
       )}
     </FormContainer>
   );
