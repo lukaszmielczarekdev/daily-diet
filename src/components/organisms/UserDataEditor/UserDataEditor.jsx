@@ -6,6 +6,7 @@ import { RiLock2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserData, deleteUser } from "../../../store/auth";
 import { notify } from "../../../store/utils";
+import decode from "jwt-decode";
 
 const UserDataEditor = ({ noMarginTop }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -14,6 +15,9 @@ const UserDataEditor = ({ noMarginTop }) => {
   const currentUser = useSelector((state) =>
     state.user.authData.currentUser ? state.user.authData.currentUser : ""
   );
+
+  const token = user?.credential;
+  const decodedToken = decode(token);
 
   const dispatch = useDispatch();
 
@@ -47,51 +51,53 @@ const UserDataEditor = ({ noMarginTop }) => {
     <FormContainer noMarginTop={noMarginTop}>
       {user?.credential && (
         <>
-          <Form onSubmit={handleRegisterEditData(handleEditData)}>
-            <RiLock2Line size={"2rem"} />
-            <Input
-              type="text"
-              placeholder={"User Name"}
-              {...registerEditData("username", {
-                maxLength: 15,
-              })}
-            />
-            <Input
-              type={isPasswordVisible ? "text" : "password"}
-              placeholder={"Current password"}
-              {...registerEditData("oldPassword", {
-                maxLength: 25,
-              })}
-            />
-            <Input
-              type={isPasswordVisible ? "text" : "password"}
-              placeholder={"New password"}
-              {...registerEditData("newPassword", {
-                maxLength: 25,
-              })}
-            />
-            <Input
-              type={isPasswordVisible ? "text" : "password"}
-              placeholder={"Confirm new password"}
-              {...registerEditData("confirmNewPassword", {
-                maxLength: 25,
-              })}
-            />
-            <VisibilityIcon
-              condition={isPasswordVisible}
-              toggler={() => setIsPasswordVisible(!isPasswordVisible)}
-            />
-            <Input
-              type="text"
-              placeholder={"Email"}
-              {...registerEditData("email", {
-                maxLength: 25,
-              })}
-            />
-            <Button type="submit" green color={"white"}>
-              Save
-            </Button>
-          </Form>
+          {decodedToken.iss !== "https://accounts.google.com" && (
+            <Form onSubmit={handleRegisterEditData(handleEditData)}>
+              <RiLock2Line size={"2rem"} />
+              <Input
+                type="text"
+                placeholder={"User Name"}
+                {...registerEditData("username", {
+                  maxLength: 15,
+                })}
+              />
+              <Input
+                type={isPasswordVisible ? "text" : "password"}
+                placeholder={"Current password"}
+                {...registerEditData("oldPassword", {
+                  maxLength: 25,
+                })}
+              />
+              <Input
+                type={isPasswordVisible ? "text" : "password"}
+                placeholder={"New password"}
+                {...registerEditData("newPassword", {
+                  maxLength: 25,
+                })}
+              />
+              <Input
+                type={isPasswordVisible ? "text" : "password"}
+                placeholder={"Confirm new password"}
+                {...registerEditData("confirmNewPassword", {
+                  maxLength: 25,
+                })}
+              />
+              <VisibilityIcon
+                condition={isPasswordVisible}
+                toggler={() => setIsPasswordVisible(!isPasswordVisible)}
+              />
+              <Input
+                type="text"
+                placeholder={"Email"}
+                {...registerEditData("email", {
+                  maxLength: 25,
+                })}
+              />
+              <Button type="submit" green color={"white"}>
+                Save
+              </Button>
+            </Form>
+          )}
           <Button
             warning
             color={"white"}

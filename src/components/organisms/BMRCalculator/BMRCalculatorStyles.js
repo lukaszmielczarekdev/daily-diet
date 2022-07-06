@@ -88,10 +88,14 @@ export const FormContainer = styled.div`
   border-radius: 25px 0;
   width: ${({ alternateView }) => (alternateView ? "fit-content" : "100%")};
   z-index: 2;
-  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "4rem")};
+  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "2rem")};
   background: ${({ alternateView, theme }) =>
     alternateView ? theme.colors.backgroundBright : ""};
   padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   border: ${({ alternateView }) => (alternateView ? "1px solid #eaeaea" : "")};
   -webkit-box-shadow: ${({ alternateView }) =>

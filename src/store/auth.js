@@ -195,7 +195,11 @@ const slice = createSlice({
     },
     [deleteUser.fulfilled]: (state, action) => {
       if (!action.payload?.user) {
+        localStorage.removeItem("profile");
         state.currentUser = null;
+        state.status = null;
+        googleLogout();
+        window.location.href = "/";
         notify("Account deleted");
       }
       state.status = "success";

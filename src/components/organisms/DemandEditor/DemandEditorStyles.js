@@ -43,12 +43,16 @@ export const FormContainer = styled.div`
   border-radius: 25px 0;
   width: fit-content;
   z-index: 2;
-  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "4rem")};
+  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "2rem")};
   padding: 1rem;
   border: 1px solid #eaeaea;
   -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media ${({ theme }) => theme.breakpoints.md} {
     width: fit-content;
