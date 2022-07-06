@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../templates/Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
@@ -22,7 +22,6 @@ import ProductCard from "../../organisms/ProductCard/ProductCard";
 import ProductCreator from "../../organisms/ProductCreator/ProductCreator";
 import LinkItem from "../../molecules/LinkItem/LinkItem";
 import { preferences } from "../../../data/constants";
-
 import {
   currentCategorySet,
   currentCategoryRemoved,
@@ -34,14 +33,31 @@ import {
 } from "../../../store/helpers";
 import UserDataEditor from "../../organisms/UserDataEditor/UserDataEditor";
 import { notify } from "../../../store/utils";
+import decode from "jwt-decode";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
+  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  const token = user?.credential;
+  const decodedToken = decode(token);
 
   const { currentUser } = useSelector((state) => state.user.authData);
-  const { diaries } = useSelector((state) => state.resources.diaries);
-  const { meals } = useSelector((state) => state.resources.meals);
-  const { products } = useSelector((state) => state.resources.products);
+  const diaries = useSelector((state) =>
+    state.resources.diaries.diaries.filter(
+      (diary) => diary.creator === decodedToken.id
+    )
+  );
+  const meals = useSelector((state) =>
+    state.resources.meals.meals.filter(
+      (meal) => meal.creator === decodedToken.id
+    )
+  );
+  const products = useSelector((state) =>
+    state.resources.products.products.filter(
+      (product) => product.creator === decodedToken.id
+    )
+  );
   const { status } = useSelector((state) => state.resources.diaries);
 
   const {
