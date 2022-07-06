@@ -6,17 +6,19 @@ export const FooterContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  margin: 0;
   gap: 1rem;
   width: 100%;
   border-bottom: 1px solid #eaeaea;
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     padding: 2rem 0 0 0;
+    margin: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     gap: 1rem 5rem;
+    margin: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
