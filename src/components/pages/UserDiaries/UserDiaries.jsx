@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Diary from "../../organisms/Diary/Diary";
-import Link from "../../atoms/Link/Link";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
 import Article from "../../organisms/Article/Article";
 import TextField from "../../molecules/TextField/TextField";
 import Container from "../../templates/Container/Container";
@@ -66,12 +66,16 @@ const UserDiaries = () => {
                   "By creating diaries, you facilitate the implementation of the diet by observing your body and making adjustments depending on what effect you want to achieve.\n\nYou can use the available ready-made products and you can also add your own compositions.\n\nCreated diaries can be shared with others."
                 }
               />
-              <Link
-                color={"green"}
+              <LinkItem
+                add
+                color={"white"}
+                padding={"0.6rem"}
+                margin={"0.5rem 0"}
+                radius={"10px 0"}
                 to={!currentUser.profile.bmr ? "/" : "/builder"}
-              >
-                New diary
-              </Link>
+                children={"New diary"}
+                size={"0.8rem"}
+              />
               <Attributes items={diaryAttributes} />
             </>
           }

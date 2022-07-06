@@ -76,6 +76,10 @@ export const InfoContainer = styled.div`
   padding: 50px 1.5rem 1.5rem 1.5rem;
   z-index: 0;
 
+  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+
   background-color: ${({ fillColor }) =>
     fillColor ? ({ theme }) => theme.colors.backgroundBright : "white"};
 `;

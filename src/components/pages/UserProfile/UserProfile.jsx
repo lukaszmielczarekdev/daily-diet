@@ -33,10 +33,12 @@ import {
   itemCreateModeRemoved,
 } from "../../../store/helpers";
 import UserDataEditor from "../../organisms/UserDataEditor/UserDataEditor";
+import { notify } from "../../../store/utils";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
 
+  const { currentUser } = useSelector((state) => state.user.authData);
   const { diaries } = useSelector((state) => state.resources.diaries);
   const { meals } = useSelector((state) => state.resources.meals);
   const { products } = useSelector((state) => state.resources.products);
@@ -176,7 +178,10 @@ const UserProfile = () => {
               color={"white"}
               padding={"0.6rem"}
               radius={"10px 0"}
-              to="/builder"
+              to={currentUser.profile?.bmr ? "/builder" : "/profile"}
+              onClick={
+                !currentUser.profile?.bmr ? () => notify("You need BMR") : ""
+              }
               children={"Create new diary"}
               size={"0.8rem"}
             />
@@ -202,7 +207,10 @@ const UserProfile = () => {
               color={"white"}
               padding={"0.6rem"}
               radius={"10px 0"}
-              to="/builder"
+              to={currentUser.profile?.bmr ? "/builder" : "/profile"}
+              onClick={
+                !currentUser.profile?.bmr ? () => notify("You need BMR") : ""
+              }
               children={"Create new meal"}
               size={"0.8rem"}
             />

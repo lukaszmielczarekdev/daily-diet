@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const NavLinkItem = styled.li`
-  margin: 0 0.5rem;
+  margin: ${({ margin }) => (margin ? margin : "0 0.5rem")};
   text-align: center;
+  width: fit-content;
 
   transition: all 0.2s ease-in-out;
   :hover {
@@ -23,7 +24,7 @@ export const NavigationLink = styled(NavLink)`
   color: ${({ color, theme }) => (color ? color : theme.colors.dark)};
   font-size: ${({ size }) => (size ? size : "1rem")};
   font-weight: ${({ weight }) => (weight ? weight : "500")};
-  margin: 0.5rem;
+  margin: ${({ margin }) => (margin ? margin : "0.5rem")};
 
   border: ${({ border }) => (border ? `${border}` : "none")};
   padding: ${({ padding }) => (padding ? padding : "0")};

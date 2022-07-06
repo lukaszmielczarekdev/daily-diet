@@ -35,8 +35,7 @@ export const features = [
     description:
       "A diet diary is the easiest and fastest way to keep track of your diet. Thanks to this, we are able to notice our mistakes and avoid them in the future. It often happens that our diet seems to be refined. However, it may turn out that our nutrition is far from ideal. It is a good idea to write down the food you eat, preferably in the form of a diary.\n\nPeople who introduce physical activity into their lives usually have two goals. Some people want to gain weight, others try to lose excess body fat. In both cases, there is a topic related to matching the right diet.\n\nDaily Diet helps you to structure your diet according to the daily caloric requirement broken down into adequate amounts of fats, proteins and carbohydrates per kilogram of body weight.",
     image: pizza,
-    link: "#calculator",
-    altLink: "/about",
+    link: "/auth",
     alt: "pizza",
   },
   {
@@ -46,9 +45,8 @@ export const features = [
     description:
       "A diet for muscle mass is based primarily on the increased caloric content of meals. However, the caloric surplus cannot constitute bad-quality products, because the diet for building mass must be fully subordinated to the principles of healthy and rational nutrition. The caloric surplus is determined individually and depends on the advancement of training, at the beginning you can add 200 - 300 kcal and observe the effects.\n\nThe menu in a diet for building muscle mass should, of course, be varied and fully balanced. It is good when it includes lean fish and meat, vegetables, fruit, dairy products (e.g. cottage cheese, natural yoghurt) and whole grain products (e.g. dark bread, oatmeal).",
     image: salad3,
-    link: "test1",
-    altLink: "/builder",
-    alt: "fish",
+    link: "/auth",
+    alt: "chicken meal",
   },
   {
     id: 2,
@@ -58,9 +56,8 @@ export const features = [
       "On fat reduction diet your goal is to reduce the number of calories consumed. The reduction must not be drastic as this could lead to a slower metabolic rate and you will feel hungry forever.\nThe number of limited calories depends on the effects we want to achieve. You can start by cutting 300-500 kcal and check your progress.\n\nThe source of carbohydrates should be products with a low glycemic index, such as whole grain pasta and bread, brown rice or coarse grain groats.\nProtein should be consumed from eggs, lean meats and fish, and from dairy products such as cottage cheese, or from legume seeds.\nFats - mainly unsaturated fatty acids like olive oil, rapeseed oil, nuts, pumpkin or sunflower seeds, as well as fatty fish such as salmon, mackerel or herring. Animal fats should be reduced.",
 
     image: salad,
-    link: "test2",
-    altLink: "/builder",
-    alt: "cinnamon",
+    link: "/auth",
+    alt: "salad meal",
   },
 ];
 

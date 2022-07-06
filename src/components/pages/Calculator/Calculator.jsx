@@ -14,7 +14,7 @@ import Gallery from "../../organisms/Gallery/Gallery";
 
 const Calculator = () => {
   return (
-    <Container bgcolor={({ theme }) => theme.colors.backgroundPrimary}>
+    <Container background={({ theme }) => theme.colors.backgroundPrimary}>
       <Gallery
         text={"center"}
         justify={"center"}

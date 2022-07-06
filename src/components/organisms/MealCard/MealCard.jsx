@@ -7,6 +7,7 @@ import CheckList from "../../molecules/CheckList/CheckList";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { calculatePercentage } from "../../../utils/calculators";
 import { currentItemSet } from "../../../store/helpers";
+import { notify } from "../../../store/utils";
 
 const MealCard = ({
   meal,
@@ -31,7 +32,7 @@ const MealCard = ({
               dispatch(currentItemSet({ item: meal, type: "meal" }));
             }
           : () => {
-              history.push(bmr ? "/builder" : "/");
+              bmr ? history.push("/builder") : notify("You need BMR");
             }
       }
       header={title}

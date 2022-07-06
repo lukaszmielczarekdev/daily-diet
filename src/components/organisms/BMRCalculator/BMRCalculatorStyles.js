@@ -27,7 +27,7 @@ export const Input = styled.input`
 `;
 
 export const StyledSpan = styled.span`
-  margin: 1rem 0;
+  margin-top: 3rem;
   font-size: 0.8rem;
   padding: 0.8rem;
   display: block;
@@ -38,11 +38,11 @@ export const StyledSpan = styled.span`
   border-radius: 10px 0;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 60%;
+    width: fit-content;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 60%;
+    width: fit-content;
   }
 `;
 

@@ -35,8 +35,11 @@ export const ContentContainer = styled.div`
 `;
 
 export const Background = styled.div`
-  background: ${({ bgcolor }) => (bgcolor ? bgcolor : "white")}
-    ${({ background }) => (background ? `url(${background})` : "")} no-repeat;
+  background: ${({ background }) => {
+    if (background) return `url(${background}) center no-repeat`;
+    else return "white";
+  }};
+  background-size: cover;
   min-height: ${({ height }) => (height ? height : "")};
   display: grid;
 `;

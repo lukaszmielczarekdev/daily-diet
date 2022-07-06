@@ -4,8 +4,12 @@ import Gallery from "../../organisms/Gallery/Gallery";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import ArticleCard from "../../molecules/ArticleCard/ArticleCard";
 import { tipsAndTricksArticles } from "../../../data/constants";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
+import { useSelector } from "react-redux";
 
 const Articles = () => {
+  const { currentUser } = useSelector((state) => state.user.authData);
+
   return (
     <Container fillColor>
       <Gallery
@@ -26,6 +30,16 @@ const Articles = () => {
                 <ArticleCard {...article} key={article.id} />
               ))}
             </ControlPanel>
+            <LinkItem
+              add
+              color={"white"}
+              padding={"0.6rem"}
+              margin={"0.5rem 0"}
+              radius={"10px 0"}
+              to={currentUser ? "/profile" : "/auth"}
+              children={"Get started"}
+              size={"1rem"}
+            />
           </>
         }
       />

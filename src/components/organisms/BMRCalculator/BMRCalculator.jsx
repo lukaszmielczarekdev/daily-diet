@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { calculateMacrosAmount } from "../../../utils/calculators";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
 import {
   Form,
   Button,
@@ -12,14 +13,12 @@ import {
   Container,
 } from "./BMRCalculatorStyles";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { updateProfile } from "../../../store/auth";
 import { currentCategoryRemoved } from "../../../store/helpers";
 
 const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const currentUser = useSelector((state) =>
     state.user.authData.currentUser ? state.user.authData.currentUser : ""
@@ -80,8 +79,16 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     <FormContainer noMarginTop={noMarginTop} alternateView={alternateView}>
       {!user?.credential && (
         <Container>
-          <Label>Get your BMR</Label>
-          <Button onClick={() => history.push(`/auth`)}>Sign in</Button>
+          <LinkItem
+            add
+            color={"white"}
+            padding={"1rem"}
+            margin={"4.5rem 0"}
+            radius={"10px 0"}
+            to={"/auth"}
+            children={"Get your BMR"}
+            size={"0.8rem"}
+          />
         </Container>
       )}
       {((user?.credential && !bmr) || editMode) && (
@@ -140,7 +147,16 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
       {bmr && !editMode && (
         <Container>
           <StyledSpan>BMR: {bmr}</StyledSpan>
-          <Button onClick={() => history.push(`/builder`)}>New diary</Button>
+          <LinkItem
+            add
+            color={"white"}
+            padding={"0.8rem"}
+            margin={"1rem 0"}
+            radius={"10px 0"}
+            to={"/builder"}
+            children={"New diary"}
+            size={"0.8rem"}
+          />
         </Container>
       )}
     </FormContainer>

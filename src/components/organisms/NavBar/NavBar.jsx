@@ -27,7 +27,7 @@ const NavBar = ({ handleLogout }) => {
         <Logo src={logo} alt={"website logo"} />
         <LinkItem
           to="/"
-          margin={"0"}
+          margin={"0.5rem"}
           size={"1.2rem"}
           weight={"bold"}
           children={"Daily Diet"}

@@ -61,18 +61,26 @@ export const Button = styled.button`
 `;
 
 export const FormContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundBright};
   min-width: 300px;
   letter-spacing: 0.5px;
   border-radius: 25px 0;
-  width: 100%;
+  width: fit-content;
   z-index: 2;
-  margin-top: 4rem;
-  padding: 2rem 1rem;
-  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  text-align: center;
+  margin-top: ${({ noMarginTop }) => (noMarginTop ? "0" : "2rem")};
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+  -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    width: 100%;
+    width: fit-content;
+    padding: 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
