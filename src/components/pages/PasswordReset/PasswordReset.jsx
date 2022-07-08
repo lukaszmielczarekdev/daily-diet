@@ -36,7 +36,8 @@ const PasswordReset = () => {
     },
   });
 
-  const token = new URLSearchParams(window.location.hash).get("access_token");
+  const url = window.location;
+  const token = url.hash.split("#access_token=")[1];
 
   const handleResetPassword = (data) => {
     if (data.password === data.confirmpassword) {
