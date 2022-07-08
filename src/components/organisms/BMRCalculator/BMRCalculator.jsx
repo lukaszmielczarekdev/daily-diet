@@ -82,12 +82,12 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
           <LinkItem
             add
             color={"white"}
-            padding={"1rem"}
+            padding={"0.8rem"}
             margin={"4.5rem 0"}
             radius={"10px 0"}
             to={"/auth"}
             children={"Get your BMR"}
-            size={"0.8rem"}
+            size={"1rem"}
           />
         </Container>
       )}

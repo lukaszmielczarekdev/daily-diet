@@ -21,7 +21,7 @@ const FeatureArticle = ({
           <LinkItem
             add
             color={"white"}
-            padding={"0.6rem"}
+            padding={"0.8rem"}
             margin={"0.5rem 0"}
             radius={"10px 0"}
             to={link}
