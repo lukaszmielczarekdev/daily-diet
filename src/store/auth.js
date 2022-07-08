@@ -75,12 +75,38 @@ export const updateUserData = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async ({ token, formData }) => {
+    try {
+      const { data } = await api.changePassword(token, formData);
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
 export const deleteUser = createAsyncThunk(
   "auth/deleteUser",
   async ({ id }) => {
     try {
       await api.deleteUser(id);
       return id;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (formData) => {
+    try {
+      const { data } = await api.resetPassword(formData);
+      return data;
     } catch (error) {
       console.log(error);
       notify(error.response.data.message);
@@ -205,6 +231,30 @@ const slice = createSlice({
       state.status = "success";
     },
     [deleteUser.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [resetPassword.pending]: (state) => {
+      state.status = "loading";
+    },
+    [resetPassword.fulfilled]: (state, action) => {
+      if (action.payload?.message) {
+        notify(action.payload.message);
+        state.status = "success";
+      }
+    },
+    [resetPassword.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [changePassword.pending]: (state) => {
+      state.status = "loading";
+    },
+    [changePassword.fulfilled]: (state, action) => {
+      if (action.payload?.message) {
+        notify(action.payload.message);
+        state.status = "success";
+      }
+    },
+    [changePassword.rejected]: (state) => {
       state.status = "failed";
     },
   },

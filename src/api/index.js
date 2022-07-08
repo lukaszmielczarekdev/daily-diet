@@ -26,6 +26,9 @@ export const updateUserProfile = (id, profile) =>
 export const updateUserData = (id, userData) =>
   API.patch(`/user/userData/${id}`, userData);
 export const deleteUser = (id) => API.delete(`/user/${id}`);
+export const resetPassword = (data) => API.post("/user/resetPassword", data);
+export const changePassword = (token, data) =>
+  API.patch(`/user/changePassword/${token}`, data);
 
 export const fetchProducts = () => API.get("/products");
 export const createProduct = (newProduct) => API.post("/products", newProduct);

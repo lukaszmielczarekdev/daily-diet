@@ -8,6 +8,7 @@ import { AppContainer } from "./AppStyles";
 import UserDiaries from "./components/pages/UserDiaries/UserDiaries";
 import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
 import UserProfile from "./components/pages/UserProfile/UserProfile";
+import PasswordReset from "./components/pages/PasswordReset/PasswordReset";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="/profile" exact component={UserProfile} />
             <Route path="/diaries" component={UserDiaries} />
             <Route path="/builder" component={DiaryBuilder} />
+            <Route path="/passwordreset" component={PasswordReset} />
             <Route path="/auth" component={Auth} />
             <Route path="*" component={Hero} />
           </Switch>
