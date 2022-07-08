@@ -11,7 +11,7 @@ import UserProfile from "./components/pages/UserProfile/UserProfile";
 import PasswordReset from "./components/pages/PasswordReset/PasswordReset";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
-import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -25,13 +25,11 @@ const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useHistory();
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
     setUser(null);
-    history.push("/");
-  }, [dispatch, history]);
+  }, [dispatch]);
 
   useEffect(() => {
     const token = user?.credential;

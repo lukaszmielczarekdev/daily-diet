@@ -122,6 +122,7 @@ const slice = createSlice({
       localStorage.removeItem("profile");
       state.currentUser = null;
       state.status = null;
+      window.location.href = "/";
       googleLogout();
     },
   },
@@ -239,8 +240,9 @@ const slice = createSlice({
     [resetPassword.fulfilled]: (state, action) => {
       if (action.payload?.message) {
         notify(action.payload.message);
-        state.status = "success";
+        window.location.href = "/";
       }
+      state.status = "success";
     },
     [resetPassword.rejected]: (state) => {
       state.status = "failed";
@@ -251,8 +253,9 @@ const slice = createSlice({
     [changePassword.fulfilled]: (state, action) => {
       if (action.payload?.message) {
         notify(action.payload.message);
-        state.status = "success";
+        window.location.href = "/auth";
       }
+      state.status = "success";
     },
     [changePassword.rejected]: (state) => {
       state.status = "failed";
