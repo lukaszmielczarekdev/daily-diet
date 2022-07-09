@@ -79,7 +79,7 @@ export const changeNewsletterStatus = createAsyncThunk(
   "auth/changeNewsletterStatus",
   async ({ id, status }) => {
     try {
-      const { data } = await api.changeNewsletterStatus(id, status);
+      const { data } = await api.changeNewsletterStatus(id, { status });
       return data;
     } catch (error) {
       console.log(error);
