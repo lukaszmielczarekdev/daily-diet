@@ -290,7 +290,7 @@ const slice = createSlice({
       state.status = "loading";
     },
     [changeNewsletterStatus.fulfilled]: (state, action) => {
-      if (action.payload?.newsletter && action.payload?.message) {
+      if (action.payload?.message) {
         state.currentUser.newsletter = action.payload.newsletter;
         notify(action.payload.message);
       }
