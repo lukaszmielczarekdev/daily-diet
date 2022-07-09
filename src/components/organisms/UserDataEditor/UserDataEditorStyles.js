@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   margin-top: 0.5rem;
+  flex-direction: ${({ row }) => (row ? "row" : "column")};
   align-items: center;
   justify-content: center;
   display: flex;
-  flex-direction: column;
 `;
 
 export const Input = styled.input`
-  width: 240px;
+  width: ${({ cube }) => (cube ? "30px" : "240px")};
   font-size: 0.8rem;
   padding: 0.5rem;
   margin: 0.5rem 0;
@@ -27,10 +27,10 @@ export const Select = styled.select`
 `;
 
 export const Button = styled.button`
-  width: ${({ text }) => (text ? "200px" : "100px")};
-  margin: 0.8rem 0;
+  width: 240px;
+  margin: 0.5rem 0;
   font-size: 0.8rem;
-  padding: 0.8rem;
+  padding: 0.6rem;
   display: block;
   color: white;
   border: none;

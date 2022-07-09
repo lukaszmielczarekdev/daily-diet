@@ -4,7 +4,11 @@ import { Form, Button, FormContainer, Input } from "./UserDataEditorStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserData, deleteUser } from "../../../store/auth";
+import {
+  updateUserData,
+  deleteUser,
+  changeNewsletterStatus,
+} from "../../../store/auth";
 import { notify } from "../../../store/utils";
 import decode from "jwt-decode";
 
@@ -46,6 +50,11 @@ const UserDataEditor = ({ noMarginTop }) => {
       dispatch(updateUserData({ id: user.clientId, userData: data }));
     } else notify("Something is missing");
   };
+
+  const handleNewsletter = (newsletterStatus) =>
+    dispatch(
+      changeNewsletterStatus({ id: user.clientId, status: newsletterStatus })
+    );
 
   return (
     <FormContainer noMarginTop={noMarginTop}>
@@ -98,6 +107,13 @@ const UserDataEditor = ({ noMarginTop }) => {
               </Button>
             </Form>
           )}
+          <Button
+            warning={currentUser.newsletter ? "" : "true"}
+            color={"white"}
+            onClick={() => handleNewsletter(!currentUser.newsletter)}
+          >
+            Newsletter: {currentUser.newsletter ? "Unsubscribe" : "Subscribe"}
+          </Button>
           <Button
             warning
             color={"white"}

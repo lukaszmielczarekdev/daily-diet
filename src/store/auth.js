@@ -75,6 +75,32 @@ export const updateUserData = createAsyncThunk(
   }
 );
 
+export const changeNewsletterStatus = createAsyncThunk(
+  "auth/changeNewsletterStatus",
+  async ({ id, status }) => {
+    try {
+      const { data } = await api.changeNewsletterStatus(id, status);
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
+export const fakeUserNewsletterUnsubscribe = createAsyncThunk(
+  "auth/fakeUserNewsletterUnsubscribe",
+  async ({ token }) => {
+    try {
+      const { data } = await api.fakeUserNewsletterUnsubscribe(token);
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async ({ token, formData }) => {
@@ -258,6 +284,31 @@ const slice = createSlice({
       state.status = "success";
     },
     [changePassword.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [changeNewsletterStatus.pending]: (state) => {
+      state.status = "loading";
+    },
+    [changeNewsletterStatus.fulfilled]: (state, action) => {
+      if (action.payload?.newsletter && action.payload?.message) {
+        state.currentUser.newsletter = action.payload.newsletter;
+        notify(action.payload.message);
+      }
+      state.status = "success";
+    },
+    [changeNewsletterStatus.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [fakeUserNewsletterUnsubscribe.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fakeUserNewsletterUnsubscribe.fulfilled]: (state, action) => {
+      if (action.payload?.message) {
+        notify(action.payload.message);
+      }
+      state.status = "success";
+    },
+    [fakeUserNewsletterUnsubscribe.rejected]: (state) => {
       state.status = "failed";
     },
   },

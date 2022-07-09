@@ -8,8 +8,8 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  width: ${({ text }) => (text ? "200px" : "120px")};
-  margin: 0.8rem 0;
+  width: 240px;
+  margin: 0.5rem 0;
   font-size: 0.8rem;
   padding: 0.5rem;
   border: 1px solid black;
@@ -18,10 +18,10 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  width: ${({ text }) => (text ? "200px" : "100px")};
-  margin: 0.8rem 0;
+  width: 240px;
+  margin: 0.5rem 0;
   font-size: 0.8rem;
-  padding: 0.8rem;
+  padding: 0.5rem;
   display: block;
   color: white;
   border: none;
