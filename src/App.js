@@ -13,6 +13,7 @@ import Unsubscribe from "./components/pages/Unsubscribe/Unsubscribe";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
 import { Route, Switch, useLocation } from "react-router-dom";
+import ProtectedRoute from "./components/molecules/ProtectedRoute/ProtectedRoute";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -67,9 +68,9 @@ const App = () => {
               <Route path="/" exact component={Calculator} />
               <Route path="/" exact component={Articles} />
             </Route>
-            <Route path="/profile" exact component={UserProfile} />
-            <Route path="/diaries" component={UserDiaries} />
-            <Route path="/builder" component={DiaryBuilder} />
+            <ProtectedRoute path={"/profile"} component={UserProfile} />
+            <ProtectedRoute path={"/diaries"} component={UserDiaries} />
+            <ProtectedRoute path={"/builder"} component={DiaryBuilder} />
             <Route path="/passwordreset" component={PasswordReset} />
             <Route path="/unsubscribe" component={Unsubscribe} />
             <Route path="/auth" component={Auth} />
