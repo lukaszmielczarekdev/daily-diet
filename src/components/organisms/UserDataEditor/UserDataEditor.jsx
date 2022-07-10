@@ -99,7 +99,7 @@ const UserDataEditor = ({ noMarginTop }) => {
                 type="text"
                 placeholder={"Email"}
                 {...registerEditData("email", {
-                  maxLength: 25,
+                  maxLength: 35,
                 })}
               />
               <Button type="submit" green color={"white"}>
