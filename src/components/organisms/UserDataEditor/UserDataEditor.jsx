@@ -108,7 +108,7 @@ const UserDataEditor = ({ noMarginTop }) => {
             </Form>
           )}
           <Button
-            warning={currentUser.newsletter ? "" : "true"}
+            warning={!currentUser.newsletter ? "" : "true"}
             color={"white"}
             onClick={() => handleNewsletter(!currentUser.newsletter)}
           >
