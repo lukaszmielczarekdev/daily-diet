@@ -31,7 +31,7 @@ const Articles = () => {
               ))}
             </ControlPanel>
             <LinkItem
-              add
+              add={1}
               color={"white"}
               padding={"0.8rem"}
               margin={"0.5rem 0"}

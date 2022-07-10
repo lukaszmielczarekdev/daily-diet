@@ -80,7 +80,7 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
       {!user?.credential && (
         <Container>
           <LinkItem
-            add
+            add={1}
             color={"white"}
             padding={"0.8rem"}
             margin={"4.5rem 0"}
@@ -148,7 +148,7 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
         <Container>
           <StyledSpan>BMR: {bmr}</StyledSpan>
           <LinkItem
-            add
+            add={1}
             color={"white"}
             padding={"0.8rem"}
             margin={"1rem 0"}

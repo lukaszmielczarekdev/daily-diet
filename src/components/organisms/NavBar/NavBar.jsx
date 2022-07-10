@@ -42,7 +42,7 @@ const NavBar = ({ handleLogout }) => {
         {currentUser && <LinkItem to="/profile" children={"Profile"} />}
         {!currentUser ? (
           <LinkItem
-            add
+            add={1}
             color={"white"}
             padding={"0.6rem"}
             radius={"10px 0"}
@@ -52,7 +52,7 @@ const NavBar = ({ handleLogout }) => {
           />
         ) : (
           <LinkItem
-            remove
+            remove={1}
             color={"white"}
             padding={"0.6rem"}
             radius={"10px 0"}
@@ -104,7 +104,7 @@ const NavBar = ({ handleLogout }) => {
             )}
             {!currentUser ? (
               <LinkItem
-                add
+                add={1}
                 color={"white"}
                 padding={"0.6rem"}
                 radius={"10px 0"}
@@ -116,7 +116,7 @@ const NavBar = ({ handleLogout }) => {
               />
             ) : (
               <LinkItem
-                remove
+                remove={1}
                 color={"white"}
                 padding={"0.6rem"}
                 radius={"10px 0"}

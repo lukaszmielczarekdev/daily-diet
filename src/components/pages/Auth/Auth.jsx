@@ -124,7 +124,12 @@ const Auth = () => {
                     maxLength: 35,
                   })}
                 />
-                <Button margin={"0 0 1rem 0"} type="submit" red color={"white"}>
+                <Button
+                  margin={"0 0 1rem 0"}
+                  type="submit"
+                  red={1}
+                  color={"white"}
+                >
                   Reset password
                 </Button>
               </Form>
@@ -228,7 +233,7 @@ const Auth = () => {
                       <Button
                         margin={"0 0 1rem 0"}
                         type="button"
-                        red
+                        red={1}
                         color={"white"}
                         onClick={() => {
                           setIsPasswordReset(true);

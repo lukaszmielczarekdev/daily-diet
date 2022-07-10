@@ -19,7 +19,7 @@ const FeatureArticle = ({
         <Description>{description}</Description>
         <Actions>
           <LinkItem
-            add
+            add={1}
             color={"white"}
             padding={"0.8rem"}
             margin={"0.5rem 0"}

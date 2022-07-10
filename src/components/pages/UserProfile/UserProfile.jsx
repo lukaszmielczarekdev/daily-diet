@@ -190,13 +190,13 @@ const UserProfile = () => {
           {currentItem && currentItemType === "diary" && <Diary editMode />}
           {!currentItem && (
             <LinkItem
-              add
+              add={1}
               color={"white"}
               padding={"0.6rem"}
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder" : "/profile"}
               onClick={
-                !currentUser.profile?.bmr ? () => notify("You need BMR") : ""
+                !currentUser.profile?.bmr ? () => notify("You need BMR") : null
               }
               children={"Create new diary"}
               size={"0.8rem"}
@@ -219,13 +219,13 @@ const UserProfile = () => {
           {currentItem && currentItemType === "meal" && <Meal editMode />}
           {!currentItem && (
             <LinkItem
-              add
+              add={1}
               color={"white"}
               padding={"0.6rem"}
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder" : "/profile"}
               onClick={
-                !currentUser.profile?.bmr ? () => notify("You need BMR") : ""
+                !currentUser.profile?.bmr ? () => notify("You need BMR") : null
               }
               children={"Create new meal"}
               size={"0.8rem"}
@@ -251,7 +251,7 @@ const UserProfile = () => {
           {itemCreateMode && <ProductCreator />}
           {!currentItem && !itemCreateMode && (
             <LinkItem
-              add
+              add={1}
               onClick={() => dispatch(itemCreateModeSet())}
               color={"white"}
               padding={"0.6rem"}

@@ -91,7 +91,12 @@ const PasswordReset = () => {
                     condition={isPasswordVisible}
                     toggler={() => setIsPasswordVisible(!isPasswordVisible)}
                   />
-                  <Button margin={"1rem 0"} type="submit" red color={"white"}>
+                  <Button
+                    margin={"1rem 0"}
+                    type="submit"
+                    red={1}
+                    color={"white"}
+                  >
                     Reset password
                   </Button>
                 </Form>

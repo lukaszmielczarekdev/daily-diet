@@ -9,9 +9,6 @@ const Hero = () => {
     <Container fillColor>
       <Carousel
         infinite
-        autoPlay
-        autoPlayInterval={10000}
-        autoPlayStrategy={"all"}
         items={features.map((feature) => (
           <FeatureArticle
             {...feature}

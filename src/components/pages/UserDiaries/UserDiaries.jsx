@@ -67,7 +67,7 @@ const UserDiaries = () => {
                 }
               />
               <LinkItem
-                add
+                add={1}
                 color={"white"}
                 padding={"0.6rem"}
                 margin={"0.5rem 0"}
