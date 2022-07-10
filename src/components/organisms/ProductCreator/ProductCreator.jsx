@@ -205,7 +205,7 @@ const ProductCreator = ({ editMode }) => {
                     type="number"
                     placeholder={
                       itemEditMode
-                        ? "kcal: " + currentItemBackup.nutrients.kcal
+                        ? "kcal: " + currentItemBackup.nutrients.kcal * 100
                         : "Kcal"
                     }
                     {...registerProduct("kcal", {
@@ -222,7 +222,8 @@ const ProductCreator = ({ editMode }) => {
                     type="number"
                     placeholder={
                       itemEditMode
-                        ? "protein: " + currentItemBackup.nutrients.protein
+                        ? "protein: " +
+                          currentItemBackup.nutrients.protein * 100
                         : "Protein"
                     }
                     {...registerProduct("protein", {
@@ -239,7 +240,7 @@ const ProductCreator = ({ editMode }) => {
                     type="number"
                     placeholder={
                       itemEditMode
-                        ? "carbs: " + currentItemBackup.nutrients.carbs
+                        ? "carbs: " + currentItemBackup.nutrients.carbs * 100
                         : "Carbs"
                     }
                     {...registerProduct("carbs", {
@@ -256,7 +257,7 @@ const ProductCreator = ({ editMode }) => {
                     type="number"
                     placeholder={
                       itemEditMode
-                        ? "fat: " + currentItemBackup.nutrients.fat
+                        ? "fat: " + currentItemBackup.nutrients.fat * 100
                         : "Fat"
                     }
                     {...registerProduct("fat", {
