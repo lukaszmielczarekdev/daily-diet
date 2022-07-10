@@ -31,8 +31,8 @@ export const changePassword = (token, data) =>
   API.patch(`/user/changePassword/${token}`, data);
 export const changeNewsletterStatus = (id, data) =>
   API.patch(`/user/changeNewsletterStatus/${id}`, data);
-export const fakeUserNewsletterUnsubscribe = (token) =>
-  API.patch(`/user/unsubscribe/${token}`);
+export const fakeUserNewsletterUnsubscribe = (token, data) =>
+  API.patch(`/user/unsubscribe/${token}`, data);
 
 export const fetchProducts = () => API.get("/products");
 export const createProduct = (newProduct) => API.post("/products", newProduct);

@@ -90,9 +90,11 @@ export const changeNewsletterStatus = createAsyncThunk(
 
 export const fakeUserNewsletterUnsubscribe = createAsyncThunk(
   "auth/fakeUserNewsletterUnsubscribe",
-  async ({ token }) => {
+  async ({ token, status }) => {
     try {
-      const { data } = await api.fakeUserNewsletterUnsubscribe(token);
+      const { data } = await api.fakeUserNewsletterUnsubscribe(token, {
+        status,
+      });
       return data;
     } catch (error) {
       console.log(error);

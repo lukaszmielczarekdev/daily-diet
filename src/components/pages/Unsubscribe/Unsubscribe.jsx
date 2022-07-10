@@ -11,7 +11,7 @@ const Unsubscribe = () => {
     const url = window.location;
     const token = url.hash.split("#access_token=")[1];
 
-    dispatch(fakeUserNewsletterUnsubscribe({ token }));
+    dispatch(fakeUserNewsletterUnsubscribe({ token, status: false }));
   }, [dispatch]);
 
   return (
