@@ -55,7 +55,6 @@ const Product = ({ product }) => {
               min: 1,
               required: true,
               maxLength: 4,
-              pattern: /\d+/,
             })}
           />
         </ProductForm>
