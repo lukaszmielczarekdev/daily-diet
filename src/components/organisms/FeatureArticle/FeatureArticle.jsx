@@ -26,7 +26,7 @@ const FeatureArticle = ({
             radius={"10px 0"}
             to={link}
             children={"Get started"}
-            size={"1rem"}
+            size={"0.8rem"}
           />
         </Actions>
       </Container>

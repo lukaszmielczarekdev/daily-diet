@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const NavLinkItem = styled.li`
   margin: ${({ margin }) => (margin ? margin : "0 0.5rem")};
   text-align: center;
-  width: fit-content;
+  width: ${({ left }) => (left ? "fit-content" : "")};
 
   transition: all 0.2s ease-in-out;
   :hover {

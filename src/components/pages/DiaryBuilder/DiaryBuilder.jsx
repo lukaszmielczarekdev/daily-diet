@@ -4,6 +4,7 @@ import SelectedMeals from "../../organisms/SelectedMeals/SelectedMeals";
 import SelectedProducts from "../../organisms/SelectedProducts/SelectedProducts";
 import Container from "../../templates/Container/Container";
 import Gallery from "../../organisms/Gallery/Gallery";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import Card2 from "../../molecules/Card2/Card2";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,7 +54,7 @@ const DiaryBuilder = () => {
         }
       />
       <Title text={"center"} titlePrimary={"Diary Creator"} />
-      {bmr && (
+      {bmr ? (
         <>
           {temporaryMeals.length !== 0 && <SelectedMeals />}
           {temporaryProducts.length !== 0 && <SelectedProducts />}
@@ -62,6 +63,17 @@ const DiaryBuilder = () => {
             data={[...meals, ...products]}
           />
         </>
+      ) : (
+        <LinkItem
+          add={1}
+          color={"white"}
+          padding={"0.8rem"}
+          margin={"0.5rem 0"}
+          radius={"10px 0"}
+          to={"/profile"}
+          children={"Get BMR"}
+          size={"0.8rem"}
+        />
       )}
     </Container>
   );

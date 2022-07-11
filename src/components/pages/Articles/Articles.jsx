@@ -38,7 +38,7 @@ const Articles = () => {
               radius={"10px 0"}
               to={currentUser ? "/profile" : "/auth"}
               children={"Get started"}
-              size={"1rem"}
+              size={"0.8rem"}
             />
           </>
         }

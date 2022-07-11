@@ -192,7 +192,8 @@ const UserProfile = () => {
             <LinkItem
               add={1}
               color={"white"}
-              padding={"0.6rem"}
+              padding={"0.8rem"}
+              margin={"0.5rem 0"}
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder" : "/profile"}
               onClick={
@@ -221,7 +222,8 @@ const UserProfile = () => {
             <LinkItem
               add={1}
               color={"white"}
-              padding={"0.6rem"}
+              padding={"0.8rem"}
+              margin={"0.5rem 0"}
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder" : "/profile"}
               onClick={
@@ -252,11 +254,12 @@ const UserProfile = () => {
           {!currentItem && !itemCreateMode && (
             <LinkItem
               add={1}
-              onClick={() => dispatch(itemCreateModeSet())}
               color={"white"}
-              padding={"0.6rem"}
+              padding={"0.8rem"}
+              onClick={() => dispatch(itemCreateModeSet())}
+              margin={"0.5rem 0"}
               radius={"10px 0"}
-              to="/profile"
+              to={"/profile"}
               children={"Create new product"}
               size={"0.8rem"}
             />

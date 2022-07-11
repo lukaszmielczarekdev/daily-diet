@@ -36,6 +36,13 @@ const NavBar = ({ handleLogout }) => {
       <NavLinks>
         <LinkItem to="/" children={"Home"} />
         {currentUser && <LinkItem to="/diaries" children={"Inspirations"} />}
+        {currentUser && (
+          <LinkItem
+            to="/builder"
+            children={"Creator"}
+            color={"rgb(125, 215, 120)"}
+          />
+        )}
         <LinkItem to="/" children={"About"} />
       </NavLinks>
       <NavAuth>
@@ -82,6 +89,15 @@ const NavBar = ({ handleLogout }) => {
                 to="/diaries"
                 onClick={() => setMenuOpened(false)}
                 children={"Inspirations"}
+                margin={"1.6rem"}
+                size={"1.2rem"}
+              />
+            )}
+            {currentUser && (
+              <LinkItem
+                to="/builder"
+                children={"Creator"}
+                color={"rgb(125, 215, 120)"}
                 margin={"1.6rem"}
                 size={"1.2rem"}
               />
