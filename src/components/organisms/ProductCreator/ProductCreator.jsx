@@ -28,6 +28,7 @@ import {
   productsRemoved,
   itemCreateModeRemoved,
 } from "../../../store/helpers";
+import { notify } from "../../../store/utils";
 
 const ProductCreator = ({ editMode }) => {
   const dispatch = useDispatch();
@@ -202,24 +203,23 @@ const ProductCreator = ({ editMode }) => {
                   />
                   <Input
                     text
-                    type="number"
+                    type="text"
                     placeholder={
                       itemEditMode
                         ? "kcal: " + currentItemBackup.nutrients.kcal * 100
                         : "Kcal"
                     }
                     {...registerProduct("kcal", {
-                      valueAsNumber: true,
                       max: 5000,
                       min: 0,
                       required: true,
                       maxLength: 4,
-                      pattern: /\d+/,
+                      pattern: /^\d+(\.\d+)?$/i,
                     })}
                   />
                   <Input
                     text
-                    type="number"
+                    type="text"
                     placeholder={
                       itemEditMode
                         ? "protein: " +
@@ -227,46 +227,43 @@ const ProductCreator = ({ editMode }) => {
                         : "Protein"
                     }
                     {...registerProduct("protein", {
-                      valueAsNumber: true,
                       max: 5000,
                       min: 0,
                       required: true,
                       maxLength: 4,
-                      pattern: /\d+/,
+                      pattern: /^\d+(\.\d+)?$/i,
                     })}
                   />
                   <Input
                     text
-                    type="number"
+                    type="text"
                     placeholder={
                       itemEditMode
                         ? "carbs: " + currentItemBackup.nutrients.carbs * 100
                         : "Carbs"
                     }
                     {...registerProduct("carbs", {
-                      valueAsNumber: true,
                       max: 5000,
                       min: 0,
                       required: true,
                       maxLength: 4,
-                      pattern: /\d+/,
+                      pattern: /^\d+(\.\d+)?$/i,
                     })}
                   />
                   <Input
                     text
-                    type="number"
+                    type="text"
                     placeholder={
                       itemEditMode
                         ? "fat: " + currentItemBackup.nutrients.fat * 100
                         : "Fat"
                     }
                     {...registerProduct("fat", {
-                      valueAsNumber: true,
                       max: 5000,
                       min: 0,
                       required: true,
                       maxLength: 4,
-                      pattern: /\d+/,
+                      pattern: /^\d+(\.\d+)?$/i,
                     })}
                   />
                   <Label>Category</Label>
