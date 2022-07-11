@@ -206,7 +206,10 @@ const ProductCreator = ({ editMode }) => {
                     step="0.01"
                     placeholder={
                       itemEditMode
-                        ? "kcal: " + currentItemBackup.nutrients.kcal * 100
+                        ? "kcal: " +
+                          parseFloat(
+                            (currentItemBackup.nutrients.kcal * 100).toFixed(2)
+                          )
                         : "Kcal"
                     }
                     {...registerProduct("kcal", {
@@ -222,7 +225,11 @@ const ProductCreator = ({ editMode }) => {
                     placeholder={
                       itemEditMode
                         ? "protein: " +
-                          currentItemBackup.nutrients.protein * 100
+                          parseFloat(
+                            (currentItemBackup.nutrients.protein * 100).toFixed(
+                              2
+                            )
+                          )
                         : "Protein"
                     }
                     {...registerProduct("protein", {
@@ -237,7 +244,10 @@ const ProductCreator = ({ editMode }) => {
                     step="0.01"
                     placeholder={
                       itemEditMode
-                        ? "carbs: " + currentItemBackup.nutrients.carbs * 100
+                        ? "carbs: " +
+                          parseFloat(
+                            (currentItemBackup.nutrients.carbs * 100).toFixed(2)
+                          )
                         : "Carbs"
                     }
                     {...registerProduct("carbs", {
@@ -252,7 +262,10 @@ const ProductCreator = ({ editMode }) => {
                     step="0.01"
                     placeholder={
                       itemEditMode
-                        ? "fat: " + currentItemBackup.nutrients.fat * 100
+                        ? "fat: " +
+                          parseFloat(
+                            (currentItemBackup.nutrients.fat * 100).toFixed(2)
+                          )
                         : "Fat"
                     }
                     {...registerProduct("fat", {
