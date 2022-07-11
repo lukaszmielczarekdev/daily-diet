@@ -36,7 +36,9 @@ const ProductCard = ({
       main={
         createdAt ? (
           <RoundChart
-            data={[calculatePercentage(nutrients.kcal, demandAmount.kcal)]}
+            data={[
+              calculatePercentage(nutrients.kcal * 100, demandAmount.kcal),
+            ]}
             label={"KCAL"}
             size={"90%"}
             nameSize={"14px"}

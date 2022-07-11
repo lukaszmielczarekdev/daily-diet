@@ -13,9 +13,9 @@ import {
   GiGrainBundle,
   GiFruitBowl,
   GiMeat,
-  GiCheeseWedge,
-  GiPlantWatering,
+  GiMilkCarton,
 } from "react-icons/gi";
+import { RiLeafLine } from "react-icons/ri";
 import { IoFishOutline } from "react-icons/io5";
 import { BsBox, BsDroplet } from "react-icons/bs";
 
@@ -52,14 +52,14 @@ const SearchBar = ({ data, placeholder, margin }) => {
     if (category === "meat") {
       return <GiMeat />;
     }
-    if (category === "cheese") {
-      return <GiCheeseWedge />;
+    if (category === "dairy") {
+      return <GiMilkCarton />;
     }
     if (category === "drink") {
       return <BsDroplet />;
     }
     if (category === "vegetable") {
-      return <GiPlantWatering />;
+      return <RiLeafLine />;
     } else {
       return <BsBox />;
     }
