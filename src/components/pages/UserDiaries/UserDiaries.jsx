@@ -5,13 +5,16 @@ import Article from "../../organisms/Article/Article";
 import TextField from "../../molecules/TextField/TextField";
 import Container from "../../templates/Container/Container";
 import Carousel from "../../organisms/Carousel/Carousel";
+import Title from "../../atoms/Title/Title";
+import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import Image from "../../atoms/Image/Image";
 import Attributes from "../../molecules/Attributes/Attributes";
 import eggs from "../../../assets/Images/eggs.jpg";
 import { diaryAttributes } from "../../../data/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import DiaryCard from "../../organisms/DiaryCard/DiaryCard";
+import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
+import { exampleMeals } from "../../../data/constants";
 import ClipLoader from "react-spinners/ClipLoader";
 import {
   currentItemRemoved,
@@ -95,8 +98,14 @@ const UserDiaries = () => {
             />
           )}
         </ControlPanel>
+        {currentItem && currentItemType === "diary" && <Diary />}
+        <Title text={"center"} titlePrimary={"Example Meals"} />
+        <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
+          {exampleMeals.map((meal) => (
+            <ProductDetails key={meal.id} {...meal} />
+          ))}
+        </ControlPanel>
       </Container>
-      {currentItem && currentItemType === "diary" && <Diary />}
     </>
   );
 };

@@ -8,7 +8,12 @@ import {
   Wrapper,
   IconContainer,
 } from "./SearchBarStyles";
-import { productAdded } from "../../../store/helpers";
+import Button from "../../atoms/Button/Button";
+import {
+  productAdded,
+  mealsRemoved,
+  productsRemoved,
+} from "../../../store/helpers";
 import {
   GiGrainBundle,
   GiFruitBowl,
@@ -66,7 +71,7 @@ const SearchBar = ({ data, placeholder, margin }) => {
   };
 
   return (
-    <Wrapper margin={margin}>
+    <Wrapper row margin={margin}>
       <Container>
         <StyledInput
           text
@@ -92,6 +97,17 @@ const SearchBar = ({ data, placeholder, margin }) => {
           </SearchList>
         )}
       </Container>
+      <Button
+        remove
+        margin={"0 0.5rem 0.5rem 0"}
+        onClick={() => {
+          dispatch(productsRemoved());
+          dispatch(mealsRemoved());
+          setFilteredData([]);
+        }}
+      >
+        Cancel
+      </Button>
     </Wrapper>
   );
 };

@@ -8,8 +8,6 @@ import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import Card2 from "../../molecules/Card2/Card2";
 import { useDispatch, useSelector } from "react-redux";
 import { diaryBuilderSteps } from "../../../data/constants";
-import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
-import { exampleMeals } from "../../../data/constants";
 import Title from "../../atoms/Title/Title";
 import { productsRemoved, mealsRemoved } from "../../../store/helpers";
 
@@ -54,12 +52,6 @@ const DiaryBuilder = () => {
           </ControlPanel>
         }
       />
-      <Title text={"center"} titlePrimary={"Example Meals"} />
-      <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
-        {exampleMeals.map((meal) => (
-          <ProductDetails key={meal.id} {...meal} />
-        ))}
-      </ControlPanel>
       <Title text={"center"} titlePrimary={"Diary Creator"} />
       {bmr && (
         <>

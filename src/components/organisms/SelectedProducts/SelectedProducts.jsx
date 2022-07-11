@@ -137,16 +137,18 @@ const SelectedProducts = ({ margin, editMode }) => {
           Delete all
         </Button>
       </ControlPanel>
-      <Button
-        color={"black"}
-        margin={"1.5rem 0 0 0"}
-        align={"center"}
-        onClick={() => {
-          dispatch(currentItemRemoved());
-        }}
-      >
-        Close
-      </Button>
+      {editMode && (
+        <Button
+          color={"black"}
+          margin={"1.5rem 0 0 0"}
+          align={"center"}
+          onClick={() => {
+            dispatch(currentItemRemoved());
+          }}
+        >
+          Close
+        </Button>
+      )}
     </ProductsContainer>
   );
 };
