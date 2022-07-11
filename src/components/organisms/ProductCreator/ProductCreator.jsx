@@ -197,7 +197,7 @@ const ProductCreator = ({ editMode }) => {
                     }
                     {...registerProduct("title", {
                       required: true,
-                      maxLength: 15,
+                      maxLength: 25,
                     })}
                   />
                   <Input
