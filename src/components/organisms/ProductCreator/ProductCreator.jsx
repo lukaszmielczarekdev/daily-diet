@@ -269,7 +269,7 @@ const ProductCreator = ({ editMode }) => {
                   >
                     <option value={"meat"}>Meat</option>
                     <option value={"grain"}>Grain</option>
-                    <option value={"cheese"}>Cheese</option>
+                    <option value={"dairy"}>Dairy</option>
                     <option value={"fruit"}>Fruit</option>
                     <option value={"vegetable"}>Vegetable</option>
                     <option value={"drink"}>Drink</option>
