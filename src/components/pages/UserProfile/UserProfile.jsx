@@ -191,11 +191,12 @@ const UserProfile = () => {
           {!currentItem && (
             <LinkItem
               add={1}
+              hash={1}
               color={"white"}
               padding={"0.8rem"}
               margin={"0.5rem 0"}
               radius={"10px 0"}
-              to={currentUser.profile?.bmr ? "/builder" : "/profile"}
+              to={currentUser.profile?.bmr ? "/builder#top" : "/profile#top"}
               onClick={
                 !currentUser.profile?.bmr ? () => notify("You need BMR") : null
               }
@@ -221,11 +222,12 @@ const UserProfile = () => {
           {!currentItem && (
             <LinkItem
               add={1}
+              hash={1}
               color={"white"}
               padding={"0.8rem"}
               margin={"0.5rem 0"}
               radius={"10px 0"}
-              to={currentUser.profile?.bmr ? "/builder" : "/profile"}
+              to={currentUser.profile?.bmr ? "/builder#top" : "/profile#top"}
               onClick={
                 !currentUser.profile?.bmr ? () => notify("You need BMR") : null
               }
