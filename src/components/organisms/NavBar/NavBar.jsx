@@ -97,6 +97,7 @@ const NavBar = ({ handleLogout }) => {
               <LinkItem
                 to="/builder"
                 children={"Creator"}
+                onClick={() => setMenuOpened(false)}
                 color={"rgb(125, 215, 120)"}
                 margin={"1.6rem"}
                 size={"1.2rem"}

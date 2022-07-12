@@ -10,6 +10,12 @@ import { useSelector } from "react-redux";
 const Articles = () => {
   const { currentUser } = useSelector((state) => state.user.authData);
 
+  const renderLink = () => {
+    if (!currentUser) return "/auth#top";
+    if (!currentUser.profile.bmr) return "/#calculator";
+    return "/builder#top";
+  };
+
   return (
     <Container fillColor>
       <Gallery
@@ -31,12 +37,13 @@ const Articles = () => {
               ))}
             </ControlPanel>
             <LinkItem
+              hash={1}
               add={1}
               color={"white"}
               padding={"0.8rem"}
               margin={"0.5rem 0"}
               radius={"10px 0"}
-              to={currentUser ? "/profile" : "/auth"}
+              to={renderLink()}
               children={"Get started"}
               size={"0.8rem"}
             />

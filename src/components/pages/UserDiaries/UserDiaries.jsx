@@ -101,7 +101,7 @@ const UserDiaries = () => {
         </ControlPanel>
         {currentItem && currentItemType === "diary" && <Diary />}
         <Title text={"center"} titlePrimary={"Example Meals"} />
-        <ControlPanel justify={"space-between"} margin={"1rem 0 3rem 0"}>
+        <ControlPanel justify={"space-around"} margin={"2rem"}>
           {exampleMeals.map((meal) => (
             <ProductDetails key={meal.id} {...meal} />
           ))}

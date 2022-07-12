@@ -1,9 +1,19 @@
-import { NavLinkItem, NavigationLink } from "./LinkItemStyles";
+import {
+  NavLinkItem,
+  NavigationLink,
+  NavigationHashLink,
+} from "./LinkItemStyles";
 
 const LinkItem = (props) => {
   return (
     <NavLinkItem margin={props.margin} left={props.left}>
-      <NavigationLink {...props}>{props.children}</NavigationLink>
+      {props.hash ? (
+        <NavigationHashLink smooth {...props}>
+          {props.children}
+        </NavigationHashLink>
+      ) : (
+        <NavigationLink {...props}>{props.children}</NavigationLink>
+      )}
     </NavLinkItem>
   );
 };

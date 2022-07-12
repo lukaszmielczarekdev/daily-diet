@@ -80,14 +80,16 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
       {!user?.credential && (
         <Container>
           <LinkItem
+            hash={1}
             add={1}
+            smooth={1}
             color={"white"}
             padding={"0.8rem"}
             margin={"4.5rem 0"}
             radius={"10px 0"}
-            to={"/auth"}
+            to={"/auth#top"}
             children={"Get your BMR"}
-            size={"1rem"}
+            size={"0.8rem"}
           />
         </Container>
       )}
@@ -148,12 +150,13 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
         <Container>
           <StyledSpan>BMR: {bmr}</StyledSpan>
           <LinkItem
+            hash={1}
             add={1}
             color={"white"}
             padding={"0.8rem"}
             margin={"1rem 0"}
             radius={"10px 0"}
-            to={"/builder"}
+            to={"/builder#top"}
             children={"New diary"}
             size={"0.8rem"}
           />

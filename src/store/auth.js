@@ -316,5 +316,5 @@ const slice = createSlice({
   },
 });
 
-export const { auth, logout } = slice.actions;
+export const { logout } = slice.actions;
 export default slice.reducer;

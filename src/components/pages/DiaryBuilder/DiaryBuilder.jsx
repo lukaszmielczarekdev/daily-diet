@@ -46,11 +46,13 @@ const DiaryBuilder = () => {
         titlePrimary={"Build your diary by"}
         titleSecondary={"Fallowing These Steps"}
         children={
-          <ControlPanel align={"baseline"}>
-            {diaryBuilderSteps.map((step) => (
-              <Card2 fillColor {...step} key={step.id} />
-            ))}
-          </ControlPanel>
+          <>
+            <ControlPanel align={"baseline"}>
+              {diaryBuilderSteps.map((step) => (
+                <Card2 fillColor {...step} key={step.id} />
+              ))}
+            </ControlPanel>
+          </>
         }
       />
       <Title text={"center"} titlePrimary={"Diary Creator"} />
@@ -66,11 +68,12 @@ const DiaryBuilder = () => {
       ) : (
         <LinkItem
           add={1}
+          hash={1}
           color={"white"}
           padding={"0.8rem"}
-          margin={"0.5rem 0"}
+          margin={"2rem 0"}
           radius={"10px 0"}
-          to={"/profile"}
+          to={"/profile#top"}
           children={"Get BMR"}
           size={"0.8rem"}
         />
