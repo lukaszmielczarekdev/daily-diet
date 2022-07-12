@@ -185,30 +185,34 @@ export const exampleMeals = [
   {
     id: 0,
     image: salad5,
-    primary: "salad",
-    secondary: "salad is good",
-    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+    primary: "supper",
+    secondary: "with chicken",
+    description:
+      "-grilled chicken breast\n-avocado\n-romaine lettuce\n-grilled pepper\n-onion\n-dressing",
   },
   {
     id: 1,
     image: salad3,
-    primary: "salad",
-    secondary: "salad is good",
-    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+    primary: "breakfast",
+    secondary: "with turkey",
+    description:
+      "-fried turkey breast\n-hard boiled eggs\n-boiled beans\n-boiled red cabbage\n-canned corn\n-fresh vegetables",
   },
   {
     id: 2,
     image: salad2,
     primary: "salad",
-    secondary: "salad is good",
-    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+    secondary: "Caesar",
+    description:
+      "-romaine lettuce\n-wheat baguette\n-chicken breast\n-frying oil or olive oil\n-parmesan cheese\n-dressing",
   },
   {
     id: 3,
     image: salad4,
-    primary: "salad",
-    secondary: "salad is good",
-    description: "jbhgj bhv bjhvhg vfdcfg hbgcfg hvhgc hghf d fgvfcd d rdf",
+    primary: "something",
+    secondary: "vegetarian",
+    description:
+      "-romaine lettuce\n-carrots fried in soy sauce\n-mozzarella cheese\n-black and green olives\n-walnuts\n-onion",
   },
 ];
 

@@ -4,8 +4,6 @@ export const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 150px;
-  max-width: 250px;
   margin: 1rem;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
@@ -15,7 +13,7 @@ export const Wrapper = styled.article`
 `;
 
 export const StyledImage = styled.img`
-  width: 180px;
+  width: 160px;
   border-radius: 50%;
 
   transition: all 0.2s ease-in-out;
@@ -64,9 +62,13 @@ export const Span = styled.span`
 export const InfoContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   margin-top: -30%;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   border-radius: 25px;
   padding: 100px 1.5rem 1.5rem 1.5rem;
   z-index: 0;
+  width: 250px;
+  height: 320px;
 
   -webkit-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
