@@ -3,6 +3,7 @@ import Container from "../../templates/Container/Container";
 import Gallery from "../../organisms/Gallery/Gallery";
 import { fakeUserNewsletterUnsubscribe } from "../../../store/auth";
 import { useDispatch } from "react-redux";
+import { debounce } from "../../../utils/helpers";
 
 const Unsubscribe = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,10 @@ const Unsubscribe = () => {
     const url = window.location;
     const token = url.hash.split("#access_token=")[1];
 
-    dispatch(fakeUserNewsletterUnsubscribe({ token, status: false }));
+    debounce(
+      dispatch(fakeUserNewsletterUnsubscribe({ token, status: false })),
+      400
+    );
   }, [dispatch]);
 
   return (

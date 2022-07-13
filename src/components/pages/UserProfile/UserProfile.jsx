@@ -39,6 +39,16 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
 
+  useEffect(() => {
+    return () => {
+      dispatch(currentItemRemoved());
+      dispatch(currentCategoryRemoved());
+      dispatch(productsRemoved());
+      dispatch(mealsRemoved());
+      dispatch(itemCreateModeRemoved());
+    };
+  }, [dispatch]);
+
   const token = user?.credential;
   const decodedToken = decode(token);
 
@@ -67,16 +77,6 @@ const UserProfile = () => {
     itemEditMode,
     itemCreateMode,
   } = useSelector((state) => state.user.helpers);
-
-  useEffect(() => {
-    return () => {
-      dispatch(currentItemRemoved());
-      dispatch(currentCategoryRemoved());
-      dispatch(productsRemoved());
-      dispatch(mealsRemoved());
-      dispatch(itemCreateModeRemoved());
-    };
-  }, [dispatch]);
 
   const renderCards = (item) => {
     if (item === "diaries") {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Container from "../../templates/Container/Container";
 import Description from "../../atoms/Description/Description";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import { notify } from "../../../store/utils";
 import ClipLoader from "react-spinners/ClipLoader";
 import Article from "../../organisms/Article/Article";
 import ArticleContent from "../../organisms/ArticleContent/ArticleContent";
+import { debounce } from "../../../utils/helpers";
 
 const PasswordReset = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -39,11 +40,19 @@ const PasswordReset = () => {
   const url = window.location;
   const token = url.hash.split("#access_token=")[1];
 
-  const handleResetPassword = (data) => {
-    if (data.password === data.confirmpassword) {
-      dispatch(changePassword({ token, formData: data }));
-    } else notify("Password fields must have the same value");
-  };
+  const handleResetPassword = useCallback(
+    (data) => {
+      if (data.password === data.confirmpassword) {
+        dispatch(changePassword({ token, formData: data }));
+      } else notify("Password fields must have the same value");
+    },
+    [dispatch, token]
+  );
+
+  const debouncedHandleResetPassword = useMemo(
+    () => debounce((data) => handleResetPassword(data), 400),
+    [handleResetPassword]
+  );
 
   return (
     <Container fillColor>
@@ -67,7 +76,9 @@ const PasswordReset = () => {
                   8 - 25 characters
                 </Description>
                 <Form
-                  onSubmit={handleRegisterChangePassword(handleResetPassword)}
+                  onSubmit={handleRegisterChangePassword(
+                    debouncedHandleResetPassword
+                  )}
                 >
                   <Input
                     type={isPasswordVisible ? "text" : "password"}
@@ -91,12 +102,7 @@ const PasswordReset = () => {
                     condition={isPasswordVisible}
                     toggler={() => setIsPasswordVisible(!isPasswordVisible)}
                   />
-                  <Button
-                    margin={"1rem 0"}
-                    type="submit"
-                    red={1}
-                    color={"white"}
-                  >
+                  <Button margin={"1rem 0"} type="submit" red color={"white"}>
                     Reset password
                   </Button>
                 </Form>

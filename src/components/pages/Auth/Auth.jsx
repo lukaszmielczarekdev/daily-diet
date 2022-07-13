@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Container from "../../templates/Container/Container";
 import Description from "../../atoms/Description/Description";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import { notify } from "../../../store/utils";
 import ClipLoader from "react-spinners/ClipLoader";
 import Article from "../../organisms/Article/Article";
 import ArticleContent from "../../organisms/ArticleContent/ArticleContent";
+import { debounce } from "../../../utils/helpers";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -63,21 +64,45 @@ const Auth = () => {
     },
   });
 
-  const handleSignIn = (data) => {
-    dispatch(signin(data));
-    resetSignIn();
-  };
+  const handleSignIn = useCallback(
+    (data) => {
+      dispatch(signin(data));
+      resetSignIn();
+    },
+    [dispatch, resetSignIn]
+  );
 
-  const handleResetPassword = (data) => {
-    dispatch(resetPassword(data));
-  };
+  const debouncedHandleSignIn = useMemo(
+    () => debounce((data) => handleSignIn(data), 400),
+    [handleSignIn]
+  );
 
-  const handleSignUp = (data) => {
-    if (data.password === data.confirmpassword) {
-      dispatch(signup(data));
-      resetSignUp();
-    } else notify("Password fields must have the same value");
-  };
+  const handleResetPassword = useCallback(
+    (data) => {
+      dispatch(resetPassword(data));
+    },
+    [dispatch]
+  );
+
+  const debouncedHandleResetPassword = useMemo(
+    () => debounce((data) => handleResetPassword(data), 400),
+    [handleResetPassword]
+  );
+
+  const handleSignUp = useCallback(
+    (data) => {
+      if (data.password === data.confirmpassword) {
+        dispatch(signup(data));
+        resetSignUp();
+      } else notify("Password fields must have the same value");
+    },
+    [dispatch, resetSignUp]
+  );
+
+  const debouncedHandleSignUp = useMemo(
+    () => debounce((data) => handleSignUp(data), 400),
+    [handleSignUp]
+  );
 
   const googleSuccess = async (credentialResponse) => {
     const response = await credentialResponse;
@@ -115,7 +140,11 @@ const Auth = () => {
                 it. <br /> <br />
                 Didn't get an email? Don't forget to check the SPAM folder.
               </Description>
-              <Form onSubmit={handleRegisterResetPassword(handleResetPassword)}>
+              <Form
+                onSubmit={handleRegisterResetPassword(
+                  debouncedHandleResetPassword
+                )}
+              >
                 <Input
                   type="text"
                   placeholder={"Email address *"}
@@ -124,14 +153,18 @@ const Auth = () => {
                     maxLength: 35,
                   })}
                 />
-                <Button
-                  margin={"0 0 1rem 0"}
-                  type="submit"
-                  red={1}
-                  color={"white"}
-                >
+                <Button margin={"0 0 1rem 0"} type="submit" red color={"white"}>
                   Reset password
                 </Button>
+                <StyledSpan
+                  pointer
+                  margin={"1rem 0 0 0"}
+                  onClick={() => {
+                    setIsPasswordReset(false);
+                  }}
+                >
+                  Go back
+                </StyledSpan>
               </Form>
             </FormContainer>
           ) : (
@@ -144,8 +177,8 @@ const Auth = () => {
                   <Form
                     onSubmit={
                       isSignUp
-                        ? handleRegisterSignUp(handleSignUp)
-                        : handleRegisterSignIn(handleSignIn)
+                        ? handleRegisterSignUp(debouncedHandleSignUp)
+                        : handleRegisterSignIn(debouncedHandleSignIn)
                     }
                   >
                     {isSignUp ? (
@@ -233,7 +266,7 @@ const Auth = () => {
                       <Button
                         margin={"0 0 1rem 0"}
                         type="button"
-                        red={1}
+                        red
                         color={"white"}
                         onClick={() => {
                           setIsPasswordReset(true);

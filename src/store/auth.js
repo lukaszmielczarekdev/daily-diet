@@ -150,7 +150,6 @@ const slice = createSlice({
       localStorage.removeItem("profile");
       state.currentUser = null;
       state.status = null;
-      window.location.href = "/";
       googleLogout();
     },
   },
@@ -254,7 +253,7 @@ const slice = createSlice({
         state.currentUser = null;
         state.status = null;
         googleLogout();
-        window.location.href = "/";
+        window.location.href = "/auth";
         notify("Account deleted");
       }
       state.status = "success";
@@ -268,7 +267,7 @@ const slice = createSlice({
     [resetPassword.fulfilled]: (state, action) => {
       if (action.payload?.message) {
         notify(action.payload.message);
-        window.location.href = "/";
+        window.location.href = "/auth";
       }
       state.status = "success";
     },

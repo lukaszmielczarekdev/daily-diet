@@ -12,7 +12,7 @@ import PasswordReset from "./components/pages/PasswordReset/PasswordReset";
 import Unsubscribe from "./components/pages/Unsubscribe/Unsubscribe";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import ProtectedRoute from "./components/molecules/ProtectedRoute/ProtectedRoute";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
@@ -31,9 +31,15 @@ const App = () => {
   const handleLogout = useCallback(() => {
     dispatch(logout());
     setUser(null);
+    return <Redirect to={"/auth"} />;
   }, [dispatch]);
 
   useEffect(() => {
+    let userData = JSON.parse(localStorage.getItem("profile"));
+    if (!userData) {
+      handleLogout();
+    }
+
     const token = user?.credential;
 
     if (token) {

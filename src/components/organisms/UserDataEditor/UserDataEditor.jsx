@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, FormContainer, Input } from "./UserDataEditorStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
@@ -9,6 +9,7 @@ import {
   deleteUser,
   changeNewsletterStatus,
 } from "../../../store/auth";
+import { debounce } from "../../../utils/helpers";
 import { notify } from "../../../store/utils";
 import decode from "jwt-decode";
 
@@ -39,29 +40,55 @@ const UserDataEditor = ({ noMarginTop }) => {
     },
   });
 
-  const handleEditData = (data) => {
-    if (data.oldPassword && data.newPassword === data.confirmNewPassword) {
-      dispatch(updateUserData({ id: user.clientId, userData: data }));
-    } else if (
-      !data.oldPassword &&
-      !data.newPassword &&
-      !data.confirmNewPassword
-    ) {
-      dispatch(updateUserData({ id: user.clientId, userData: data }));
-    } else notify("Something is missing");
-  };
+  const handleEditData = useCallback(
+    (data) => {
+      if (data.oldPassword && data.newPassword === data.confirmNewPassword) {
+        dispatch(updateUserData({ id: user.clientId, userData: data }));
+      } else if (
+        !data.oldPassword &&
+        !data.newPassword &&
+        !data.confirmNewPassword
+      ) {
+        dispatch(updateUserData({ id: user.clientId, userData: data }));
+      } else notify("Something is missing");
+    },
+    [dispatch, user.clientId]
+  );
 
-  const handleNewsletter = (newsletterStatus) =>
-    dispatch(
-      changeNewsletterStatus({ id: user.clientId, status: newsletterStatus })
-    );
+  const debouncedHandleEditData = useMemo(
+    () => debounce((data) => handleEditData(data), 400),
+    [handleEditData]
+  );
+
+  const handleNewsletter = useCallback(
+    (newsletterStatus) =>
+      dispatch(
+        changeNewsletterStatus({ id: user.clientId, status: newsletterStatus })
+      ),
+    [dispatch, user.clientId]
+  );
+
+  const debouncedHandleNewsletter = useMemo(
+    () => debounce((data) => handleNewsletter(data), 400),
+    [handleNewsletter]
+  );
+
+  const handleDeleteUser = useCallback(
+    () => dispatch(deleteUser({ id: user.clientId })),
+    [dispatch, user.clientId]
+  );
+
+  const debouncedHandleDeleteUser = useMemo(
+    () => debounce((data) => handleDeleteUser(data), 400),
+    [handleDeleteUser]
+  );
 
   return (
     <FormContainer noMarginTop={noMarginTop}>
       {user?.credential && (
         <>
           {decodedToken.iss !== "https://accounts.google.com" && (
-            <Form onSubmit={handleRegisterEditData(handleEditData)}>
+            <Form onSubmit={handleRegisterEditData(debouncedHandleEditData)}>
               <RiLock2Line size={"2rem"} />
               <Input
                 type="text"
@@ -110,14 +137,14 @@ const UserDataEditor = ({ noMarginTop }) => {
           <Button
             warning={!currentUser.newsletter ? "" : "true"}
             color={"white"}
-            onClick={() => handleNewsletter(!currentUser.newsletter)}
+            onClick={() => debouncedHandleNewsletter(!currentUser.newsletter)}
           >
             Newsletter: {currentUser.newsletter ? "Unsubscribe" : "Subscribe"}
           </Button>
           <Button
             warning
             color={"white"}
-            onClick={() => dispatch(deleteUser({ id: user.clientId }))}
+            onClick={() => debouncedHandleDeleteUser()}
           >
             Delete Account
           </Button>
