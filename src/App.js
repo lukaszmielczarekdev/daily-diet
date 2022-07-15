@@ -35,11 +35,13 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    let userData = JSON.parse(localStorage.getItem("profile"));
-    if (!userData) {
+    const logged = user?.credential;
+    if (!logged) {
       handleLogout();
     }
+  }, [handleLogout, user?.credential]);
 
+  useEffect(() => {
     const token = user?.credential;
 
     if (token) {
@@ -79,7 +81,7 @@ const App = () => {
             <ProtectedRoute path={"/builder"} component={DiaryBuilder} />
             <Route path="/passwordreset" component={PasswordReset} />
             <Route path="/unsubscribe" component={Unsubscribe} />
-            <Route path="/auth" component={Auth} />
+            <ProtectedRoute path={"/auth"} component={Auth} notForLoggedUsers />
             <Route path="*" component={Hero} />
           </Switch>
           <Footer />

@@ -73,7 +73,7 @@ const Footer = (props) => {
                 }
               >
                 {!currentUser
-                  ? "Sign Up"
+                  ? "Sign In"
                   : currentUser?.newsletter
                   ? "Unsubscribe"
                   : "Subscribe"}

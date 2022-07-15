@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import Container from "../../templates/Container/Container";
 import Description from "../../atoms/Description/Description";
 import { useForm } from "react-hook-form";
@@ -6,6 +6,7 @@ import { Form, Button, FormContainer, Input, StyledSpan } from "./AuthStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import {
   externalSignin,
   signin,
@@ -21,12 +22,20 @@ import { debounce } from "../../../utils/helpers";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const [isPasswordReset, setIsPasswordReset] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const dispatch = useDispatch();
 
   const status = useSelector((state) => state.user.authData.status);
+  const { currentUser } = useSelector((state) => state.user.authData);
+
+  useEffect(() => {
+    if (currentUser) {
+      setRedirect(true);
+    }
+  }, [currentUser]);
 
   const {
     register: registerSignUp,
@@ -121,6 +130,7 @@ const Auth = () => {
 
   return (
     <Container fillColor>
+      {redirect && <Redirect to={"/"} />}
       <Article
         id={"auth"}
         padding={"2rem 3rem 3rem 3rem"}

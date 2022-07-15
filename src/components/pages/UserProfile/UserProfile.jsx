@@ -9,6 +9,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Carousel from "../../organisms/Carousel/Carousel";
 import BmrCalculator from "../../organisms/BMRCalculator/BMRCalculator";
 import DemandEditor from "../../organisms/DemandEditor/DemandEditor";
+import { Redirect } from "react-router-dom";
 import {
   diaryPlaceholders,
   mealPlaceholders,
@@ -38,6 +39,15 @@ import decode from "jwt-decode";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [redirect, setRedirect] = useState(false);
+
+  const { currentUser } = useSelector((state) => state.user.authData);
+
+  useEffect(() => {
+    if (!currentUser) {
+      setRedirect(true);
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     return () => {
@@ -52,7 +62,6 @@ const UserProfile = () => {
   const token = user?.credential;
   const decodedToken = decode(token);
 
-  const { currentUser } = useSelector((state) => state.user.authData);
   const diaries = useSelector((state) =>
     state.resources.diaries.diaries.filter(
       (diary) => diary.creator === decodedToken.id
@@ -104,6 +113,7 @@ const UserProfile = () => {
 
   return (
     <Container fillColor>
+      {redirect && <Redirect to={"/"} />}
       <Gallery
         text={"center"}
         justify={"center"}

@@ -175,7 +175,6 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
-        window.location.href = "/";
       }
       state.status = "success";
     },
@@ -194,7 +193,6 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
-        window.location.href = "/";
       }
       state.status = "success";
     },
@@ -212,7 +210,6 @@ const slice = createSlice({
         );
         state.currentUser = action.payload.user;
         notify(`Hello ${action.payload.user.name}`);
-        window.location.href = "/";
       }
       state.status = "success";
     },
@@ -253,7 +250,6 @@ const slice = createSlice({
         state.currentUser = null;
         state.status = null;
         googleLogout();
-        window.location.href = "/auth";
         notify("Account deleted");
       }
       state.status = "success";
