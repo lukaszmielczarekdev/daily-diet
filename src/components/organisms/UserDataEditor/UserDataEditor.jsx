@@ -10,6 +10,7 @@ import {
   changeNewsletterStatus,
 } from "../../../store/auth";
 import { debounce } from "../../../utils/helpers";
+import { currentCategoryRemoved } from "../../../store/helpers";
 import { notify } from "../../../store/utils";
 import decode from "jwt-decode";
 
@@ -50,6 +51,8 @@ const UserDataEditor = ({ noMarginTop }) => {
         !data.confirmNewPassword
       ) {
         dispatch(updateUserData({ id: user.clientId, userData: data }));
+
+        dispatch(currentCategoryRemoved());
       } else notify("Something is missing");
     },
     [dispatch, user.clientId]
@@ -61,10 +64,13 @@ const UserDataEditor = ({ noMarginTop }) => {
   );
 
   const handleNewsletter = useCallback(
-    (newsletterStatus) =>
+    (newsletterStatus) => {
       dispatch(
         changeNewsletterStatus({ id: user.clientId, status: newsletterStatus })
-      ),
+      );
+      dispatch(currentCategoryRemoved());
+    },
+
     [dispatch, user.clientId]
   );
 
