@@ -7,6 +7,7 @@ import salad from "../assets/Images/salad.jpg";
 import yerba_article from "../assets/Images/yerba_article.jpg";
 import pizza_article from "../assets/Images/pizza_article.jpg";
 import nuts_article from "../assets/Images/nuts_article.jpg";
+import water_article from "../assets/Images/water_article.jpg";
 import {
   RiFileList2Line,
   RiNumbersLine,
@@ -431,5 +432,12 @@ export const tipsAndTricksArticles = [
     title: "Yerba mate and its slimming properties",
     description:
       "Yerba mate is a drink that positively affects almost everything. However, not everyone is aware of the powerful impact it can have on slimming. Yerba supports slimming mainly by feeling full, and also by inhibiting the activity of the digestive enzyme (pancreatic lipase).",
+  },
+  {
+    id: 3,
+    image: water_article,
+    title: "Hydration is essential",
+    description:
+      "Water has many important functions in the human body. It is the environment for all life processes and is the most important solvent for substances in the human body. In addition, water is responsible for the transport of nutrients and metabolic products. It also takes part in thermoregulation as well as digestion and absorption of nutrients.",
   },
 ];
