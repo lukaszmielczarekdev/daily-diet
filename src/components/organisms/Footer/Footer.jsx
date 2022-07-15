@@ -36,7 +36,7 @@ const Footer = (props) => {
             arrow
             padding={"0 2rem"}
             margin={"0 2rem"}
-            children={<Header type={"h4"} text={"Why Daily Diet ?"} />}
+            children={<Header type={"h4"} text={"Why Daily Diet?"} />}
             color={"rgb(125, 215, 120)"}
             data={benefits}
             element={"name"}
