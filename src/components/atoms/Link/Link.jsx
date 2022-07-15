@@ -1,6 +1,10 @@
-import { StyledLink } from "./LinkStyles";
+import { StyledLink, StyledHashLink } from "./LinkStyles";
 
 const Link = (props) => {
-  return <StyledLink {...props} />;
+  return props.hash ? (
+    <StyledHashLink smooth {...props} />
+  ) : (
+    <StyledLink {...props} />
+  );
 };
 export default Link;

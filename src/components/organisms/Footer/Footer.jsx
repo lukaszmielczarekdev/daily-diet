@@ -58,8 +58,9 @@ const Footer = (props) => {
             padding={"0 0 1rem 0"}
             children={
               <Link
+                hash={1}
                 color={"green"}
-                to={currentUser ? "/" : "/auth"}
+                to={currentUser ? "/" : "/auth#top"}
                 onClick={
                   currentUser
                     ? () =>

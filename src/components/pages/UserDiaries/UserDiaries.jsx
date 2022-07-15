@@ -72,11 +72,12 @@ const UserDiaries = () => {
               <LinkItem
                 add={1}
                 left={1}
+                hash={1}
                 color={"white"}
                 padding={"0.6rem"}
                 margin={"0.5rem 0"}
                 radius={"10px 0"}
-                to={!currentUser.profile.bmr ? "/" : "/builder"}
+                to={!currentUser.profile.bmr ? "/#calculator" : "/builder#top"}
                 children={"New diary"}
                 size={"0.8rem"}
               />
