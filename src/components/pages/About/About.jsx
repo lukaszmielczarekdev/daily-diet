@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import Article from "../../organisms/Article/Article";
+import Description from "../../atoms/Description/Description";
 import TextField from "../../molecules/TextField/TextField";
 import Container from "../../templates/Container/Container";
 import Gallery from "../../organisms/Gallery/Gallery";
@@ -44,6 +45,7 @@ const About = () => {
     (data) => {
       dispatch(sendMessage(data));
       resetForm();
+      setCharacters(0);
     },
     [dispatch, resetForm]
   );
@@ -56,7 +58,7 @@ const About = () => {
   return (
     <Container fillColor>
       <Article
-        padding={"5rem 3rem 1rem 3rem"}
+        padding={"5rem 4rem 1rem 4rem"}
         right={
           <Image
             right
@@ -80,7 +82,7 @@ const About = () => {
           </>
         }
       />
-      <ControlPanel padding={"0 1rem"} margin={"0 3rem"}>
+      <ControlPanel padding={"0 1rem"} margin={"0 4rem"}>
         <Attributes smallScreen items={aboutSummary} />
       </ControlPanel>
       <Gallery
@@ -93,6 +95,15 @@ const About = () => {
           <FormContainer>
             <FiMail size={"2rem"} />
             <StyledSpan>Contact</StyledSpan>
+            <Description
+              smallText
+              text={"center"}
+              padding={"1rem 0.5rem"}
+              width={"240px"}
+              marginBottom={"0"}
+            >
+              Didn't get a confirmation? Don't forget to check the SPAM folder.
+            </Description>
             <Form onSubmit={handleRegisterMessage(debouncedHandleSendAMessage)}>
               <Input
                 type="text"
