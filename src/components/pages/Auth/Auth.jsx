@@ -161,7 +161,9 @@ const Auth = () => {
                   {...registerResetPassword("email", {
                     required: true,
                     minLength: 5,
-                    maxLength: 35,
+                    maxLength: 40,
+                    pattern:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   })}
                 />
                 <Button margin={"0 0 1rem 0"} type="submit" red color={"white"}>
@@ -200,7 +202,7 @@ const Auth = () => {
                           {...registerSignUp("username", {
                             required: true,
                             minLength: 3,
-                            maxLength: 15,
+                            maxLength: 30,
                           })}
                         />
                         <Input
@@ -233,7 +235,9 @@ const Auth = () => {
                           {...registerSignUp("email", {
                             required: true,
                             minLength: 5,
-                            maxLength: 35,
+                            maxLength: 40,
+                            pattern:
+                              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                           })}
                         />
                       </>
@@ -245,7 +249,9 @@ const Auth = () => {
                           {...registerSignIn("email", {
                             required: true,
                             minLength: 5,
-                            maxLength: 35,
+                            maxLength: 40,
+                            pattern:
+                              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                           })}
                         />
                         <Input

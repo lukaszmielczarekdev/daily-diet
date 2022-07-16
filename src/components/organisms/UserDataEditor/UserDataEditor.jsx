@@ -100,13 +100,15 @@ const UserDataEditor = ({ noMarginTop }) => {
                 type="text"
                 placeholder={"User Name"}
                 {...registerEditData("username", {
-                  maxLength: 15,
+                  minLength: 3,
+                  maxLength: 30,
                 })}
               />
               <Input
                 type={isPasswordVisible ? "text" : "password"}
                 placeholder={"Current password"}
                 {...registerEditData("oldPassword", {
+                  minLength: 8,
                   maxLength: 25,
                 })}
               />
@@ -114,6 +116,7 @@ const UserDataEditor = ({ noMarginTop }) => {
                 type={isPasswordVisible ? "text" : "password"}
                 placeholder={"New password"}
                 {...registerEditData("newPassword", {
+                  minLength: 8,
                   maxLength: 25,
                 })}
               />
@@ -121,6 +124,7 @@ const UserDataEditor = ({ noMarginTop }) => {
                 type={isPasswordVisible ? "text" : "password"}
                 placeholder={"Confirm new password"}
                 {...registerEditData("confirmNewPassword", {
+                  minLength: 8,
                   maxLength: 25,
                 })}
               />
@@ -132,7 +136,10 @@ const UserDataEditor = ({ noMarginTop }) => {
                 type="text"
                 placeholder={"Email"}
                 {...registerEditData("email", {
-                  maxLength: 35,
+                  minLength: 5,
+                  maxLength: 40,
+                  pattern:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                 })}
               />
               <Button type="submit" green color={"white"}>
