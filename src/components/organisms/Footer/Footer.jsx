@@ -8,7 +8,6 @@ import Header from "../../atoms/Header/Header";
 import Link from "../../atoms/Link/Link";
 import { changeNewsletterStatus } from "../../../store/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { notify } from "../../../store/utils";
 
 const Footer = (props) => {
   const { currentUser } = useSelector((state) => state.user.authData);
@@ -70,7 +69,7 @@ const Footer = (props) => {
                             status: currentUser?.newsletter ? false : true,
                           })
                         )
-                    : () => notify("You must be signed in")
+                    : null
                 }
               >
                 {!currentUser

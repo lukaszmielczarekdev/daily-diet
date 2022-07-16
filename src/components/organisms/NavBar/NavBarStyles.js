@@ -10,6 +10,10 @@ export const Container = styled.nav`
   justify-self: center;
   margin: auto;
 
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    padding: 2rem;
+  }
+
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     padding: 1.5rem 1rem;
   }

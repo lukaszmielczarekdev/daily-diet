@@ -57,7 +57,7 @@ const PasswordReset = () => {
   return (
     <Container fillColor>
       <Article
-        id={"auth"}
+        id={"passwordReset"}
         padding={"2rem 3rem 3rem 3rem"}
         left={
           <>

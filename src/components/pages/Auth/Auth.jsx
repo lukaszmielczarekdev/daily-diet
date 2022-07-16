@@ -160,6 +160,7 @@ const Auth = () => {
                   placeholder={"Email address *"}
                   {...registerResetPassword("email", {
                     required: true,
+                    minLength: 5,
                     maxLength: 35,
                   })}
                 />

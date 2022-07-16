@@ -10,6 +10,7 @@ import DiaryBuilder from "./components/pages/DiaryBuilder/DiaryBuilder";
 import UserProfile from "./components/pages/UserProfile/UserProfile";
 import PasswordReset from "./components/pages/PasswordReset/PasswordReset";
 import Unsubscribe from "./components/pages/Unsubscribe/Unsubscribe";
+import About from "./components/pages/About/About";
 import Auth from "./components/pages/Auth/Auth";
 import Articles from "./components/pages/Articles/Articles";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
@@ -81,6 +82,7 @@ const App = () => {
             <ProtectedRoute path={"/builder"} component={DiaryBuilder} />
             <Route path="/passwordreset" component={PasswordReset} />
             <Route path="/unsubscribe" component={Unsubscribe} />
+            <Route path="/about" component={About} />
             <ProtectedRoute path={"/auth"} component={Auth} notForLoggedUsers />
             <Route path="*" component={Hero} />
           </Switch>

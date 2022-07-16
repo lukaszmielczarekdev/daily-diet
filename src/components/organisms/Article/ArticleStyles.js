@@ -12,17 +12,17 @@ export const Wrapper = styled.article`
   justify-content: space-between;
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
 `;
 

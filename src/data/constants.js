@@ -17,7 +17,8 @@ import { IoFitnessOutline } from "react-icons/io5";
 import { MdFitnessCenter } from "react-icons/md";
 import { BsBook, BsClock } from "react-icons/bs";
 import { BiEdit, BiLike, BiSearchAlt } from "react-icons/bi";
-import { MdAccessTime } from "react-icons/md";
+import { MdAccessTime, MdOutlineMoneyOff } from "react-icons/md";
+import { FiUsers } from "react-icons/fi";
 import {
   IoFastFoodOutline,
   IoRestaurantOutline,
@@ -26,7 +27,11 @@ import {
 import { IoMdCreate } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
 import { GiWeightLiftingUp, GiProgression } from "react-icons/gi";
-import { AiOutlineCalculator, AiOutlinePercentage } from "react-icons/ai";
+import {
+  AiOutlineCalculator,
+  AiOutlinePercentage,
+  AiOutlineStar,
+} from "react-icons/ai";
 
 export const features = [
   {
@@ -104,6 +109,27 @@ export const diaryAttributes = [
     icon: <BsBook size={"100%"} color="orange" />,
     primary: "Easy",
     secondary: "to use",
+  },
+];
+
+export const aboutSummary = [
+  {
+    id: 0,
+    icon: <MdOutlineMoneyOff size={"100%"} color="green" />,
+    primary: "Free",
+    secondary: "",
+  },
+  {
+    id: 1,
+    icon: <FiUsers size={"100%"} color="red" />,
+    primary: "Created",
+    secondary: "by people",
+  },
+  {
+    id: 2,
+    icon: <AiOutlineStar size={"100%"} color="orange" />,
+    primary: "Rated",
+    secondary: "by users",
   },
 ];
 

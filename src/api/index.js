@@ -33,6 +33,7 @@ export const changeNewsletterStatus = (id, data) =>
   API.patch(`/user/changeNewsletterStatus/${id}`, data);
 export const fakeUserNewsletterUnsubscribe = (token, data) =>
   API.patch(`/user/unsubscribe/${token}`, data);
+export const sendMessage = (data) => API.post("/user/sendMessage", data);
 
 export const fetchProducts = () => API.get("/products");
 export const createProduct = (newProduct) => API.post("/products", newProduct);

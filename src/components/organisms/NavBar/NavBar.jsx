@@ -43,7 +43,7 @@ const NavBar = ({ handleLogout }) => {
             color={"rgb(125, 215, 120)"}
           />
         )}
-        <LinkItem to="/" children={"About"} />
+        <LinkItem to="/about" children={"About"} />
       </NavLinks>
       <NavAuth>
         {currentUser && <LinkItem to="/profile" children={"Profile"} />}
@@ -104,7 +104,7 @@ const NavBar = ({ handleLogout }) => {
               />
             )}
             <LinkItem
-              to="/"
+              to="/about"
               onClick={() => setMenuOpened(false)}
               children={"About"}
               margin={"1.6rem"}

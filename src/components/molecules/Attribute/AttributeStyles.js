@@ -26,7 +26,7 @@ export const Icon = styled.div`
 export const Description = styled.span`
   text-align: left;
   letter-spacing: 0.5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.2;
   margin: 1rem;
   color: ${({ theme }) => theme.colors.semiTransparent};
@@ -37,7 +37,7 @@ export const Description = styled.span`
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin: 0.5rem;
   }
 `;

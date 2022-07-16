@@ -12,7 +12,8 @@ export const StyledTitle = styled.h3`
 
   position: absolute;
   bottom: 16px;
-  left: 32px;
+  left: ${({ left }) => (left ? "32px" : "")};
+  right: ${({ right }) => (right ? "32px" : "")};
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 1.5rem;
@@ -29,7 +30,7 @@ export const StyledTitle = styled.h3`
 
 export const TitleSpan = styled.span`
   white-space: pre-line;
-  text-align: left;
+  text-align: ${({ right }) => (right ? "right" : "left")};
   font-weight: normal;
   color: ${({ color }) => (color ? `${color}` : "white")};
   display: block;

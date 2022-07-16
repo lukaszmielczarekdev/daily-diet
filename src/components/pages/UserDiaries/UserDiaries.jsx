@@ -54,6 +54,7 @@ const UserDiaries = () => {
           padding={"5rem 3rem 1rem 3rem"}
           left={
             <Image
+              left
               alt={"eggs on the table"}
               src={eggs}
               primary={"Low Cost"}
@@ -85,6 +86,9 @@ const UserDiaries = () => {
             </>
           }
         />
+        <ControlPanel padding={"0 1rem"} margin={"0 3rem"}>
+          <Attributes smallScreen items={diaryAttributes} />
+        </ControlPanel>
         <ControlPanel margin={"1rem 0 0 0"}>
           <ClipLoader
             loading={currentUser && status === "loading"}

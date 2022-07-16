@@ -142,6 +142,19 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const sendMessage = createAsyncThunk(
+  "auth/sendMessage",
+  async (formData) => {
+    try {
+      const { data } = await api.sendMessage(formData);
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
 const slice = createSlice({
   name: "authData",
   initialState: getStoreData("user.authData", INITIAL_STATE),
@@ -306,6 +319,18 @@ const slice = createSlice({
       state.status = "success";
     },
     [fakeUserNewsletterUnsubscribe.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [sendMessage.pending]: (state) => {
+      state.status = "loading";
+    },
+    [sendMessage.fulfilled]: (state, action) => {
+      if (action.payload?.message) {
+        notify(action.payload.message);
+      }
+      state.status = "success";
+    },
+    [sendMessage.rejected]: (state) => {
       state.status = "failed";
     },
   },
