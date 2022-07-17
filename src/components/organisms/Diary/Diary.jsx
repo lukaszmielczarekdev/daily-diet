@@ -34,7 +34,7 @@ import SelectedMeals from "../SelectedMeals/SelectedMeals";
 import SelectedProducts from "../SelectedProducts/SelectedProducts";
 import SearchBar from "../SearchField/SearchBar";
 
-const Diary = ({ editMode }) => {
+const Diary = ({ editMode, creatorAdjustment }) => {
   const { bmr, demandPercentage } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile
@@ -64,13 +64,15 @@ const Diary = ({ editMode }) => {
           }
     );
 
+  const caloricChange = creatorAdjustment ? calorieAdjustment : 0;
+
   const dispatch = useDispatch();
 
   const demandData = calculateDemandCoverage(
     bmr,
     demandPercentage,
     nutrients,
-    calorieAdjustment
+    caloricChange
   );
 
   return (
@@ -102,7 +104,7 @@ const Diary = ({ editMode }) => {
           children={
             <InnerContainer column id="diary">
               <StyledSpan>
-                Caloric demand:&nbsp;{calorieAdjustment + bmr}
+                Caloric demand:&nbsp;{caloricChange + bmr}
               </StyledSpan>
               <ProgressBarsContainer>
                 {Object.keys(demandData).map((key, id) => (

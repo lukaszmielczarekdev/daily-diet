@@ -62,19 +62,20 @@ const UserProfile = () => {
   const token = user?.credential;
   const decodedToken = decode(token);
 
+  const creator =
+    decodedToken?.iss === "https://accounts.google.com"
+      ? decodedToken.email
+      : decodedToken.id;
+
   const diaries = useSelector((state) =>
-    state.resources.diaries.diaries.filter(
-      (diary) => diary.creator === decodedToken.id
-    )
+    state.resources.diaries.diaries.filter((diary) => diary.creator === creator)
   );
   const meals = useSelector((state) =>
-    state.resources.meals.meals.filter(
-      (meal) => meal.creator === decodedToken.id
-    )
+    state.resources.meals.meals.filter((meal) => meal.creator === creator)
   );
   const products = useSelector((state) =>
     state.resources.products.products.filter(
-      (product) => product.creator === decodedToken.id
+      (product) => product.creator === creator
     )
   );
   const { status } = useSelector((state) => state.resources.diaries);
@@ -193,11 +194,13 @@ const UserProfile = () => {
               infinite
               breakpoints
               items={renderCards("diaries").map((diary) => (
-                <DiaryCard diary={diary} />
+                <DiaryCard creatorAdjustment diary={diary} />
               ))}
             />
           )}
-          {currentItem && currentItemType === "diary" && <Diary editMode />}
+          {currentItem && currentItemType === "diary" && (
+            <Diary creatorAdjustment editMode />
+          )}
           {!currentItem && (
             <LinkItem
               add={1}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Diary from "../../organisms/Diary/Diary";
 import LinkItem from "../../molecules/LinkItem/LinkItem";
 import Article from "../../organisms/Article/Article";
@@ -16,6 +16,7 @@ import DiaryCard from "../../organisms/DiaryCard/DiaryCard";
 import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
 import { exampleMeals } from "../../../data/constants";
 import ClipLoader from "react-spinners/ClipLoader";
+import decode from "jwt-decode";
 import {
   currentItemRemoved,
   currentCategoryRemoved,
@@ -29,6 +30,15 @@ const UserDiaries = () => {
   );
   const { diaries, status } = useSelector((state) => state.resources.diaries);
   const { currentUser } = useSelector((state) => state.user.authData);
+  const [user] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  const token = user?.credential;
+  const decodedToken = decode(token);
+
+  const creator =
+    decodedToken?.iss === "https://accounts.google.com"
+      ? decodedToken.email
+      : decodedToken.id;
 
   const dispatch = useDispatch();
 
@@ -98,9 +108,12 @@ const UserDiaries = () => {
             <Carousel
               infinite
               breakpoints
-              items={diaries.map((diary) => (
-                <DiaryCard diary={diary} />
-              ))}
+              items={diaries.reduce((result, diary) => {
+                if (diary.creator !== creator) {
+                  result.push(<DiaryCard diary={diary} />);
+                }
+                return result;
+              }, [])}
             />
           )}
         </ControlPanel>

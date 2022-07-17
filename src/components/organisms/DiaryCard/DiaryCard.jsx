@@ -10,6 +10,7 @@ import { currentItemSet } from "../../../store/helpers";
 import { notify } from "../../../store/utils";
 
 const DiaryCard = ({
+  creatorAdjustment,
   diary,
   diary: { _id, title, nutrients, meals, createdAt, calorieAdjustment },
 }) => {
@@ -21,6 +22,8 @@ const DiaryCard = ({
       ? state.user.authData.currentUser.profile
       : { bmr: 0, demandAmount: { kcal: 0, protein: 0, carbs: 0, fat: 0 } }
   );
+
+  const caloricChange = creatorAdjustment ? calorieAdjustment : 0;
 
   return (
     <Card3
@@ -43,7 +46,7 @@ const DiaryCard = ({
             data={[
               calculatePercentage(
                 nutrients.kcal,
-                demandAmount.kcal + calorieAdjustment
+                demandAmount.kcal + caloricChange
               ),
             ]}
             label={"KCAL"}
