@@ -42,6 +42,12 @@ const UserDiaries = () => {
 
   const dispatch = useDispatch();
 
+  const checkIfLogged = () => {
+    if (!currentUser) return "/auth";
+    if (!currentUser.profile.bmr) return "/#calculator";
+    return "/builder#top";
+  };
+
   const showCarousel =
     currentUser &&
     status !== "loading" &&
@@ -88,7 +94,7 @@ const UserDiaries = () => {
                 padding={"0.6rem"}
                 margin={"0.5rem 0"}
                 radius={"10px 0"}
-                to={!currentUser.profile.bmr ? "/#calculator" : "/builder#top"}
+                to={checkIfLogged()}
                 children={"New diary"}
                 size={"0.8rem"}
               />
