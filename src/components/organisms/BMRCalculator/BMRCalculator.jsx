@@ -28,10 +28,10 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [user?.credential, currentUser]);
 
-  const { bmr, tdee, gender, activity } = useSelector((state) =>
+  let { bmr, tdee, gender, activity } = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
       ? state.user.authData.currentUser.profile
-      : { bmr: 0, tdee: 0, gender: "" }
+      : { bmr: 0, tdee: 0, gender: "male" }
   );
 
   const { protein, carbs, fat, height, weight, age } = useSelector((state) =>
@@ -95,13 +95,14 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     <FormContainer noMarginTop={noMarginTop} alternateView={alternateView}>
       {!user?.credential && (
         <Container>
+          <StyledSpan>BMR / TDEE</StyledSpan>
           <LinkItem
             hash={1}
             add={1}
             smooth={1}
             color={"white"}
             padding={"0.8rem"}
-            margin={"4.5rem 0"}
+            margin={"5.2rem 0"}
             radius={"10px 0"}
             to={"/auth#top"}
             children={"Calculate"}

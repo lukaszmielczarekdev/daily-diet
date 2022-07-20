@@ -40,6 +40,7 @@ export const StyledSpan = styled.span`
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
     width: fit-content;
+    margin-top: 0rem;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
