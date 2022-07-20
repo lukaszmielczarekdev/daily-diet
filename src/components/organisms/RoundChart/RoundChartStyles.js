@@ -8,6 +8,6 @@ export const Wrapper = styled.article`
   padding: 1rem 0;
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 0;
+    padding: 1rem 0 0 0;
   }
 `;

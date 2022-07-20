@@ -347,6 +347,7 @@ export const diaryPlaceholders = [
     meals: [],
     nutrients: "",
     demandCoverage: { kcal: { completed: "" } },
+    ratingPublic: { rates: null, average: null },
   },
   {
     _id: -2,
@@ -356,6 +357,7 @@ export const diaryPlaceholders = [
     meals: [],
     nutrients: "",
     demandCoverage: { kcal: { completed: "" } },
+    ratingPublic: { rates: null, average: null },
   },
   {
     _id: -3,
@@ -365,6 +367,7 @@ export const diaryPlaceholders = [
     meals: [],
     nutrients: "",
     demandCoverage: { kcal: { completed: "" } },
+    ratingPublic: { rates: null, average: null },
   },
 ];
 

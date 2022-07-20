@@ -59,6 +59,19 @@ export const deleteDiary = createAsyncThunk(
   }
 );
 
+export const rateDiary = createAsyncThunk(
+  "diaries/rateDiary",
+  async ({ id, rate }) => {
+    try {
+      const { data } = await api.rateDiary(id, { rate });
+      return data;
+    } catch (error) {
+      console.log(error);
+      notify(error.response.data.message);
+    }
+  }
+);
+
 const slice = createSlice({
   name: "diaries",
   initialState: getStoreData("resources.diaries", INITIAL_STATE),
@@ -98,6 +111,18 @@ const slice = createSlice({
       state.status = "success";
     },
     [updateDiary.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [rateDiary.pending]: (state) => {
+      state.status = "loading";
+    },
+    [rateDiary.fulfilled]: (state, action) => {
+      state.diaries = state.diaries.map((diary) =>
+        diary._id === action.payload._id ? action.payload : diary
+      );
+      state.status = "success";
+    },
+    [rateDiary.rejected]: (state) => {
       state.status = "failed";
     },
     [deleteDiary.pending]: (state) => {

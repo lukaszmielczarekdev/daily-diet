@@ -11,12 +11,15 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+// diary
 export const fetchDiaries = () => API.get("/diaries");
 export const createDiary = (newDiary) => API.post("/diaries", newDiary);
 export const updateDiary = (id, updatedDiary) =>
   API.patch(`/diaries/${id}`, updatedDiary);
 export const deleteDiary = (id) => API.delete(`/diaries/${id}`);
+export const rateDiary = (id, data) => API.patch(`/diaries/rate/${id}`, data);
 
+// user
 export const fetchUsers = () => API.get("/user");
 export const externalSignIn = (data) => API.post("/user/externalsignin", data);
 export const signIn = (data) => API.post("/user/signin", data);
@@ -35,12 +38,14 @@ export const fakeUserNewsletterUnsubscribe = (token, data) =>
   API.patch(`/user/unsubscribe/${token}`, data);
 export const sendMessage = (data) => API.post("/user/sendMessage", data);
 
+// product
 export const fetchProducts = () => API.get("/products");
 export const createProduct = (newProduct) => API.post("/products", newProduct);
 export const updateProduct = (id, updatedProduct) =>
   API.patch(`/products/${id}`, updatedProduct);
 export const deleteProduct = (id) => API.delete(`/products/${id}`);
 
+// meal
 export const fetchMeals = () => API.get("/meals");
 export const createMeal = (newMeal) => API.post("/meals", newMeal);
 export const updateMeal = (id, updatedMeal) =>

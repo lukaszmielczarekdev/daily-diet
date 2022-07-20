@@ -8,11 +8,20 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { calculatePercentage } from "../../../utils/calculators";
 import { currentItemSet } from "../../../store/helpers";
 import { notify } from "../../../store/utils";
+import Rating from "../Rating/Rating";
 
 const DiaryCard = ({
   creatorAdjustment,
   diary,
-  diary: { _id, title, nutrients, meals, createdAt, calorieAdjustment },
+  diary: {
+    _id,
+    title,
+    nutrients,
+    meals,
+    createdAt,
+    calorieAdjustment,
+    ratingPublic: { average, rates },
+  },
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,7 +48,18 @@ const DiaryCard = ({
             }
       }
       header={title}
-      description={createdAt}
+      description={
+        createdAt && (
+          <Rating
+            readOnly
+            padding={"0"}
+            diaryID={_id}
+            average={average}
+            rates={rates}
+            width={"60%"}
+          />
+        )
+      }
       main={
         createdAt ? (
           <RoundChart

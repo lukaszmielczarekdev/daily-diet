@@ -27,7 +27,7 @@ export const ProgressBarsContainer = styled.ul`
 
 export const StyledSpan = styled.span`
   display: flex;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
   font-size: 1rem;
   justify-content: center;
 `;

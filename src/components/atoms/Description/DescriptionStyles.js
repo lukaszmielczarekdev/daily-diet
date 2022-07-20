@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Text = styled.p`
+export const Text = styled.div`
   text-align: ${({ text }) => (text ? text : "left")};
   padding: ${({ padding }) => (padding ? padding : "0")};
   font-weight: ${({ thinText }) => (thinText ? 300 : "normal")};

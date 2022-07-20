@@ -123,7 +123,9 @@ const UserDiaries = () => {
             />
           )}
         </ControlPanel>
-        {currentItem && currentItemType === "diary" && <Diary />}
+        {currentItem && currentItemType === "diary" && (
+          <Diary diary={currentItem} />
+        )}
         <Title text={"center"} titlePrimary={"Example Meals"} />
         <ControlPanel justify={"space-around"} margin={"2rem"}>
           {exampleMeals.map((meal) => (

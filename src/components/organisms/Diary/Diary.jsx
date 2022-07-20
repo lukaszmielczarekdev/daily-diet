@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteDiary } from "../../../store/diaries";
 import Gallery from "../Gallery/Gallery";
 import RoundChart from "../RoundChart/RoundChart";
+import Rating from "../Rating/Rating";
 import {
   calculateDemandCoverage,
   calculateMacrosForMeals,
@@ -50,19 +51,26 @@ const Diary = ({ editMode, creatorAdjustment }) => {
     (state) => state.resources.products
   );
 
-  const { _id, nutrients, calorieAdjustment, title, createdAt, meals } =
-    useSelector((state) =>
-      state.user.helpers.currentItem?._id
-        ? state.user.helpers.currentItem
-        : {
-            _id: null,
-            nutrients: null,
-            calorieAdjustment: null,
-            title: null,
-            createdAt: null,
-            meals: [],
-          }
-    );
+  const {
+    _id,
+    nutrients,
+    calorieAdjustment,
+    title,
+    meals,
+    ratingPublic: { average, rates },
+  } = useSelector((state) =>
+    state.user.helpers.currentItem?._id
+      ? state.user.helpers.currentItem
+      : {
+          _id: null,
+          nutrients: null,
+          calorieAdjustment: null,
+          title: null,
+          createdAt: null,
+          meals: [],
+          ratingPublic: null,
+        }
+  );
 
   const caloricChange = creatorAdjustment ? calorieAdjustment : 0;
 
@@ -99,10 +107,18 @@ const Diary = ({ editMode, creatorAdjustment }) => {
           text={"center"}
           justify={"center"}
           padding={"0rem 3rem 3rem 3rem"}
-          titlePrimary={createdAt}
           titleSecondary={title}
           children={
             <InnerContainer column id="diary">
+              <StyledSpan>Rating</StyledSpan>
+              <Rating
+                readOnly={editMode ? true : false}
+                padding={"0"}
+                diaryID={_id}
+                rates={rates}
+                average={average}
+                width={"20%"}
+              />
               <StyledSpan>
                 Caloric demand:&nbsp;{caloricChange + bmr}
               </StyledSpan>
