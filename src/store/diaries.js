@@ -64,6 +64,7 @@ export const rateDiary = createAsyncThunk(
   async ({ id, rate }) => {
     try {
       const { data } = await api.rateDiary(id, { rate });
+      notify("Diary rated");
       return data;
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import {
   Wrapper,
   Container,
@@ -9,6 +9,7 @@ import {
 import { MdStarOutline, MdStarHalf, MdStar } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { rateDiary } from "../../../store/diaries";
+import { debounce } from "../../../utils/helpers";
 
 const Rating = ({
   readOnly,
@@ -68,11 +69,20 @@ const Rating = ({
     ));
   };
 
-  const handleRate = (value) => {
-    setRating(null);
-    setHover(null);
-    dispatch(rateDiary({ id: diaryID, rate: value }));
-  };
+  const handleRate = useCallback(
+    (value) => {
+      setRating(null);
+      setHover(null);
+      dispatch(rateDiary({ id: diaryID, rate: value }));
+    },
+    [diaryID, dispatch]
+  );
+
+  const debouncedHandleRate = useMemo(
+    () => debounce((value) => handleRate(value), 400),
+    [handleRate]
+  );
+
   return (
     <Wrapper padding={padding}>
       {readOnly ? (
@@ -94,7 +104,7 @@ const Rating = ({
                   type={"radio"}
                   name={"rating"}
                   value={ratingValue}
-                  onClick={() => handleRate(ratingValue)}
+                  onClick={() => debouncedHandleRate(ratingValue)}
                 />
                 {ratingValue <= (rating || hover) ? (
                   <MdStar
@@ -112,7 +122,6 @@ const Rating = ({
               </StyledLabel>
             );
           })}
-          <StyledSpan>{rates && `(${rates})`}</StyledSpan>
         </Container>
       )}
     </Wrapper>

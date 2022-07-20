@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import DiaryCard from "../../organisms/DiaryCard/DiaryCard";
 import ProductDetails from "../../molecules/ProductDetails/ProductDetails";
 import { exampleMeals } from "../../../data/constants";
-import ClipLoader from "react-spinners/ClipLoader";
 import decode from "jwt-decode";
 import {
   currentItemRemoved,
@@ -28,7 +27,7 @@ const UserDiaries = () => {
   const { currentItem, currentItemType } = useSelector(
     (state) => state.user.helpers
   );
-  const { diaries, status } = useSelector((state) => state.resources.diaries);
+  const { diaries } = useSelector((state) => state.resources.diaries);
   const { currentUser } = useSelector((state) => state.user.authData);
   const [user] = useState(JSON.parse(localStorage.getItem("profile")));
 
@@ -53,12 +52,6 @@ const UserDiaries = () => {
       .filter((diary) => diary.creator !== creator)
       .map((item) => <DiaryCard diary={item} />);
   };
-
-  const showCarousel =
-    currentUser &&
-    status !== "loading" &&
-    Array.isArray(diaries) &&
-    diaries?.length !== 0;
 
   useEffect(() => {
     return () => {
@@ -112,13 +105,7 @@ const UserDiaries = () => {
           <Attributes smallScreen items={diaryAttributes} />
         </ControlPanel>
         <ControlPanel margin={"1rem 0 0 0"}>
-          <ClipLoader
-            loading={currentUser && status === "loading"}
-            size={150}
-          />
-          {showCarousel && (
-            <Carousel infinite breakpoints items={renderDiaries()} />
-          )}
+          <Carousel infinite breakpoints items={renderDiaries()} />
         </ControlPanel>
         {currentItem && currentItemType === "diary" && (
           <Diary diary={currentItem} />
