@@ -48,6 +48,12 @@ const UserDiaries = () => {
     return "/builder#top";
   };
 
+  const renderDiaries = () => {
+    return diaries
+      .filter((diary) => diary.creator !== creator)
+      .map((item) => <DiaryCard diary={item} />);
+  };
+
   const showCarousel =
     currentUser &&
     status !== "loading" &&
@@ -111,16 +117,7 @@ const UserDiaries = () => {
             size={150}
           />
           {showCarousel && (
-            <Carousel
-              infinite
-              breakpoints
-              items={diaries.reduce((result, diary) => {
-                if (diary.creator !== creator) {
-                  result.push(<DiaryCard diary={diary} />);
-                }
-                return result;
-              }, [])}
-            />
+            <Carousel infinite breakpoints items={renderDiaries()} />
           )}
         </ControlPanel>
         {currentItem && currentItemType === "diary" && (

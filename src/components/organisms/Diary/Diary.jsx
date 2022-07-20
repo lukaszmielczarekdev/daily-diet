@@ -117,7 +117,7 @@ const Diary = ({ editMode, creatorAdjustment }) => {
                 diaryID={_id}
                 rates={rates}
                 average={average}
-                width={"20%"}
+                width={"15%"}
               />
               <StyledSpan>
                 Caloric demand:&nbsp;{caloricChange + bmr}

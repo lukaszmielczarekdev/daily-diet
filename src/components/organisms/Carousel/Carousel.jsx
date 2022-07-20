@@ -13,12 +13,14 @@ const Carousel = ({
   autoPlayInterval,
   autoPlayStrategy,
   background,
+  slideToIndex,
 }) => {
   return (
     <Container background={background}>
       <AliceCarousel
         infinite={infinite}
         autoPlay={autoPlay}
+        slideToIndex={slideToIndex}
         autoPlayInterval={autoPlayInterval}
         autoPlayStrategy={autoPlayStrategy}
         controlsStrategy={"responsive"}

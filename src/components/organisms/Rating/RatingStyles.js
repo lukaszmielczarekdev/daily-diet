@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledSpan = styled.span`
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.4rem;
+  font-size: 80%;
 `;
 
 export const Container = styled.div`
@@ -19,19 +20,19 @@ export const Container = styled.div`
   width: ${({ width }) => (width ? width : "100%")};
 
   @media ${({ theme }) => theme.breakpoints.lg} {
-    width: 25%;
+    width: ${({ bigger }) => (bigger ? "40%" : "20%")};
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    width: 30%;
+    width: ${({ bigger }) => (bigger ? "40%" : "25%")};
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    width: 50%;
+    width: ${({ bigger }) => (bigger ? "40%" : "30%")};
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
-    width: 80%;
+    width: ${({ bigger }) => (bigger ? "40%" : "60%")};
   }
 `;
 

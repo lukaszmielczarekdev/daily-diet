@@ -52,11 +52,12 @@ const DiaryCard = ({
         createdAt && (
           <Rating
             readOnly
+            bigger
             padding={"0"}
             diaryID={_id}
             average={average}
             rates={rates}
-            width={"60%"}
+            width={"40%"}
           />
         )
       }

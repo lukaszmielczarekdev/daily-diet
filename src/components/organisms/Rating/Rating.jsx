@@ -10,7 +10,15 @@ import { MdStarOutline, MdStarHalf, MdStar } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { rateDiary } from "../../../store/diaries";
 
-const Rating = ({ readOnly, padding, average, rates, diaryID, width }) => {
+const Rating = ({
+  readOnly,
+  padding,
+  average,
+  rates,
+  diaryID,
+  width,
+  bigger,
+}) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
@@ -61,18 +69,23 @@ const Rating = ({ readOnly, padding, average, rates, diaryID, width }) => {
   };
 
   const handleRate = (value) => {
-    setRating(value);
+    setRating(null);
+    setHover(null);
     dispatch(rateDiary({ id: diaryID, rate: value }));
   };
   return (
     <Wrapper padding={padding}>
       {readOnly ? (
-        <Container width={width}>
-          {renderStars(average)}{" "}
+        <Container width={width} bigger={bigger}>
+          {renderStars(average)}
           <StyledSpan>{rates && `(${rates})`}</StyledSpan>
         </Container>
       ) : (
-        <Container width={width} onMouseLeave={() => setHover(null)}>
+        <Container
+          width={width}
+          onMouseLeave={() => setHover(null)}
+          bigger={bigger}
+        >
           {[...Array(5)].map((elem, index) => {
             const ratingValue = index + 1;
             return (
