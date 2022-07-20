@@ -32,7 +32,7 @@ const MealCard = ({
               dispatch(currentItemSet({ item: meal, type: "meal" }));
             }
           : () => {
-              bmr ? history.push("/builder") : notify("You need BMR");
+              bmr ? history.push("/builder") : notify("You need BMR & TDEE");
             }
       }
       header={title}

@@ -19,10 +19,10 @@ const DemandEditor = ({ noMarginTop }) => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [user?.credential, currentUser]);
 
-  const bmr = useSelector((state) =>
+  const { bmr, tdee } = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
-      ? state.user.authData.currentUser.profile.bmr
-      : ""
+      ? state.user.authData.currentUser.profile
+      : { bmr: 0, tdee: 0 }
   );
 
   const { protein, carbs, fat } = useSelector((state) =>
@@ -45,7 +45,7 @@ const DemandEditor = ({ noMarginTop }) => {
 
   const setDemand = async ({ protein, carbs, fat }) => {
     if (protein + carbs + fat === 100) {
-      const demandAmount = calculateMacrosAmount(bmr, protein, carbs, fat);
+      const demandAmount = calculateMacrosAmount(tdee, protein, carbs, fat);
 
       const data = {
         weight: currentUser.profile.weight,
@@ -53,6 +53,7 @@ const DemandEditor = ({ noMarginTop }) => {
         age: currentUser.profile.age,
         activity: currentUser.profile.activity,
         bmr,
+        tdee,
         demandPercentage: { protein, carbs, fat },
         demandAmount,
       };

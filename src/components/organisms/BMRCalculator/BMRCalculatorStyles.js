@@ -18,7 +18,7 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   width: ${({ text }) => (text ? "200px" : "120px")};
-  margin: 0.8rem 0;
+  margin: 0.5rem 0;
   font-size: 0.8rem;
   padding: 0.5rem;
   border: 1px solid black;
@@ -28,8 +28,9 @@ export const Input = styled.input`
 
 export const StyledSpan = styled.span`
   margin-top: 3rem;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
-  padding: 0.8rem;
+  padding: 0.6rem;
   display: block;
   color: white;
   border: none;
@@ -50,25 +51,25 @@ export const Label = styled.label`
   color: ${({ color }) => (color ? color : "white")};
   border-radius: 10px 0;
   font-size: 0.8rem;
-  margin: 0.5rem 0 0.2rem 0;
+  margin: 0.2rem 0 0.2rem 0;
   align-items: center;
   letter-spacing: 1px;
 `;
 
 export const Select = styled.select`
-  width: ${({ text }) => (text ? "200px" : "100px")};
+  width: ${({ text }) => (text ? "200px" : "120px")};
   font-size: 0.8rem;
   padding: 0.5rem;
-  margin: 0.8rem 0;
+  margin: 0.5rem 0;
   border-radius: 10px 0;
   text-align: center;
 `;
 
 export const Button = styled.button`
-  width: ${({ text }) => (text ? "200px" : "100px")};
-  margin: 0.8rem 0;
+  width: ${({ text }) => (text ? "200px" : "120px")};
+  margin: 0.5rem 0 0 0;
   font-size: 0.8rem;
-  padding: 0.8rem;
+  padding: 0.6rem;
   display: block;
   color: white;
   border: none;

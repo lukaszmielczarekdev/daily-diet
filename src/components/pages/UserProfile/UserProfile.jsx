@@ -211,7 +211,9 @@ const UserProfile = () => {
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder#top" : "/profile#top"}
               onClick={
-                !currentUser.profile?.bmr ? () => notify("You need BMR") : null
+                !currentUser.profile?.bmr
+                  ? () => notify("You need BMR & TDEE")
+                  : null
               }
               children={"Create new diary"}
               size={"0.8rem"}
@@ -242,7 +244,9 @@ const UserProfile = () => {
               radius={"10px 0"}
               to={currentUser.profile?.bmr ? "/builder#top" : "/profile#top"}
               onClick={
-                !currentUser.profile?.bmr ? () => notify("You need BMR") : null
+                !currentUser.profile?.bmr
+                  ? () => notify("You need BMR & TDEE")
+                  : null
               }
               children={"Create new meal"}
               size={"0.8rem"}

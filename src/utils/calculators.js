@@ -23,13 +23,13 @@ export const calculateMacrosPercentage = (demandAmount, currentAmount) => {
 };
 
 export const calculateDemandCoverage = (
-  bmr,
+  tdee,
   demandPercentage,
   currentAmount,
   calorieAdjustment
 ) => {
   const calculatedDemand = calculateMacrosAmount(
-    bmr + calorieAdjustment,
+    tdee + calorieAdjustment,
     demandPercentage.protein,
     demandPercentage.carbs,
     demandPercentage.fat

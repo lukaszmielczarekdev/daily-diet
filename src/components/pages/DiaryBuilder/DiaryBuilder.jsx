@@ -74,7 +74,7 @@ const DiaryBuilder = () => {
           margin={"2rem 0"}
           radius={"10px 0"}
           to={"/profile#top"}
-          children={"Get BMR"}
+          children={"Get BMR & TDEE"}
           size={"0.8rem"}
         />
       )}

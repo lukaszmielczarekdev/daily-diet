@@ -32,11 +32,11 @@ const SelectedMeals = ({ margin, editMode }) => {
   const dispatch = useDispatch();
   const diaryTitle = useRef();
 
-  const { bmr, demandAmount, demandPercentage } = useSelector((state) =>
+  const { tdee, demandAmount, demandPercentage } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile
       : {
-          bmr: 0,
+          tdee: 0,
           demandAmount: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
           demandPercentage: { protein: 0, carbs: 0, fat: 0 },
         }
@@ -117,7 +117,7 @@ const SelectedMeals = ({ margin, editMode }) => {
           title: diaryTitle.current.value,
           meals: temporaryMeals,
           nutrients: currentMacrosAmount,
-          calorieAdjustment: currentDiaryDemand.kcal - bmr,
+          calorieAdjustment: currentDiaryDemand.kcal - tdee,
         })
       );
 
@@ -147,7 +147,7 @@ const SelectedMeals = ({ margin, editMode }) => {
             title: diaryTitle.current.value,
             meals: temporaryMeals,
             nutrients: currentMacrosAmount,
-            calorieAdjustment: currentDiaryDemand.kcal - bmr,
+            calorieAdjustment: currentDiaryDemand.kcal - tdee,
           },
         })
       );

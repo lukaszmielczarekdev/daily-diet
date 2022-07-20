@@ -28,16 +28,24 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [user?.credential, currentUser]);
 
-  const bmr = useSelector((state) =>
+  const { bmr, tdee, gender, activity } = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
-      ? state.user.authData.currentUser.profile.bmr
-      : ""
+      ? state.user.authData.currentUser.profile
+      : { bmr: 0, tdee: 0, gender: "" }
   );
 
-  const { protein, carbs, fat } = useSelector((state) =>
+  const { protein, carbs, fat, height, weight, age } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile.demandPercentage
-      : { protein: 0, carbs: 0, fat: 0 }
+      : {
+          protein: 0,
+          carbs: 0,
+          fat: 0,
+          activity: 0,
+          height: 0,
+          weight: 0,
+          age: 0,
+        }
   );
 
   const {
@@ -46,26 +54,34 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     // formState: { errors },
   } = useForm({
     defaultValues: {
-      height: "",
-      weight: "",
-      age: "",
+      height,
+      weight,
+      age,
+      gender,
+      activity,
     },
   });
 
-  const calculateBMR = async ({ height, weight, age, activity }) => {
+  const calculateBMR = async ({ height, weight, age, gender, activity }) => {
+    const genderModifier = gender === "male" ? 5 : -161;
+
     const bmr = parseInt(
-      (9.99 * weight + 6.25 * height - 4.9 * age + 5) * activity
+      10 * weight + 6.25 * height - 5 * age + genderModifier
     );
 
+    const tdee = parseInt(bmr * activity);
+
     const demandPercentage = { protein, carbs, fat };
-    const demandAmount = calculateMacrosAmount(bmr, protein, carbs, fat);
+    const demandAmount = calculateMacrosAmount(tdee, protein, carbs, fat);
 
     const data = {
       weight,
       height,
+      gender,
       age,
       activity,
       bmr,
+      tdee,
       demandPercentage,
       demandAmount,
     };
@@ -88,14 +104,16 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
             margin={"4.5rem 0"}
             radius={"10px 0"}
             to={"/auth#top"}
-            children={"Get your BMR"}
+            children={"Calculate"}
             size={"0.8rem"}
           />
         </Container>
       )}
       {((user?.credential && !bmr) || editMode) && (
         <Form onSubmit={handleSubmitBMR(calculateBMR)}>
-          <StyledSpan>BMR: {bmr ? bmr : 0} kcal</StyledSpan>
+          <StyledSpan>
+            BMR: {bmr} / TDEE: {tdee}
+          </StyledSpan>
           <Input
             type="number"
             placeholder={"Height(cm)"}
@@ -132,6 +150,14 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
               pattern: /\d+/,
             })}
           />
+          <Select
+            {...registerBMR("gender", {
+              required: true,
+            })}
+          >
+            <option value={"male"}>Male</option>
+            <option value={"female"}>Female</option>
+          </Select>
           <Label color={alternateView ? "black" : "white"}>Activity</Label>
           <Select
             {...registerBMR("activity", {
@@ -139,22 +165,26 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
               required: true,
             })}
           >
-            <option value={1.5}>Low</option>
-            <option value={2}>Medium</option>
-            <option value={2.5}>High</option>
+            <option value={1.2}>No exercise</option>
+            <option value={1.375}>Light: 1-3 times per week</option>
+            <option value={1.55}>Moderate: 3-5 times per week</option>
+            <option value={1.725}>Heavy: 5-6 times per week</option>
+            <option value={1.9}>Very heavy: 6-7 times per week</option>
           </Select>
-          <Button type="submit">{editMode ? "Update" : "Get BMR"}</Button>
+          <Button type="submit">{editMode ? "Update" : "Calculate"}</Button>
         </Form>
       )}
       {bmr && !editMode && (
         <Container>
-          <StyledSpan>BMR: {bmr}</StyledSpan>
+          <StyledSpan>
+            BMR: {bmr} / TDEE: {tdee}
+          </StyledSpan>
           <LinkItem
             hash={1}
             add={1}
             color={"white"}
             padding={"0.8rem"}
-            margin={"1rem 0"}
+            margin={"5.2rem 0"}
             radius={"10px 0"}
             to={"/builder#top"}
             children={"New diary"}

@@ -44,7 +44,7 @@ const DiaryCard = ({
               dispatch(currentItemSet({ item: diary, type: "diary" }));
             }
           : () => {
-              bmr ? history.push("/builder") : notify("You need BMR");
+              bmr ? history.push("/builder") : notify("You need BMR & TDEE");
             }
       }
       header={title}

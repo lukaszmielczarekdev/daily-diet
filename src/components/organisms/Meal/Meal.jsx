@@ -26,10 +26,10 @@ import {
 } from "../../../store/helpers";
 
 const Meal = ({ editMode }) => {
-  const { bmr, demandPercentage } = useSelector((state) =>
+  const { tdee, demandPercentage } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile
-      : { bmr: 0, demandPercentage: { protein: 0, carbs: 0, fat: 0 } }
+      : { tdee: 0, demandPercentage: { protein: 0, carbs: 0, fat: 0 } }
   );
 
   const { temporaryProducts, itemEditMode } = useSelector(
@@ -55,7 +55,7 @@ const Meal = ({ editMode }) => {
   const dispatch = useDispatch();
 
   const demandData = calculateDemandCoverage(
-    bmr,
+    tdee,
     demandPercentage,
     nutrients,
     0
@@ -88,7 +88,7 @@ const Meal = ({ editMode }) => {
           titleSecondary={title}
           children={
             <ProductsContainer id="product-select-editor">
-              <StyledSpan>Caloric demand:&nbsp;{bmr}</StyledSpan>
+              <StyledSpan>Caloric demand:&nbsp;{tdee}</StyledSpan>
               <ProgressBarsContainer>
                 {Object.keys(demandData).map((key, id) => (
                   <RoundChart
