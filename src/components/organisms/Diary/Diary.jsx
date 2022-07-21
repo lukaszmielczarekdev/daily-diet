@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyledTitle,
   StyledListItem,
@@ -14,6 +14,7 @@ import Button from "../../atoms/Button/Button";
 import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
 import Summary from "../Summary/Summary";
+import LinkItem from "../../molecules/LinkItem/LinkItem";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOpened } from "../../../store/helpers";
 import Gallery from "../Gallery/Gallery";
@@ -35,7 +36,11 @@ import SelectedMeals from "../SelectedMeals/SelectedMeals";
 import SelectedProducts from "../SelectedProducts/SelectedProducts";
 import SearchBar from "../SearchField/SearchBar";
 
-const Diary = ({ editMode, creatorAdjustment }) => {
+const Diary = ({ editMode, creatorAdjustment, closeLink }) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const { tdee, demandPercentage } = useSelector((state) =>
     state.user.authData.currentUser?.profile
       ? state.user.authData.currentUser.profile
@@ -195,18 +200,20 @@ const Diary = ({ editMode, creatorAdjustment }) => {
                   </>
                 )}
               </ControlPanel>
-              <Button
+              <LinkItem
+                hash={1}
                 color={"black"}
+                padding={"0.8rem"}
                 margin={"1.5rem 0 0 0"}
-                align={"center"}
+                to={closeLink ? closeLink : ""}
+                children={"Close"}
+                size={"0.8rem"}
                 onClick={() => {
                   dispatch(currentItemRemoved());
                   dispatch(productsRemoved());
                   dispatch(mealsRemoved());
                 }}
-              >
-                Close
-              </Button>
+              />
             </InnerContainer>
           }
         />

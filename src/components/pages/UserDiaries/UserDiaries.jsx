@@ -65,57 +65,63 @@ const UserDiaries = () => {
   return (
     <>
       <Container fillColor>
-        <Article
-          padding={"5rem 3rem 1rem 3rem"}
-          left={
-            <Image
-              left
-              alt={"eggs on the table"}
-              src={eggs}
-              primary={"Low Cost"}
-              secondary={"Healthy\nSandwich"}
+        {currentItem && currentItemType === "diary" ? (
+          <ControlPanel padding={"2rem 0"}>
+            <Diary diary={currentItem} closeLink={"#userDiaryCarousel"} />
+          </ControlPanel>
+        ) : (
+          <>
+            <Article
+              padding={"5rem 3rem 1rem 3rem"}
+              left={
+                <Image
+                  left
+                  alt={"eggs on the table"}
+                  src={eggs}
+                  primary={"Low Cost"}
+                  secondary={"Healthy\nSandwich"}
+                />
+              }
+              right={
+                <>
+                  <TextField
+                    titlePrimary={"Daily"}
+                    titleSecondary={"Food Diaries"}
+                    description={
+                      "By creating diaries, you facilitate the implementation of the diet by observing your body and making adjustments depending on what effect you want to achieve.\n\nYou can use the available ready-made products and you can also add your own compositions.\n\nCreated diaries can be shared with others."
+                    }
+                  />
+                  <LinkItem
+                    add={1}
+                    left={1}
+                    hash={1}
+                    color={"white"}
+                    padding={"0.6rem"}
+                    margin={"0.5rem 0"}
+                    radius={"10px 0"}
+                    to={checkIfLogged()}
+                    children={"New diary"}
+                    size={"0.8rem"}
+                  />
+                  <Attributes items={diaryAttributes} />
+                </>
+              }
             />
-          }
-          right={
-            <>
-              <TextField
-                titlePrimary={"Daily"}
-                titleSecondary={"Food Diaries"}
-                description={
-                  "By creating diaries, you facilitate the implementation of the diet by observing your body and making adjustments depending on what effect you want to achieve.\n\nYou can use the available ready-made products and you can also add your own compositions.\n\nCreated diaries can be shared with others."
-                }
-              />
-              <LinkItem
-                add={1}
-                left={1}
-                hash={1}
-                color={"white"}
-                padding={"0.6rem"}
-                margin={"0.5rem 0"}
-                radius={"10px 0"}
-                to={checkIfLogged()}
-                children={"New diary"}
-                size={"0.8rem"}
-              />
-              <Attributes items={diaryAttributes} />
-            </>
-          }
-        />
-        <ControlPanel padding={"0 1rem"} margin={"0 3rem"}>
-          <Attributes smallScreen items={diaryAttributes} />
-        </ControlPanel>
-        <ControlPanel margin={"1rem 0 0 0"}>
-          <Carousel infinite breakpoints items={renderDiaries()} />
-        </ControlPanel>
-        {currentItem && currentItemType === "diary" && (
-          <Diary diary={currentItem} />
+            <ControlPanel padding={"0 1rem"} margin={"0 3rem"}>
+              <Attributes smallScreen items={diaryAttributes} />
+            </ControlPanel>
+            <ControlPanel margin={"1rem 0 0 0"} id={"userDiaryCarousel"}>
+              <Carousel infinite breakpoints items={renderDiaries()} />
+            </ControlPanel>
+
+            <Title text={"center"} titlePrimary={"Example Meals"} />
+            <ControlPanel justify={"space-around"} margin={"2rem"}>
+              {exampleMeals.map((meal) => (
+                <ProductDetails key={meal.id} {...meal} />
+              ))}
+            </ControlPanel>
+          </>
         )}
-        <Title text={"center"} titlePrimary={"Example Meals"} />
-        <ControlPanel justify={"space-around"} margin={"2rem"}>
-          {exampleMeals.map((meal) => (
-            <ProductDetails key={meal.id} {...meal} />
-          ))}
-        </ControlPanel>
       </Container>
     </>
   );
