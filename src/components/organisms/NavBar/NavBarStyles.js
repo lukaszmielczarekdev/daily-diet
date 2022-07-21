@@ -111,8 +111,8 @@ export const NavOverlay = styled.div`
 export const CloseIcon = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 25px;
-  right: 35px;
+  top: 32px;
+  right: 32px;
 `;
 
 export const HamburgerIcon = styled.div`
