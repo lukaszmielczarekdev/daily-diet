@@ -4,13 +4,9 @@ import { Form, Button, FormContainer, Input } from "./UserDataEditorStyles";
 import VisibilityIcon from "../../atoms/VisibilityIcon/VisibilityIcon";
 import { RiLock2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateUserData,
-  deleteUser,
-  changeNewsletterStatus,
-} from "../../../store/auth";
+import { updateUserData, changeNewsletterStatus } from "../../../store/auth";
 import { debounce } from "../../../utils/helpers";
-import { currentCategoryRemoved } from "../../../store/helpers";
+import { currentCategoryRemoved, modalOpened } from "../../../store/helpers";
 import { notify } from "../../../store/utils";
 import decode from "jwt-decode";
 
@@ -77,16 +73,6 @@ const UserDataEditor = ({ noMarginTop }) => {
   const debouncedHandleNewsletter = useMemo(
     () => debounce((data) => handleNewsletter(data), 400),
     [handleNewsletter]
-  );
-
-  const handleDeleteUser = useCallback(
-    () => dispatch(deleteUser({ id: user.clientId })),
-    [dispatch, user.clientId]
-  );
-
-  const debouncedHandleDeleteUser = useMemo(
-    () => debounce((data) => handleDeleteUser(data), 400),
-    [handleDeleteUser]
   );
 
   return (
@@ -157,7 +143,15 @@ const UserDataEditor = ({ noMarginTop }) => {
           <Button
             warning
             color={"white"}
-            onClick={() => debouncedHandleDeleteUser()}
+            onClick={() =>
+              dispatch(
+                modalOpened({
+                  message: "Delete account?",
+                  onClickAction: "deleteUser",
+                  onClickActionArg: user.clientId,
+                })
+              )
+            }
           >
             Delete Account
           </Button>

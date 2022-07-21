@@ -31,7 +31,7 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
   let { bmr, tdee, gender, activity } = useSelector((state) =>
     state.user.authData.currentUser?.profile.bmr
       ? state.user.authData.currentUser.profile
-      : { bmr: 0, tdee: 0, gender: "male" }
+      : { bmr: null, tdee: 0, gender: "male" }
   );
 
   const { protein, carbs, fat, height, weight, age } = useSelector((state) =>

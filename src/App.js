@@ -17,17 +17,26 @@ import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import ProtectedRoute from "./components/molecules/ProtectedRoute/ProtectedRoute";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import decode from "jwt-decode";
 import { getProducts } from "./store/products";
 import { getMeals } from "./store/meals";
 import { getDiaries } from "./store/diaries";
+import { deleteUser } from "./store/auth";
+import { deleteDiary } from "./store/diaries";
+import { deleteMeal } from "./store/meals";
+import { deleteProduct } from "./store/products";
 import { logout } from "./store/auth";
+import Modal from "./components/molecules/Modal/Modal";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const { isOpen, message, onClickAction, onClickActionArg } = useSelector(
+    (state) => state.user.helpers.modal
+  );
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
@@ -88,6 +97,14 @@ const App = () => {
           </Switch>
           <Footer />
           <Toaster />
+          {isOpen && (
+            <Modal
+              message={message}
+              onClickAction={onClickAction}
+              onClickActionArg={onClickActionArg}
+              actions={[deleteUser, deleteDiary, deleteMeal, deleteProduct]}
+            />
+          )}
         </AppContainer>
       </GoogleOAuthProvider>
     </ThemeManager>

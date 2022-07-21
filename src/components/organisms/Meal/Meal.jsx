@@ -7,7 +7,7 @@ import { ProductsContainer, StyledSpan } from "./MealStyles";
 import Summary from "../Summary/Summary";
 import Gallery from "../Gallery/Gallery";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMeal } from "../../../store/meals";
+import { modalOpened } from "../../../store/helpers";
 import {
   calculateMacrosForProducts,
   calculateDemandCoverage,
@@ -127,7 +127,13 @@ const Meal = ({ editMode }) => {
                     <Button
                       margin={"0 0.5rem 0.5rem 0"}
                       onClick={() => {
-                        dispatch(deleteMeal(_id));
+                        dispatch(
+                          modalOpened({
+                            message: "Delete meal?",
+                            onClickAction: "deleteMeal",
+                            onClickActionArg: _id,
+                          })
+                        );
                         dispatch(currentItemRemoved());
                       }}
                       remove

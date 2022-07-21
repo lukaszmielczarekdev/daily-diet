@@ -27,7 +27,7 @@ export const Input = styled.input`
 `;
 
 export const StyledSpan = styled.span`
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
   padding: 0.6rem;
@@ -68,7 +68,7 @@ export const Select = styled.select`
 
 export const Button = styled.button`
   width: ${({ text }) => (text ? "200px" : "120px")};
-  margin: 0.5rem 0 0 0;
+  margin: 0.5rem 0 1rem 0;
   font-size: 0.8rem;
   padding: 0.6rem;
   display: block;

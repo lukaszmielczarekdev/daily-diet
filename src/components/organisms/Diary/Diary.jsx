@@ -15,7 +15,7 @@ import { ControlPanel } from "../../molecules/ControlPanel/ControlPanel";
 import ProductReadOnly from "../ProductReadOnly/ProductReadOnly";
 import Summary from "../Summary/Summary";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteDiary } from "../../../store/diaries";
+import { modalOpened } from "../../../store/helpers";
 import Gallery from "../Gallery/Gallery";
 import RoundChart from "../RoundChart/RoundChart";
 import Rating from "../Rating/Rating";
@@ -179,7 +179,13 @@ const Diary = ({ editMode, creatorAdjustment }) => {
                     <Button
                       margin={"0 0.5rem 0.5rem 0"}
                       onClick={() => {
-                        dispatch(deleteDiary(_id));
+                        dispatch(
+                          modalOpened({
+                            message: "Delete diary?",
+                            onClickAction: "deleteDiary",
+                            onClickActionArg: _id,
+                          })
+                        );
                         dispatch(currentItemRemoved());
                       }}
                       remove

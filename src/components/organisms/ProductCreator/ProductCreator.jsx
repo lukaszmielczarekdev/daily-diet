@@ -12,11 +12,8 @@ import {
   Span,
 } from "./ProductCreatorStyles";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createProduct,
-  deleteProduct,
-  updateProduct,
-} from "../../../store/products";
+import { createProduct, updateProduct } from "../../../store/products";
+import { modalOpened } from "../../../store/helpers";
 import Title from "../../atoms/Title/Title";
 import Gallery from "../Gallery/Gallery";
 import Button from "../../atoms/Button/Button";
@@ -159,7 +156,13 @@ const ProductCreator = ({ editMode }) => {
                       <Button
                         margin={"0 0.5rem 0.5rem 0"}
                         onClick={() => {
-                          dispatch(deleteProduct(_id));
+                          dispatch(
+                            modalOpened({
+                              message: "Delete product?",
+                              onClickAction: "deleteProduct",
+                              onClickActionArg: _id,
+                            })
+                          );
                           dispatch(currentItemRemoved());
                         }}
                         remove

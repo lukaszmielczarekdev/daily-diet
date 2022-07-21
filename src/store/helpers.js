@@ -14,6 +14,12 @@ const INITIAL_STATE = {
   itemEditMode: null,
   itemCreateMode: null,
   currentCategory: null,
+  modal: {
+    isOpen: null,
+    message: null,
+    onClickAction: null,
+    onClickActionArg: null,
+  },
 };
 
 const slice = createSlice({
@@ -150,6 +156,20 @@ const slice = createSlice({
     mealsRemoved: (state) => {
       state.temporaryMeals = [];
     },
+
+    modalOpened: (state, action) => {
+      state.modal.isOpen = true;
+      state.modal.message = action.payload.message;
+      state.modal.onClickAction = action.payload.onClickAction;
+      state.modal.onClickActionArg = action.payload.onClickActionArg;
+    },
+
+    modalClosed: (state) => {
+      state.modal.isOpen = null;
+      state.modal.message = null;
+      state.modal.onClickAction = null;
+      state.modal.onClickActionArg = null;
+    },
   },
 });
 
@@ -171,6 +191,8 @@ export const {
   itemCreateModeRemoved,
   currentCategorySet,
   currentCategoryRemoved,
+  modalOpened,
+  modalClosed,
 } = slice.actions;
 
 export default slice.reducer;
