@@ -1,4 +1,4 @@
-import { Wrapper, InnerContainer } from "./ArticleStyles";
+import { Wrapper, InnerContainer, Container } from "./ArticleStyles";
 
 const Article = ({
   id,
@@ -7,12 +7,29 @@ const Article = ({
   backgroundRight,
   left,
   right,
+  children,
+  alignSelfRightColumn,
+  alignSelfLeftColumn,
 }) => {
   return (
-    <Wrapper id={id} padding={padding}>
-      <InnerContainer backgroundLeft={backgroundLeft}>{left}</InnerContainer>
-      <InnerContainer backgroundRight={backgroundRight}>{right}</InnerContainer>
-    </Wrapper>
+    <Container padding={padding}>
+      <Wrapper id={id}>
+        <InnerContainer
+          backgroundLeft={backgroundLeft}
+          alignSelfLeftColumn={alignSelfLeftColumn}
+        >
+          {left}
+        </InnerContainer>
+
+        <InnerContainer
+          backgroundRight={backgroundRight}
+          alignSelfRightColumn={alignSelfRightColumn}
+        >
+          {right}
+        </InnerContainer>
+      </Wrapper>
+      {children}
+    </Container>
   );
 };
 export default Article;

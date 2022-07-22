@@ -9,7 +9,7 @@ export const Wrapper = styled.article`
   max-width: 30%;
 
   @media ${({ theme }) => theme.breakpoints.lg} {
-    max-width: 30%;
+    max-width: 45%;
   }
 
   @media ${({ theme }) => theme.breakpoints.md} {
@@ -17,7 +17,7 @@ export const Wrapper = styled.article`
   }
 
   @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    max-width: 30%;
+    max-width: 45%;
   }
 
   @media ${({ theme }) => theme.breakpoints.sm} {

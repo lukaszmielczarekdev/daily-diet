@@ -472,4 +472,7 @@ export const tipsAndTricksArticles = [
 ];
 
 export const calculatorDescription =
-  "Now that we know what BMR and TDEE are, we can start. If you consume more calories than TDEE, it may result in weight gain. On the other hand, if you consume fewer calories than TDEE, it can result in weight loss. For example, if your TDEE is 2,500 calories a day and you eat less than 2,500 calories, you will lose weight. On the other hand, if you eat more than 2,500 calories, you will gain weight. This is why TDEE is associated with weight gain and loss.\n\nKnowing the daily caloric demand, we can calculate the demand for individual macronutrients. This requires the percentage breakdown of macronutrients, which by default is 20% for protein, 50% for carbohydrates and 30% for fat.\nThe percentages can always be changed in the user profile section.";
+  "Now that we know what BMR and TDEE are, we can start. If you consume more calories than TDEE, it may result in weight gain. On the other hand, if you consume fewer calories than TDEE, it can result in weight loss. For example, if your TDEE is 2,500 calories a day and you eat less than 2,500 calories, you will lose weight. On the other hand, if you eat more than 2,500 calories, you will gain weight. This is why TDEE is associated with weight gain and loss.\n\n";
+
+export const macrosDescription =
+  "Knowing the daily caloric demand, we can calculate the demand for individual macronutrients. This requires the percentage breakdown of macronutrients, which by default is 20% for protein, 50% for carbohydrates and 30% for fat.\nThe percentages can always be changed in the user profile section.";

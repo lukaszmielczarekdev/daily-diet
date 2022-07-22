@@ -8,6 +8,7 @@ const ArticleContent = ({
   children,
   text,
   smallText,
+  marginBottom,
 }) => {
   return (
     <>
@@ -18,7 +19,12 @@ const ArticleContent = ({
         small={smallText}
       />
       {description && (
-        <Description thinText smallText={smallText} text={text}>
+        <Description
+          thinText
+          smallText={smallText}
+          text={text}
+          marginBottom={marginBottom}
+        >
           {description}
         </Description>
       )}

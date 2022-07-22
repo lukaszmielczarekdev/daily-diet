@@ -30,7 +30,7 @@ const Articles = () => {
             <ControlPanel
               justify={"space-between"}
               align={"baseline"}
-              margin={"0 0 2rem 0"}
+              margin={"0"}
             >
               {tipsAndTricksArticles.map((article) => (
                 <ArticleCard {...article} key={article.id} />
@@ -41,7 +41,7 @@ const Articles = () => {
               add={1}
               color={"white"}
               padding={"0.8rem"}
-              margin={"0.5rem 0"}
+              margin={"3.5rem 0 0.5rem 0"}
               radius={"10px 0"}
               to={renderLink()}
               children={"Get started"}

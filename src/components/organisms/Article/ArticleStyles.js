@@ -1,28 +1,17 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
-  max-width: 1280px;
   display: flex;
   text-align: left;
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: ${({ padding }) => (padding ? padding : "3rem")};
   margin: 0;
   justify-content: space-between;
-
-  @media ${({ theme }) => theme.breakpoints.smlandscape} {
-    padding: 3rem 1rem 1rem 1rem;
-  }
-
-  @media ${({ theme }) => theme.breakpoints.md} {
-    padding: 3rem 1rem 1rem 1rem;
-  }
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     display: flex;
     flex-direction: column-reverse;
-    padding: 3rem 1rem 1rem 1rem;
   }
 `;
 
@@ -46,11 +35,34 @@ export const InnerContainer = styled.div`
   flex-direction: column;
   justify-content: ${({ center }) => (center ? "center" : "")};
   align-items: ${({ center }) => (center ? "center" : "")};
+
+  align-self: ${({ alignSelfRightColumn, alignSelfLeftColumn }) => {
+    if (alignSelfRightColumn) return alignSelfRightColumn;
+    if (alignSelfLeftColumn) return alignSelfLeftColumn;
+    else return ``;
+  }};
+
   padding: 1rem;
   max-width: 70%;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 1rem 0;
     max-width: 100%;
+  }
+`;
+
+export const Container = styled.div`
+  max-width: 1280px;
+  padding: ${({ padding }) => (padding ? padding : "3rem")};
+
+  @media ${({ theme }) => theme.breakpoints.smlandscape} {
+    padding: 3rem 1rem 1rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 3rem 1rem 1rem 1rem;
+  }
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 3rem 1rem 1rem 1rem;
   }
 `;

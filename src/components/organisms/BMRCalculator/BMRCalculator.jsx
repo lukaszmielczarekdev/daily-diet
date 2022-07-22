@@ -95,17 +95,16 @@ const BMRCalculator = ({ editMode, noMarginTop, alternateView }) => {
     <FormContainer noMarginTop={noMarginTop} alternateView={alternateView}>
       {!user?.credential && (
         <Container>
-          <StyledSpan>BMR / TDEE</StyledSpan>
           <LinkItem
             hash={1}
             add={1}
             smooth={1}
             color={"white"}
             padding={"0.8rem"}
-            margin={"5.2rem 0"}
+            margin={"6.5rem 0"}
             radius={"10px 0"}
             to={"/auth#top"}
-            children={"Calculate"}
+            children={"Calculate BMR / TDEE"}
             size={"0.8rem"}
           />
         </Container>

@@ -5,7 +5,7 @@ export const Container = styled.div`
   border-top: 1px solid #eaeaea;
   justify-content: space-between;
   display: ${({ smallScreen }) => (smallScreen ? "none" : "flex")};
-  width: ${({ smallScreen }) => (smallScreen ? "0" : "80%")};
+  width: ${({ smallScreen }) => (smallScreen ? "0" : "100%")};
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     display: ${({ smallScreen }) => (smallScreen ? "flex" : "none")};
